@@ -1,0 +1,20 @@
+import { DetailDataApi } from "@/layouts/template";
+
+export default async function detailUkuran({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  return (
+    <DetailDataApi
+      dataEndpoint={`/products/ukuran/${params.slug}`}
+      title={"Ukuran"}
+      keyValueData={[
+        {
+          key: "Nama",
+          value: "nama_ukuran",
+        },
+      ]}
+    />
+  );
+}
