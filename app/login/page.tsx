@@ -18,7 +18,7 @@ export default function Login() {
     setLoading(true);
     Loading.hourglass();
     const response = await PostDataApi(
-      `${process.env.NEXT_PUBLIC_HOST}/auth/user/login`,
+      `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/login`,
       data
     );
 

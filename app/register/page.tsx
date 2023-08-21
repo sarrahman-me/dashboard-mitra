@@ -17,7 +17,7 @@ export default function Register() {
     setLoading(true);
     Loading.circle();
     const response = await PostDataApi(
-      `${process.env.NEXT_PUBLIC_HOST}/auth/user/register`,
+      `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/register`,
       data
     );
     if (response.success) {
