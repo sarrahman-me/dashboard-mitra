@@ -1,8 +1,8 @@
 import Image from "next/image";
 import logo from "@/public/logo.png";
-import { FaTachometerAlt, FaCube, FaUsers, FaSitemap } from "react-icons/fa";
-import { BsFillDatabaseFill } from "react-icons/bs";
-import { DropdownList, ListIcon } from "@/layouts/components/molecules";
+import { FaTachometerAlt, FaCube } from "react-icons/fa";
+import { MdCardMembership } from "react-icons/md";
+import { ListIcon } from "@/layouts/components/molecules";
 
 const menuItems = [
   {
@@ -13,49 +13,11 @@ const menuItems = [
     href: "/dashboard/barang",
   },
   {
-    label: "Suplier",
+    label: "Membership",
     icon: (
-      <FaUsers className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
+      <MdCardMembership className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
     ),
-    href: "/dashboard/suplier",
-  },
-  {
-    label: "Mitra",
-    icon: (
-      <FaSitemap className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
-    ),
-    href: "/dashboard/mitra",
-  },
-];
-
-const listMenu = [
-  {
-    label: "Brand",
-    href: "/dashboard/data/brand",
-  },
-  {
-    label: "Kategori Barang",
-    href: "/dashboard/data/kategori-barang",
-  },
-  {
-    label: "Tekstur",
-    href: "/dashboard/data/tekstur",
-  },
-  {
-    label: "Motif",
-    href: "/dashboard/data/motif",
-  },
-  {
-    label: "Kualitas",
-    href: "/dashboard/data/kualitas",
-  },
-  {
-    label: "Ukuran",
-    href: "/dashboard/data/ukuran",
-  },
-  {
-    label: "Warna",
-    href: "/dashboard/data/warna",
+    href: "/dashboard/membership",
   },
 ];
 
@@ -87,13 +49,6 @@ export default function Sidebar() {
               iconComponent={item.icon}
             />
           ))}
-          <DropdownList
-            iconComponent={
-              <BsFillDatabaseFill className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
-            }
-            title="Master Data"
-            listMenu={listMenu}
-          />
         </ul>
       </div>
     </aside>

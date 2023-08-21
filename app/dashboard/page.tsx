@@ -3,7 +3,7 @@ import { GiHand } from "react-icons/gi";
 export default function Dashboard() {
   return (
     <div>
-      <p className="hidden md:inline-flex text-lg font-bold justify-center items-center">
+      <p className="hidden md:inline-flex font-bold justify-center items-center">
         Hay !! Selamat datang di{" "}
         <span className="text-indigo-500 mx-2">sarrahman bangunan</span>{" "}
         <span>
