@@ -1,22 +1,23 @@
 import Image from "next/image";
 import logo from "@/public/logo.png";
-import { FaTachometerAlt, FaCube } from "react-icons/fa";
-import { MdCardMembership } from "react-icons/md";
+import { FaCube } from "react-icons/fa";
+import { MdCardMembership, MdDashboard } from "react-icons/md";
 import { ListIcon } from "@/layouts/components/molecules";
 
 const menuItems = [
   {
+    label: "Dashboard",
+    icon: <MdDashboard />,
+    href: "/dashboard",
+  },
+  {
     label: "Barang",
-    icon: (
-      <FaCube className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
-    ),
+    icon: <FaCube />,
     href: "/dashboard/barang",
   },
   {
     label: "Membership",
-    icon: (
-      <MdCardMembership className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
-    ),
+    icon: <MdCardMembership />,
     href: "/dashboard/membership",
   },
 ];
@@ -30,17 +31,13 @@ export default function Sidebar() {
     >
       <div className="h-full px-3 py-4 overflow-y-auto">
         <div className="justify-center flex">
-          <Image className="h-28 w-28" src={logo} alt="logo" />
-        </div>
-        <ul className="space-y-2 m-2 pl-3 font-medium">
-          <ListIcon
-            key={"Dashboard"}
-            href={"/dashboard"}
-            text={"Dashboard"}
-            iconComponent={
-              <FaTachometerAlt className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
-            }
+          <Image
+            className="h-16 w-16 bg-indigo-500 dark:bg-transparent rounded-xl"
+            src={logo}
+            alt="logo"
           />
+        </div>
+        <ul className="space-y-3 mt-5 m-2 pl-3 font-medium">
           {menuItems.map((item) => (
             <ListIcon
               key={item.label}
