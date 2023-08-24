@@ -12,7 +12,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-slate-50 dark:bg-slate-900 dark:text-white text-black min-h-screen">
+    <div>
       <Sidebar />
       <div className="sm:ml-64">
         <AppBar />

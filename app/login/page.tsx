@@ -53,7 +53,7 @@ export default function Login() {
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="mb-3">
-          <Heading>Dunia Bangunan</Heading>
+          <Heading>Sarrahman Bangunan</Heading>
         </div>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <form
@@ -69,7 +69,7 @@ export default function Login() {
             <Button isLoading={loading} isFullWidth={true} isSubmit={true}>
               Masuk
             </Button>
-            <TextFooter />
+            <p className="text-center">Belum punya akun <span onClick={() => router.push('/register')} className="underline text-indigo-500 cursor-pointer">Daftar</span></p>
           </form>
         </div>
       </div>
