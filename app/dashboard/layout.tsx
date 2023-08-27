@@ -1,5 +1,5 @@
-import { TextFooter } from "@/layouts/components/molecules";
-import { Sidebar, BottomBar, AppBar } from "@/layouts/components/organisms";
+import { TextFooter } from "@/components/molecules";
+import { Sidebar, BottomBar, AppBar } from "@/components/organisms";
 
 export const metadata = {
   title: "Dashboard - sarrahman bangunan",

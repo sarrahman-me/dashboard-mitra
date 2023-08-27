@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/layouts/components/atoms";
+import { Button } from "@/components/atoms";
 import { GetDataApi, PostDataApi, formatCurrency } from "@/utils";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

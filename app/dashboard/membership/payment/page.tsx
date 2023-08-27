@@ -1,10 +1,10 @@
 "use client";
 import moment from "moment";
-import { Button, ListData } from "@/layouts/components/atoms";
+import { Button, ListData } from "@/components/atoms";
 import { GetDataApi, PostDataApi, formatCurrency } from "@/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { HeaderAndBackIcon } from "@/layouts/components/molecules";
+import { HeaderAndBackIcon } from "@/components/molecules";
 
 export default function Payment() {
   const router = useRouter();
