@@ -10,7 +10,6 @@ export default function Payment() {
   const router = useRouter();
   const params = useSearchParams();
   const [membershipPlan, setPlan] = useState({} as any);
-  const [mitraData, setMitra] = useState({} as any);
 
   // Mengambil params dari halaman sebelumnya
   const klasifikasiMembership = params.get("klasifikasi-membership");
@@ -21,10 +20,6 @@ export default function Payment() {
         `${process.env.NEXT_PUBLIC_HOST}/membership/klasifikasi/${klasifikasiMembership}`
       );
       setPlan(data?.data || []);
-      const responseMitra = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
-      );
-      setMitra(responseMitra?.data || []);
     }
     fetchData();
   }, [klasifikasiMembership]);
@@ -32,7 +27,7 @@ export default function Payment() {
   const daftarMembership = async () => {
     const response = await PostDataApi(
       `${process.env.NEXT_PUBLIC_HOST}/membership/daftar`,
-      { id_klasifikasi: membershipPlan.id, username_mitra: mitraData.slug }
+      { id_klasifikasi: membershipPlan.id }
     );
     if (response.success) {
       router.push("/dashboard/membership");

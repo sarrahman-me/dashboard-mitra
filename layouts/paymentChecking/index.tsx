@@ -1,0 +1,23 @@
+import { Player, Controls } from "@lottiefiles/react-lottie-player";
+
+export default function PaymentChecking() {
+  return (
+    <div className="flex border bg-white rounded flex-col md:flex-row">
+      <div className="w-1/2 flex justify-center items-center">
+        <p className="font-semibold">
+          Pembayaranmu sedang dalam proses verifikasi
+        </p>
+      </div>
+      <div className="w-1/2">
+        <Player
+          autoplay
+          loop
+          src="https://lottie.host/4329cab5-2cb6-40f8-8604-7604031b0e44/aGazObx7ge.json"
+          style={{ height: "300px", width: "300px" }}
+        >
+          <Controls buttons={["play", "repeat", "frame", "debug"]} />
+        </Player>
+      </div>
+    </div>
+  );
+}
