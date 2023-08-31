@@ -27,7 +27,7 @@ export default function Payment() {
   const daftarMembership = async () => {
     const response = await PostDataApi(
       `${process.env.NEXT_PUBLIC_HOST}/membership/daftar`,
-      { id_klasifikasi: membershipPlan.id }
+      { id_klasifikasi: membershipPlan.id, nominal: membershipPlan.harga }
     );
     if (response.success) {
       router.push("/dashboard/membership");
@@ -50,8 +50,7 @@ export default function Payment() {
           <ListData label={"Deskripsi"} value={membershipPlan.deskripsi} />
           <ListData
             label={"Tanggal berakhir"}
-            value={`${moment(membershipPlan.createdAt)
-              .add(1, "month")
+            value={`${moment(membershipPlan.createdAt).add(1, "month")
               .calendar()} (1 bulan)`}
           />
         </div>

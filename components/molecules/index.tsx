@@ -5,6 +5,7 @@ import ImageInputWithPreview from "./imageInputWithPreview";
 import ProfileAppBar from "./profile";
 import Table from "./table";
 import TextFooter from "./textFooter";
+import CardProduct from "./cardProduct";
 
 export {
   ListIcon,
@@ -14,4 +15,5 @@ export {
   ImageInputWithPreview,
   ProfileAppBar,
   HeaderAndBackIcon,
+  CardProduct,
 };
