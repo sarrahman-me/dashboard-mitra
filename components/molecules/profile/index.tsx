@@ -35,7 +35,7 @@ export default function ProfileAppBar() {
       async () => {
         try {
           const responseLogout = await DeleteDataApi("/api/auth/logout");
-          if (responseLogout.status) {
+          if (responseLogout.success) {
             deleteCookie("tx");
             deleteCookie("rtx");
             router.push("/login");
