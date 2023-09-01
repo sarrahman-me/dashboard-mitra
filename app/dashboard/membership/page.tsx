@@ -16,22 +16,10 @@ export default function Membership() {
 
   useEffect(() => {
     async function fetchData() {
-      const responseProfile = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
-      );
-      setProfile(responseProfile.data);
-      if (responseProfile.data?.id_membership) {
-        const responseMembership = await GetDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/membership/member/${responseProfile.data?.id_membership}`
-        );
-        setMembership(responseMembership.data);
-        if (responseMembership.data.id_transaksi) {
-          const responseTransaksi = await GetDataApi(
-            `${process.env.NEXT_PUBLIC_HOST}/finance/transaksi/${responseMembership.data.id_transaksi}`
-          );
-          setTransaksi(responseTransaksi.data);
-        }
-      }
+      const response = await GetDataApi(`/api/membership`);
+      setProfile(response.profile);
+      setMembership(response.membership);
+      setTransaksi(response.transaksi);
     }
     fetchData();
   }, []);

@@ -1,9 +1,9 @@
 "use client";
+import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button, Heading } from "@/components/atoms";
 import { Loading, Notify } from "notiflix";
-import { TextFooter } from "@/components/molecules";
 import { PostDataApi } from "@/utils";
 import { TextfieldGroup } from "@/components/organisms";
 
@@ -17,12 +17,11 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     Loading.hourglass();
-    const response = await PostDataApi(
-      `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/login`,
-      data
-    );
+    const response = await PostDataApi(`/api/auth/login`, data);
 
     if (response.success) {
+      setCookie("tx", response.data.token);
+      setCookie("rtx", response.data.refreshToken);
       Notify.success(response.message);
       router.push("/dashboard");
       Loading.remove();
@@ -69,7 +68,15 @@ export default function Login() {
             <Button isLoading={loading} isFullWidth={true} isSubmit={true}>
               Masuk
             </Button>
-            <p className="text-center">Belum punya akun <span onClick={() => router.push('/register')} className="underline text-indigo-500 cursor-pointer">Daftar</span></p>
+            <p className="text-center">
+              Belum punya akun{" "}
+              <span
+                onClick={() => router.push("/register")}
+                className="underline text-indigo-500 cursor-pointer"
+              >
+                Daftar
+              </span>
+            </p>
           </form>
         </div>
       </div>

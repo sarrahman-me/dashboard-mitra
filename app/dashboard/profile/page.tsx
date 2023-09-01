@@ -9,7 +9,7 @@ export default function Profile() {
   useEffect(() => {
     async function fetchData() {
       const responseProfile = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
+        `/api/auth/profile`
       );
       setProfile(responseProfile.data);
     }
