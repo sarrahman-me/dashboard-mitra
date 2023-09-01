@@ -52,10 +52,24 @@ export async function GET(request: Request) {
       transaksi = await responseTransaksi.json();
     }
 
+    const responseBarang = await fetch(
+      `${process.env.NEXT_PUBLIC_HOST}/products/barang`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token?.value}`,
+        },
+        cache: "no-store",
+        credentials: "include",
+      }
+    );
+    const barang = await responseBarang.json();
+
     return NextResponse.json({
       status: 200,
       success: true,
       profile: profile.data,
+      barang: barang.data,
       membership: membership?.data || null,
       transaksi: transaksi?.data || null,
     });

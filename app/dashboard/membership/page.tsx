@@ -17,9 +17,9 @@ export default function Membership() {
   useEffect(() => {
     async function fetchData() {
       const response = await GetDataApi(`/api/membership`);
-      setProfile(response.profile);
-      setMembership(response.membership);
-      setTransaksi(response.transaksi);
+      setProfile(response?.profile);
+      setMembership(response?.membership);
+      setTransaksi(response?.transaksi);
     }
     fetchData();
   }, []);
