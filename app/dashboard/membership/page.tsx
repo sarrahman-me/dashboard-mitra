@@ -1,57 +1,78 @@
-"use client";
 import moment from "moment";
-import { useEffect, useState } from "react";
 import { Heading, ListData } from "@/components/atoms";
 import {
   ButtonStopMembership,
   MembershipPlanList,
   PaymentChecking,
 } from "@/layouts";
-import { GetDataApi, formatCurrency } from "@/utils";
+import { formatCurrency } from "@/utils";
+import { SSRGetDataApi } from "@/utils/fetchingSSR";
 
-export default function Membership() {
-  const [profile, setProfile] = useState({} as any);
-  const [membershsip, setMembership] = useState({} as any);
-  const [transaksi, setTransaksi] = useState({} as any);
+const Membership = async () => {
+  const responseProfile = await SSRGetDataApi(
+    `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
+  );
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await GetDataApi(`/api/membership`);
-      setProfile(response?.profile);
-      setMembership(response?.membership);
-      setTransaksi(response?.transaksi);
+  const profile = responseProfile.data;
+
+  let membership = null;
+  let transaksi = null;
+
+  if (profile?.id_membership) {
+    const responseMembership = await SSRGetDataApi(
+      `${process.env.NEXT_PUBLIC_HOST}/membership/member/${profile?.id_membership}`
+    );
+
+    membership = responseMembership.data;
+
+    if (membership?.id_transaksi) {
+      const responseTransaksi = await SSRGetDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}/finance/transaksi/${membership.id_transaksi}`
+      );
+
+      transaksi = responseTransaksi.data;
     }
-    fetchData();
-  }, []);
+  }
+
+  if (!profile?.id_membership) {
+    return (
+      <div>
+        <Heading>Membership</Heading>
+        <MembershipPlanList />
+      </div>
+    );
+  }
+
+  if (!transaksi.verifikasi) {
+    return (
+      <div>
+        <Heading>Membership</Heading>
+        <PaymentChecking />
+      </div>
+    );
+  }
 
   return (
-    <div>
-      {!profile?.id_membership ? (
-        <MembershipPlanList />
-      ) : transaksi.verifikasi ? (
-        <div className="py-8">
-          <Heading>Membership</Heading>
-          <div className="bg-white rounded p-2 my-2 border">
-            <p>Detail Membership</p>
-            <ListData label="Id membership" value={membershsip.id_membership} />
-            <ListData
-              label="Biaya bulanan"
-              value={formatCurrency(Number(transaksi.nominal))}
-            />
-            <ListData
-              label="Tanggal mulai"
-              value={moment(Number(membershsip.startDate)).format("LL")}
-            />
-            <ListData
-              label="Tanggal berakhir"
-              value={moment(Number(membershsip.endDate)).format("LL")}
-            />
-          </div>
-          <ButtonStopMembership id_membership={profile?.id_membership} />
-        </div>
-      ) : (
-        <PaymentChecking />
-      )}
+    <div className="py-8">
+      <Heading>Membership</Heading>
+      <div className="bg-white dark:bg-slate-800 rounded-md borde p-2 my-2 w-full shadow">
+        <ListData label="Id membership" value={membership.id_membership} />
+        <ListData
+          label="Biaya bulanan"
+          value={formatCurrency(Number(transaksi.nominal))}
+        />
+        <ListData
+          label="Tanggal mulai"
+          value={moment(Number(membership.startDate)).format("LL")}
+        />
+        <ListData
+          label="Tanggal berakhir"
+          value={moment(Number(membership.endDate)).format("LL")}
+        />
+      </div>
+      <ButtonStopMembership id_membership={profile?.id_membership} />
     </div>
   );
-}
+};
+
+export default Membership;

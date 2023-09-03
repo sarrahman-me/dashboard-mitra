@@ -62,7 +62,7 @@ export default function ProfileAppBar() {
       </div>
       <div
         id="dropdown"
-        className={`z-10 bg-white divide-y divide-indigo-100 rounded shadow w-44 absolute right-0 mt-2 text-sm text-indigo-700 dark:text-indigo-200 dark:bg-slate-800 ${
+        className={`z-10 bg-white divide-y divide-indigo-100 rounded shadow w-44 absolute right-0 mt-2 text-sm text-indigo-950 dark:text-indigo-200 dark:bg-slate-800 ${
           isOpen ? "" : "hidden"
         }`}
       >

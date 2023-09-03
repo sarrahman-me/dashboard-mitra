@@ -31,7 +31,7 @@ export default function ListIcon({ text, iconComponent, href }: Props) {
       >
         {iconComponent}
       </div>
-      <span className="flex-1 ml-3 whitespace-nowrap">{text}</span>
+      <span className="flex-1 ml-3 whitespace-nowrap text-indigo-950 dark:text-white">{text}</span>
     </li>
   );
 }
