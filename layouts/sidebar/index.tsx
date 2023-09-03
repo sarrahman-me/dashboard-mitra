@@ -2,7 +2,7 @@ import Image from "next/image";
 import logo from "@/public/logo.png";
 import { FaCube } from "react-icons/fa";
 import { MdCardMembership, MdDashboard } from "react-icons/md";
-import { ListIcon } from "@/components/molecules";
+import { ListIcon } from "@/components/atoms";
 
 const menuItems = [
   {

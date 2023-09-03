@@ -1,6 +1,6 @@
 "use client";
-import { ProfileAppBar } from "../../molecules";
-import { ResizeLayarButton, ToggleDarkMode } from "../../atoms";
+import { ProfileAppBar } from "../../components/molecules";
+import { ResizeLayarButton, ToggleDarkMode } from "../../components/atoms";
 import { useRouter } from "next/navigation";
 
 export default function AppBar() {

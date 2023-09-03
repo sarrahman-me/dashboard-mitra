@@ -19,9 +19,9 @@ export default function ButtonStopMembership(props: { id_membership: any }) {
           { id_membership }
         );
         if (response.success) {
-          Loading.remove();
           Notify.success("berhasil berhenti langganan");
           router.push("/dashboard");
+          Loading.remove();
         }
       }
     );

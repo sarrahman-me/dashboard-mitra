@@ -1,10 +1,6 @@
 import moment from "moment";
-import { Heading, ListData } from "@/components/atoms";
-import {
-  ButtonStopMembership,
-  MembershipPlanList,
-  PaymentChecking,
-} from "@/layouts";
+import { ButtonStopMembership, Heading, ListData } from "@/components/atoms";
+import { MembershipPlanList, PaymentChecking } from "@/layouts";
 import { formatCurrency } from "@/utils";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 

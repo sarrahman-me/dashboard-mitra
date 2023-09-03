@@ -5,6 +5,7 @@ import { GetDataApi, PostDataApi, formatCurrency } from "@/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { HeaderAndBackIcon } from "@/components/molecules";
+import { Confirm, Loading } from "notiflix";
 
 export default function Payment() {
   const router = useRouter();
@@ -25,13 +26,23 @@ export default function Payment() {
   }, [klasifikasiMembership]);
 
   const daftarMembership = async () => {
-    const response = await PostDataApi(
-      `${process.env.NEXT_PUBLIC_HOST}/membership/daftar`,
-      { id_klasifikasi: membershipPlan.id, nominal: membershipPlan.harga }
+    Confirm.show(
+      "Konfirmasi",
+      "Sudah melakukan transfer?",
+      "Sudah",
+      "Batal",
+      async () => {
+        Loading.circle();
+        const response = await PostDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/membership/daftar`,
+          { id_klasifikasi: membershipPlan.id, nominal: membershipPlan.harga }
+        );
+        if (response.success) {
+          router.push("/dashboard/membership");
+          Loading.remove();
+        }
+      }
     );
-    if (response.success) {
-      router.push("/dashboard/membership");
-    }
   };
 
   return (
@@ -50,7 +61,8 @@ export default function Payment() {
           <ListData label={"Deskripsi"} value={membershipPlan.deskripsi} />
           <ListData
             label={"Tanggal berakhir"}
-            value={`${moment(membershipPlan.createdAt).add(1, "month")
+            value={`${moment(membershipPlan.createdAt)
+              .add(1, "month")
               .calendar()} (1 bulan)`}
           />
         </div>

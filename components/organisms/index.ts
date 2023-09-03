@@ -1,7 +1,6 @@
-import AppBar from "./appBar";
-import BottomBar from "./bottomBar";
-import Sidebar from "./sidebar";
+import SectionLayout from "./sectionLayout";
 import SwiperProduct from "./swiperProduct";
+import Table from "./table";
 import TextfieldGroup from "./textfield-group";
 
-export { Sidebar, BottomBar, AppBar, TextfieldGroup, SwiperProduct };
+export { TextfieldGroup, SwiperProduct, SectionLayout, Table };
