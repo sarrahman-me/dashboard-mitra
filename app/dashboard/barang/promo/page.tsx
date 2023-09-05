@@ -1,16 +1,11 @@
-import { CardProduct } from "@/components/molecules";
-import { SwiperProduct } from "@/components/organisms";
+import { CardProduct, HeaderAndBackIcon } from "@/components/molecules";
 import { PaymentChecking } from "@/layouts";
 import { NotMembership } from "@/layouts";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 
-const Barang = async () => {
+const BarangPromo = async () => {
   const responseProfile = await SSRGetDataApi(
     `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
-  );
-
-  const responseBarang = await SSRGetDataApi(
-    `${process.env.NEXT_PUBLIC_HOST}/products/barang`
   );
 
   const responseBarangPromo = await SSRGetDataApi(
@@ -19,7 +14,6 @@ const Barang = async () => {
 
   const barangPromo = responseBarangPromo.data;
   const profile = responseProfile.data;
-  const barang = responseBarang.data;
   let membership = null;
   let transaksi = null;
 
@@ -49,11 +43,10 @@ const Barang = async () => {
 
   return (
     <div>
-      <SwiperProduct url="/dashboard/barang/promo" title="Promo" products={barangPromo} />
-      <p className="underline font-semibold m-2">Semua Barang</p>
+      <HeaderAndBackIcon title="Promo" />
       <div className="p-2">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-          {barang.map((item: any, i: any) => (
+          {barangPromo.map((item: any, i: any) => (
             <div key={i}>
               <CardProduct product={item} />
             </div>
@@ -64,4 +57,4 @@ const Barang = async () => {
   );
 };
 
-export default Barang;
+export default BarangPromo;

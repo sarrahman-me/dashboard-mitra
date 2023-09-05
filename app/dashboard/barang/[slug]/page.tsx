@@ -24,7 +24,7 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <div>
-      <HeaderAndBackIcon title="Detail Barang" />
+      <HeaderAndBackIcon title={`Detail ${barang.kategori}`} />
       <div className="flex flex-col md:flex-row my-2">
         <div className="md:w-1/3 flex justify-center items-center w-full m-2 md:m-0">
           <img
@@ -85,7 +85,7 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
       {barangSerupa.length > 1 ? (
         <div>
           <p className="underline font-semibold m-2">Rekomendasi</p>
-          <SectionLayout>
+          <div className="p-2">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
               {barangSerupa.map((item: any, i: any) => (
                 <div key={i}>
@@ -93,7 +93,7 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
                 </div>
               ))}
             </div>
-          </SectionLayout>
+          </div>
         </div>
       ) : null}
     </div>

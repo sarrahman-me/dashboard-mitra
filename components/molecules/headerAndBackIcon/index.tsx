@@ -4,7 +4,7 @@ export default function HeaderAndBackIcon(props: { title: string }) {
   return (
     <div className="flex items-center m-2">
       <BackIcon />
-      <h2 className="font-bold text-lg">{props.title}</h2>
+      <h2 className="font-semibold underline">{props.title}</h2>
     </div>
   );
 }

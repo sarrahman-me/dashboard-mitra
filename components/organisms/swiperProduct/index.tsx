@@ -4,40 +4,51 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import { CardProduct } from "../../molecules";
-import SectionLayout from "../sectionLayout";
+import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import { useRouter } from "next/navigation";
 
-export default function SwiperProduct(props: { products: any[] }) {
+export default function SwiperProduct(props: {
+  products: any[];
+  title: string;
+  url: string;
+}) {
+  const router = useRouter();
+
   return (
-    <SectionLayout>
+    <div>
+      <div className="flex justify-between items-center mr-5">
+        <p className="underline font-semibold m-2">{props.title}</p>
+        <BsFillArrowRightCircleFill onClick={() => router.push(props.url)} className="text-indigo-500 text-xl cursor-pointer" />
+      </div>
       <div className="cursor-grab select-none">
         <Swiper
           slidesPerView={2}
-          spaceBetween={20}
+          spaceBetween={3}
           modules={[Pagination]}
           grabCursor={true}
           pagination={{ clickable: true }}
           breakpoints={{
             640: {
               slidesPerView: 3,
-              spaceBetween: 20,
+              spaceBetween: 3,
             },
             768: {
               slidesPerView: 4,
-              spaceBetween: 20,
+              spaceBetween: 3,
             },
             1024: {
               slidesPerView: 6,
-              spaceBetween: 20,
+              spaceBetween: 3,
             },
           }}
         >
           {props.products?.map((product) => (
-            <SwiperSlide key={product.slug}>
+            <SwiperSlide key={product.slug} className="p-2">
               <CardProduct product={product} />
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
-    </SectionLayout>
+    </div>
   );
 }

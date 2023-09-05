@@ -33,7 +33,7 @@ const CardProduct = (props: { product: any }) => {
       onClick={() => {
         router.push(`/dashboard/barang/${props.product.slug}`);
       }}
-      className={`bg-white dark:bg-slate-900 rounded shadow-sm cursor-pointer relative hover:shadow`} // Tambahkan class relative
+      className={`bg-white dark:bg-slate-800 rounded shadow cursor-pointer relative hover:shadow-md`}
     >
       {props.product.promo && (
         <div className="bg-red-500 text-white text-xs md:text-sm px-2 py-1 rounded-br absolute top-0 left-0">
@@ -48,7 +48,7 @@ const CardProduct = (props: { product: any }) => {
 
       <div className="flex justify-center">
         <img
-          className="object-cover"
+          className="object-cover border"
           src={props.product?.images[0]}
           alt={props.product?.nama_barang}
         />
