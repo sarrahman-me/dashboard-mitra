@@ -1,5 +1,5 @@
 import { CardProduct } from "@/components/molecules";
-import { SwiperProduct } from "@/components/organisms";
+import { CatalogProducts, SwiperProduct } from "@/components/organisms";
 import { PaymentChecking } from "@/layouts";
 import { NotMembership } from "@/layouts";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
@@ -49,17 +49,12 @@ const Barang = async () => {
 
   return (
     <div>
-      <SwiperProduct url="/dashboard/barang/promo" title="Promo" products={barangPromo} />
-      <p className="underline font-semibold m-2">Semua Barang</p>
-      <div className="p-2">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-          {barang.map((item: any, i: any) => (
-            <div key={i}>
-              <CardProduct product={item} />
-            </div>
-          ))}
-        </div>
-      </div>
+      <SwiperProduct
+        url="/dashboard/barang/promo"
+        title="Promo"
+        products={barangPromo}
+      />
+      <CatalogProducts title="Semua Barang" />
     </div>
   );
 };

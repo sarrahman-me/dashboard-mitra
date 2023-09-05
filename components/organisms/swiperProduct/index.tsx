@@ -18,7 +18,12 @@ export default function SwiperProduct(props: {
     <div>
       <div className="flex justify-between items-center mr-5">
         <p className="underline font-semibold m-2">{props.title}</p>
-        <BsFillArrowRightCircleFill onClick={() => router.push(props.url)} className="text-indigo-500 text-xl cursor-pointer" />
+        {props.url && (
+          <BsFillArrowRightCircleFill
+            onClick={() => router.push(props.url)}
+            className="text-indigo-500 text-xl cursor-pointer"
+          />
+        )}
       </div>
       <div className="cursor-grab select-none">
         <Swiper

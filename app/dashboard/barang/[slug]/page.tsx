@@ -4,7 +4,11 @@ import {
   HeaderAndBackIcon,
   IconSelect,
 } from "@/components/molecules";
-import { SectionLayout } from "@/components/organisms";
+import {
+  CatalogProducts,
+  SectionLayout,
+  SwiperProduct,
+} from "@/components/organisms";
 import { formatCurrency } from "@/utils";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 
@@ -20,6 +24,11 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
     `${process.env.NEXT_PUBLIC_HOST}/products/barang?kategori=${barang.kategori}&ukuran=${barang.ukuran}&motif=${barang.motif}&tekstur=${barang.tekstur}`
   );
 
+  const responseBarangSejenis = await SSRGetDataApi(
+    `${process.env.NEXT_PUBLIC_HOST}/products/barang?nama=${barang.nama_barang}&brand=${barang.brand}`
+  );
+
+  const barangSejenis = responseBarangSejenis.data;
   const barangSerupa = responseBarangSerupa.data;
 
   return (
@@ -30,7 +39,7 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
           <img
             src={barang.images[0]}
             alt={barang.slug}
-            className="w-52 h-52 object-contain border"
+            className="object-contain max-h-44 border"
           />
         </div>
         <div className="bg-white dark:bg-slate-800 rounded-md borde p-2 w-full shadow">
@@ -48,11 +57,13 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
                   {formatCurrency(Number(barang.harga))}
                 </span>
               ) : (
-                formatCurrency(Number(barang.harga))
+                <span className="font-semibold">
+                  {formatCurrency(Number(barang.harga))}
+                </span>
               )}
             </p>
             {barang.promo && (
-              <p className="text-red-500 text-md font-semibold">
+              <p className="text-red-500 font-semibold">
                 {formatCurrency(Number(barang.harga_promo))}
               </p>
             )}
@@ -82,18 +93,21 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       </SectionLayout>
+      {barangSejenis.length > 1 ? (
+        <div>
+          <SwiperProduct
+            products={barangSejenis}
+            title={"Barang yang sama"}
+            url={""}
+          />
+        </div>
+      ) : null}
       {barangSerupa.length > 1 ? (
         <div>
-          <p className="underline font-semibold m-2">Rekomendasi</p>
-          <div className="p-2">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-              {barangSerupa.map((item: any, i: any) => (
-                <div key={i}>
-                  <CardProduct product={item} />
-                </div>
-              ))}
-            </div>
-          </div>
+          <CatalogProducts
+            title={"Rekomendasi"}
+            atribut={`kategori=${barang.kategori}&ukuran=${barang.ukuran}&motif=${barang.motif}&tekstur=${barang.tekstur}`}
+          />
         </div>
       ) : null}
     </div>

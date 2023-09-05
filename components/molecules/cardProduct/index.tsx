@@ -48,7 +48,7 @@ const CardProduct = (props: { product: any }) => {
 
       <div className="flex justify-center">
         <img
-          className="object-cover border"
+          className="object-contain max-h-44 border"
           src={props.product?.images[0]}
           alt={props.product?.nama_barang}
         />
