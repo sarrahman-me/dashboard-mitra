@@ -2,6 +2,7 @@ import { Heading } from "@/components/atoms";
 import { CardProduct } from "@/components/molecules";
 import { SectionLayout, SwiperProduct } from "@/components/organisms";
 import { PaymentChecking } from "@/layouts";
+import { NotMembership } from "@/layouts";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 
 const Barang = async () => {
@@ -40,21 +41,11 @@ const Barang = async () => {
   }
 
   if (!profile?.id_membership) {
-    return (
-      <div>
-        <Heading>Barang</Heading>
-        <p>pilih membership dulu</p>
-      </div>
-    );
+    return <NotMembership />;
   }
 
   if (!transaksi?.verifikasi) {
-    return (
-      <div>
-        <Heading>Barang</Heading>
-        <PaymentChecking />
-      </div>
-    );
+    return <PaymentChecking />;
   }
 
   return (

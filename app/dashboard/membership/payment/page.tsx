@@ -1,9 +1,9 @@
 "use client";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { Button, ListData } from "@/components/atoms";
 import { GetDataApi, PostDataApi, formatCurrency } from "@/utils";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import { HeaderAndBackIcon } from "@/components/molecules";
 import { Confirm, Loading } from "notiflix";
 
@@ -48,37 +48,46 @@ export default function Payment() {
   return (
     <div>
       <HeaderAndBackIcon title={"Halaman pembayaran"} />
-      <div className="flex flex-col md:flex-row">
-        <div className="w-full md:w-2/3 p-4 m-1 bg-white dark:bg-slate-800 rounded shadow">
-          <ListData
-            label={"Nama Klasifikasi"}
-            value={membershipPlan.nama_klasifikasi}
-          />
-          <ListData
-            label={"Harga"}
-            value={formatCurrency(membershipPlan.harga || 0)}
-          />
-          <ListData label={"Deskripsi"} value={membershipPlan.deskripsi} />
-          <ListData
-            label={"Tanggal berakhir"}
-            value={`${moment(membershipPlan.createdAt)
-              .add(1, "month")
-              .calendar()} (1 bulan)`}
-          />
-        </div>
-        <div className="w-full md:w-1/3 p-4 m-1 bg-white dark:bg-slate-800 rounded shadow">
-          <p className="mb-4">
-            Silakan lakukan pembayaran ke rekening berikut:
-          </p>
-          <p className="my-4">{formatCurrency(membershipPlan.harga || 0)}</p>
-          <div className="my-4">
-            <p>Bank: Bank BCA</p>
-            <p>Nomor Rekening: 1234-5678-9012</p>
+      <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-white dark:bg-slate-800 rounded shadow p-6">
+            <p className="text-lg mb-4">Informasi Paket Membership</p>
+            <ListData
+              label={"Nama Klasifikasi"}
+              value={membershipPlan.nama_klasifikasi}
+            />
+            <ListData
+              label={"Harga"}
+              value={formatCurrency(membershipPlan.harga || 0)}
+            />
+            <ListData label={"Deskripsi"} value={membershipPlan.deskripsi} />
+            <ListData
+              label={"Tanggal berakhir"}
+              value={`${moment(membershipPlan.createdAt)
+                .add(1, "month")
+                .calendar()} (1 bulan)`}
+            />
           </div>
-          <p className="text-sm my-4">
-            Pastikan kamu melakukan pembayaran dengan benar ke rekening di atas.
-          </p>
-          <Button onClick={daftarMembership}>Saya sudah transfer</Button>
+          <div className="bg-white dark:bg-slate-800 rounded shadow p-6">
+            <p className="text-lg mb-4">Instruksi Pembayaran</p>
+            <p>Silakan lakukan pembayaran ke rekening berikut:</p>
+            <p className="font-semibold mt-2">
+              {formatCurrency(membershipPlan.harga || 0)}
+            </p>
+            <div className="mt-4">
+              <p className="font-semibold">Bank: Bank BCA</p>
+              <p className="font-semibold">
+                Nomor Rekening: 1234-5678-9012
+              </p>
+            </div>
+            <p className="text-sm mt-4">
+              Pastikan kamu melakukan pembayaran dengan benar ke rekening di
+              atas.
+            </p>
+            <Button className="mt-6 w-full" onClick={daftarMembership}>
+              Saya sudah transfer
+            </Button>
+          </div>
         </div>
       </div>
     </div>

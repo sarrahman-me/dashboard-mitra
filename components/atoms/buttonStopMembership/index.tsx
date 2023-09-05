@@ -30,7 +30,7 @@ export default function ButtonStopMembership(props: { id_membership: any }) {
   return (
     <div>
       <button
-        className="bg-red-500 p-2 px-4 rounded"
+        className="border border-red-500 hover:shadow shadow-red-500 bg-white text-red-500 dark:bg-slate-800 p-2 px-4 rounded"
         onClick={() => berhentiMembership(props.id_membership)}
       >
         Berhenti Berlangganan

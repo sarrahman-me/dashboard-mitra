@@ -34,7 +34,6 @@ const Membership = async () => {
   if (!profile?.id_membership) {
     return (
       <div>
-        <Heading>Membership</Heading>
         <MembershipPlanList />
       </div>
     );
@@ -43,7 +42,6 @@ const Membership = async () => {
   if (!transaksi?.verifikasi) {
     return (
       <div>
-        <Heading>Membership</Heading>
         <PaymentChecking />
       </div>
     );

@@ -1,6 +1,7 @@
 import AppBar from "./appBar";
 import BottomBar from "./bottomBar";
 import MembershipPlanList from "./membershipPlanList";
+import NotMembership from "./notMembership";
 import PaymentChecking from "./paymentChecking";
 import Sidebar from "./sidebar";
 
@@ -10,4 +11,5 @@ export {
   Sidebar,
   AppBar,
   BottomBar,
+  NotMembership,
 };
