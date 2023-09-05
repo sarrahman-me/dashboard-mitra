@@ -3,6 +3,7 @@ import ImageInputWithPreview from "./imageInputWithPreview";
 import ProfileAppBar from "./profile";
 import TextFooter from "./textFooter";
 import CardProduct from "./cardProduct";
+import IconSelect from "./IconSelect";
 
 export {
   TextFooter,
@@ -10,4 +11,5 @@ export {
   ProfileAppBar,
   HeaderAndBackIcon,
   CardProduct,
+  IconSelect,
 };

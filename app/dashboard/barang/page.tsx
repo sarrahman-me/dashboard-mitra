@@ -1,6 +1,6 @@
 import { Heading } from "@/components/atoms";
 import { CardProduct } from "@/components/molecules";
-import { SwiperProduct } from "@/components/organisms";
+import { SectionLayout, SwiperProduct } from "@/components/organisms";
 import { PaymentChecking } from "@/layouts";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 
@@ -13,6 +13,11 @@ const Barang = async () => {
     `${process.env.NEXT_PUBLIC_HOST}/products/barang`
   );
 
+  const responseBarangPromo = await SSRGetDataApi(
+    `${process.env.NEXT_PUBLIC_HOST}/products/barang?promo=true`
+  );
+
+  const barangPromo = responseBarangPromo.data;
   const profile = responseProfile.data;
   const barang = responseBarang.data;
   let membership = null;
@@ -34,7 +39,7 @@ const Barang = async () => {
     }
   }
 
-  if (!profile.id_membership) {
+  if (!profile?.id_membership) {
     return (
       <div>
         <Heading>Barang</Heading>
@@ -43,7 +48,7 @@ const Barang = async () => {
     );
   }
 
-  if (!transaksi.verifikasi) {
+  if (!transaksi?.verifikasi) {
     return (
       <div>
         <Heading>Barang</Heading>
@@ -54,15 +59,18 @@ const Barang = async () => {
 
   return (
     <div>
-      <Heading>Barang</Heading>
-      <SwiperProduct products={barang} title={"semua barang"} />
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-        {barang.map((item: any, i: any) => (
-          <div key={i}>
-            <CardProduct product={item} />
-          </div>
-        ))}
-      </div>
+      <p className="underline font-semibold m-2">Promo</p>
+      <SwiperProduct products={barangPromo} />
+      <p className="underline font-semibold m-2">Semua Barang</p>
+      <SectionLayout>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+          {barang.map((item: any, i: any) => (
+            <div key={i}>
+              <CardProduct product={item} />
+            </div>
+          ))}
+        </div>
+      </SectionLayout>
     </div>
   );
 };

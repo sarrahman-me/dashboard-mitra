@@ -3,6 +3,7 @@ import { ButtonStopMembership, Heading, ListData } from "@/components/atoms";
 import { MembershipPlanList, PaymentChecking } from "@/layouts";
 import { formatCurrency } from "@/utils";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
+import { SectionLayout } from "@/components/organisms";
 
 const Membership = async () => {
   const responseProfile = await SSRGetDataApi(
@@ -39,7 +40,7 @@ const Membership = async () => {
     );
   }
 
-  if (!transaksi.verifikasi) {
+  if (!transaksi?.verifikasi) {
     return (
       <div>
         <Heading>Membership</Heading>
@@ -51,21 +52,23 @@ const Membership = async () => {
   return (
     <div className="py-8">
       <Heading>Membership</Heading>
-      <div className="bg-white dark:bg-slate-800 rounded-md borde p-2 my-2 w-full shadow">
-        <ListData label="Id membership" value={membership.id_membership} />
-        <ListData
-          label="Biaya bulanan"
-          value={formatCurrency(Number(transaksi.nominal))}
-        />
-        <ListData
-          label="Tanggal mulai"
-          value={moment(Number(membership.startDate)).format("LL")}
-        />
-        <ListData
-          label="Tanggal berakhir"
-          value={moment(Number(membership.endDate)).format("LL")}
-        />
-      </div>
+      <SectionLayout>
+        <div>
+          <ListData label="Id membership" value={membership.id_membership} />
+          <ListData
+            label="Biaya bulanan"
+            value={formatCurrency(Number(transaksi.nominal))}
+          />
+          <ListData
+            label="Tanggal mulai"
+            value={moment(Number(membership.startDate)).format("LL")}
+          />
+          <ListData
+            label="Tanggal berakhir"
+            value={moment(Number(membership.endDate)).format("LL")}
+          />
+        </div>
+      </SectionLayout>
       <ButtonStopMembership id_membership={profile?.id_membership} />
     </div>
   );

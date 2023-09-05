@@ -4,14 +4,11 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import { CardProduct } from "../../molecules";
+import SectionLayout from "../sectionLayout";
 
-export default function SwiperProduct(props: {
-  products: any[];
-  title: string;
-}) {
+export default function SwiperProduct(props: { products: any[] }) {
   return (
-    <div className="bg-white dark:bg-slate-800 p-2 my-3 md:mx-2 shadow sm:border rounded">
-      <p>{props.title}</p>
+    <SectionLayout>
       <div className="cursor-grab select-none">
         <Swiper
           slidesPerView={2}
@@ -21,16 +18,16 @@ export default function SwiperProduct(props: {
           pagination={{ clickable: true }}
           breakpoints={{
             640: {
-              slidesPerView: 2,
+              slidesPerView: 3,
               spaceBetween: 20,
             },
             768: {
-              slidesPerView: 3,
-              spaceBetween: 30,
+              slidesPerView: 4,
+              spaceBetween: 20,
             },
             1024: {
-              slidesPerView: 5,
-              spaceBetween: 40,
+              slidesPerView: 6,
+              spaceBetween: 20,
             },
           }}
         >
@@ -41,6 +38,6 @@ export default function SwiperProduct(props: {
           ))}
         </Swiper>
       </div>
-    </div>
+    </SectionLayout>
   );
 }
