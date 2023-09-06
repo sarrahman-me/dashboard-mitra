@@ -1,4 +1,4 @@
-import { CardProduct } from "@/components/molecules";
+import { SearchBar } from "@/components/molecules";
 import { CatalogProducts, SwiperProduct } from "@/components/organisms";
 import { PaymentChecking } from "@/layouts";
 import { NotMembership } from "@/layouts";
@@ -9,17 +9,7 @@ const Barang = async () => {
     `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
   );
 
-  const responseBarang = await SSRGetDataApi(
-    `${process.env.NEXT_PUBLIC_HOST}/products/barang`
-  );
-
-  const responseBarangPromo = await SSRGetDataApi(
-    `${process.env.NEXT_PUBLIC_HOST}/products/barang?promo=true`
-  );
-
-  const barangPromo = responseBarangPromo.data;
   const profile = responseProfile.data;
-  const barang = responseBarang.data;
   let membership = null;
   let transaksi = null;
 
@@ -39,6 +29,12 @@ const Barang = async () => {
     }
   }
 
+  const responseBarangPromo = await SSRGetDataApi(
+    `${process.env.NEXT_PUBLIC_HOST}/products/barang?promo=true`
+  );
+
+  const barangPromo = responseBarangPromo.data;
+
   if (!profile?.id_membership) {
     return <NotMembership />;
   }
@@ -49,12 +45,14 @@ const Barang = async () => {
 
   return (
     <div>
+      <SearchBar />
       <SwiperProduct
         url="/dashboard/barang/promo"
         title="Promo"
         products={barangPromo}
       />
-      <CatalogProducts title="Semua Barang" />
+      <p className="underline font-semibold m-2">{"Semua Barang"}</p>
+      <CatalogProducts />
     </div>
   );
 };

@@ -1,9 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import {
-  CardProduct,
-  HeaderAndBackIcon,
-  IconSelect,
-} from "@/components/molecules";
+import { HeaderAndBackIcon, IconSelect } from "@/components/molecules";
 import {
   CatalogProducts,
   SectionLayout,
@@ -128,8 +124,8 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
       ) : null}
       {barangSerupa.length > 1 ? (
         <div>
+          <p className="underline font-semibold m-2">{`Rekomendasi`}</p>
           <CatalogProducts
-            title={"Rekomendasi"}
             atribut={`kategori=${barang.kategori}&ukuran=${barang.ukuran}&motif=${barang.motif}&tekstur=${barang.tekstur}`}
           />
         </div>

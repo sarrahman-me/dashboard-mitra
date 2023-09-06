@@ -4,17 +4,19 @@ import { GetDataApi } from "@/utils";
 import { useEffect, useState } from "react";
 
 export default function CatalogProducts(props: {
-  title: string;
   atribut?: string;
+  path?: string;
 }) {
   const [barang, setBarang] = useState([] as any);
   const [currentPage, setCurrentPage] = useState(1);
   const [metadata, setMetadata] = useState({} as any);
 
+  const path = props.path || "products/barang";
+
   useEffect(() => {
     async function fetchData() {
       const response = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/products/barang?${
+        `${process.env.NEXT_PUBLIC_HOST}/${path}?${
           props.atribut || ""
         }&limit=25&page=${currentPage}`
       );
@@ -22,7 +24,7 @@ export default function CatalogProducts(props: {
       setMetadata(response.metadata);
     }
     fetchData();
-  }, [currentPage, props.atribut]);
+  }, [currentPage, props.atribut, path]);
 
   const handleNextPage = () => {
     if (currentPage < metadata?.totalPages) {
@@ -38,7 +40,6 @@ export default function CatalogProducts(props: {
 
   return (
     <div>
-      <p className="underline font-semibold m-2">{props.title}</p>
       <div className="p-2">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
           {barang.map((item: any, i: any) => (

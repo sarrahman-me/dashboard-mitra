@@ -1,4 +1,5 @@
-import { CardProduct, HeaderAndBackIcon } from "@/components/molecules";
+import { HeaderAndBackIcon } from "@/components/molecules";
+import { CatalogProducts } from "@/components/organisms";
 import { PaymentChecking } from "@/layouts";
 import { NotMembership } from "@/layouts";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
@@ -8,11 +9,6 @@ const BarangPromo = async () => {
     `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
   );
 
-  const responseBarangPromo = await SSRGetDataApi(
-    `${process.env.NEXT_PUBLIC_HOST}/products/barang?promo=true`
-  );
-
-  const barangPromo = responseBarangPromo.data;
   const profile = responseProfile.data;
   let membership = null;
   let transaksi = null;
@@ -44,15 +40,7 @@ const BarangPromo = async () => {
   return (
     <div>
       <HeaderAndBackIcon title="Promo" />
-      <div className="p-2">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-          {barangPromo.map((item: any, i: any) => (
-            <div key={i}>
-              <CardProduct product={item} />
-            </div>
-          ))}
-        </div>
-      </div>
+      <CatalogProducts atribut={`promo=true`} />
     </div>
   );
 };
