@@ -20,7 +20,10 @@ export default function Login() {
     const response = await PostDataApi(`/api/auth/login`, data);
 
     if (response.success) {
-      setCookie("tx", response.data.token);
+      setCookie("tx", response.data.token, {
+        maxAge: 60 * 60 * 24 * 30, 
+        path: "/",
+      });
       setCookie("rtx", response.data.refreshToken);
       Notify.success(response.message);
       router.push("/dashboard");

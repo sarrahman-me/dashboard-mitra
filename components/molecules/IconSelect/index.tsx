@@ -2,9 +2,15 @@
 import { Tooltip } from "react-tooltip";
 import { IoFootstepsSharp } from "react-icons/io5";
 import { TbSwimming } from "react-icons/tb";
-import { GiHomeGarage, GiSofa, GiParkBench, GiBrickWall } from "react-icons/gi";
+import {
+  GiHomeGarage,
+  GiSofa,
+  GiParkBench,
+  GiBrickWall,
+  GiLaddersPlatform,
+} from "react-icons/gi";
 import { FaBath } from "react-icons/fa";
-import { MdKitchen } from "react-icons/md";
+import { MdKitchen, MdTableRestaurant } from "react-icons/md";
 
 export default function IconSelect(props: { options: string[] }) {
   const getIcon = (option: string) => {
@@ -25,6 +31,10 @@ export default function IconSelect(props: { options: string[] }) {
         return <GiSofa />;
       case "Garasi":
         return <GiHomeGarage />;
+      case "Meja Dapur":
+        return <MdTableRestaurant />;
+      case "Tangga":
+        return <GiLaddersPlatform />;
       default:
         return null;
     }

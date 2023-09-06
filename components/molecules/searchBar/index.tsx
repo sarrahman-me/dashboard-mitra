@@ -2,6 +2,7 @@
 import { RiSearchLine } from "react-icons/ri";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Loading } from "notiflix";
 
 const SearchBar = () => {
   const router = useRouter();
@@ -11,8 +12,10 @@ const SearchBar = () => {
     <form
       className="flex justify-center items-center py-3"
       onSubmit={(e) => {
+        Loading.dots("Mencari...");
         e.preventDefault();
         router.push(`/dashboard/barang/pencarian?query=${searchTerm}`);
+        Loading.remove();
       }}
     >
       <div className="relative flex items-center w-full md:w-2/3 mx-2">
