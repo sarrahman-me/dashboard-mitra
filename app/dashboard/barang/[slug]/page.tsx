@@ -31,6 +31,18 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
   const barangSejenis = responseBarangSejenis.data;
   const barangSerupa = responseBarangSerupa.data;
 
+  // Fungsi untuk menghitung berapa persen potongannya
+  const calculateDiscountPercentage = () => {
+    if (barang?.promo) {
+      const harga = Number(barang?.harga);
+      const hargaPromo = Number(barang?.harga_promo);
+      const potongan = harga - hargaPromo;
+      const persentasePotongan = (potongan / harga) * 100;
+      return persentasePotongan.toFixed(0);
+    }
+    return "";
+  };
+
   return (
     <div>
       <HeaderAndBackIcon title={`Detail ${barang.kategori}`} />
@@ -47,37 +59,49 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
             <p className="text-sm md:text-base text-indigo-500">
               {barang.kategori}
             </p>
-            <p className="md:text-lg font-semibold">
-              {barang.nama_barang} - {barang.warna}
+            <p className="text-sm md:text-base font-semibold">
+              {(barang?.nama_barang as string).toUpperCase()} - {barang.warna}
             </p>
             <p className="text-sm md:text-base">{barang.brand}</p>
-            <p className="text-sm md:text-base">
-              {barang.promo ? (
-                <span className="text-gray-500 line-through">
-                  {formatCurrency(Number(barang.harga))}
-                </span>
-              ) : (
-                <span className="font-semibold">
-                  {formatCurrency(Number(barang.harga))}
-                </span>
-              )}
-            </p>
+            <p className="text-sm md:text-base">Stok {barang.stok} Dus</p>
             {barang.promo && (
-              <p className="text-red-500 font-semibold">
+              <p className="text-base font-semibold">
                 {formatCurrency(Number(barang.harga_promo))}
               </p>
             )}
+            <div className="text-sm md:text-base">
+              {barang.promo ? (
+                <span className="flex items-center text-xs">
+                  <p className="bg-red-200 text-red-500 rounded p-0.5 mr-1">{`${calculateDiscountPercentage()}%`}</p>
+                  <p className="text-gray-500 line-through">
+                    {formatCurrency(Number(barang.harga))}
+                  </p>
+                </span>
+              ) : (
+                <span className="text-base font-semibold">
+                  {formatCurrency(Number(barang.harga))}
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </div>
       <p className="underline font-semibold m-2">Detail Produk</p>
       <SectionLayout>
         <div className="flex flex-col md:flex-row ml-2">
-          <div className="divide-y-8 divide-transparent my-2 w-1/2">
-            <p>Ukuran : {barang.ukuran}</p>
-            <p>Kualitas : {barang.kualitas}</p>
-            <p>Motif : {barang.motif}</p>
-            <p>Tekstur : {barang.tekstur}</p>
+          <div className="text-sm md:text-base divide-y-8 divide-transparent my-2 w-1/2">
+            <span className="flex items-center">
+              <p className="font-medium mr-2">Ukuran:</p> {barang.ukuran}
+            </span>
+            <span className="flex items-center">
+              <p className="font-medium mr-2">Kualitas:</p> {barang.kualitas}
+            </span>
+            <span className="flex items-center">
+              <p className="font-medium mr-2">Motif:</p> {barang.motif}
+            </span>
+            <span className="flex items-center">
+              <p className="font-medium mr-2">Tekstur:</p> {barang.tekstur}
+            </span>
           </div>
           <div className="w-1/2">
             <div className="my-2">

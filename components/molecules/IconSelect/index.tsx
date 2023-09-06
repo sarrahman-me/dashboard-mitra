@@ -39,7 +39,7 @@ export default function IconSelect(props: { options: string[] }) {
             props.options.includes(option)
               ? "text-indigo-400 border rounded-full border-indigo-400"
               : "text-gray-400"
-          } text-2xl cursor-pointer transition duration-300 p-1`}
+          } text-lg md:text-2xl cursor-pointer transition duration-300 p-1`}
           title={option}
           data-tooltip-id="tooltip"
           data-tooltip-content={option}
