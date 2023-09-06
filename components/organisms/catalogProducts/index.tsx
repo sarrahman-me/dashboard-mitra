@@ -10,6 +10,7 @@ export default function CatalogProducts(props: {
   const [barang, setBarang] = useState([] as any);
   const [currentPage, setCurrentPage] = useState(1);
   const [metadata, setMetadata] = useState({} as any);
+  const [loading, setLoading] = useState(true);
 
   const path = props.path || "products/barang";
 
@@ -22,6 +23,7 @@ export default function CatalogProducts(props: {
       );
       setBarang(response.data);
       setMetadata(response.metadata);
+      setLoading(false);
     }
     fetchData();
   }, [currentPage, props.atribut, path]);
@@ -42,14 +44,20 @@ export default function CatalogProducts(props: {
     <div>
       <div className="p-2">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-          {barang.map((item: any, i: any) => (
-            <div key={i}>
-              <CardProduct product={item} />
-            </div>
-          ))}
+          {loading ? (
+            <div className="text-center">Loading...</div>
+          ) : barang.length > 0 ? (
+            barang.map((item: any, i: any) => (
+              <div key={i}>
+                <CardProduct product={item} />
+              </div>
+            ))
+          ) : (
+            <div className="text-center">Data tidak ditemukan.</div> // Menambahkan pesan jika data tidak ditemukan
+          )}
         </div>
       </div>
-      {barang.length > 0 ? (
+      {!loading && barang.length > 0 ? (
         <div className="flex justify-between items-center p-2">
           <div>
             <p className="text-xs md:text-sm text-gray-500">
@@ -81,9 +89,7 @@ export default function CatalogProducts(props: {
             </button>
           </div>
         </div>
-      ) : (
-        <div className="text-center">Loading...</div>
-      )}
+      ) : null}
     </div>
   );
 }

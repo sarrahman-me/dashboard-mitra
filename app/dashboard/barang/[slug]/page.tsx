@@ -117,7 +117,7 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
         <div>
           <SwiperProduct
             products={barangSejenis}
-            title={"Barang yang sama"}
+            title={"Motif Lainnya"}
             url={""}
           />
         </div>
