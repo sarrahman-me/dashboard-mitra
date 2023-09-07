@@ -47,10 +47,13 @@ const KalkulatorKeramik = (props: {
         />
         <Button isSubmit={true}>Hitung</Button>
       </form>
-      {hasil && hasil?.kebutuhan && (
-        <div className="divide-y-8 divide-transparent ml-2">
+      {hasil?.kebutuhan && (
+        <div className="divide-y-8 divide-transparent m-2">
+          <p className="text-base flex items-center">
+            Kebutuhan: {hasil?.kebutuhan} dus
+          </p>
           {props.isPromo && (
-            <p className="text-base">
+            <p className="text-base divide-y-4 divide-transparent">
               Estimasi Biaya:
               {formatCurrency(Number(props.hargaPromo) * hasil?.kebutuhan)}*
               <p className="text-xs">
@@ -74,7 +77,7 @@ const KalkulatorKeramik = (props: {
                 </p>
               </span>
             ) : (
-              <span className="text-base">
+              <span className="text-base divide-y-4 divide-transparent">
                 Estimasi Biaya:
                 {formatCurrency(Number(props.hargaBarang) * hasil?.kebutuhan)}
                 <p className="text-xs">
@@ -84,13 +87,11 @@ const KalkulatorKeramik = (props: {
             )}
           </div>
           <p className="text-sm md:text-base">
-            {`Kebutuhan: ${hasil?.kebutuhan} dus`}
-          </p>
-          <p className="text-sm md:text-base">
             Diameter Ruangan: {hasil?.diameter_ruang} m<sup>2</sup>
           </p>
           <p className="text-sm md:text-base">
-            Diameter Perdus: {(hasil?.diameter_perdus).toFixed(2)} m<sup>2</sup>
+            Diameter Perdus: {(hasil?.diameter_perdus as number).toFixed(2)} m
+            <sup>2</sup>
           </p>
         </div>
       )}

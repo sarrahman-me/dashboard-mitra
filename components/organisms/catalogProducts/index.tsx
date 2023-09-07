@@ -1,14 +1,18 @@
 "use client";
 import { CardProduct } from "@/components/molecules";
 import { GetDataApi } from "@/utils";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function CatalogProducts(props: {
   atribut?: string;
   path?: string;
 }) {
+  const router = useRouter();
+  const params = useSearchParams();
+  const page = params.get("page");
   const [barang, setBarang] = useState([] as any);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(page ? Number(page) : 1);
   const [metadata, setMetadata] = useState({} as any);
   const [loading, setLoading] = useState(true);
 
@@ -19,7 +23,7 @@ export default function CatalogProducts(props: {
       const response = await GetDataApi(
         `${process.env.NEXT_PUBLIC_HOST}/${path}?${
           props.atribut || ""
-        }&limit=50&page=${currentPage}`
+        }&limit=20&page=${currentPage}`
       );
       setBarang(response.data);
       setMetadata(response.metadata);
@@ -31,12 +35,14 @@ export default function CatalogProducts(props: {
   const handleNextPage = () => {
     if (currentPage < metadata?.totalPages) {
       setCurrentPage(currentPage + 1);
+      router.push(`dashboard/barang?page=${currentPage + 1}`);
     }
   };
 
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
+      router.push(`dashboard/barang?page=${currentPage - 1}`);
     }
   };
 
@@ -53,7 +59,7 @@ export default function CatalogProducts(props: {
               </div>
             ))
           ) : (
-            <div className="text-center">Data tidak ditemukan.</div> // Menambahkan pesan jika data tidak ditemukan
+            <div className="text-center">Data tidak ditemukan.</div>
           )}
         </div>
       </div>
