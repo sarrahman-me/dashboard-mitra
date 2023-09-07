@@ -3,7 +3,13 @@
 import { formatCurrency } from "@/utils";
 import { useRouter } from "next/navigation";
 
-const CardProduct = (props: { product: any }) => {
+const CardProduct = (props: { product: any; persentaseHarga: number }) => {
+  const harga =
+    Number(props.product?.harga) +
+    Number((props.product?.harga * props.persentaseHarga) / 100);
+  const hargaPromo =
+    Number(props.product?.harga_promo) +
+    Number((props.product?.harga_promo * props.persentaseHarga) / 100);
   const router = useRouter();
 
   // Fungsi untuk memeriksa apakah barang baru
@@ -19,8 +25,6 @@ const CardProduct = (props: { product: any }) => {
   // Fungsi untuk menghitung berapa persen potongannya
   const calculateDiscountPercentage = () => {
     if (props.product?.promo) {
-      const harga = Number(props.product?.harga);
-      const hargaPromo = Number(props.product?.harga_promo);
       const potongan = harga - hargaPromo;
       const persentasePotongan = (potongan / harga) * 100;
       return persentasePotongan.toFixed(0);
@@ -54,19 +58,15 @@ const CardProduct = (props: { product: any }) => {
           {(props.product?.nama_barang as string).toUpperCase()}
         </p>
         {props.product.promo ? (
-          <p className="text-sm font-semibold">
-            {formatCurrency(Number(props.product?.harga_promo))}
-          </p>
+          <p className="text-sm font-semibold">{formatCurrency(hargaPromo)}</p>
         ) : (
-          <p className="text-sm font-semibold">
-            {formatCurrency(Number(props.product?.harga))}
-          </p>
+          <p className="text-sm font-semibold">{formatCurrency(harga)}</p>
         )}
         {props.product.promo && (
           <span className="flex items-center text-xs">
             <p className="bg-red-200 text-red-500 rounded p-0.5 mr-1">{`${calculateDiscountPercentage()}%`}</p>
             <p className="text-gray-400 line-through">
-              {formatCurrency(Number(props.product?.harga))}
+              {formatCurrency(hargaPromo)}
             </p>
           </span>
         )}

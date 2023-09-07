@@ -5,12 +5,48 @@ import {
   SectionLayout,
   SwiperProduct,
 } from "@/components/organisms";
+import { NotMembership, PaymentChecking } from "@/layouts";
 import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
 import { formatCurrency } from "@/utils";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 
 const DetailBarang = async ({ params }: { params: { slug: string } }) => {
   const slug = params.slug;
+
+  const responseProfile = await SSRGetDataApi(
+    `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
+  );
+
+  const profile = responseProfile.data;
+  let membership = null;
+  let transaksi = null;
+
+  if (profile?.id_membership) {
+    const responseMembership = await SSRGetDataApi(
+      `${process.env.NEXT_PUBLIC_HOST}/membership/member/${profile?.id_membership}`
+    );
+
+    membership = responseMembership.data;
+
+    if (membership?.id_transaksi) {
+      const responseTransaksi = await SSRGetDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}/finance/transaksi/${membership.id_transaksi}`
+      );
+
+      transaksi = responseTransaksi.data;
+    }
+  }
+
+  if (!profile?.id_membership) {
+    return <NotMembership />;
+  }
+
+  if (!transaksi?.verifikasi) {
+    return <PaymentChecking />;
+  }
+
+  const persentaseHarga = membership?.klasifikasi?.kategori_harga?.persentase;
+
   const responseBarang = await SSRGetDataApi(
     `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}`
   );
@@ -25,14 +61,18 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
     `${process.env.NEXT_PUBLIC_HOST}/products/barang?nama=${barang.nama_barang}&brand=${barang.brand}`
   );
 
+  const harga =
+    Number(barang?.harga) + Number((barang?.harga * persentaseHarga) / 100);
+  const hargaPromo =
+    Number(barang?.harga_promo) +
+    Number((barang?.harga_promo * persentaseHarga) / 100);
+
   const barangSejenis = responseBarangSejenis.data;
   const barangSerupa = responseBarangSerupa.data;
 
   // Fungsi untuk menghitung berapa persen potongannya
   const calculateDiscountPercentage = () => {
     if (barang?.promo) {
-      const harga = Number(barang?.harga);
-      const hargaPromo = Number(barang?.harga_promo);
       const potongan = harga - hargaPromo;
       const persentasePotongan = (potongan / harga) * 100;
       return persentasePotongan.toFixed(0);
@@ -63,7 +103,7 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
             <p className="text-sm md:text-base">Stok {barang.stok} Dus</p>
             {barang.promo && (
               <p className="text-base font-semibold">
-                {formatCurrency(Number(barang.harga_promo))}
+                {formatCurrency(Number(hargaPromo))}
               </p>
             )}
             <div className="text-sm md:text-base">
@@ -71,12 +111,12 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
                 <span className="flex items-center text-xs">
                   <p className="bg-red-200 text-red-500 rounded p-0.5 mr-1">{`${calculateDiscountPercentage()}%`}</p>
                   <p className="text-gray-500 line-through">
-                    {formatCurrency(Number(barang.harga))}
+                    {formatCurrency(Number(harga))}
                   </p>
                 </span>
               ) : (
                 <span className="text-base font-semibold">
-                  {formatCurrency(Number(barang.harga))}
+                  {formatCurrency(Number(harga))}
                 </span>
               )}
             </div>
@@ -119,15 +159,16 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
         <SectionLayout>
           <KalkulatorKeramik
             ukuranBarang={barang.ukuran}
-            hargaBarang={barang.harga}
+            hargaBarang={harga}
             isPromo={barang.promo}
-            hargaPromo={barang.harga_promo}
+            hargaPromo={hargaPromo}
           />
         </SectionLayout>
       </div>
       {barangSejenis.length > 1 ? (
         <div>
           <SwiperProduct
+            persentaseHarga={persentaseHarga}
             products={barangSejenis}
             title={"Motif Lainnya"}
             url={""}
@@ -138,6 +179,7 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
         <div>
           <p className="underline font-semibold m-2">{`Rekomendasi`}</p>
           <CatalogProducts
+            persentaseHarga={persentaseHarga}
             atribut={`kategori=${barang.kategori}&ukuran=${barang.ukuran}&motif=${barang.motif}&tekstur=${barang.tekstur}`}
           />
         </div>

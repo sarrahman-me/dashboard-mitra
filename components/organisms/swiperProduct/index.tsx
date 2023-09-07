@@ -11,6 +11,7 @@ export default function SwiperProduct(props: {
   products: any[];
   title: string;
   url: string;
+  persentaseHarga: number;
 }) {
   const router = useRouter();
 
@@ -49,7 +50,7 @@ export default function SwiperProduct(props: {
         >
           {props.products?.map((product) => (
             <SwiperSlide key={product.slug} className="p-2">
-              <CardProduct product={product} />
+              <CardProduct persentaseHarga={props.persentaseHarga} product={product} />
             </SwiperSlide>
           ))}
         </Swiper>

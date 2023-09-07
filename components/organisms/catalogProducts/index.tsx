@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 export default function CatalogProducts(props: {
   atribut?: string;
   path?: string;
+  persentaseHarga: number;
 }) {
   const router = useRouter();
   const params = useSearchParams();
@@ -55,7 +56,7 @@ export default function CatalogProducts(props: {
           ) : barang.length > 0 ? (
             barang.map((item: any, i: any) => (
               <div key={i}>
-                <CardProduct product={item} />
+                <CardProduct persentaseHarga={props.persentaseHarga} product={item} />
               </div>
             ))
           ) : (

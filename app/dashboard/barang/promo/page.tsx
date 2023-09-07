@@ -1,7 +1,6 @@
 import { HeaderAndBackIcon } from "@/components/molecules";
 import { CatalogProducts } from "@/components/organisms";
-import { PaymentChecking } from "@/layouts";
-import { NotMembership } from "@/layouts";
+import { PaymentChecking, NotMembership } from "@/layouts";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 
 const BarangPromo = async () => {
@@ -37,10 +36,12 @@ const BarangPromo = async () => {
     return <PaymentChecking />;
   }
 
+  const persentaseHarga = membership?.klasifikasi?.kategori_harga?.persentase;
+
   return (
     <div>
       <HeaderAndBackIcon title="Promo" />
-      <CatalogProducts atribut={`promo=true`} />
+      <CatalogProducts persentaseHarga={persentaseHarga} atribut={`promo=true`} />
     </div>
   );
 };

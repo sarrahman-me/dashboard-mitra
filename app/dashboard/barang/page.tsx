@@ -1,7 +1,6 @@
 import { SearchBar } from "@/components/molecules";
 import { CatalogProducts, SwiperProduct } from "@/components/organisms";
-import { PaymentChecking } from "@/layouts";
-import { NotMembership } from "@/layouts";
+import { PaymentChecking, NotMembership } from "@/layouts";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 
 const Barang = async () => {
@@ -43,16 +42,19 @@ const Barang = async () => {
     return <PaymentChecking />;
   }
 
+  const persentaseHarga = membership?.klasifikasi?.kategori_harga?.persentase;
+
   return (
     <div>
       <SearchBar />
       <SwiperProduct
+        persentaseHarga={persentaseHarga}
         url="/dashboard/barang/promo"
         title="Promo"
         products={barangPromo}
       />
       <p className="underline font-semibold m-2">{"Semua Barang"}</p>
-      <CatalogProducts />
+      <CatalogProducts persentaseHarga={persentaseHarga} />
     </div>
   );
 };
