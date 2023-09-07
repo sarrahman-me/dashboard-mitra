@@ -23,7 +23,7 @@ export default function CatalogProducts(props: {
       const response = await GetDataApi(
         `${process.env.NEXT_PUBLIC_HOST}/${path}?${
           props.atribut || ""
-        }&limit=20&page=${currentPage}`
+        }&limit=50&page=${currentPage}`
       );
       setBarang(response.data);
       setMetadata(response.metadata);
