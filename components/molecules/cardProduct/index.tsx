@@ -71,7 +71,10 @@ const CardProduct = (props: { product: any }) => {
           </span>
         )}
         <div className="text-xs flex justify-between items-center">
-          <p>{props.product?.tekstur}</p>
+          <div className="flex items-center divide-x-8 divide-transparent">
+            <p>{props.product?.tekstur}</p>
+            <p>{props.product?.stok} Dus</p>
+          </div>
           <p>{props.product?.ukuran}</p>
         </div>
       </div>

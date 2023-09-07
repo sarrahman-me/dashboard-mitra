@@ -5,6 +5,7 @@ import {
   SectionLayout,
   SwiperProduct,
 } from "@/components/organisms";
+import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
 import { formatCurrency } from "@/utils";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 
@@ -113,6 +114,17 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       </SectionLayout>
+      <div>
+        <p className="underline font-semibold m-2">{`Kalkulator`}</p>
+        <SectionLayout>
+          <KalkulatorKeramik
+            ukuranBarang={barang.ukuran}
+            hargaBarang={barang.harga}
+            isPromo={barang.promo}
+            hargaPromo={barang.harga_promo}
+          />
+        </SectionLayout>
+      </div>
       {barangSejenis.length > 1 ? (
         <div>
           <SwiperProduct
