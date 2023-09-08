@@ -66,7 +66,7 @@ const CardProduct = (props: { product: any; persentaseHarga: number }) => {
           <span className="flex items-center text-xs">
             <p className="bg-red-200 text-red-500 rounded p-0.5 mr-1">{`${calculateDiscountPercentage()}%`}</p>
             <p className="text-gray-400 line-through">
-              {formatCurrency(hargaPromo)}
+              {formatCurrency(harga)}
             </p>
           </span>
         )}
