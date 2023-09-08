@@ -1,6 +1,6 @@
 import Image from "next/image";
 import logo from "@/public/logo.png";
-import { FaCube } from "react-icons/fa";
+import { FaCube, FaStoreAlt } from "react-icons/fa";
 import { MdCardMembership, MdDashboard } from "react-icons/md";
 import { ListIcon } from "@/components/atoms";
 
@@ -19,6 +19,11 @@ const menuItems = [
     label: "Membership",
     icon: <MdCardMembership />,
     href: "/dashboard/membership",
+  },
+  {
+    label: "Webstore",
+    icon: <FaStoreAlt />,
+    href: "/dashboard/webstore",
   },
 ];
 

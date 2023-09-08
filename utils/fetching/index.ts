@@ -26,6 +26,7 @@ export async function PostDataApi(url: string, payload: any): Promise<any> {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(payload),
       credentials: "include",

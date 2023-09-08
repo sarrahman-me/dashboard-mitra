@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { FaCube } from "react-icons/fa";
+import { FaCube, FaStoreAlt } from "react-icons/fa";
 import { MdCardMembership, MdDashboard } from "react-icons/md";
 
 const menuItems = [
@@ -23,6 +23,13 @@ const menuItems = [
     ),
     href: "/dashboard/membership",
   },
+  {
+    label: "Webstore",
+    icon: (
+      <FaStoreAlt className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400" />
+    ),
+    href: "/dashboard/webstore",
+  },
 ];
 
 export default function BottomBar() {
@@ -30,7 +37,7 @@ export default function BottomBar() {
 
   return (
     <div className="select-none sm:hidden fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-      <div className="grid h-full max-w-lg grid-cols-3 mx-auto font-medium">
+      <div className="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
         {menuItems.map((item) => (
           <div
             className="inline-flex flex-col items-center justify-center px-5 group"
