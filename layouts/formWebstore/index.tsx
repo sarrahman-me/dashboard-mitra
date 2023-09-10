@@ -8,6 +8,7 @@ import siteBuild from "@/public/webstore-deploy.svg";
 
 const FormWebstore = () => {
   const [namaWebstore, setNamaWebstore] = useState("");
+  const [error, setError] = useState("");
 
   const handleFormSubmit = async (event: any) => {
     event.preventDefault();
@@ -25,7 +26,7 @@ const FormWebstore = () => {
       window.location.reload();
     } else {
       Loading.remove();
-      Notify.failure(response.message);
+      setError(response.message);
     }
   };
 
@@ -44,6 +45,7 @@ const FormWebstore = () => {
             onChange={(event) => setNamaWebstore(event.target.value)}
             name={"nama_webstore"}
           />
+          <p className="text-xs text-red-500 py-1">{error}</p>
           <Button isSubmit={true} className="mt-4">
             Buat Situs
           </Button>
