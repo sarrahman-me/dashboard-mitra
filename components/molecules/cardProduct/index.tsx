@@ -73,7 +73,7 @@ const CardProduct = (props: { product: any; persentaseHarga: number }) => {
         <div className="text-xs flex justify-between items-center">
           <div className="flex items-center divide-x-8 divide-transparent">
             <p>{props.product?.tekstur}</p>
-            <p>{props.product?.stok} Dus</p>
+            {/* <p>{props.product?.stok} Dus</p> */}
           </div>
           <p>{props.product?.ukuran}</p>
         </div>

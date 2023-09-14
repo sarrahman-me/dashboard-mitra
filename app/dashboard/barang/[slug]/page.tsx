@@ -7,7 +7,7 @@ import {
 } from "@/components/organisms";
 import { NotMembership, PaymentChecking } from "@/layouts";
 import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
-import { formatCurrency } from "@/utils";
+import { PostDataApi, formatCurrency } from "@/utils";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 
 const DetailBarang = async ({ params }: { params: { slug: string } }) => {
@@ -60,6 +60,21 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
   const responseBarangSejenis = await SSRGetDataApi(
     `${process.env.NEXT_PUBLIC_HOST}/products/barang?nama=${barang.nama_barang}&brand=${barang.brand}`
   );
+
+  const responsePredictImage = await PostDataApi(
+    `${process.env.NEXT_PUBLIC_HOST}/ai/predict`,
+    {
+      url: barang.images[0],
+    }
+  );
+
+  const predictImage = responsePredictImage?.predicted_class;
+
+  const responseBarangRekomendasi = await SSRGetDataApi(
+    `${process.env.NEXT_PUBLIC_HOST}/products/search?query=${predictImage}`
+  );
+
+  const barangRekomendasi = responseBarangRekomendasi.data;
 
   const harga =
     Number(barang?.harga) + Number((barang?.harga * persentaseHarga) / 100);
@@ -183,6 +198,14 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
             atribut={`kategori=${barang.kategori}&ukuran=${barang.ukuran}&motif=${barang.motif}&tekstur=${barang.tekstur}`}
           />
         </div>
+      ) : null}
+      {barangRekomendasi.length > 1 ? (
+        <SwiperProduct
+          persentaseHarga={persentaseHarga}
+          url=""
+          title="Mungkin kamu suka"
+          products={barangRekomendasi}
+        />
       ) : null}
     </div>
   );

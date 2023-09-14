@@ -29,7 +29,7 @@ export async function PostDataApi(url: string, payload: any): Promise<any> {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(payload),
-      credentials: "include",
+      // credentials: "include",
     });
     const data = await response.json();
     return data;
