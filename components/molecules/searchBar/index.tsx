@@ -6,8 +6,6 @@ import { useRouter } from "next/navigation";
 import { Loading, Notify } from "notiflix";
 import { PostDataApi } from "@/utils";
 
-// ...
-
 const SearchBar = () => {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
@@ -74,7 +72,7 @@ const SearchBar = () => {
       <div className="relative flex items-center w-full md:w-2/3 mx-2">
         <input
           type="text"
-          placeholder="Cari apapun..."
+          placeholder="Cari berdasarkan"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="bg-white dark:bg-slate-800 w-full px-4 py-2 rounded-md shadow-md placeholder-gray-500 focus:outline-none focus:ring focus:ring-indigo-300"
@@ -83,14 +81,15 @@ const SearchBar = () => {
           <button
             onClick={handleSearch}
             type="submit"
-            className="mr-3 rounded-md bg-transparent border-none cursor-pointer focus:outline-none"
+            className="mr-5 rounded-md bg-transparent border-none cursor-pointer focus:outline-none text-indigo-500"
           >
             <RiSearchLine size={20} />
           </button>
           <button
             type="button"
-            className="rounded-md bg-transparent border-none cursor-pointer focus:outline-none"
-            onClick={handleImageIconClick} // Memanggil fungsi ini saat ikon gambar diklik
+            className="rounded-md bg-transparent border-none cursor-pointer focus:outline-none text-indigo-500"
+            onClick={handleImageIconClick}
+            title="Pencarian Gambar"
           >
             <BiImage size={20} />
             <input
