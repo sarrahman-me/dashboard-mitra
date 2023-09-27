@@ -51,7 +51,7 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
     `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}`
   );
 
-  const barang = responseBarang.data;
+  const barang = responseBarang.data.currentData;
 
   const responseBarangSerupa = await SSRGetDataApi(
     `${process.env.NEXT_PUBLIC_HOST}/products/barang?kategori=${barang.kategori}&ukuran=${barang.ukuran}&motif=${barang.motif}&tekstur=${barang.tekstur}`

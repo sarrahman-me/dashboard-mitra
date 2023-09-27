@@ -20,7 +20,7 @@ const Membership = async () => {
       `${process.env.NEXT_PUBLIC_HOST}/membership/member/${profile?.id_membership}`
     );
 
-    membership = responseMembership.data;
+    membership = responseMembership.data.membership;
 
     if (membership?.id_transaksi) {
       const responseTransaksi = await SSRGetDataApi(
