@@ -10,6 +10,7 @@ const Barang = async () => {
 
   const profile = responseProfile.data;
   let membership = null;
+  let persentaseHarga = null;
   let transaksi = null;
 
   if (profile?.id_membership) {
@@ -17,7 +18,8 @@ const Barang = async () => {
       `${process.env.NEXT_PUBLIC_HOST}/membership/member/${profile?.id_membership}`
     );
 
-    membership = responseMembership.data;
+    membership = responseMembership.data.membership;
+    persentaseHarga = responseMembership?.data?.harga?.persentase;
 
     if (membership?.id_transaksi) {
       const responseTransaksi = await SSRGetDataApi(
@@ -41,8 +43,6 @@ const Barang = async () => {
   if (!transaksi?.verifikasi) {
     return <PaymentChecking />;
   }
-
-  const persentaseHarga = membership?.klasifikasi?.kategori_harga?.persentase;
 
   return (
     <div>

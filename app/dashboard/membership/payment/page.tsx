@@ -35,7 +35,7 @@ export default function Payment() {
         Loading.circle();
         const response = await PostDataApi(
           `${process.env.NEXT_PUBLIC_HOST}/membership/daftar`,
-          { id_klasifikasi: membershipPlan.id, nominal: membershipPlan.harga }
+          { klasifikasi: membershipPlan.slug }
         );
         if (response.success) {
           router.push("/dashboard/membership");
