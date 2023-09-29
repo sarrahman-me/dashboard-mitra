@@ -42,7 +42,7 @@ export default async function Pencarian(req: any) {
 
   return (
     <div>
-      <HeaderAndBackIcon title={`pencarian ${query}`} />
+      <HeaderAndBackIcon title={`Hasil Pencarian`} />
       <CatalogProducts
         persentaseHarga={persentaseHarga}
         atribut={`query=${query}`}

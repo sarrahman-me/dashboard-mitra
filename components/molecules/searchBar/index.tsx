@@ -1,7 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useState, ChangeEvent, useRef } from "react";
 import { RiSearchLine } from "react-icons/ri";
 import { BiImage } from "react-icons/bi";
+import { AiOutlineSend } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import { Loading, Notify } from "notiflix";
 import { PostDataApi } from "@/utils";
@@ -61,15 +63,19 @@ const SearchBar = () => {
   };
 
   const handleImageIconClick = () => {
+    const iconInputImage = fileInputRef.current as any;
     // Ketika ikon gambar diklik, klik juga tombol input file
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
+    if (iconInputImage) {
+      iconInputImage.click();
     }
   };
 
   return (
     <div className="flex justify-center items-center py-3">
-      <div className="relative flex items-center w-full md:w-2/3 mx-2">
+      <form
+        onSubmit={handleSearch}
+        className="relative flex items-center w-full md:w-2/3 mx-2"
+      >
         <input
           type="text"
           placeholder="Cari berdasarkan"
@@ -77,17 +83,16 @@ const SearchBar = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="bg-white dark:bg-slate-800 w-full px-4 py-2 rounded-md shadow-md placeholder-gray-500 focus:outline-none focus:ring focus:ring-indigo-300"
         />
-        <div className="absolute right-0 mr-2 p-2">
+        <div className="absolute right-0 p-2">
           <button
-            onClick={handleSearch}
             type="submit"
-            className="mr-5 rounded-md bg-transparent border-none cursor-pointer focus:outline-none text-indigo-500"
+            className="mr-3 bg-transparent p-1 cursor-pointer focus:outline-none text-indigo-500"
           >
             <RiSearchLine size={20} />
           </button>
           <button
             type="button"
-            className="rounded-md bg-transparent border-none cursor-pointer focus:outline-none text-indigo-500"
+            className="bg-transparent p-1 cursor-pointer focus:outline-none text-indigo-500"
             onClick={handleImageIconClick}
             title="Pencarian Gambar"
           >
@@ -100,8 +105,23 @@ const SearchBar = () => {
               ref={fileInputRef}
             />
           </button>
+          {image && (
+            <div className="bg-slate-50 rounded-md shadow absolute flex border p-1 pr-8">
+              <img
+                src={image}
+                alt="gambar"
+                className="w-20 h-20 object-contain"
+              />
+              <button
+                type="submit"
+                className="mr-3 bg-transparent p-1 cursor-pointer focus:outline-none text-indigo-500"
+              >
+                <AiOutlineSend size={20} />
+              </button>
+            </div>
+          )}
         </div>
-      </div>
+      </form>
     </div>
   );
 };
