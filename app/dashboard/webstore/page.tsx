@@ -1,6 +1,6 @@
 import { Heading, ListData } from "@/components/atoms";
 import { SectionLayout } from "@/components/organisms";
-import { FormWebstore, NotMembership, PaymentChecking } from "@/layouts";
+import { CreatingWebsite, FormWebstore, NotMembership, PaymentChecking } from "@/layouts";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 import moment from "moment";
 
@@ -51,6 +51,10 @@ export default async function Webstore() {
     return <FormWebstore />;
   }
 
+  if (!webstore?.isLive) {
+    return <CreatingWebsite />
+  }
+
   return (
     <div className="py-6">
       <Heading>Webstore</Heading>
@@ -59,7 +63,10 @@ export default async function Webstore() {
           <ListData label="Id Webstore" value={webstore?.id_webstore} />
           <ListData label="Nama Webstore" value={webstore?.nama_webstore} />
           <ListData label="URL" value={webstore?.url} />
-          <ListData label="Dibuat tanggal" value={moment(webstore?.createdAt).format('LL')} />
+          <ListData
+            label="Dibuat tanggal"
+            value={moment(webstore?.createdAt).format("LL")}
+          />
         </div>
       </SectionLayout>
     </div>

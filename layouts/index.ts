@@ -1,5 +1,6 @@
 import AppBar from "./appBar";
 import BottomBar from "./bottomBar";
+import CreatingWebsite from "./creatingWebsite";
 import FormWebstore from "./formWebstore";
 import MembershipPlanList from "./membershipPlanList";
 import NotMembership from "./notMembership";
@@ -14,4 +15,5 @@ export {
   BottomBar,
   NotMembership,
   FormWebstore,
+  CreatingWebsite,
 };
