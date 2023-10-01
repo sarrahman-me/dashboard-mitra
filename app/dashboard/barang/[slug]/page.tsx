@@ -157,7 +157,7 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
       <div>
         <p className="underline font-semibold m-2">{`Design Patern`}</p>
         <SectionLayout>
-          <SimulasiKeramik imageUrl={barang.images[0]} />
+          <SimulasiKeramik ukuran={barang.ukuran} imageUrl={barang.images[0]} />
         </SectionLayout>
       </div>
       <div>
