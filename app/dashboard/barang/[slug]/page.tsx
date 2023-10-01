@@ -5,7 +5,7 @@ import {
   SectionLayout,
   SwiperProduct,
 } from "@/components/organisms";
-import { NotMembership, PaymentChecking } from "@/layouts";
+import { NotMembership, PaymentChecking, SimulasiKeramik } from "@/layouts";
 import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
 import { formatCurrency } from "@/utils";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
@@ -154,6 +154,12 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       </SectionLayout>
+      <div>
+        <p className="underline font-semibold m-2">{`Design Patern`}</p>
+        <SectionLayout>
+          <SimulasiKeramik imageUrl={barang.images[0]} />
+        </SectionLayout>
+      </div>
       <div>
         <p className="underline font-semibold m-2">{`Kalkulator`}</p>
         <SectionLayout>

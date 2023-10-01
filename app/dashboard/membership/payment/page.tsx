@@ -17,13 +17,21 @@ export default function Payment() {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/membership/klasifikasi/${klasifikasiMembership}`
+      const responseProfile = await GetDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
       );
-      setPlan(data?.data || []);
+
+      if (!responseProfile?.data?.id_membership) {
+        const data = await GetDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/membership/klasifikasi/${klasifikasiMembership}`
+        );
+        setPlan(data?.data || []);
+      } else {
+        router.push("/dashboard/membership");
+      }
     }
     fetchData();
-  }, [klasifikasiMembership]);
+  }, [klasifikasiMembership, router]);
 
   const daftarMembership = async () => {
     Confirm.show(
@@ -38,7 +46,7 @@ export default function Payment() {
           { klasifikasi: membershipPlan.slug }
         );
         if (response.success) {
-          router.push("/dashboard/membership");
+          window.location.reload();
           Loading.remove();
         }
       }
@@ -76,9 +84,7 @@ export default function Payment() {
             </p>
             <div className="mt-4">
               <p className="font-semibold">Bank: Bank BCA</p>
-              <p className="font-semibold">
-                Nomor Rekening: 1234-5678-9012
-              </p>
+              <p className="font-semibold">Nomor Rekening: 1234-5678-9012</p>
             </div>
             <p className="text-sm mt-4">
               Pastikan kamu melakukan pembayaran dengan benar ke rekening di

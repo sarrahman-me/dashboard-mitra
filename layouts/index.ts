@@ -6,6 +6,7 @@ import MembershipPlanList from "./membershipPlanList";
 import NotMembership from "./notMembership";
 import PaymentChecking from "./paymentChecking";
 import Sidebar from "./sidebar";
+import SimulasiKeramik from "./simulasiKeramik";
 
 export {
   MembershipPlanList,
@@ -15,5 +16,6 @@ export {
   BottomBar,
   NotMembership,
   FormWebstore,
+  SimulasiKeramik,
   CreatingWebsite,
 };
