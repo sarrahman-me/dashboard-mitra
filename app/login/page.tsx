@@ -1,5 +1,4 @@
 "use client";
-import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button, Heading } from "@/components/atoms";
@@ -17,14 +16,9 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     Loading.hourglass();
-    const response = await PostDataApi(`/api/auth/login`, data);
+    const response = await PostDataApi(`${process.env.NEXT_PUBLIC_HOST}/auth/mitra/login`, data);
 
     if (response.success) {
-      setCookie("tx", response.data.token, {
-        maxAge: 60 * 60 * 24 * 30, 
-        path: "/",
-      });
-      setCookie("rtx", response.data.refreshToken);
       Notify.success(response.message);
       router.push("/dashboard");
       Loading.remove();
@@ -39,9 +33,9 @@ export default function Login() {
   const form = [
     {
       type: "text",
-      label: "Username",
-      name: "username",
-      placeholder: "@username",
+      label: "Akun",
+      name: "akun",
+      placeholder: "Email atau Whatsapp",
     },
     {
       type: "password",

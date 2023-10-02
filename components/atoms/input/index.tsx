@@ -29,7 +29,7 @@ export default function Input(props: {
         placeholder={props.placeholder}
       />
       {props.error && (
-        <span className="text-red-500 text-sm">{props.error}</span>
+        <span className="text-red-500 text-xs md:text-sm">{props.error}</span>
       )}
     </div>
   );

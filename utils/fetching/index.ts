@@ -1,13 +1,8 @@
-import { getCookie } from "cookies-next";
-
-const token = getCookie("tx") || "";
-
 export async function GetDataApi(url: string): Promise<any> {
   try {
     const response = await fetch(url, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
       },
       cache: "no-store",
       credentials: "include",
@@ -26,10 +21,9 @@ export async function PostDataApi(url: string, payload: any): Promise<any> {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(payload),
-      // credentials: "include",
+      credentials: "include",
     });
     const data = await response.json();
     return data;

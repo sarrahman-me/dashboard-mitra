@@ -10,6 +10,7 @@ export async function SSRGetDataApi(url: string): Promise<any> {
       Authorization: `Bearer ${token?.value}`,
     },
     cache: "no-store",
+    credentials: "include",
   });
   const data = await response.json();
 

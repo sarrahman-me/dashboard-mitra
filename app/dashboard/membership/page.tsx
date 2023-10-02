@@ -1,7 +1,7 @@
 import moment from "moment";
 import { ButtonStopMembership, Heading, ListData } from "@/components/atoms";
 import { MembershipPlanList, PaymentChecking } from "@/layouts";
-import { formatCurrency } from "@/utils";
+import { GetDataApi, formatCurrency } from "@/utils";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 import { SectionLayout } from "@/components/organisms";
 
@@ -9,6 +9,10 @@ const Membership = async () => {
   const responseProfile = await SSRGetDataApi(
     `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
   );
+
+  if (responseProfile.status === 401) {
+    console.log("unauthorize");
+  }
 
   const profile = responseProfile.data;
 
