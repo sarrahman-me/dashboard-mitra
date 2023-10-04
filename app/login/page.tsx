@@ -17,14 +17,22 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     Loading.hourglass();
-    const response = await PostDataApi(`${process.env.NEXT_PUBLIC_HOST}/auth/mitra/login`, data);
+    const response = await PostDataApi(
+      `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/login`,
+      data
+    );
 
     if (response.success) {
       setCookie("tx", response.data.token, {
-        maxAge: 60 * 60 * 24 * 30, 
-        path: "/",
+        secure: true,
+        httpOnly: false,
+        maxAge: 1000 * 60 * 60 * 24,
       });
-      setCookie("rtx", response.data.refreshToken);
+      setCookie("rtx", response.data.refreshToken, {
+        secure: true,
+        httpOnly: false,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+      });
       Notify.success(response.message);
       router.push("/dashboard");
       Loading.remove();
