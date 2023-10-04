@@ -5,6 +5,7 @@ import TextFooter from "./textFooter";
 import CardProduct from "./cardProduct";
 import IconSelect from "./IconSelect";
 import SearchBar from "./searchBar";
+import SectionTitle from "./sectionTitle";
 
 export {
   TextFooter,
@@ -14,4 +15,5 @@ export {
   CardProduct,
   IconSelect,
   SearchBar,
+  SectionTitle,
 };
