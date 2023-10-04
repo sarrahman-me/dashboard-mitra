@@ -1,5 +1,6 @@
 "use client";
 import { Confirm, Loading } from "notiflix";
+import { deleteCookie } from "cookies-next";
 import { useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { useRouter } from "next/navigation";
@@ -35,6 +36,8 @@ export default function ProfileAppBar() {
         try {
           const responseLogout = await DeleteDataApi(`${process.env.NEXT_PUBLIC_HOST}/auth/mitra/logout`);
           if (responseLogout.success) {
+            deleteCookie("tx");
+            deleteCookie("rtx");
             router.push("/login");
             Loading.remove();
           }
