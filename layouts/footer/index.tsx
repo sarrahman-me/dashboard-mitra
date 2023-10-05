@@ -7,21 +7,21 @@ export default function Footer() {
   const navigation = [
     {
       name: "Membership",
-      href: "/membership˝",
+      href: "/",
     },
     {
       name: "Blog",
-      href: "/blog",
+      href: "/",
     },
   ];
   const legal = [
     {
       name: "Term",
-      href: "/term",
+      href: "/",
     },
     {
       name: "Privacy",
-      href: "/privacy",
+      href: "/",
     },
   ];
   return (
@@ -49,9 +49,8 @@ export default function Footer() {
             </div>
 
             <div className="max-w-md mt-4 text-gray-500 dark:text-gray-400">
-              TokoKeramik.com adalah layanan penyedia platform penjualan keramik
-              dan granit yang menghubungkan setiap toko dan pembeli dari mana
-              saja
+              TokoKeramik.com adalah platform penjualan keramik dan granit yang
+              menghubungkan setiap toko dan pembeli dari mana saja
             </div>
           </div>
 

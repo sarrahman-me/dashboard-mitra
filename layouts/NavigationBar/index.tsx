@@ -9,11 +9,11 @@ export default function NavigationBar() {
   const navigation = [
     {
       name: "Membership",
-      href: "/membership˝",
+      href: "/",
     },
     {
       name: "Blog",
-      href: "/blog",
+      href: "/",
     },
   ];
   return (
@@ -35,7 +35,7 @@ export default function NavigationBar() {
                         className="w-8"
                       />
                     </span>
-                    <span>Toko Keramik .com</span>
+                    <span>Toko Keramik</span>
                   </span>
                 </Link>
 
