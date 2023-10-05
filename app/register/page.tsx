@@ -5,6 +5,7 @@ import { Button, Heading } from "@/components/atoms";
 import { Loading, Notify } from "notiflix";
 import { PostDataApi } from "@/utils";
 import { TextfieldGroup } from "@/components/organisms";
+import { Footer, NavigationBar } from "@/layouts";
 
 export default function Register() {
   const router = useRouter();
@@ -61,6 +62,7 @@ export default function Register() {
 
   return (
     <section>
+      <NavigationBar />
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="mb-3">
           <Heading>Sarrahman Bangunan</Heading>
@@ -79,10 +81,19 @@ export default function Register() {
             <Button isLoading={loading} isFullWidth={true} isSubmit={true}>
               Daftar
             </Button>
-            <p className="text-center">Sudah punya akun <span onClick={() => router.push('/login')} className="underline text-indigo-500 cursor-pointer">Masuk</span></p>
+            <p className="text-center">
+              Sudah punya akun{" "}
+              <span
+                onClick={() => router.push("/login")}
+                className="underline text-indigo-500 cursor-pointer"
+              >
+                Masuk
+              </span>
+            </p>
           </form>
         </div>
       </div>
+      <Footer />
     </section>
   );
 }
