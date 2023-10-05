@@ -5,10 +5,12 @@ import { Loading, Notify } from "notiflix";
 import { PostDataApi } from "@/utils";
 import { Button, Input } from "@/components/atoms";
 import siteBuild from "@/public/webstore-deploy.svg";
+import { stringToSlug } from "@/utils";
 
 const FormWebstore = () => {
   const [namaWebstore, setNamaWebstore] = useState("");
   const [error, setError] = useState("");
+  const [domainPredict, setDomainPredict] = useState("");
 
   const handleFormSubmit = async (event: any) => {
     event.preventDefault();
@@ -42,10 +44,18 @@ const FormWebstore = () => {
         <form onSubmit={handleFormSubmit} className="py-5">
           <Input
             label={"Nama Toko Online"}
-            onChange={(event) => setNamaWebstore(event.target.value)}
+            onChange={(event) => {
+              setNamaWebstore(event.target.value);
+              setDomainPredict(stringToSlug(event.target.value));
+            }}
             name={"nama_webstore"}
           />
           <p className="text-xs text-red-500 py-1">{error}</p>
+          {domainPredict && (
+            <p className="text-xs text-green-500 py-1">
+              Nama Domain kamu akan seperti ini {domainPredict}.vercel.app
+            </p>
+          )}
           <Button isSubmit={true} className="mt-4">
             Buat Situs
           </Button>

@@ -6,3 +6,12 @@ export const formatCurrency = (value: number) => {
     maximumFractionDigits: 0, // Tambahkan ini juga untuk menghindari pembulatan
   });
 };
+
+// Formating string to slug
+export const stringToSlug = (str: string) => {
+  return str
+    .trim()
+    .toLowerCase()
+    .replace(/[\W_]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+};
