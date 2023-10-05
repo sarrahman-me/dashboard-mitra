@@ -49,8 +49,9 @@ export default function Footer() {
             </div>
 
             <div className="max-w-md mt-4 text-gray-500 dark:text-gray-400">
-              TokoKeramik.com adalah platform penjualan keramik dan granit yang
-              menghubungkan setiap toko dan pembeli dari mana saja
+              Tim dukungan pelanggan kami selalu siap membantu Anda. Jika Anda
+              memiliki pertanyaan atau mengalami masalah, kami akan dengan
+              senang hati memberikan bantuan yang Anda butuhkan.
             </div>
           </div>
 

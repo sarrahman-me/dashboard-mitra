@@ -1,3 +1,5 @@
+import Benefits from "./Benefits";
+import Cta from "./Cta";
 import Jumbotron from "./Jumbotron";
 import NavigationBar from "./NavigationBar";
 import AppBar from "./appBar";
@@ -23,5 +25,7 @@ export {
   CreatingWebsite,
   NavigationBar,
   Jumbotron,
-  Footer
+  Footer,
+  Benefits,
+  Cta,
 };

@@ -12,13 +12,14 @@ export default function Jumbotron() {
               Jual Keramik Tak Pernah Semudah Ini
             </h1>
             <p className="py-5 text-xl leading-normal text-gray-500 lg:text-xl xl:text-2xl dark:text-gray-300">
-              TokoKeramik.com adalah platform penjualan keramik
-              dan granit yang menghubungkan setiap toko dan pembeli dari mana
-              saja
+              TokoKeramik.com adalah platform yang menyediakan semua yang Anda
+              butuhkan untuk menjalankan bisnis keramik secara online. Dengan
+              satu tempat, Anda dapat membuat situs web toko keramik Anda
+              sendiri dan terhubung dengan berbagai suplier terdekat.
             </p>
 
             <div className="flex flex-col items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row">
-              <Button href="/register">Daftar</Button>
+              <Button href="/login">Masuk</Button>
             </div>
           </div>
         </div>
