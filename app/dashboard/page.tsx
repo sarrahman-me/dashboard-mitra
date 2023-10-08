@@ -5,7 +5,7 @@ export default function Dashboard() {
     <div>
       <p className="hidden md:inline-flex font-bold justify-center items-center">
         Hay !! Selamat datang di{" "}
-        <span className="text-indigo-500 mx-2">sarrahman bangunan</span>{" "}
+        <span className="text-indigo-500 mx-2">TokoKeramik.com</span>{" "}
         <span>
           <GiHand />
         </span>{" "}

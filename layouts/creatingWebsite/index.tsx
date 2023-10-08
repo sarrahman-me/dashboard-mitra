@@ -12,9 +12,10 @@ export default function PaymentChecking() {
               Webstore mu sedang dalam pengecekan
             </p>
             <p>
-              Tim kami akan melakukan pengecekan situs kamu sebelum bisa
-              diluncurkan ke public maksimal 1x24 jam
+              Situs mu sudah dalam antrian, Tim kami akan melakukan pengecekan
+              situs kamu sebelum bisa diluncurkan ke public maksimal 1x24 jam
             </p>
+            <p>Kami akan mengirimkan mu email jika situs mu sudah siap</p>
           </div>
           <div className="w-full md:w-1/2">
             <Player

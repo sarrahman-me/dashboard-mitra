@@ -1,5 +1,5 @@
 "use client";
-import { Heading, ListData } from "@/components/atoms";
+import { EditDataIcon, Heading, ListData } from "@/components/atoms";
 import { GetDataApi } from "@/utils";
 import { useEffect, useState } from "react";
 
@@ -24,7 +24,7 @@ export default function Profile() {
         <ListData label="Username" value={profile.username} />
         <ListData label="Email" value={profile.email} />
         <ListData label="Whatsapp" value={profile.whatsapp} />
-        <ListData label="Email" value={profile.email} />
+        <EditDataIcon />
       </div>
       <div className="bg-white dark:bg-slate-800 p-2 rounded">
         <ListData label="Kota" value={profile.kota} />

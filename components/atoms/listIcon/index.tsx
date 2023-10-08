@@ -26,12 +26,16 @@ export default function ListIcon({ text, iconComponent, href }: Props) {
     >
       <div
         className={`${
-          currentPage ? "text-white bg-indigo-500" : "text-indigo-500 bg-white dark:bg-slate-800"
+          currentPage
+            ? "text-white bg-indigo-500"
+            : "text-indigo-500 bg-white dark:bg-slate-800"
         } p-2 rounded-xl`}
       >
         {iconComponent}
       </div>
-      <span className="flex-1 ml-3 whitespace-nowrap text-indigo-950 dark:text-white">{text}</span>
+      <span className="flex-1 ml-3 whitespace-nowrap text-indigo-950 dark:text-white">
+        {text}
+      </span>
     </li>
   );
 }
