@@ -7,6 +7,7 @@ import {
 } from "@/components/organisms";
 import { NotMembership, PaymentChecking, SimulasiKeramik } from "@/layouts";
 import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
+import QrSampleProducts from "@/layouts/qrSampleProducts";
 import { formatCurrency } from "@/utils";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 
@@ -21,6 +22,7 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
   let membership = null;
   let transaksi = null;
   let persentaseHarga = null;
+  let webstore = null;
 
   if (profile?.id_membership) {
     const responseMembership = await SSRGetDataApi(
@@ -37,6 +39,14 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
 
       transaksi = responseTransaksi.data;
     }
+  }
+
+  if (profile?.id_webstore) {
+    const responseWebstore = await SSRGetDataApi(
+      `${process.env.NEXT_PUBLIC_HOST}/webstore/${profile?.id_webstore}`
+    );
+
+    webstore = responseWebstore.data;
   }
 
   if (!profile?.id_membership) {
@@ -171,6 +181,11 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
           />
         </SectionLayout>
       </div>
+      {profile?.id_webstore && (
+        <div>
+          <QrSampleProducts webstore={webstore} barang={barang} />
+        </div>
+      )}
       {barangSejenis.length > 1 ? (
         <div>
           <SwiperProduct
