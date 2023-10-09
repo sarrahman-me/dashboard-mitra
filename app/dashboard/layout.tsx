@@ -16,7 +16,7 @@ export default function DashboardLayout({
       <Sidebar />
       <div className="sm:ml-64">
         <AppBar />
-        <div className="py-4 md:px-4">{children}</div>
+        <div className="p-2 md:p-4">{children}</div>
         <TextFooter />
         <BottomBar />
       </div>
