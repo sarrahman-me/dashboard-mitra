@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button, Heading } from "@/components/atoms";
+import { Button } from "@/components/atoms";
 import { Loading, Notify } from "notiflix";
 import { PostDataApi } from "@/utils";
 import { TextfieldGroup } from "@/components/organisms";
@@ -21,7 +21,7 @@ export default function Register() {
       `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/register`,
       data
     );
-    if (response.success) {
+    if (response?.success) {
       Loading.remove();
       Notify.success(response.message);
       router.push("/login");
@@ -63,10 +63,7 @@ export default function Register() {
   return (
     <section>
       <NavigationBar />
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="mb-3">
-          <Heading>Sarrahman Bangunan</Heading>
-        </div>
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
         <div className="w-full bg-white dark:bg-slate-800 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
           <form
             className="p-6 space-y-4 md:space-y-6 sm:p-8"

@@ -130,8 +130,9 @@ export default function KebijakanPrivasi() {
             menghubungi kami melalui alamat email sarrahman.me@gmail.com.
           </p>
           <p className="text-gray-800 dark:text-slate-50">
-            Terima kasih atas kepercayaan Anda kepada TokoKeramik.com. Kami
-            berharap Anda menikmati pengalaman Anda menggunakan layanan kami!
+            Terima kasih atas kepercayaan Anda kepada tokokeramik.com
+            Kami berharap Anda menikmati pengalaman Anda menggunakan layanan
+            kami!
           </p>
           <div className="flex justify-end mt-5">
             <div className="divide-y-8 divide-transparent">
@@ -141,7 +142,7 @@ export default function KebijakanPrivasi() {
                 Muhammad Nur Rahman
               </p>
               <p className="text-gray-800 dark:text-slate-50">
-                Pendiri TokoKeramik.com
+                Pendiri tokokeramik.com
               </p>
             </div>
           </div>

@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { setCookie } from "cookies-next";
 import { useState } from "react";
-import { Button, Heading } from "@/components/atoms";
+import { Button } from "@/components/atoms";
 import { Loading, Notify } from "notiflix";
 import { PostDataApi } from "@/utils";
 import { TextfieldGroup } from "@/components/organisms";
@@ -23,7 +23,7 @@ export default function Login() {
       data
     );
 
-    if (response.success) {
+    if (response?.success) {
       setCookie("tx", response.data.token, {
         secure: true,
         httpOnly: false,
@@ -63,10 +63,7 @@ export default function Login() {
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <NavigationBar />
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="mb-3">
-          <Heading>Sarrahman Bangunan</Heading>
-        </div>
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <form
             className="p-6 space-y-4 md:space-y-6 sm:p-8"

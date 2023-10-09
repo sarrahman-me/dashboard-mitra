@@ -7,6 +7,7 @@ import Heading from "./heading";
 import Input from "./input";
 import ListData from "./listData";
 import ListIcon from "./listIcon";
+import Logo from "./logo";
 import RemoveDataIcon from "./removeDataIcon";
 import ResizeLayarButton from "./resizeLayarButton";
 import SelectApi from "./selectApi";
@@ -26,4 +27,5 @@ export {
   ButtonStopMembership,
   ListIcon,
   DropdownList,
+  Logo,
 };

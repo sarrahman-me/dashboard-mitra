@@ -1,7 +1,7 @@
+import { Logo } from "@/components/atoms";
+import { TextFooter } from "@/components/molecules";
 import Link from "next/link";
-import Image from "next/image";
 import React from "react";
-import Logo from "@/public/logo.png";
 
 export default function Footer() {
   const navigation = [
@@ -23,20 +23,8 @@ export default function Footer() {
           <div className="lg:col-span-3">
             <div>
               {" "}
-              <Link
-                href="/"
-                className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100"
-              >
-                <span className="bg-indigo-600 rounded-md p-1 dark:bg-transparent">
-                  <Image
-                    src={Logo}
-                    alt="Toko Keramik Logo"
-                    width="32"
-                    height="32"
-                    className="w-8"
-                  />
-                </span>
-                <span>TokoKeramik.com</span>
+              <Link href="/">
+                <Logo size="text-2xl" />
               </Link>
             </div>
 
@@ -75,12 +63,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="my-10 text-sm text-center text-gray-600 dark:text-gray-400">
-          Hak Cipta © {new Date().getFullYear()}. Dibuat dengan ♥ oleh{" "}
-          <a href="https://web3templates.com/" target="_blank" rel="noopener">
-            Sarrahman Digital Creative.
-          </a>
-        </div>
+        <TextFooter />
       </div>
     </div>
   );

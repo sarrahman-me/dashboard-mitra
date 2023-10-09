@@ -1,15 +1,14 @@
 export default function TextFooter() {
   return (
-    <p className="text-sm font-light text-center text-gray-500 dark:text-gray-400 mt-10">
-      Powered By{" "}
+    <div className="my-10 text-sm text-center text-gray-600 dark:text-gray-400">
+      Hak Cipta © {new Date().getFullYear()}. Dibuat dengan ♥ oleh{" "}
       <a
-        href="https://github.com/sarrahman-me"
+        href="https://www.linkedin.com/in/sarrahman-me"
         target="_blank"
-        rel="noopener noreferrer"
-        className="font-medium text-indigo-600 hover:underline dark:text-indigo-500"
+        rel="noopener"
       >
-        sarrahman.me
+        Sarrahman Digital Creative.
       </a>
-    </p>
+    </div>
   );
 }

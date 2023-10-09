@@ -117,10 +117,12 @@ export default function Sidebar() {
       aria-label="Sidebar"
     >
       <div className="h-full px-3 py-4 overflow-y-auto">
-        <div className="justify-center flex">
-          <RiAccountBoxFill className="h-16 w-16 text-slate-50 bg-indigo-500 dark:bg-transparent rounded-xl" />
+        <div className="my-8">
+          <div className="justify-center flex">
+            <RiAccountBoxFill className="h-10 w-10 text-slate-50 bg-indigo-500 dark:bg-transparent rounded" />
+          </div>
+          <p className="text-xs text-center my-1">{profile.email}</p>
         </div>
-        <p className="text-xs text-center my-1">{profile.email}</p>
         <ul className="space-y-3 mt-5 m-2 pl-3 font-medium">
           {menuItems.map((item) => (
             <ListIcon

@@ -1,9 +1,7 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
-import Logo from "@/public/logo.png";
 import { Disclosure } from "@headlessui/react";
-import { Button, ToggleDarkMode } from "@/components/atoms";
+import { Logo, ToggleDarkMode } from "@/components/atoms";
 
 export default function NavigationBar() {
   const navigation = [
@@ -25,20 +23,8 @@ export default function NavigationBar() {
             <>
               <div className="flex flex-wrap items-center justify-between w-full lg:w-auto">
                 <Link href="/">
-                  <span className="flex items-center space-x-2 text-2xl font-medium text-indigo-600 dark:text-gray-100">
-                    <span className="bg-indigo-600 rounded-md p-1 dark:bg-transparent">
-                      <Image
-                        src={Logo}
-                        alt="Toko Keramik Logo"
-                        width="32"
-                        height="32"
-                        className="w-8"
-                      />
-                    </span>
-                    <span>Toko Keramik</span>
-                  </span>
+                  <Logo size="text-2xl" />
                 </Link>
-
                 <Disclosure.Button
                   aria-label="Toggle Menu"
                   className="px-2 py-1 ml-auto text-gray-500 rounded-md lg:hidden hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:text-gray-300 dark:focus:bg-trueGray-700"

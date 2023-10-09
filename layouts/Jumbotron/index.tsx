@@ -12,7 +12,7 @@ export default function Jumbotron() {
               Jual Keramik Tak Pernah Semudah Ini
             </h1>
             <p className="py-5 text-xl leading-normal text-gray-500 lg:text-xl xl:text-2xl dark:text-gray-300">
-              TokoKeramik.com adalah platform yang menyediakan semua yang kamu
+              Tokokeramik.com adalah platform yang menyediakan semua yang kamu
               butuhkan untuk menjalankan bisnis keramik secara online. Dengan
               satu tempat, kamu dapat membuat situs web toko keramik sendiri dan
               dapatkan informasi keramik dari suplier terdekat.

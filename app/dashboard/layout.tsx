@@ -1,9 +1,9 @@
 import { TextFooter } from "@/components/molecules";
-import {  BottomBar, AppBar, Sidebar } from "@/layouts";
+import { BottomBar, AppBar, Sidebar } from "@/layouts";
 
 export const metadata = {
-  title: "Dashboard - sarrahman bangunan",
-  description: "Sarrahman bangunan",
+  title: "Dashboard - TokoKeramik.com",
+  description: "Platform pendukung ritel keramik",
 };
 
 export default function DashboardLayout({
