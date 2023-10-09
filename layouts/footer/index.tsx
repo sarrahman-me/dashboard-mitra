@@ -6,22 +6,14 @@ import Logo from "@/public/logo.png";
 export default function Footer() {
   const navigation = [
     {
-      name: "Membership",
-      href: "/",
-    },
-    {
-      name: "Blog",
-      href: "/",
+      name: "Tentang Kami",
+      href: "/tentang",
     },
   ];
   const legal = [
     {
-      name: "Term",
-      href: "/",
-    },
-    {
-      name: "Privacy",
-      href: "/",
+      name: "Privasi Data",
+      href: "/privasi-data",
     },
   ];
   return (
@@ -49,9 +41,9 @@ export default function Footer() {
             </div>
 
             <div className="max-w-md mt-4 text-gray-500 dark:text-gray-400">
-              Tim dukungan pelanggan kami selalu siap membantu Anda. Jika Anda
-              memiliki pertanyaan atau mengalami masalah, kami akan dengan
-              senang hati memberikan bantuan yang Anda butuhkan.
+              kami selalu siap membantu Anda. Jika Anda memiliki pertanyaan atau
+              mengalami masalah, kami akan dengan senang hati memberikan bantuan
+              yang Anda butuhkan.
             </div>
           </div>
 
@@ -84,7 +76,7 @@ export default function Footer() {
         </div>
 
         <div className="my-10 text-sm text-center text-gray-600 dark:text-gray-400">
-          Copyright © {new Date().getFullYear()}. Made with ♥ by{" "}
+          Hak Cipta © {new Date().getFullYear()}. Dibuat dengan ♥ oleh{" "}
           <a href="https://web3templates.com/" target="_blank" rel="noopener">
             Sarrahman Digital Creative.
           </a>

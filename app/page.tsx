@@ -8,7 +8,7 @@ import { LuPackageSearch } from "react-icons/lu";
 
 const benefitOne = {
   title: "Sorotan manfaat",
-  desc: "Tidak hanya sekadar platform jual-beli keramik, kami juga adalah sumber wawasan berharga untuk pertumbuhan bisnis Anda. Dapatkan data pelanggan, tren produk, dan strategi pemasaran terbaik.",
+  desc: "Kamu juga akan mendapatkan analisa dari tren produk dan perilaku customer yang mengunjungi toko online mu",
   image:
     "https://ik.imagekit.io/sarrahmanme/default-image.jpg?updatedAt=1690537071869",
   bullets: [
@@ -24,7 +24,7 @@ const benefitOne = {
     },
     {
       title: "Dapatkan wawasan dari aktifitas customer",
-      desc: "Kamu dapat melihat keramik yang paling sering dicari dan mana dari barang mu yang populer",
+      desc: "Kamu dapat melihat keramik yang paling sering dicari dan mana dari barang mu yang paling populer",
       icon: <MdOutlineInsights />,
     },
   ],
@@ -45,9 +45,8 @@ export default function RootPage() {
         pretitle="Manfaat"
         title="Kenapa harus bergabung dengan tokokeramik.com ?"
       >
-        Bergabunglah dengan komunitas penjual keramik kami yang aktif. Dapatkan
-        dukungan dari sesama penjual, dan bagikan pengalaman serta tips untuk
-        sukses dalam bisnis keramik Anda.
+        Kamu akan mendapatkan dukungan dalam bisnis keramik mu untuk memulai dan
+        berkembang dengan lebih mudah
       </SectionTitle>
       <Benefits data={benefitOne} />
       <Cta />

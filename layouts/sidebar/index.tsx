@@ -66,6 +66,7 @@ export default function Sidebar() {
           () => {
             deleteCookie("tx");
             deleteCookie("rtx");
+            router.push("/login");
             window.location.reload();
           }
         );
@@ -91,6 +92,7 @@ export default function Sidebar() {
             deleteCookie("tx");
             deleteCookie("rtx");
             router.push("/login");
+            window.location.reload();
             Loading.remove();
           }
         } catch (error) {
