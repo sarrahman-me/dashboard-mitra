@@ -1,5 +1,6 @@
 "use client";
 import { deleteCookie } from "cookies-next";
+import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { Confirm, Loading, Report } from "notiflix";
 import {
@@ -11,7 +12,8 @@ import { FaCube, FaStoreAlt } from "react-icons/fa";
 import { MdCardMembership, MdDashboard } from "react-icons/md";
 import { ListIcon } from "@/components/atoms";
 import { DeleteDataApi, GetDataApi } from "@/utils";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { setProfile } from "@/redux/slice/profile";
 
 const menuItems = [
   {
@@ -51,7 +53,8 @@ const personalMenu = [
 
 export default function Sidebar() {
   const router = useRouter();
-  const [profile, setProfile] = useState({} as any);
+  const { profile } = useSelector((state: any) => state.profile);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     async function fetchData() {
@@ -71,10 +74,10 @@ export default function Sidebar() {
           }
         );
       }
-      setProfile(responseProfile?.data);
+      dispatch(setProfile(responseProfile?.data));
     }
     fetchData();
-  }, [router]);
+  }, [dispatch, router]);
 
   const handleLogout = async () => {
     Loading.circle();

@@ -5,6 +5,7 @@ import { GetDataApi, PatchDataApi } from "@/utils";
 import { Notify } from "notiflix";
 import { Button } from "@/components/atoms";
 import { TextfieldGroup } from "@/components/organisms";
+import { HeaderAndBackIcon } from "@/components/molecules";
 
 export default function FormEditData() {
   const router = useRouter();
@@ -71,6 +72,7 @@ export default function FormEditData() {
 
   return (
     <div>
+      <HeaderAndBackIcon title="Edit Profile" />
       <form className="md:w-1/2 mt-5" onSubmit={handleSubmit}>
         <TextfieldGroup error={error} form={form} setData={setdata} data={data} />
         <div className="mt-4">
