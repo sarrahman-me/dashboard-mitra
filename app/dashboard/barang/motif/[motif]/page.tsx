@@ -1,17 +1,23 @@
-import { SearchBar } from "@/components/molecules";
-import { CatalogProducts, SwiperProduct } from "@/components/organisms";
-import { PaymentChecking, NotMembership, MotifList } from "@/layouts";
+import { CatalogProducts } from "@/components/organisms";
+import { HeaderAndBackIcon } from "@/components/molecules";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
+import { NotMembership, PaymentChecking } from "@/layouts";
 
-const Barang = async () => {
+export default async function Motif({
+  params,
+}: {
+  params: { motif: string };
+}) {
+  const motif = params.motif;
+
   const responseProfile = await SSRGetDataApi(
     `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
   );
 
   const profile = responseProfile.data;
   let membership = null;
-  let persentaseHarga = null;
   let transaksi = null;
+  let persentaseHarga = null;
 
   if (profile?.id_membership) {
     const responseMembership = await SSRGetDataApi(
@@ -30,12 +36,6 @@ const Barang = async () => {
     }
   }
 
-  const responseBarangPromo = await SSRGetDataApi(
-    `${process.env.NEXT_PUBLIC_HOST}/products/barang?promo=true`
-  );
-
-  const barangPromo = responseBarangPromo.data;
-
   if (!profile?.id_membership) {
     return <NotMembership />;
   }
@@ -46,18 +46,11 @@ const Barang = async () => {
 
   return (
     <div>
-      <SearchBar />
-      <MotifList />
-      <p className="underline font-semibold m-2">{"Semua Barang"}</p>
-      <CatalogProducts persentaseHarga={persentaseHarga} />
-      <SwiperProduct
+      <HeaderAndBackIcon title={`Motif ${motif}`} />
+      <CatalogProducts
         persentaseHarga={persentaseHarga}
-        url="/dashboard/barang/promo"
-        title="Promo"
-        products={barangPromo}
+        atribut={`motif=${motif}`}
       />
     </div>
   );
-};
-
-export default Barang;
+}

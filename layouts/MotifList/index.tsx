@@ -4,45 +4,48 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import Image from "next/image";
-import WoodTexture from "@/public/wood.png";
-import StoneTexture from "@/public/stone.png";
-import RusticTexture from "@/public/rustic.png";
-import MarbleTexture from "@/public/marble.png";
-import FancyTekstur from "@/public/fancy.png";
-import BasicTekstur from "@/public/basic.png";
+import WoodMotif from "@/public/wood.png";
+import StoneMotif from "@/public/stone.png";
+import RusticMotif from "@/public/rustic.png";
+import MarbleMotif from "@/public/marble.png";
+import FancyMotif from "@/public/fancy.png";
+import BasicMotif from "@/public/basic.png";
+import { useRouter } from "next/navigation";
 
-const teksturList = [
+const motifList = [
   {
     title: "Marble",
-    image: MarbleTexture,
+    image: MarbleMotif,
   },
   {
     title: "Wood",
-    image: WoodTexture,
+    image: WoodMotif,
   },
   {
-    title: "Basic",
-    image: BasicTekstur,
+    title: "Natural",
+    image: BasicMotif,
   },
   {
     title: "Fancy",
-    image: FancyTekstur,
+    image: FancyMotif,
   },
   {
     title: "Stone",
-    image: StoneTexture,
+    image: StoneMotif,
   },
   {
     title: "Rustic",
-    image: RusticTexture,
+    image: RusticMotif,
   },
 ];
 
-export default function TextureList() {
+export default function MotifList() {
+  const router = useRouter();
+
   return (
     <div>
       <div className="flex justify-between items-center mr-5">
-        <p className="underline font-semibold m-2">Pilihan Tekstur</p>
+        <p className="underline font-semibold m-2">Pilihan Motif</p>
       </div>
       <div className="cursor-grab select-none">
         <Swiper
@@ -66,12 +69,18 @@ export default function TextureList() {
             },
           }}
         >
-          {teksturList?.map((tekstur) => (
-            <SwiperSlide key={tekstur.title} className="p-2">
+          {motifList?.map((motif) => (
+            <SwiperSlide
+              onClick={() =>
+                router.push(`/dashboard/barang/motif/${motif.title}`)
+              }
+              key={motif.title}
+              className="p-2 cursor-pointer"
+            >
               <Image
                 className="mx-2 rounded-md"
-                src={tekstur.image}
-                alt={tekstur.title}
+                src={motif.image}
+                alt={motif.title}
               />
             </SwiperSlide>
           ))}

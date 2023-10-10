@@ -12,7 +12,7 @@ import NotMembership from "./notMembership";
 import PaymentChecking from "./paymentChecking";
 import Sidebar from "./sidebar";
 import SimulasiKeramik from "./simulasiKeramik";
-import TextureList from "./textureList";
+import MotifList from "./MotifList";
 
 export {
   MembershipPlanList,
@@ -29,5 +29,5 @@ export {
   Footer,
   Benefits,
   Cta,
-  TextureList,
+  MotifList,
 };
