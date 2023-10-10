@@ -47,25 +47,27 @@ const CardProduct = (props: { product: any; persentaseHarga: number }) => {
 
       <div className="flex justify-center">
         <img
-          className="object-contain max-h-44 border"
+          className="object-contain max-h-28 md:max-h-36 border"
           src={props.product?.images[0]}
           alt={props.product?.nama_barang}
         />
       </div>
-      <div className="p-1 divide-y-4 divide-transparent">
+      <div className="p-1 divide-y-2 md:divide-y-4 divide-transparent">
         <p className="text-xs text-indigo-500">{props.product?.kategori}</p>
-        <p className="text-xs">
-          {(props.product?.nama_barang as string).toUpperCase()}
-        </p>
+        <p className="text-xs md:text-sm">{props.product?.nama_barang}</p>
         {props.product.promo ? (
-          <p className="text-sm font-semibold">{formatCurrency(hargaPromo)}</p>
+          <p className="text-xs md:text-sm font-semibold">
+            {formatCurrency(hargaPromo)}
+          </p>
         ) : (
-          <p className="text-sm font-semibold">{formatCurrency(harga)}</p>
+          <p className="text-xs md:text-sm font-semibold">
+            {formatCurrency(harga)}
+          </p>
         )}
         {props.product.promo && (
           <span className="flex items-center text-xs">
-            <p className="bg-red-200 text-red-500 rounded p-0.5 mr-1">{`${calculateDiscountPercentage()}%`}</p>
-            <p className="text-gray-400 line-through">
+            <p className="text-xs md:bg-red-200 text-red-500 rounded p-0.5 mr-1">{`${calculateDiscountPercentage()}%`}</p>
+            <p className="text-xs text-gray-400 line-through">
               {formatCurrency(harga)}
             </p>
           </span>

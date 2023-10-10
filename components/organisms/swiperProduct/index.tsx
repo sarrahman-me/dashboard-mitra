@@ -28,22 +28,22 @@ export default function SwiperProduct(props: {
       </div>
       <div className="cursor-grab select-none">
         <Swiper
-          slidesPerView={2}
+          slidesPerView={3}
           spaceBetween={3}
           modules={[Pagination]}
           grabCursor={true}
           pagination={{ clickable: true }}
           breakpoints={{
             640: {
-              slidesPerView: 3,
-              spaceBetween: 3,
-            },
-            768: {
               slidesPerView: 4,
               spaceBetween: 3,
             },
+            768: {
+              slidesPerView: 5,
+              spaceBetween: 3,
+            },
             1024: {
-              slidesPerView: 6,
+              slidesPerView: 7,
               spaceBetween: 3,
             },
           }}

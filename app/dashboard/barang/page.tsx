@@ -1,6 +1,6 @@
 import { SearchBar } from "@/components/molecules";
 import { CatalogProducts, SwiperProduct } from "@/components/organisms";
-import { PaymentChecking, NotMembership } from "@/layouts";
+import { PaymentChecking, NotMembership, TextureList } from "@/layouts";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 
 const Barang = async () => {
@@ -47,14 +47,15 @@ const Barang = async () => {
   return (
     <div>
       <SearchBar />
+      <TextureList />
+      <p className="underline font-semibold m-2">{"Semua Barang"}</p>
+      <CatalogProducts persentaseHarga={persentaseHarga} />
       <SwiperProduct
         persentaseHarga={persentaseHarga}
         url="/dashboard/barang/promo"
         title="Promo"
         products={barangPromo}
       />
-      <p className="underline font-semibold m-2">{"Semua Barang"}</p>
-      <CatalogProducts persentaseHarga={persentaseHarga} />
     </div>
   );
 };
