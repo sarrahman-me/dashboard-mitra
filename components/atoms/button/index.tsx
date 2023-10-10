@@ -10,6 +10,7 @@ export default function Button(props: {
   isFullWidth?: boolean;
   color?: string;
   isLoading?: boolean;
+  disabled?: boolean;
   onClick?: () => void;
 }) {
   const router = useRouter();
@@ -37,10 +38,12 @@ export default function Button(props: {
       <button
         onClick={handleClick}
         type={props.isSubmit ? "submit" : "button"}
-        disabled={props.isLoading}
+        disabled={props.isLoading || props.disabled}
         className={`${
           props.isFullWidth ? "w-full" : ""
-        } text-white ${color} hover:shadow-md focus:outline-none bg-indigo-600 hover:opacity-80 font-medium rounded-lg text-sm px-5 py-2.5 m-1 text-center ${
+        } text-white ${color} hover:shadow-md focus:outline-none ${
+          props.isLoading || props.disabled ? "bg-gray-500" : "bg-indigo-600"
+        } hover:opacity-80 font-medium rounded-lg text-sm px-5 py-2.5 m-1 text-center ${
           props.className
         }`}
       >

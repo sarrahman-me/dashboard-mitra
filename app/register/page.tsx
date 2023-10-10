@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/atoms";
@@ -12,6 +13,7 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({} as any);
   const [error, seterror] = useState({} as any);
+  const [acceptPolicy, setAcceptedPolicy] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -75,7 +77,28 @@ export default function Register() {
               setData={setData}
               data={data}
             />
-            <Button isLoading={loading} isFullWidth={true} isSubmit={true}>
+            <div className="flex items-center">
+              <input
+                onChange={(e) => setAcceptedPolicy(e.target.checked)}
+                id="checked-checkbox"
+                type="checkbox"
+                value=""
+                className="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600"
+              />
+              <label
+                htmlFor="checked-checkbox"
+                className="ml-2 text-sm font-medium"
+              >
+                Saya menyetujui{" "}
+                <Link className="underline" href={"/privasi-data"}>Syarat dan Ketentuan</Link>
+              </label>
+            </div>
+            <Button
+              disabled={!acceptPolicy}
+              isLoading={loading}
+              isFullWidth={true}
+              isSubmit={true}
+            >
               Daftar
             </Button>
             <p className="text-center">
