@@ -12,9 +12,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id">
-      <head>
-        <title>Tokokeramik.com - Platform bisnis bahan bangunan</title>
-      </head>
       <body id="root">
         <GoogleAnalytics />
         <div className="bg-slate-50 dark:bg-slate-900 dark:text-white text-black min-h-screen">

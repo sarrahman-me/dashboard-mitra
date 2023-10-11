@@ -13,7 +13,11 @@ export default function Footer() {
   const legal = [
     {
       name: "Privasi Data",
-      href: "/privasi-data",
+      href: "/kebijakan-privasi",
+    },
+    {
+      name: "Syarat & Ketentuan",
+      href: "/syarat-dan-ketentuan",
     },
   ];
   return (

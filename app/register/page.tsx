@@ -90,7 +90,7 @@ export default function Register() {
                 className="ml-2 text-sm font-medium"
               >
                 Saya menyetujui{" "}
-                <Link className="underline" href={"/privasi-data"}>Syarat dan Ketentuan</Link>
+                <Link className="underline" href={"/syarat-dan-ketentuan"}>Syarat dan Ketentuan</Link>
               </label>
             </div>
             <Button
