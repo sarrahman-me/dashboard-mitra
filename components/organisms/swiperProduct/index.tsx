@@ -29,28 +29,31 @@ export default function SwiperProduct(props: {
       <div className="cursor-grab select-none">
         <Swiper
           slidesPerView={3}
-          spaceBetween={3}
+          spaceBetween={2}
           modules={[Pagination]}
           grabCursor={true}
           pagination={{ clickable: true }}
           breakpoints={{
             640: {
               slidesPerView: 4,
-              spaceBetween: 3,
+              spaceBetween: 2,
             },
             768: {
               slidesPerView: 5,
-              spaceBetween: 3,
+              spaceBetween: 2,
             },
             1024: {
               slidesPerView: 7,
-              spaceBetween: 3,
+              spaceBetween: 2,
             },
           }}
         >
           {props.products?.map((product) => (
-            <SwiperSlide key={product.slug} className="p-2">
-              <CardProduct persentaseHarga={props.persentaseHarga} product={product} />
+            <SwiperSlide key={product.slug} className="p-1">
+              <CardProduct
+                persentaseHarga={props.persentaseHarga}
+                product={product}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

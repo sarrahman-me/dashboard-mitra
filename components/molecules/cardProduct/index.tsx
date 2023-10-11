@@ -47,7 +47,7 @@ const CardProduct = (props: { product: any; persentaseHarga: number }) => {
 
       <div className="flex justify-center">
         <img
-          className="object-contain max-h-28 md:max-h-36 border"
+          className="object-contain max-h-28 md:max-h-[155px] border"
           src={props.product?.images[0]}
           alt={props.product?.nama_barang}
         />

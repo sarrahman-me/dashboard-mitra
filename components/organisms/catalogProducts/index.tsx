@@ -54,7 +54,7 @@ export default function CatalogProducts(props: {
   return (
     <div>
       <div className="p-2">
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-3">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-y-4 gap-x-2">
           {loading ? (
             <div className="text-center">Loading...</div>
           ) : barang.length > 0 ? (
