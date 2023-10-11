@@ -1,3 +1,4 @@
 import HitungKeramik from "./HitungKeramik";
+import GoogleAnalytics from "./googleAnalystic";
 
-HitungKeramik
+export { GoogleAnalytics, HitungKeramik };

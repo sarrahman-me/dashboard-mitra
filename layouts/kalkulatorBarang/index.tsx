@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import { Button, Input } from "@/components/atoms";
-import HitungKeramik from "@/functions/HitungKeramik";
 import { formatCurrency } from "@/utils";
+import { HitungKeramik } from "@/functions";
 
 const KalkulatorKeramik = (props: {
   ukuranBarang: string;
