@@ -61,10 +61,10 @@ export default function Sidebar() {
       const responseProfile = await GetDataApi(
         `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
       );
-      if (responseProfile.status === 401) {
+      if (responseProfile.status !== 200) {
         Report.warning(
           "Sesi anda berakhir",
-          "Silahkan lakukan autentikasi ulang untuk tetap mengakses dashboard",
+          "Silahkan lakukan login ulang untuk tetap mengakses dashboard",
           "Okay",
           () => {
             deleteCookie("tx");
@@ -124,7 +124,7 @@ export default function Sidebar() {
           <div className="justify-center flex">
             <RiAccountBoxFill className="h-10 w-10 text-slate-50 bg-indigo-500 dark:bg-transparent rounded" />
           </div>
-          <p className="text-xs text-center my-1">{profile.email}</p>
+          <p className="text-xs text-center my-1">{profile?.email}</p>
         </div>
         <ul className="space-y-3 mt-5 m-2 pl-3 font-medium">
           {menuItems.map((item) => (

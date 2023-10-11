@@ -4,6 +4,9 @@ import { Button, Heading } from "@/components/atoms";
 import { GetDataApi, formatCurrency } from "@/utils";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { TiTick } from "react-icons/ti";
+import { RxCross2 } from "react-icons/rx";
+import { BsHandThumbsUpFill } from "react-icons/bs";
 
 const MembershipPlanList = () => {
   const router = useRouter();
@@ -28,30 +31,45 @@ const MembershipPlanList = () => {
         {membershipList.map((item: any, i: number) => (
           <div
             key={i}
-            className="bg-white dark:bg-slate-800 shadow-lg rounded-lg overflow-hidden"
+            className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white"
           >
-            <div className="px-6 py-8">
-              <h3 className="text-xl font-semibold mb-2">
-                {item.nama_klasifikasi}
+            <div className="flex justify-center items-center mb-3">
+              <h3 className="text-2xl font-semibold">
+                {item?.nama_klasifikasi}
               </h3>
-              <p className="text-gray-600 dark:text-gray-200 text-sm mb-4">{item.deskripsi}</p>
-              <p className="text-lg font-semibold">
-                Harga: {formatCurrency(item.harga)}
-              </p>
+              {item?.slug === "premium" ? (
+                <BsHandThumbsUpFill className="text-indigo-600" />
+              ) : null}
             </div>
-            <div className="px-6 pb-6">
-              <Button
-                className="w-full"
-                onClick={() => {
-                  const paymentUrl = `/dashboard/membership/payment?klasifikasi-membership=${encodeURIComponent(
-                    item.slug
-                  )}`;
-                  router.push(paymentUrl);
-                }}
-              >
-                Daftar Sekarang
-              </Button>
+            <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+              {item?.deskripsi}
+            </p>
+            <div className="flex justify-center items-baseline my-8">
+              <span className="mr-1 text-3xl font-semibold">
+                {formatCurrency(item?.harga)}
+              </span>
+              <span className="text-gray-500 dark:text-gray-400">/bln</span>
             </div>
+            <ul role="list" className="mb-8 space-y-4 text-left">
+              <ListIcon title="Buat toko online" />
+              <ListIcon title="Temukan keramik dari suplier di sekitar" />
+              <ListIcon
+                notInclude={item?.slug !== "premium"}
+                title="Dapatkan wawasan dari aktifitas customer"
+              />
+              <ListIcon title="Dukungan dan suport " />
+            </ul>
+            <button
+              onClick={() => {
+                const paymentUrl = `/dashboard/membership/payment?klasifikasi-membership=${encodeURIComponent(
+                  item.slug
+                )}`;
+                router.push(paymentUrl);
+              }}
+              className="text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-indigo-900"
+            >
+              Daftar
+            </button>
           </div>
         ))}
       </div>
@@ -60,3 +78,16 @@ const MembershipPlanList = () => {
 };
 
 export default MembershipPlanList;
+
+const ListIcon = (props: { title: string; notInclude?: boolean }) => {
+  return (
+    <li className="flex items-center space-x-3">
+      {props.notInclude ? (
+        <RxCross2 className="text-red-500" />
+      ) : (
+        <TiTick className="text-green-500" />
+      )}
+      <span>{props.title}</span>
+    </li>
+  );
+};

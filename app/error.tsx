@@ -16,16 +16,16 @@ export default function Error({
 
   return (
     <div className="flex flex-col justify-center items-center w-full h-screen">
-      <div className="text-center">
+      <div className="text-center p-2">
         <Player
           autoplay
           loop
-          src="https://lottie.host/955cab67-09e2-4843-9803-80580e96184c/TXYXKxuP02.json"
+          src="https://lottie.host/43bff5e1-3f8b-421c-88aa-1b0489a0b7e0/suGvvAaqzC.json"
           style={{ height: "300px", width: "300px" }}
         >
           <Controls buttons={["play", "repeat", "frame", "debug"]} />
         </Player>
-        <h2 className="md:text-lg font-bold mt-8">
+        <h2 className="md:text-lg font-bold">
           Maaf, terjadi kesalahan saat terhubung ke server!
         </h2>
         <p className="text-left text-sm md:text-base mt-4">

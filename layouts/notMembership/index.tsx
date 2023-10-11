@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { FcLock } from "react-icons/fc";
 
 export default function NotMembership() {
   const router = useRouter();
@@ -8,12 +9,12 @@ export default function NotMembership() {
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="bg-white dark:bg-slate-800 p-8 rounded shadow text-center">
-        <h1 className="text-3xl font-semibold mb-4">
-          Berlangganan Terlebih Dahulu
-        </h1>
+        <h1 className="text-2xl font-semibold mb-4">Halaman terkunci</h1>
+        <div className="flex justify-center">
+          <FcLock className="text-9xl" />
+        </div>
         <p className="mb-6">
-          Untuk mengakses koleksi barang kami, Kamu perlu berlangganan terlebih
-          dahulu.
+          Untuk mengakses halaman ini, Kamu perlu berlangganan terlebih dahulu.
         </p>
         <button
           onClick={() => router.push("/dashboard/membership")}
