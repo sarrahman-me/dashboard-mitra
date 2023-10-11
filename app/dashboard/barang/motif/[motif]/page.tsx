@@ -1,13 +1,9 @@
 import { CatalogProducts } from "@/components/organisms";
-import { HeaderAndBackIcon } from "@/components/molecules";
+import { HeaderAndBackIcon, SearchBar } from "@/components/molecules";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 import { NotMembership, PaymentChecking } from "@/layouts";
 
-export default async function Motif({
-  params,
-}: {
-  params: { motif: string };
-}) {
+export default async function Motif({ params }: { params: { motif: string } }) {
   const motif = params.motif;
 
   const responseProfile = await SSRGetDataApi(
@@ -46,6 +42,7 @@ export default async function Motif({
 
   return (
     <div>
+      <SearchBar />
       <HeaderAndBackIcon title={`Motif ${motif}`} />
       <CatalogProducts
         persentaseHarga={persentaseHarga}

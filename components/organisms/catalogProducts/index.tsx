@@ -3,6 +3,10 @@ import { CardProduct } from "@/components/molecules";
 import { GetDataApi } from "@/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import {
+  BsFillArrowLeftCircleFill,
+  BsFillArrowRightCircleFill,
+} from "react-icons/bs";
 
 export default function CatalogProducts(props: {
   atribut?: string;
@@ -56,7 +60,10 @@ export default function CatalogProducts(props: {
           ) : barang.length > 0 ? (
             barang.map((item: any, i: any) => (
               <div key={i}>
-                <CardProduct persentaseHarga={props.persentaseHarga} product={item} />
+                <CardProduct
+                  persentaseHarga={props.persentaseHarga}
+                  product={item}
+                />
               </div>
             ))
           ) : (
@@ -83,16 +90,16 @@ export default function CatalogProducts(props: {
             <button
               onClick={handlePrevPage}
               disabled={currentPage === 1}
-              className="text-4xl text-indigo-500 disabled:text-gray-400 disabled:cursor-not-allowed mr-5"
+              className="text-4xl text-indigo-500 disabled:text-gray-400 disabled:cursor-not-allowed mr-7 hover:bg-indigo-500 disabled:bg-white hover:text-white rounded-full"
             >
-              {"<"}
+              <BsFillArrowLeftCircleFill />
             </button>
             <button
               onClick={handleNextPage}
               disabled={currentPage === metadata?.totalPages}
-              className="text-4xl text-indigo-500 disabled:text-gray-400 disabled:cursor-not-allowed"
+              className="text-4xl text-indigo-500 disabled:text-gray-400 disabled:cursor-not-allowed hover:bg-indigo-500 disabled:bg-white hover:text-white rounded-full"
             >
-              {">"}
+              <BsFillArrowRightCircleFill />
             </button>
           </div>
         </div>

@@ -3,6 +3,10 @@
 import { Button } from "@/components/atoms";
 import { useEffect, useState } from "react";
 
+const generateQrCodeUrl = (webstore: any, barang: any) => {
+  return `https://api.qrserver.com/v1/create-qr-code/?data=${webstore?.url}/products/${barang.kode_barang}&size=100x100`;
+};
+
 export default function QrSampleProducts(props: {
   webstore: any;
   barang: any;
@@ -11,27 +15,35 @@ export default function QrSampleProducts(props: {
   const [imageUrl, setImageUrl] = useState("");
 
   const handleDownload = async () => {
-    const response = await fetch(
-      `https://api.qrserver.com/v1/create-qr-code/?data=${props.webstore?.url}/products/${props.barang.kode_barang}&amp;size=100x100`
-    );
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `${props.barang.kode_barang}.png`;
-    link.click();
-    URL.revokeObjectURL(url);
+    try {
+      const response = await fetch(
+        generateQrCodeUrl(props.webstore, props.barang)
+      );
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${props.barang.kode_barang}.png`;
+      link.click();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error downloading QR code:", error);
+    }
   };
 
   useEffect(() => {
     const fetchImage = async () => {
-      const response = await fetch(
-        `https://api.qrserver.com/v1/create-qr-code/?data=${props.webstore?.url}/products/${props.barang.kode_barang}&amp;size=100x100`
-      );
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
-      setImageUrl(url);
-      setImageLoaded(true);
+      try {
+        const response = await fetch(
+          generateQrCodeUrl(props.webstore, props.barang)
+        );
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        setImageUrl(url);
+        setImageLoaded(true);
+      } catch (error) {
+        console.error("Error fetching QR code:", error);
+      }
     };
     fetchImage();
   }, [props.webstore, props.barang]);

@@ -1,4 +1,4 @@
-import { HeaderAndBackIcon } from "@/components/molecules";
+import { HeaderAndBackIcon, SearchBar } from "@/components/molecules";
 import { CatalogProducts } from "@/components/organisms";
 import { PaymentChecking, NotMembership } from "@/layouts";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
@@ -40,6 +40,7 @@ const BarangPromo = async () => {
 
   return (
     <div>
+      <SearchBar />
       <HeaderAndBackIcon title="Promo" />
       <CatalogProducts persentaseHarga={persentaseHarga} atribut={`promo=true`} />
     </div>
