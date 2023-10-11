@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { TombolPesan } from "@/components/atoms";
 import {
   HeaderAndBackIcon,
   IconSelect,
@@ -136,6 +137,7 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
               )}
             </div>
           </div>
+          <TombolPesan />
         </div>
       </div>
       <p className="underline font-semibold m-2">Detail Produk</p>

@@ -11,6 +11,7 @@ import Logo from "./logo";
 import RemoveDataIcon from "./removeDataIcon";
 import ResizeLayarButton from "./resizeLayarButton";
 import SelectApi from "./selectApi";
+import TombolPesan from "./tombolPesan";
 import ToggleDarkMode from "./toogleDarkMode";
 
 export {
@@ -27,5 +28,6 @@ export {
   ButtonStopMembership,
   ListIcon,
   DropdownList,
+  TombolPesan,
   Logo,
 };
