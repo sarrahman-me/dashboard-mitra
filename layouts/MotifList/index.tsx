@@ -22,16 +22,16 @@ const motifList = [
     image: WoodMotif,
   },
   {
-    title: "Natural",
-    image: BasicMotif,
+    title: "Stone",
+    image: StoneMotif,
   },
   {
     title: "Fancy",
     image: FancyMotif,
   },
   {
-    title: "Stone",
-    image: StoneMotif,
+    title: "Natural",
+    image: BasicMotif,
   },
   {
     title: "Rustic",
@@ -49,22 +49,22 @@ export default function MotifList() {
       </div>
       <div className="cursor-grab select-none">
         <Swiper
-          slidesPerView={2}
+          slidesPerView={2.3}
           spaceBetween={3}
           modules={[Pagination]}
           grabCursor={true}
           pagination={{ clickable: true }}
           breakpoints={{
             640: {
-              slidesPerView: 3,
+              slidesPerView: 3.2,
               spaceBetween: 3,
             },
             768: {
-              slidesPerView: 5,
+              slidesPerView: 4.5,
               spaceBetween: 3,
             },
             1024: {
-              slidesPerView: 7,
+              slidesPerView: 6,
               spaceBetween: 3,
             },
           }}

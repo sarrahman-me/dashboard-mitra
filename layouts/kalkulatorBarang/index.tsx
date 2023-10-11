@@ -36,11 +36,13 @@ const KalkulatorKeramik = (props: {
     <div>
       <form onSubmit={handleHitung} className="divide-transparent divide-y-8">
         <Input
+          type="number"
           label={"Panjang Ruangan"}
           name={"panjang"}
           onChange={(event) => setPanjang(event.target.value)}
         />
         <Input
+          type="number"
           label={"Lebar Ruangan"}
           name={"lebar"}
           onChange={(event) => setLebar(event.target.value)}

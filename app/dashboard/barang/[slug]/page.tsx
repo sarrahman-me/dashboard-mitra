@@ -1,5 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import { HeaderAndBackIcon, IconSelect } from "@/components/molecules";
+import {
+  HeaderAndBackIcon,
+  IconSelect,
+  SearchBar,
+} from "@/components/molecules";
 import {
   CatalogProducts,
   SectionLayout,
@@ -92,6 +96,7 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <div>
+      <SearchBar />
       <HeaderAndBackIcon title={`Detail ${barang.kategori}`} />
       <div className="flex flex-col md:flex-row my-2">
         <div className="md:w-1/3 flex justify-center items-center w-full m-2 md:m-0">
