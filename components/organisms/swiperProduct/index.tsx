@@ -22,7 +22,7 @@ export default function SwiperProduct(props: {
         {props.url && (
           <BsFillArrowRightCircleFill
             onClick={() => router.push(props.url)}
-            className="text-indigo-500 hover:bg-indigo-500 hover:text-white rounded-full text-xl md:text-2xl cursor-pointer"
+            className="text-indigo-500 hover:bg-indigo-500 hover:text-white rounded-full text-2xl cursor-pointer"
           />
         )}
       </div>

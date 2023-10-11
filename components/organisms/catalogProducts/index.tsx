@@ -90,14 +90,14 @@ export default function CatalogProducts(props: {
             <button
               onClick={handlePrevPage}
               disabled={currentPage === 1}
-              className="text-4xl text-indigo-500 disabled:text-gray-400 disabled:cursor-not-allowed mr-7 hover:bg-indigo-500 disabled:bg-white hover:text-white rounded-full"
+              className="text-2xl text-indigo-500 disabled:text-gray-400 disabled:cursor-not-allowed mr-7 hover:bg-indigo-500 disabled:bg-white hover:text-white rounded-full"
             >
               <BsFillArrowLeftCircleFill />
             </button>
             <button
               onClick={handleNextPage}
               disabled={currentPage === metadata?.totalPages}
-              className="text-4xl text-indigo-500 disabled:text-gray-400 disabled:cursor-not-allowed hover:bg-indigo-500 disabled:bg-white hover:text-white rounded-full"
+              className="text-2xl text-indigo-500 disabled:text-gray-400 disabled:cursor-not-allowed hover:bg-indigo-500 disabled:bg-white hover:text-white rounded-full"
             >
               <BsFillArrowRightCircleFill />
             </button>
