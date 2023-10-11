@@ -40,7 +40,7 @@ const menuItems = [
 
 const personalMenu = [
   {
-    label: "Feedback",
+    label: "Kritik & Saran",
     icon: <RiFeedbackFill />,
     href: "/dashboard/feedback",
   },

@@ -3,10 +3,8 @@ import { Button, Input } from "@/components/atoms";
 import { PostDataApi } from "@/utils";
 import { Notify } from "notiflix";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
 export default function Feedback() {
-  const { profile } = useSelector((state: any) => state.profile);
   const [subject, setSubject] = useState("");
   const [text, setText] = useState("");
 
@@ -14,7 +12,7 @@ export default function Feedback() {
     e.preventDefault();
     const sendMessage = await PostDataApi(
       `${process.env.NEXT_PUBLIC_HOST}/message/send/email`,
-      { text, to: profile.email, subject }
+      { text, to: "sarrahman.me@gmail.com", subject }
     );
 
     if (sendMessage.success) {
@@ -33,8 +31,8 @@ export default function Feedback() {
           onChange={(e) => setSubject(e.target.value)}
         />
         <div className="mb-4">
-          <label htmlFor="feedback" className="block font-semibold">
-            Feedback
+          <label htmlFor="feedback" className="block">
+            Kritik & Saran
           </label>
           <textarea
             onChange={(e) => setText(e.target.value)}
