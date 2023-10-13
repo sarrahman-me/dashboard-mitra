@@ -50,6 +50,28 @@ export default function VerifyEmail() {
     }
   };
 
+  const sendCodeAgain = async () => {
+    setLoading(true);
+    Loading.hourglass();
+    const response = await PostDataApi(
+      `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/code-verify`,
+      {
+        email,
+      }
+    );
+
+    if (response?.success) {
+      Notify.success(response.message);
+      Loading.remove();
+      setLoading(false);
+    } else {
+      setLoading(false);
+      Loading.remove();
+      setLoading(false);
+      Notify.failure(response.message);
+    }
+  };
+
   const form = [
     {
       type: "number",
@@ -80,7 +102,10 @@ export default function VerifyEmail() {
             <Button isLoading={loading} isFullWidth={true} isSubmit={true}>
               Submit
             </Button>
-            <p className="text-xs text-indigo-500 text-center cursor-pointer">
+            <p
+              onClick={sendCodeAgain}
+              className="text-xs text-indigo-500 text-center cursor-pointer"
+            >
               Kirim ulang
             </p>
           </form>
