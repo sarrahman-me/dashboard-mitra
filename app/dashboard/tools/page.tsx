@@ -2,7 +2,7 @@
 import { Button, Input, Select } from "@/components/atoms";
 import { SectionLayout } from "@/components/organisms";
 import { HitungKeramik } from "@/functions";
-import { GetDataApi } from "@/utils";
+import { GetDataApi, formatCurrency } from "@/utils";
 import { useEffect, useState } from "react";
 
 export default function Tools() {
@@ -13,10 +13,46 @@ export default function Tools() {
   const [ukuran, setUkuran] = useState("");
   const [hasil, setHasil] = useState({} as any);
 
+  // state ongkir
+  const [ongkirState, setOngkirState] = useState({
+    ongkir: 0,
+    origin: "",
+    destination: "",
+  });
+  const [resultOngkir, setResultOnkir] = useState({
+    asal: "",
+    tujuan: "",
+    jarak: "",
+    waktu: "",
+    status: "",
+    harga: 0,
+  });
+
   const handleHitung = (e: any) => {
     e.preventDefault();
     const hasilHitung = HitungKeramik(ukuran, panjang, lebar);
     setHasil(hasilHitung);
+  };
+
+  const handleCekOngkir = async (e: any) => {
+    e.preventDefault();
+    const responseOrigin = await fetch(
+      `https://api.distancematrix.ai/maps/api/distancematrix/json?origins=${ongkirState.origin}&destinations=${ongkirState.destination}&key=vSBMMPxdM7Yv6z66nFubqoJWnWkK6NDuaT2hEwoTQs2MtBbOmJKBfuXiHte6EiEY`
+    );
+    const data = await responseOrigin.json();
+
+    const jarakKm = data?.rows[0]?.elements[0]?.distance?.value / 1000;
+
+    const harga = jarakKm * ongkirState.ongkir;
+
+    setResultOnkir({
+      asal: data?.origin_addresses[0],
+      tujuan: data?.destination_addresses[0],
+      jarak: data?.rows[0]?.elements[0]?.distance?.text,
+      waktu: data?.rows[0]?.elements[0]?.duration?.text,
+      status: data.status,
+      harga,
+    });
   };
 
   useEffect(() => {
@@ -73,7 +109,7 @@ export default function Tools() {
           </form>
           {hasil.kebutuhan && (
             <SectionLayout>
-              <div>
+              <div className="divide-y-8 divide-transparent">
                 <p>Kebutuhan : {hasil?.kebutuhan}</p>
                 <p>Diameter ruangan : {hasil?.diameter_ruang}</p>
                 <p>Diameter per dus : {Math.ceil(hasil?.diameter_perdus)}</p>
@@ -82,7 +118,67 @@ export default function Tools() {
           )}
         </div>
       ) : (
-        <p>Halaman cek ongkir</p>
+        <div className="md:w-1/2">
+          <form
+            onSubmit={handleCekOngkir}
+            className="divide-transparent divide-y-8"
+          >
+            <Input
+              type="number"
+              label={"Perkiraan ongkos per km"}
+              placeholder="10000"
+              name={"ongkir"}
+              onChange={(event) =>
+                setOngkirState({
+                  ...ongkirState,
+                  ongkir: event.target.value,
+                })
+              }
+            />
+            <Input
+              label={"Alamat asal"}
+              name={"origin"}
+              onChange={(event) =>
+                setOngkirState({
+                  ...ongkirState,
+                  origin: event.target.value,
+                })
+              }
+            />
+            <Input
+              label={"Alamat tujuan"}
+              name={"destination"}
+              onChange={(event) =>
+                setOngkirState({
+                  ...ongkirState,
+                  destination: event.target.value,
+                })
+              }
+            />
+            <Button isFullWidth={true} isSubmit={true}>
+              Cek ongkir
+            </Button>
+          </form>
+          {resultOngkir.status === "OK" && (
+            <SectionLayout>
+              <div className="divide-y-8 divide-transparent">
+                <p>Asal : {resultOngkir.asal}</p>
+                <p>Tujuan : {resultOngkir.tujuan}</p>
+                <p>Jarak : {resultOngkir.jarak}</p>
+                <p>Estimasi waktu : {resultOngkir.waktu}</p>
+                <p>Harga : {formatCurrency(resultOngkir.harga)}</p>
+              </div>
+            </SectionLayout>
+          )}
+          <div className="bg-warning rounded-md bg-white dark:bg-slate-800 mt-5 p-4 text-center text-sm">
+            <h2 className="text-xl font-semibold text-orange-500">Peringatan</h2>
+            <p className="mt-2">
+              fitur ini masih dalam tahap pengembangan lebih
+              lanjut, oleh karena itu, mungkin terdapat kesalahan dan
+              ketidakpastian dalam informasi yang diberikan.
+            </p>
+          </div>
+        </div>
       )}
     </div>
   );
