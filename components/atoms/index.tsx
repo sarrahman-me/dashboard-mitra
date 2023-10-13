@@ -10,6 +10,7 @@ import ListIcon from "./listIcon";
 import Logo from "./logo";
 import RemoveDataIcon from "./removeDataIcon";
 import ResizeLayarButton from "./resizeLayarButton";
+import Select from "./select";
 import SelectApi from "./selectApi";
 import TombolPesan from "./tombolPesan";
 import ToggleDarkMode from "./toogleDarkMode";
@@ -30,4 +31,5 @@ export {
   DropdownList,
   TombolPesan,
   Logo,
+  Select,
 };

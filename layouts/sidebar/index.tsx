@@ -8,6 +8,8 @@ import {
   RiFeedbackFill,
   RiLogoutBoxFill,
 } from "react-icons/ri";
+import { AiFillExperiment } from "react-icons/ai";
+import { BsTools } from "react-icons/bs";
 import { FaCube, FaStoreAlt } from "react-icons/fa";
 import { MdCardMembership, MdDashboard } from "react-icons/md";
 import { ListIcon } from "@/components/atoms";
@@ -35,6 +37,16 @@ const menuItems = [
     label: "Webstore",
     icon: <FaStoreAlt />,
     href: "/dashboard/webstore",
+  },
+  {
+    label: "Tools",
+    icon: <BsTools />,
+    href: "/dashboard/tools",
+  },
+  {
+    label: "Experiment",
+    icon: <AiFillExperiment />,
+    href: "/dashboard/experiment",
   },
 ];
 
