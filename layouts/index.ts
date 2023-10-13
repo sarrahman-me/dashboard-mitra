@@ -13,6 +13,7 @@ import PaymentChecking from "./paymentChecking";
 import Sidebar from "./sidebar";
 import SimulasiKeramik from "./simulasiKeramik";
 import MotifList from "./MotifList";
+import DetailProductsComp from "./detailProductsComp";
 
 export {
   MembershipPlanList,
@@ -30,4 +31,5 @@ export {
   Benefits,
   Cta,
   MotifList,
+  DetailProductsComp,
 };

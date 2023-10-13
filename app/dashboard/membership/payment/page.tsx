@@ -68,12 +68,9 @@ export default function Payment() {
               label={"Harga"}
               value={formatCurrency(membershipPlan.harga || 0)}
             />
-            <ListData label={"Deskripsi"} value={membershipPlan.deskripsi} />
             <ListData
               label={"Tanggal berakhir"}
-              value={`${moment(membershipPlan.createdAt)
-                .add(1, "month")
-                .calendar()} (1 bulan)`}
+              value={`${moment().add(1, "month").format("LL")} (1 bulan)`}
             />
           </div>
           <div className="bg-white dark:bg-slate-800 rounded shadow p-6">
@@ -84,7 +81,7 @@ export default function Payment() {
             </p>
             <div className="mt-4">
               <p className="font-semibold">Bank: Bank BCA</p>
-              <p className="font-semibold">Nomor Rekening: 1234-5678-9012</p>
+              <p className="font-semibold">Nomor Rekening: 793 557 7110</p>
             </div>
             <p className="text-sm mt-4">
               Pastikan kamu melakukan pembayaran dengan benar ke rekening di

@@ -25,9 +25,16 @@ export default function SimulasiKeramik(props: {
     backgroundColor: backgroundColor,
   };
 
+  const handleKlikKanan = (e: any) => {
+    e.preventDefault();
+
+    return false;
+  };
+
   return (
     <div className="flex flex-col md:flex-row w-full">
       <div
+        onContextMenu={handleKlikKanan}
         className="md:w-1/2 w-full grid m-1 relative object-cover"
         style={gridStyles}
       >

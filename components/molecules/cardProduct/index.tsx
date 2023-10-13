@@ -32,8 +32,15 @@ const CardProduct = (props: { product: any; persentaseHarga: number }) => {
     return "";
   };
 
+  const handleKlikKanan = (e: any) => {
+    e.preventDefault();
+
+    return false;
+  };
+
   return (
     <div
+      onContextMenu={handleKlikKanan}
       onClick={() => {
         router.push(`/dashboard/barang/${props.product.slug}`);
       }}

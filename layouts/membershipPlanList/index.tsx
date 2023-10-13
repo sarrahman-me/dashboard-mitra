@@ -27,8 +27,8 @@ const MembershipPlanList = () => {
       <p className="text-lg text-center font-semibold mb-8">
         Pilihan Paket Membership
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {membershipList.map((item: any, i: number) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        {membershipList.reverse().map((item: any, i: number) => (
           <div
             key={i}
             className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white"
@@ -51,13 +51,18 @@ const MembershipPlanList = () => {
               <span className="text-gray-500 dark:text-gray-400">/bln</span>
             </div>
             <ul role="list" className="mb-8 space-y-4 text-left">
-              <ListIcon title="Buat toko online" />
+              <ListIcon title="Buat Toko Online dengan Banyak Fitur" />
               <ListIcon title="Temukan keramik dari suplier di sekitar" />
+              <ListIcon title="Dukungan dan suport setiap hari" />
+              <ListIcon title="Gunakan berbagai alat yang dapat membantu berjualan" />
               <ListIcon
                 notInclude={item?.slug !== "premium"}
                 title="Dapatkan wawasan dari aktifitas customer"
               />
-              <ListIcon title="Dukungan dan suport " />
+              <ListIcon
+                notInclude={item?.slug !== "premium"}
+                title="Uji coba fitur baru lebih awal"
+              />
             </ul>
             <button
               onClick={() => {
