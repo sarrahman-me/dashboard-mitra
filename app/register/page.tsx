@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/atoms";
@@ -24,9 +25,10 @@ export default function Register() {
       data
     );
     if (response?.success) {
+      setCookie("email", data.email);
       Loading.remove();
       Notify.success(response.message);
-      router.push("/login");
+      router.push("/verify-email");
     } else {
       setLoading(false);
       seterror(response.error);
@@ -90,7 +92,9 @@ export default function Register() {
                 className="ml-2 text-sm font-medium"
               >
                 Saya menyetujui{" "}
-                <Link className="underline" href={"/syarat-dan-ketentuan"}>Syarat dan Ketentuan</Link>
+                <Link className="underline" href={"/syarat-dan-ketentuan"}>
+                  Syarat dan Ketentuan
+                </Link>
               </label>
             </div>
             <Button
