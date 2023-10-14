@@ -37,7 +37,7 @@ export default function Tools() {
   const handleCekOngkir = async (e: any) => {
     e.preventDefault();
     const responseOrigin = await fetch(
-      `https://api.distancematrix.ai/maps/api/distancematrix/json?origins=${ongkirState.origin}&destinations=${ongkirState.destination}&key=vSBMMPxdM7Yv6z66nFubqoJWnWkK6NDuaT2hEwoTQs2MtBbOmJKBfuXiHte6EiEY`
+      `https://api.distancematrix.ai/maps/api/distancematrix/json?origins=${ongkirState.origin}&destinations=${ongkirState.destination}&key=${process.env.NEXT_PUBLIC_DISTANCE_API_KEY}`
     );
     const data = await responseOrigin.json();
 
@@ -171,11 +171,13 @@ export default function Tools() {
             </SectionLayout>
           )}
           <div className="bg-warning rounded-md bg-white dark:bg-slate-800 mt-5 p-4 text-center text-sm">
-            <h2 className="text-xl font-semibold text-orange-500">Peringatan</h2>
+            <h2 className="text-xl font-semibold text-orange-500">
+              Peringatan
+            </h2>
             <p className="mt-2">
-              fitur ini masih dalam tahap pengembangan lebih
-              lanjut, oleh karena itu, mungkin terdapat kesalahan dan
-              ketidakpastian dalam informasi yang diberikan.
+              fitur ini masih dalam tahap pengembangan lebih lanjut, oleh karena
+              itu, mungkin terdapat kesalahan dan ketidakpastian dalam informasi
+              yang diberikan.
             </p>
           </div>
         </div>
