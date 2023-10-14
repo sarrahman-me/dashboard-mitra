@@ -92,7 +92,9 @@ const ListIcon = (props: { title: string; notInclude?: boolean }) => {
       ) : (
         <TiTick className="text-green-500" />
       )}
-      <span>{props.title}</span>
+      <span>
+        {props.notInclude ? <p className="line-through">{props.title}</p> : <p>{props.title}</p>}
+      </span>
     </li>
   );
 };

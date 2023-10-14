@@ -110,9 +110,14 @@ export default function Tools() {
           {hasil.kebutuhan && (
             <SectionLayout>
               <div className="divide-y-8 divide-transparent">
-                <p>Kebutuhan : {hasil?.kebutuhan}</p>
-                <p>Diameter ruangan : {hasil?.diameter_ruang}</p>
-                <p>Diameter per dus : {Math.ceil(hasil?.diameter_perdus)}</p>
+                <p>Kebutuhan : {hasil?.kebutuhan} Dus</p>
+                <p>
+                  Diameter ruangan : {hasil?.diameter_ruang} m<sup>2</sup>
+                </p>
+                <p>
+                  Diameter per dus :{" "}
+                  {(hasil?.diameter_perdus as number).toFixed(2)} m<sup>2</sup>
+                </p>
               </div>
             </SectionLayout>
           )}

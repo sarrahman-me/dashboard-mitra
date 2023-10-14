@@ -23,14 +23,16 @@ export default function ButtonStopMembership(props: { id_membership: any }) {
           router.push("/dashboard");
           Loading.remove();
         }
-      }
+      },
+      () => {},
+      { okButtonBackground: "red", titleColor: "red" }
     );
   };
 
   return (
     <div>
       <button
-        className="border border-red-500 hover:shadow shadow-red-500 bg-white text-red-500 dark:bg-slate-800 p-2 px-4 rounded"
+        className="text-xs md:text-sm text-red-500 dark:bg-slate-800 p-2 px-4 rounded"
         onClick={() => berhentiMembership(props.id_membership)}
       >
         Berhenti Berlangganan
