@@ -2,13 +2,16 @@
 import { Button, Heading } from "@/components/atoms";
 import { ImageInputWithPreview } from "@/components/molecules";
 import { CatalogProducts, SectionLayout } from "@/components/organisms";
+import { NotMembership, PaymentChecking } from "@/layouts";
 import SearchByImage from "@/public/searchByImage.png";
 import { PostDataApi } from "@/utils";
 import Image from "next/image";
 import { Loading, Notify } from "notiflix";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Experiment() {
+  const { profile, transaksi } = useSelector((state: any) => state.profile);
   const [gambar, setGambar] = useState([] as any);
   const [responsePredict, setResponsePredict] = useState({
     message: "",
@@ -49,6 +52,14 @@ export default function Experiment() {
 
     Loading.remove();
   };
+
+  if (!profile?.id_membership) {
+    return <NotMembership />;
+  }
+
+  if (!transaksi?.verifikasi) {
+    return <PaymentChecking />;
+  }
 
   return (
     <div>

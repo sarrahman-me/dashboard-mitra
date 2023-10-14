@@ -1,7 +1,11 @@
+"use client";
 import { Logo } from "@/components/atoms";
 import { GiHand } from "react-icons/gi";
+import { useSelector } from "react-redux";
 
 export default function Dashboard() {
+  const { profile } = useSelector((state: any) => state.profile);
+
   return (
     <div>
       <div className="hidden md:inline-flex font-bold justify-center items-center">
@@ -11,7 +15,7 @@ export default function Dashboard() {
         </span>{" "}
       </div>
       <p className="inline-flex md:hidden text-lg font-bold justify-center items-center">
-        Hay !! Selamat datang{" "}
+        Hay !! Selamat datang
         <span>
           <GiHand />
         </span>{" "}

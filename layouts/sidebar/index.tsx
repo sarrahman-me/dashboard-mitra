@@ -15,7 +15,7 @@ import { MdCardMembership, MdDashboard } from "react-icons/md";
 import { ListIcon } from "@/components/atoms";
 import { DeleteDataApi, GetDataApi } from "@/utils";
 import { useEffect } from "react";
-import { setProfile } from "@/redux/slice/profile";
+import { setMembership, setProfile, setTransaksi } from "@/redux/slice/profile";
 
 const menuItems = [
   {
@@ -86,7 +86,28 @@ export default function Sidebar() {
           }
         );
       }
-      dispatch(setProfile(responseProfile?.data));
+
+      const profile = responseProfile?.data;
+      let membership = null;
+      let transaksi = null;
+
+      if (profile?.id_membership) {
+        const responseMembership = await GetDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/membership/member/${profile?.id_membership}`
+        );
+        membership = responseMembership?.data.membership;
+      }
+
+      if (membership?.id_transaksi) {
+        const responseTransaksi = await GetDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/finance/transaksi/${membership.id_transaksi}`
+        );
+
+        transaksi = responseTransaksi?.data;
+      }
+      dispatch(setTransaksi(transaksi));
+      dispatch(setMembership(membership));
+      dispatch(setProfile(profile));
     }
     fetchData();
   }, [dispatch, router]);
