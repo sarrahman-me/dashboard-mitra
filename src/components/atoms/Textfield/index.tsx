@@ -19,7 +19,6 @@ import Label from "../Label";
  * @param {boolean} fullWidth - Apakah Textfield harus memenuhi lebar penuh (opsional).
  */
 
-
 interface TextfieldProps {
   name: string;
   type?: "text" | "number" | "password" | "date" | "email";
@@ -63,7 +62,7 @@ const Textfield = ({
 
   /* "defaultClass" adalah class tailwind yang ada di semua variant textfield */
 
-  const defaultClass = `placeholder:select-none dark:placeholder-gray-400 p-2 border-indigo-600 hover:border-indigo-600 focus:border-indigo-600 dark:focus:border-indigo-600 focus:outline-none disabled:border-gray-500 disabled:cursor-not-allowed`;
+  const defaultClass = `placeholder:select-none dark:placeholder-gray-400 p-2 border-indigo-600 hover:border-indigo-600 focus:border-indigo-600 dark:focus:border-indigo-600 focus:outline-none disabled:border-gray-500 disabled:cursor-not-allowed transition`;
 
   /* `Const className` membuat string yang berisi kelas CSS untuk komponen Textfield. */
 

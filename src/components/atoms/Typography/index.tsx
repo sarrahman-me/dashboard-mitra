@@ -3,13 +3,13 @@
  *
  * @param {string} children - Teks yang akan ditampilkan.
  * @param {string} variant - Variasi teks (opsional). Pilihan: "h1", "h2", "h3", "h4", "subtitle", "body", "helper".
- * @param {string} color - Warna teks (opsional dengan default primary). Pilihan: "primary", "danger", "success", "warning".
+ * @param {string} color - Warna teks (opsional dengan default primary). Pilihan: "primary", "secondary", "danger", "success", "warning".
  */
 
 interface TypographyProps {
   children: string;
   variant?: "h1" | "h2" | "h3" | "h4" | "subtitle" | "body" | "helper";
-  color?: "primary" | "danger" | "success" | "warning";
+  color?: "primary" | "secondary" | "danger" | "success" | "warning";
 }
 
 const Typography = ({ children, variant, color }: TypographyProps) => {
@@ -26,6 +26,7 @@ const Typography = ({ children, variant, color }: TypographyProps) => {
 
   const classColor = {
     primary: "text-slate-950 dark:text-slate-50",
+    secondary: "text-gray-600 dark:text-gray-500",
     danger: "text-red-600 dark:text-red-500",
     success: "text-green-950 dark:text-green-50",
     warning: "text-yellow-950 dark:text-yellow-50",

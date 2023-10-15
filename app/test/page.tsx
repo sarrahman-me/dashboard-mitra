@@ -3,10 +3,12 @@ import { AppBar } from "@/layouts";
 import {
   Button,
   Checkbox,
+  Logo,
   Radio,
   Textfield,
   Typography,
 } from "@/src/components/atoms";
+import { NavGroup } from "@/src/components/molecules";
 import { useState } from "react";
 import { AiOutlineCloudDownload, AiOutlineSearch } from "react-icons/ai";
 import { FiLoader } from "react-icons/fi";
@@ -30,7 +32,12 @@ export default function Test() {
       <Button loading icon={<AiOutlineCloudDownload />} variant="outlined">
         Tombol Baru
       </Button>
-      <Button loading onClick={() => alert("hell0")} size="full" icon={<FiLoader />}>
+      <Button
+        loading
+        onClick={() => alert("hell0")}
+        size="full"
+        icon={<FiLoader />}
+      >
         Tombol Baru
       </Button>
 
@@ -90,7 +97,9 @@ export default function Test() {
       <Typography variant="h2">Hello World</Typography>
       <Typography variant="h3">Hello World</Typography>
       <Typography variant="h4">Hello World</Typography>
-      <Typography variant="subtitle">Hello World</Typography>
+      <Typography color="secondary" variant="subtitle">
+        Hello World
+      </Typography>
       <Typography>Hello World</Typography>
 
       <br />
@@ -113,6 +122,39 @@ export default function Test() {
           setCheckbox(value);
           console.log(value);
         }}
+      />
+      <br />
+      <br />
+      <Logo />
+      <br />
+      <br />
+      <NavGroup
+        pages={[
+          {
+            label: "Home",
+            href: "/",
+          },
+          {
+            label: "Test",
+            href: "/test",
+          },
+        ]}
+        direction={"horizontal"}
+      />
+      <br />
+      <br />
+      <NavGroup
+        pages={[
+          {
+            label: "Home",
+            href: "/",
+          },
+          {
+            label: "Test",
+            href: "/test",
+          },
+        ]}
+        direction={"vertical"}
       />
       <br />
       <br />

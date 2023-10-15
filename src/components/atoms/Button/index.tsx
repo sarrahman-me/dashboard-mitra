@@ -38,12 +38,12 @@ const Button = ({
 
   const classVariant = {
     contained:
-      "font-medium border rounded border-indigo-600 bg-indigo-600 text-white hover:bg-indigo-800 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:border-none ease-in duration-100",
+      "border border-indigo-600 bg-indigo-600 text-white hover:bg-indigo-800 disabled:bg-gray-500 disabled:border-none",
 
     outlined:
-      "font-medium border border-indigo-600 hover:shadow hover:border-indigo-500 hover:shadow rounded-md disabled:border-gray-500 disabled:cursor-not-allowed ease-in duration-100",
+      "border-2 border-indigo-600 hover:shadow-md hover:border-indigo-500 disabled:border-gray-500",
 
-    text: "font-medium rounded hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed ease-in duration-100",
+    text: "hover:bg-slate-200 dark:hover:bg-slate-800",
   };
 
   const classSize = {
@@ -53,7 +53,10 @@ const Button = ({
     full: "w-full py-1.5 justify-center",
   };
 
-  const className = `flex items-center
+  const defaultClass = `flex items-center font-medium rounded-md disabled:cursor-not-allowed transition`;
+
+  const className = `
+  ${defaultClass}
   ${classVariant[variant || "contained"]} 
   ${classSize[size || "medium"]}
   `;
