@@ -1,13 +1,4 @@
-/* `Interface RadioGroupProps` mendefinisikan tipe props yang dapat digunakan ke `RadioGroup`
-komponen. */
-
-interface RadioGroupProps {
-  label: string;
-  options: string[];
-  name: string; 
-  selectedValue: string; 
-  onRadioChange: (item: string) => void;
-}
+import Label from "../Label";
 
 /**
  * Komponen Radio Group button yang digunakan untuk memilih satu dari beberapa opsi.
@@ -19,7 +10,13 @@ interface RadioGroupProps {
  * @param {function} onRadioChange - Fungsi yang dipanggil saat Radio button dipilih.
  */
 
-/** */
+interface RadioGroupProps {
+  label: string;
+  options: string[];
+  name: string;
+  selectedValue: string;
+  onRadioChange: (item: string) => void;
+}
 
 const RadioGroup = ({
   label,
@@ -33,11 +30,9 @@ const RadioGroup = ({
   const classNameInput =
     "w-4 h-4 text-indigo-600 bg-white dark:bg-slate-800 border-indigo-600 dark:border-indigo-600";
 
-  const classNameLabel = "ml-2 text-sm font-medium select-none";
-
   return (
     <div>
-      <p className={classNameLabel}>{label}</p>
+      <Label>{label}</Label>
       {options.map((item, i) => (
         <div key={i} className="flex items-center mb-2">
           <input
@@ -46,12 +41,12 @@ const RadioGroup = ({
             value={item}
             name={name}
             className={classNameInput}
-            checked={selectedValue === item} 
-            onChange={() => onRadioChange(item)} 
+            checked={selectedValue === item}
+            onChange={() => onRadioChange(item)}
           />
-          <label htmlFor={item} className={classNameLabel}>
+          <Label otherClass="ml-2" htmlFor={item}>
             {item}
-          </label>
+          </Label>
         </div>
       ))}
     </div>

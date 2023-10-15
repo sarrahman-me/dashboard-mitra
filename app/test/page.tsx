@@ -30,21 +30,19 @@ export default function Test() {
       <Button loading icon={<AiOutlineCloudDownload />} variant="outlined">
         Tombol Baru
       </Button>
-      <Button onClick={() => alert("hell0")} size="full" icon={<FiLoader />}>
+      <Button loading onClick={() => alert("hell0")} size="full" icon={<FiLoader />}>
         Tombol Baru
       </Button>
 
       <br />
       <br />
-      <div className="border">
-        <Textfield
-          name="oke"
-          onChange={(e) => console.log(e)}
-          placeholder="isi sesuatu..."
-          icon={<AiOutlineSearch />}
-          fullWidth
-        />
-      </div>
+      <Textfield
+        name="oke"
+        onChange={(e) => console.log(e)}
+        placeholder="isi sesuatu..."
+        icon={<AiOutlineSearch />}
+        fullWidth
+      />
       <br />
       <Textfield
         name="oke"

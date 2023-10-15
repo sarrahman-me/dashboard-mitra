@@ -1,4 +1,6 @@
 import React from "react";
+import Typography from "../Typography";
+import Label from "../Label";
 
 /**
  * Komponen Textfield yang dapat disesuaikan.
@@ -14,7 +16,9 @@ import React from "react";
  * @param {string} error - Pesan kesalahan yang ditampilkan di bawah Textfield (opsional).
  * @param {ReactNode} icon - Ikon yang ingin ditampilkan di dalam Textfield (opsional).
  * @param {function} onClickIcon - Fungsi yang dipanggil saat ikon di dalam Textfield diklik (opsional).
+ * @param {boolean} fullWidth - Apakah Textfield harus memenuhi lebar penuh (opsional).
  */
+
 
 interface TextfieldProps {
   name: string;
@@ -51,15 +55,15 @@ const Textfield = ({
 
   const classVariant = {
     outlined:
-      "bg-white dark:bg-slate-800 border focus:border-2 focus:ring-indigo-600 dark:placeholder-gray-400 dark:focus:ring-indigo-600 rounded-md  invalid:border-red-500",
+      "bg-white dark:bg-slate-800 border focus:border-2 focus:ring-indigo-600 dark:focus:ring-indigo-600 rounded-md  invalid:border-red-500",
 
     standard:
-      "bg-transparent border-b focus:border-b-2 border-indigo-600 hover:border-indigo-600 dark:placeholder-gray-400 invalid:border-b-red-500",
+      "bg-transparent border-b focus:border-b-2 border-indigo-600 hover:border-indigo-600 invalid:border-b-red-500",
   };
 
   /* "defaultClass" adalah class tailwind yang ada di semua variant textfield */
 
-  const defaultClass = `placeholder:select-none p-2 border-indigo-600 hover:border-indigo-600 focus:border-indigo-600 dark:focus:border-indigo-600 focus:outline-none disabled:border-gray-500 disabled:cursor-not-allowed`;
+  const defaultClass = `placeholder:select-none dark:placeholder-gray-400 p-2 border-indigo-600 hover:border-indigo-600 focus:border-indigo-600 dark:focus:border-indigo-600 focus:outline-none disabled:border-gray-500 disabled:cursor-not-allowed`;
 
   /* `Const className` membuat string yang berisi kelas CSS untuk komponen Textfield. */
 
@@ -72,9 +76,9 @@ const Textfield = ({
   return (
     <div className="flex flex-col">
       {label && (
-        <label htmlFor={name} className="text-sm font-medium select-none">
+        <Label otherClass="mb-1" htmlFor={name}>
           {label}
-        </label>
+        </Label>
       )}
       <div className="relative flex items-center">
         <input
@@ -95,9 +99,9 @@ const Textfield = ({
         )}
       </div>
       {error && (
-        <p className="text-xs md:text-sm text-red-500 dark:text-red-600">
+        <Typography variant="helper" color="danger">
           {error}
-        </p>
+        </Typography>
       )}
     </div>
   );

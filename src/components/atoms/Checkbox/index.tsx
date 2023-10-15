@@ -8,6 +8,8 @@
  * @param {boolean} disabled - Apakah checkbox dinonaktifkan (opsional).
  */
 
+import Label from "../Label";
+
 interface CheckboxProps {
   label: string;
   name: string;
@@ -39,9 +41,9 @@ const Checkbox = ({
         type="checkbox"
         className={className}
       />
-      <label htmlFor={name} className="ml-2 text-sm font-medium select-none">
+      <Label otherClass="ml-2" htmlFor={name}>
         {label}
-      </label>
+      </Label>
     </div>
   );
 };
