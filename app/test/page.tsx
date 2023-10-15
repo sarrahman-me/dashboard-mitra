@@ -8,6 +8,8 @@ import {
   Typography,
 } from "@/src/components/atoms";
 import { useState } from "react";
+import { AiOutlineCloudDownload, AiOutlineSearch } from "react-icons/ai";
+import { FiLoader } from "react-icons/fi";
 
 export default function Test() {
   const [checkbox, setCheckbox] = useState(false);
@@ -22,16 +24,30 @@ export default function Test() {
       <Button disabled variant="contained">
         Tombol
       </Button>
-      <Button variant="outlined">Tombol Baru</Button>
+      <Button icon={<FiLoader />} variant="contained">
+        Tombol Baru
+      </Button>
+      <Button loading icon={<AiOutlineCloudDownload />} variant="outlined">
+        Tombol Baru
+      </Button>
+      <Button onClick={() => alert("hell0")} size="full" icon={<FiLoader />}>
+        Tombol Baru
+      </Button>
 
       <br />
       <br />
-      <Textfield
-        onChange={(e) => console.log(e)}
-        placeholder="isi sesuatu..."
-      />
+      <div className="border">
+        <Textfield
+          name="oke"
+          onChange={(e) => console.log(e)}
+          placeholder="isi sesuatu..."
+          icon={<AiOutlineSearch />}
+          fullWidth
+        />
+      </div>
       <br />
       <Textfield
+        name="oke"
         onChange={(e) => console.log(e)}
         variant="standard"
         placeholder="isi sesuatu..."
@@ -39,12 +55,21 @@ export default function Test() {
 
       <br />
       <Textfield
+        name="oke"
         onChange={(e) => console.log(e)}
         label="Nama"
         placeholder="isi sesuatu..."
       />
+      <Textfield
+        name="oke"
+        onChange={(e) => console.log(e)}
+        label="Nama"
+        disabled
+        placeholder="isi sesuatu..."
+      />
       <br />
       <Textfield
+        name="oke"
         onChange={(e) => console.log(e)}
         error="salah password"
         type="password"
@@ -82,7 +107,17 @@ export default function Test() {
           console.log(value);
         }}
       />
-      <br /><br />
+      <Checkbox
+        label={"check"}
+        name={"check"}
+        value={checkbox}
+        onChange={(value) => {
+          setCheckbox(value);
+          console.log(value);
+        }}
+      />
+      <br />
+      <br />
     </div>
   );
 }
