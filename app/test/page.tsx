@@ -1,8 +1,16 @@
 "use client";
 import { AppBar } from "@/layouts";
-import { Button, Radio, Textfield } from "@/src/components/atoms";
+import {
+  Button,
+  Checkbox,
+  Radio,
+  Textfield,
+  Typography,
+} from "@/src/components/atoms";
+import { useState } from "react";
 
 export default function Test() {
+  const [checkbox, setCheckbox] = useState(false);
   return (
     <div>
       <AppBar />
@@ -14,7 +22,9 @@ export default function Test() {
       <Button disabled variant="contained">
         Tombol
       </Button>
+      <Button variant="outlined">Tombol Baru</Button>
 
+      <br />
       <br />
       <Textfield
         onChange={(e) => console.log(e)}
@@ -50,6 +60,29 @@ export default function Test() {
         selectedValue={"gajah"}
         onRadioChange={(item) => console.log(item)}
       />
+
+      <br />
+      <br />
+      <Typography variant="h1">Hello World</Typography>
+      <Typography variant="h2">Hello World</Typography>
+      <Typography variant="h3">Hello World</Typography>
+      <Typography variant="h4">Hello World</Typography>
+      <Typography variant="subtitle">Hello World</Typography>
+      <Typography>Hello World</Typography>
+
+      <br />
+      <br />
+      <Checkbox
+        label={"check"}
+        name={"check"}
+        disabled
+        value={checkbox}
+        onChange={(value) => {
+          setCheckbox(value);
+          console.log(value);
+        }}
+      />
+      <br /><br />
     </div>
   );
 }

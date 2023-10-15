@@ -36,12 +36,12 @@ const Button = ({
 
   const classVariant = {
     contained:
-      "font-medium rounded-md border-indigo-600 bg-indigo-600 text-white hover:bg-indigo-800 disabled:bg-gray-500 disabled:cursor-not-allowed ease-in duration-100",
+      "font-medium border rounded border-indigo-600 bg-indigo-600 text-white hover:bg-indigo-800 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:border-none ease-in duration-100",
 
     outlined:
-      "font-medium border border-indigo-600 hover:border-2 hover:border-indigo-500 hover:shadow rounded-md disabled:border-gray-500 disabled:cursor-not-allowed ease-in duration-100",
-      
-    text: "font-medium rounded-md hover:bg-slate-200 dark:hover:bg-slate-800 ease-in duration-100",
+      "font-medium border border-indigo-600 hover:shadow hover:border-indigo-500 hover:shadow rounded-md disabled:border-gray-500 disabled:cursor-not-allowed ease-in duration-100",
+
+    text: "font-medium rounded hover:bg-slate-200 dark:hover:bg-slate-800 ease-in duration-100",
   };
 
   /* Objek `classSize` mendefinisikan kelas CSS yang berbeda untuk setiap ukuran tombol. */

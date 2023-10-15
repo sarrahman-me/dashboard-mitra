@@ -46,10 +46,10 @@ const Textfield = ({
 
   const classVariant = {
     outlined:
-      "bg-white dark:bg-slate-800 p-2 border focus:border-2 border-indigo-600 hover:border-indigo-600 focus:ring-indigo-600 focus:border-indigo-600  dark:placeholder-gray-400 dark:focus:ring-indigo-600 dark:focus:border-indigo-600 outline-none rounded-md disabled:border-gray-500 disabled:cursor-not-allowed ease-in duration-100",
+      "bg-white dark:bg-slate-800 p-2 border focus:border-2 border-indigo-600 hover:border-indigo-600 focus:ring-indigo-600 focus:border-indigo-600  dark:placeholder-gray-400 dark:focus:ring-indigo-600 dark:focus:border-indigo-600 focus:outline-none rounded-md disabled:border-gray-500 disabled:cursor-not-allowed",
 
     standard:
-      "bg-transparent p-2 border-b focus:border-b-2 border-indigo-600 hover:border-indigo-600 focus:border-indigo-600  dark:placeholder-gray-400  dark:focus:border-indigo-600 outline-none disabled:border-gray-500 disabled:cursor-not-allowed ease-in duration-100",
+      "bg-transparent p-2 border-b focus:border-b-2 border-indigo-600 hover:border-indigo-600 focus:border-indigo-600  dark:placeholder-gray-400  dark:focus:border-indigo-600 focus:outline-none disabled:border-gray-500 disabled:cursor-not-allowed",
   };
 
   /* `Const className` membuat string yang berisi kelas CSS untuk komponen Textfield. */
