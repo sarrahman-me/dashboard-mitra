@@ -1,4 +1,5 @@
 "use client";
+import { ToggleDarkMode } from "@/components/atoms";
 import { AppBar } from "@/layouts";
 import {
   Button,
@@ -10,10 +11,26 @@ import {
   Textfield,
   Typography,
 } from "@/src/components/atoms";
-import { NavGroup } from "@/src/components/molecules";
+import { FooterText, NavGroup } from "@/src/components/molecules";
+import { NavBar } from "@/src/components/organisms";
 import { useState } from "react";
 import { AiOutlineCloudDownload, AiOutlineSearch } from "react-icons/ai";
 import { FiLoader } from "react-icons/fi";
+
+const pages = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "Test",
+    href: "/test",
+  },
+  {
+    label: "Service",
+    href: "/service",
+  },
+];
 
 export default function Test() {
   const [checkbox, setCheckbox] = useState(false);
@@ -21,7 +38,10 @@ export default function Test() {
 
   return (
     <div>
-      <AppBar />
+      <NavBar pages={pages} />
+      <br />
+      <br />
+      <ToggleDarkMode />
       <Button variant="contained">Tombol</Button>
       <Button onClick={() => alert("oke")} variant="outlined">
         Tombol
@@ -178,10 +198,11 @@ export default function Test() {
       <br />
       <SwitchToggle value={promo} setValue={setPromo} label="Promo" />
       <br />
-      
+
       {promo ? "promo" : "tidak"}
       <br />
       <br />
+      <FooterText />
     </div>
   );
 }

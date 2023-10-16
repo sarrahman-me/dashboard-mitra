@@ -1,13 +1,13 @@
 /**
  * Komponen Typography digunakan untuk menampilkan teks dengan variasi gaya, ukuran, dan warna yang dapat disesuaikan.
  *
- * @param {string} children - Teks yang akan ditampilkan.
+ * @param {ReactNode} children - Teks yang akan ditampilkan.
  * @param {string} variant - Variasi teks (opsional). Pilihan: "h1", "h2", "h3", "h4", "subtitle", "body", "helper".
  * @param {string} color - Warna teks (opsional dengan default primary). Pilihan: "primary", "secondary", "danger", "success", "warning".
  */
 
 interface TypographyProps {
-  children: string;
+  children: React.ReactNode;
   variant?: "h1" | "h2" | "h3" | "h4" | "subtitle" | "body" | "helper";
   color?: "primary" | "secondary" | "danger" | "success" | "warning";
 }

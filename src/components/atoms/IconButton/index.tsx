@@ -34,7 +34,7 @@ const IconButton = ({ icon, onClick, color, size }: IconButtonProps) => {
   };
 
   // Membentuk kelas CSS sesuai dengan properti yang diberikan
-  const className = `rounded-md p-1
+  const className = `rounded-md p-1 transition
   ${classColor[color || "primary"]}
   ${classSize[size || "medium"]}
   `;

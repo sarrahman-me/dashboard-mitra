@@ -1,3 +1,4 @@
 import NavGroup from "./NavGroup";
+import FooterText from "./footerText";
 
-export { NavGroup };
+export { NavGroup, FooterText };
