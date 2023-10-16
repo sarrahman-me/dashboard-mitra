@@ -29,7 +29,7 @@ const Typography = ({ children, variant, color }: TypographyProps) => {
     secondary: "text-gray-600 dark:text-gray-500",
     danger: "text-red-600 dark:text-red-500",
     success: "text-green-950 dark:text-green-50",
-    warning: "text-yellow-950 dark:text-yellow-50",
+    warning: "text-orange-950 dark:text-orange-50",
   };
 
   const className = `

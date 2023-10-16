@@ -3,8 +3,10 @@ import { AppBar } from "@/layouts";
 import {
   Button,
   Checkbox,
+  IconButton,
   Logo,
   Radio,
+  SwitchToggle,
   Textfield,
   Typography,
 } from "@/src/components/atoms";
@@ -15,6 +17,8 @@ import { FiLoader } from "react-icons/fi";
 
 export default function Test() {
   const [checkbox, setCheckbox] = useState(false);
+  const [promo, setPromo] = useState(false);
+
   return (
     <div>
       <AppBar />
@@ -40,7 +44,6 @@ export default function Test() {
       >
         Tombol Baru
       </Button>
-
       <br />
       <br />
       <Textfield
@@ -57,7 +60,6 @@ export default function Test() {
         variant="standard"
         placeholder="isi sesuatu..."
       />
-
       <br />
       <Textfield
         name="oke"
@@ -90,7 +92,6 @@ export default function Test() {
         selectedValue={"gajah"}
         onRadioChange={(item) => console.log(item)}
       />
-
       <br />
       <br />
       <Typography variant="h1">Hello World</Typography>
@@ -101,7 +102,6 @@ export default function Test() {
         Hello World
       </Typography>
       <Typography>Hello World</Typography>
-
       <br />
       <br />
       <Checkbox
@@ -156,6 +156,30 @@ export default function Test() {
         ]}
         direction={"vertical"}
       />
+      <br />
+      <br />
+      <IconButton
+        color="danger"
+        size="large"
+        onClick={() => alert("button click")}
+        icon={<AiOutlineCloudDownload />}
+      />
+      <IconButton
+        onClick={() => alert("button click")}
+        icon={<AiOutlineCloudDownload />}
+      />
+      <IconButton
+        color="warning"
+        size="small"
+        onClick={() => alert("button click")}
+        icon={<AiOutlineCloudDownload />}
+      />
+      <br />
+      <br />
+      <SwitchToggle value={promo} setValue={setPromo} label="Promo" />
+      <br />
+      
+      {promo ? "promo" : "tidak"}
       <br />
       <br />
     </div>
