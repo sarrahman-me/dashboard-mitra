@@ -1,10 +1,12 @@
 "use client";
 import Head from "next/head";
-import { Benefits, Cta, Footer, Jumbotron, NavigationBar } from "@/layouts";
+import { Benefits, Cta, Jumbotron } from "@/layouts";
 import { SectionTitle } from "@/components/molecules";
 import { BsGlobeEuropeAfrica } from "react-icons/bs";
 import { MdOutlineInsights } from "react-icons/md";
 import { LuPackageSearch } from "react-icons/lu";
+import { Footer, NavBar } from "@/src/components/organisms";
+import { mainPages } from "@/src/data/pages";
 
 const benefitOne = {
   title: "Sorotan manfaat",
@@ -39,7 +41,7 @@ export default function RootPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <NavigationBar />
+      <NavBar pages={mainPages} />
       <Jumbotron />
       <SectionTitle
         pretitle="Manfaat"

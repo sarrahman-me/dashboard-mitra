@@ -3,6 +3,7 @@ import { IconButton, Logo } from "../../atoms";
 import { NavGroup } from "../../molecules";
 import { CgMenu } from "react-icons/cg";
 import { RxCross1 } from "react-icons/rx";
+import Link from "next/link";
 
 /**
  * Komponen `NavBar` adalah navigasi utama untuk situs web. Ini mencakup logo situs, tombol hamburger untuk menu responsif di perangkat seluler, dan daftar tautan menu. Saat tombol hamburger diklik, tautan menu akan ditampilkan atau disembunyikan.
@@ -29,7 +30,13 @@ const NavBar = ({ pages }: NavBarProps) => {
   return (
     <div>
       <div className="flex items-center justify-between p-3 lg:px-10 md:px-5 transition">
-        <Logo />
+        {/* logo */}
+        <div className="cursor-pointer">
+          <Link href="/">
+            <Logo size="large" />
+          </Link>
+        </div>
+
         <div className="flex md:hidden">
           {/* Tombol hamburger yang memicu perluasan dan penyusutan menu */}
 

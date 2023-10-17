@@ -28,4 +28,19 @@ const legalPages = [
   },
 ];
 
-export { mainPages, legalPages };
+const authPages = [
+  {
+    label: "Beranda",
+    href: "/",
+  },
+  {
+    label: "Daftar",
+    href: "/register",
+  },
+  {
+    label: "Masuk",
+    href: "/login",
+  },
+];
+
+export { mainPages, legalPages, authPages };
