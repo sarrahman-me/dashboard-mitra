@@ -1,3 +1,4 @@
+import Autocomplete from "./Autocomplete";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 import IconButton from "./IconButton";
@@ -22,4 +23,5 @@ export {
   IconButton,
   SwitchToggle,
   Select,
+  Autocomplete,
 };

@@ -1,6 +1,7 @@
 "use client";
 import { ToggleDarkMode } from "@/components/atoms";
 import {
+  Autocomplete,
   Button,
   Checkbox,
   IconButton,
@@ -11,7 +12,7 @@ import {
   Textfield,
   Typography,
 } from "@/src/components/atoms";
-import { FooterText, NavGroup } from "@/src/components/molecules";
+import { NavGroup } from "@/src/components/molecules";
 import { Footer, NavBar } from "@/src/components/organisms";
 import { mainPages } from "@/src/data/pages";
 import { useState } from "react";
@@ -32,9 +33,10 @@ export default function Test() {
   const [checkbox, setCheckbox] = useState(false);
   const [promo, setPromo] = useState(false);
   const [person, setPerson] = useState("");
+  const [data, setData] = useState({} as any);
 
-  const setData = (e: any) => {
-    setPerson(e);
+  const setData2 = (e: any) => {
+    setData(e);
     console.log(e);
   };
 
@@ -68,6 +70,14 @@ export default function Test() {
       </Button>
       <br />
       <br />
+      <Autocomplete
+        value={data}
+        setValue={setData2}
+        lists={people}
+        keyValue={["id", "name"]}
+      />
+      <br />
+      <br />
       <Textfield
         name="oke"
         onChange={(e) => console.log(e)}
@@ -83,7 +93,12 @@ export default function Test() {
         placeholder="isi sesuatu..."
       />
       <br />
-      <Select placeholder="Pilih Nama" setValue={setData} value={person} lists={a} />
+      <Select
+        placeholder="Pilih Nama"
+        setValue={setPerson}
+        value={person}
+        lists={a}
+      />
       <Textfield
         name="oke"
         onChange={(e) => console.log(e)}
