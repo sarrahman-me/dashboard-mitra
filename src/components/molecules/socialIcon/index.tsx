@@ -22,21 +22,26 @@ const SocialIcon = ({ whatsapp, facebook }: SocialIconProps) => {
   return (
     <div>
       {whatsapp && (
-        <IconButton
-          color="success"
-          otherClass="m-1"
-          size="small"
-          onClick={() => router.push(whatsapp)}
-          icon={<BsWhatsapp />}
-        />
+        <a target="_blank" href={whatsapp} rel="noopener noreferrer">
+          <IconButton
+            color="success"
+            otherClass="m-1"
+            size="small"
+            onClick={() => console.log(whatsapp)}
+            icon={<BsWhatsapp />}
+          />
+        </a>
       )}
       {facebook && (
-        <IconButton
-          otherClass="m-1"
-          size="small"
-          onClick={() => router.push(facebook)}
-          icon={<FaFacebookF />}
-        />
+        <a target="_blank" href={facebook} rel="noopener noreferrer">
+          <IconButton
+            color="success"
+            otherClass="m-1"
+            size="small"
+            onClick={() => console.log(facebook)}
+            icon={<FaFacebookF />}
+          />
+        </a>
       )}
     </div>
   );
