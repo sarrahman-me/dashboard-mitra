@@ -7,6 +7,8 @@ import React from "react";
  * @param {function} onClick - Fungsi yang dipanggil saat tombol diklik.
  * @param {string} color - Warna latar belakang tombol (opsional). Pilihan: "primary", "secondary", "danger", "success", "warning".
  * @param {string} size - Ukuran tombol (opsional). Pilihan: "small", "medium", "large".
+ * @param {string} otherClass - Kelas tambahan yang dapat diberikan pada IconButton (opsional).
+ * 
  */
 
 interface IconButtonProps {
@@ -14,9 +16,16 @@ interface IconButtonProps {
   onClick: () => void;
   color?: "primary" | "secondary" | "danger" | "success" | "warning";
   size?: "small" | "medium" | "large";
+  otherClass?: string;
 }
 
-const IconButton = ({ icon, onClick, color, size }: IconButtonProps) => {
+const IconButton = ({
+  icon,
+  onClick,
+  color,
+  size,
+  otherClass,
+}: IconButtonProps) => {
   // Daftar kelas CSS untuk setiap warna tombol
   const classColor = {
     primary: "bg-indigo-600 text-white hover:bg-white hover:text-indigo-600",
@@ -34,9 +43,10 @@ const IconButton = ({ icon, onClick, color, size }: IconButtonProps) => {
   };
 
   // Membentuk kelas CSS sesuai dengan properti yang diberikan
-  const className = `rounded-md p-1 transition
+  const className = `rounded-md p-1 transition 
   ${classColor[color || "primary"]}
   ${classSize[size || "medium"]}
+  ${otherClass}
   `;
 
   return (

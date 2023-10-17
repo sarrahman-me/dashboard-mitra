@@ -6,6 +6,7 @@ import React from "react";
  * @param {string} htmlFor - ID elemen yang akan terkait dengan label.
  * @param {string} children - Konten teks label.
  * @param {string} otherClass - Kelas tambahan yang dapat diberikan pada label (opsional).
+ *
  */
 
 interface LabelProps {

@@ -4,15 +4,23 @@
  * @param {ReactNode} children - Teks yang akan ditampilkan.
  * @param {string} variant - Variasi teks (opsional). Pilihan: "h1", "h2", "h3", "h4", "subtitle", "body", "helper".
  * @param {string} color - Warna teks (opsional dengan default primary). Pilihan: "primary", "secondary", "danger", "success", "warning".
+ * @param {string} otherClass - Kelas tambahan yang dapat diberikan pada IconButton (opsional).
+ * 
  */
 
 interface TypographyProps {
   children: React.ReactNode;
   variant?: "h1" | "h2" | "h3" | "h4" | "subtitle" | "body" | "helper";
   color?: "primary" | "secondary" | "danger" | "success" | "warning";
+  otherClass?: string;
 }
 
-const Typography = ({ children, variant, color }: TypographyProps) => {
+const Typography = ({
+  children,
+  variant,
+  color,
+  otherClass,
+}: TypographyProps) => {
   // Daftar kelas CSS untuk setiap variasi teks
   const classVariant = {
     h1: "text-5xl font-semibold",
@@ -20,7 +28,7 @@ const Typography = ({ children, variant, color }: TypographyProps) => {
     h3: "text-3xl font-semibold",
     h4: "text-2xl font-semibold",
     subtitle: "text-lg md:text-xl font-medium",
-    body: "sm:text-sm text-xs md:text-base",
+    body: "text-sm md:text-base",
     helper: "sm:text-sm text-xs",
   };
 
@@ -35,6 +43,7 @@ const Typography = ({ children, variant, color }: TypographyProps) => {
   const className = `
   ${classVariant[variant || "body"]} 
   ${classColor[color || "primary"]} 
+  ${otherClass}
   `;
 
   return <p className={className}>{children}</p>;

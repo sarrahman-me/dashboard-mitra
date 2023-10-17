@@ -1,6 +1,5 @@
 "use client";
 import { ToggleDarkMode } from "@/components/atoms";
-import { AppBar } from "@/layouts";
 import {
   Button,
   Checkbox,
@@ -12,25 +11,11 @@ import {
   Typography,
 } from "@/src/components/atoms";
 import { FooterText, NavGroup } from "@/src/components/molecules";
-import { NavBar } from "@/src/components/organisms";
+import { Footer, NavBar } from "@/src/components/organisms";
+import { mainPages } from "@/src/data/pages";
 import { useState } from "react";
 import { AiOutlineCloudDownload, AiOutlineSearch } from "react-icons/ai";
 import { FiLoader } from "react-icons/fi";
-
-const pages = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Test",
-    href: "/test",
-  },
-  {
-    label: "Service",
-    href: "/service",
-  },
-];
 
 export default function Test() {
   const [checkbox, setCheckbox] = useState(false);
@@ -38,7 +23,7 @@ export default function Test() {
 
   return (
     <div>
-      <NavBar pages={pages} />
+      <NavBar pages={mainPages} />
       <br />
       <br />
       <ToggleDarkMode />
@@ -203,6 +188,9 @@ export default function Test() {
       <br />
       <br />
       <FooterText />
+      <br />
+      <br />
+      <Footer />
     </div>
   );
 }

@@ -19,7 +19,7 @@ interface NavGroupProps {
 const NavGroup = ({ pages, direction }: NavGroupProps) => {
   // Mendefinisikan kelas CSS berdasarkan arah tata letak tautan
   const classDirection = {
-    horizontal: "flex-row items-center divide-x-8",
+    horizontal: "flex-row items-center divide-x-[15px]",
     vertical: "flex-col divide-y-8",
   };
 
