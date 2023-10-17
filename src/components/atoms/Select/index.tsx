@@ -20,6 +20,8 @@ interface SelectProps {
 const Select = ({ setValue, value, placeholder, lists }: SelectProps) => {
   const classNameButton = `border text-left bg-white dark:bg-slate-800 focus:border-2 p-2 border-indigo-600 hover:border-indigo-600 focus:border-indigo-600 dark:focus:border-indigo-600 focus:outline-none disabled:border-gray-500 disabled:cursor-not-allowed w-full rounded-md`;
 
+  const classNameOptions = `mt-2 p-2 focus:outline-none border border-indigo-600 bg-white dark:bg-slate-800 rounded-md shadow-md max-h-48 overflow-scroll`;
+
   return (
     <Listbox value={value} onChange={setValue}>
       {/* tombol untuk pilih data */}
@@ -36,7 +38,7 @@ const Select = ({ setValue, value, placeholder, lists }: SelectProps) => {
       </div>
 
       {/* pilihan listbox */}
-      <Listbox.Options className="mt-2 p-2 border border-indigo-600 bg-white dark:bg-slate-800 rounded-md shadow-md">
+      <Listbox.Options className={classNameOptions}>
         {lists.map((list, i) => (
           <Listbox.Option key={i} value={list}>
             {({ active, selected }) => (
