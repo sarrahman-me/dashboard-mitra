@@ -35,7 +35,6 @@ const SocialIcon = ({ whatsapp, facebook }: SocialIconProps) => {
       {facebook && (
         <a target="_blank" href={facebook} rel="noopener noreferrer">
           <IconButton
-            color="success"
             otherClass="m-1"
             size="small"
             onClick={() => console.log(facebook)}

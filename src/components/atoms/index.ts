@@ -5,6 +5,7 @@ import Label from "./Label";
 import Logo from "./Logo";
 import Navlink from "./Navlink";
 import Radio from "./Radio";
+import Select from "./Select";
 import SwitchToggle from "./Switch";
 import Textfield from "./Textfield";
 import Typography from "./Typography";
@@ -20,4 +21,5 @@ export {
   Navlink,
   IconButton,
   SwitchToggle,
+  Select,
 };

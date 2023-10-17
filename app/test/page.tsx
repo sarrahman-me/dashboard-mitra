@@ -6,6 +6,7 @@ import {
   IconButton,
   Logo,
   Radio,
+  Select,
   SwitchToggle,
   Textfield,
   Typography,
@@ -17,9 +18,18 @@ import { useState } from "react";
 import { AiOutlineCloudDownload, AiOutlineSearch } from "react-icons/ai";
 import { FiLoader } from "react-icons/fi";
 
+const people = [
+  { id: 1, name: "Durward Reynolds" },
+  { id: 2, name: "Kenton Towne" },
+  { id: 3, name: "Therese Wunsch" },
+  { id: 4, name: "Benedict Kessler" },
+  { id: 5, name: "Katelyn Rohan" },
+];
+
 export default function Test() {
   const [checkbox, setCheckbox] = useState(false);
   const [promo, setPromo] = useState(false);
+  const [person, setPerson] = useState(people[0]);
 
   return (
     <div>
@@ -66,12 +76,7 @@ export default function Test() {
         placeholder="isi sesuatu..."
       />
       <br />
-      <Textfield
-        name="oke"
-        onChange={(e) => console.log(e)}
-        label="Nama"
-        placeholder="isi sesuatu..."
-      />
+      <Select setValue={setPerson} value={person} lists={people} />
       <Textfield
         name="oke"
         onChange={(e) => console.log(e)}
@@ -187,7 +192,6 @@ export default function Test() {
       {promo ? "promo" : "tidak"}
       <br />
       <br />
-      <FooterText />
       <br />
       <br />
       <Footer />
