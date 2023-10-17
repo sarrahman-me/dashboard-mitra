@@ -26,10 +26,17 @@ const people = [
   { id: 5, name: "Katelyn Rohan" },
 ];
 
+const a = people.map((p) => p.name);
+
 export default function Test() {
   const [checkbox, setCheckbox] = useState(false);
   const [promo, setPromo] = useState(false);
-  const [person, setPerson] = useState(people[0]);
+  const [person, setPerson] = useState("");
+
+  const setData = (e: any) => {
+    setPerson(e);
+    console.log(e);
+  };
 
   return (
     <div>
@@ -76,7 +83,7 @@ export default function Test() {
         placeholder="isi sesuatu..."
       />
       <br />
-      <Select setValue={setPerson} value={person} lists={people} />
+      <Select placeholder="Pilih Nama" setValue={setData} value={person} lists={a} />
       <Textfield
         name="oke"
         onChange={(e) => console.log(e)}
