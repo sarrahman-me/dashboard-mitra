@@ -106,6 +106,8 @@ export default function Test() {
       <br />
       <br />
       <Autocomplete
+        label="Nama Orang"
+        // error="salah input"
         placeholder="Cari Nama"
         value={data}
         setValue={setData2}
@@ -116,8 +118,8 @@ export default function Test() {
         }}
       />
       <br />
-      <br />
       <Textfield
+        label="Nama Orang"
         name="oke"
         onChange={(e) => console.log(e)}
         placeholder="isi sesuatu..."
@@ -132,6 +134,8 @@ export default function Test() {
       />
       <br />
       <Select
+        // error="salah input"
+        label="Select Item"
         placeholder="Pilih Nama"
         setValue={setPerson}
         value={person}
@@ -148,7 +152,7 @@ export default function Test() {
       <Textfield
         name="oke"
         onChange={(e) => console.log(e)}
-        error="salah password"
+        // error="salah password"
         type="password"
         label="Nama"
         variant="standard"
