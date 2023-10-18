@@ -21,7 +21,7 @@ import Label from "../Label";
 
 interface TextfieldProps {
   name: string;
-  type?: "text" | "number" | "password" | "date" | "email";
+  type?: "text" | "number" | "password" | "date" | "email" | "tel" | string;
   placeholder?: string;
   label?: string;
   value?: string;

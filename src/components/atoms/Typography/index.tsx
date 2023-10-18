@@ -1,11 +1,12 @@
 /**
  * Komponen Typography digunakan untuk menampilkan teks dengan variasi gaya, ukuran, dan warna yang dapat disesuaikan.
  *
+ * @param {function} onClick - Fungsi yang dipanggil saat text diklik.
  * @param {ReactNode} children - Teks yang akan ditampilkan.
  * @param {string} variant - Variasi teks (opsional). Pilihan: "h1", "h2", "h3", "h4", "subtitle", "body", "helper".
  * @param {string} color - Warna teks (opsional dengan default primary). Pilihan: "primary", "secondary", "danger", "success", "warning".
  * @param {string} otherClass - Kelas tambahan yang dapat diberikan pada IconButton (opsional).
- * 
+ *
  */
 
 interface TypographyProps {
@@ -13,6 +14,7 @@ interface TypographyProps {
   variant?: "h1" | "h2" | "h3" | "h4" | "subtitle" | "body" | "helper";
   color?: "primary" | "secondary" | "danger" | "success" | "warning";
   otherClass?: string;
+  onClick?: () => void;
 }
 
 const Typography = ({
@@ -20,6 +22,7 @@ const Typography = ({
   variant,
   color,
   otherClass,
+  onClick,
 }: TypographyProps) => {
   // Daftar kelas CSS untuk setiap variasi teks
   const classVariant = {
@@ -46,7 +49,11 @@ const Typography = ({
   ${otherClass}
   `;
 
-  return <p className={className}>{children}</p>;
+  return (
+    <p onClick={onClick} className={className}>
+      {children}
+    </p>
+  );
 };
 
 export default Typography;

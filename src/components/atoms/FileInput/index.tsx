@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useState } from "react";
 import Label from "../Label";
@@ -20,6 +21,7 @@ interface FileInput {
 }
 
 const FileInput = ({ label, error, setFile, previewFile }: FileInput) => {
+  // menyimpan kumpulan file untuk preview
   const [currentFile, setCurrentFile] = useState(
     [] as {
       file: string;
@@ -28,6 +30,7 @@ const FileInput = ({ label, error, setFile, previewFile }: FileInput) => {
     }[]
   );
 
+  //   merender preview dari file currentFile berdasarkan tipe file
   const renderFilePreview = () => {
     return currentFile.map((file, index) => {
       if (file.file !== "" && previewFile) {

@@ -20,7 +20,7 @@ import Typography from "../Typography";
 interface AutocompleteProps {
   value: any;
   setValue: (item: string) => void;
-  placeholder: string;
+  placeholder?: string;
   lists: any;
   label?: string;
   error?: string;
@@ -68,6 +68,7 @@ function Autocomplete({
       {label && <Label otherClass="mb-1">{label}</Label>}
       <Combobox value={value} onChange={(e) => setValue(e)}>
         <Combobox.Input
+          autoComplete="off"
           placeholder={placeholder}
           className={classNameTextfield}
           onChange={(event) => setQuery(event.target.value)}

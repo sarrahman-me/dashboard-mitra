@@ -13,7 +13,7 @@ import {
   Textfield,
   Typography,
 } from "@/src/components/atoms";
-import { NavGroup } from "@/src/components/molecules";
+import { NavGroup, TextfieldGroup } from "@/src/components/molecules";
 import { Footer, NavBar } from "@/src/components/organisms";
 import { mainPages } from "@/src/data/pages";
 import { useState } from "react";
@@ -71,11 +71,57 @@ export default function Test() {
   const [person, setPerson] = useState("");
   const [data, setData] = useState(null);
   const [image, setImage] = useState([] as string[]);
+  const [form, setForm] = useState({} as any);
 
   const setData2 = (e: any) => {
     setImage(e);
     console.log(e);
   };
+
+  console.log(form);
+
+  const forms = [
+    {
+      type: "text",
+      label: "Nama",
+      name: "nama",
+    },
+    {
+      type: "email",
+      label: "Email",
+      name: "email",
+    },
+    {
+      type: "number",
+      label: "Whatsapp",
+      name: "whatsapp",
+      placeholder: "08123456789",
+    },
+    {
+      type: "password",
+      label: "Password",
+      name: "password",
+      placeholder: "******",
+    },
+    {
+      type: "select",
+      label: "Kota",
+      name: "kota",
+      placeholder: "Pilih kota",
+      list: ["samarinda", "balikpapan", "bontang"],
+    },
+    {
+      type: "autocomplete",
+      label: "Nama",
+      name: "cari_nama",
+      placeholder: "Pilih Nama",
+      list: people,
+      keyValue: {
+        key: "id",
+        value: "name",
+      },
+    },
+  ];
 
   return (
     <div>
@@ -261,6 +307,14 @@ export default function Test() {
       {promo ? "promo" : "tidak"}
       <br />
       <br />
+      <TextfieldGroup
+        data={form}
+        setData={setForm}
+        forms={forms}
+        error={{
+          fields: { nama: "Nama tidak lengkap", cari_nama: "nama kosong" },
+        }}
+      />
       <br />
       <br />
       <Footer />

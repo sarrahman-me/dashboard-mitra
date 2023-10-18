@@ -6,7 +6,7 @@ import Typography from "../Typography";
 /**
  * Komponen Select digunakan untuk membuat kotak pilihan sederhana hanya string[] dengan daftar pilihan.
  *
- * @param {any} value - Nilai yang saat ini dipilih.
+ * @param {string} value - Nilai yang saat ini dipilih.
  * @param {function} setValue - Fungsi yang dipanggil saat nilai dipilih.
  * @param {string} placeholder - Teks placeholder yang ditampilkan saat tidak ada pilihan yang dipilih.
  * @param {string[]} lists - Daftar pilihan yang tersedia.
@@ -15,8 +15,8 @@ import Typography from "../Typography";
  */
 
 interface SelectProps {
-  value: any;
-  setValue: any;
+  value: string;
+  setValue: (value: string) => void;
   lists: string[];
   placeholder?: string;
   label?: string;
