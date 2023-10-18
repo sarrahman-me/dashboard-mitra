@@ -1,6 +1,7 @@
 import Autocomplete from "./Autocomplete";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
+import FileInput from "./FileInput";
 import IconButton from "./IconButton";
 import Label from "./Label";
 import Logo from "./Logo";
@@ -24,4 +25,5 @@ export {
   SwitchToggle,
   Select,
   Autocomplete,
+  FileInput,
 };

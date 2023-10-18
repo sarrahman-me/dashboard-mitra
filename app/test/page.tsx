@@ -4,6 +4,7 @@ import {
   Autocomplete,
   Button,
   Checkbox,
+  FileInput,
   IconButton,
   Logo,
   Radio,
@@ -69,9 +70,10 @@ export default function Test() {
   const [promo, setPromo] = useState(false);
   const [person, setPerson] = useState("");
   const [data, setData] = useState(null);
+  const [image, setImage] = useState([] as string[]);
 
   const setData2 = (e: any) => {
-    setData(e);
+    setImage(e);
     console.log(e);
   };
 
@@ -176,6 +178,9 @@ export default function Test() {
         Hello World
       </Typography>
       <Typography>Hello World</Typography>
+      <br />
+      <br />
+      <FileInput previewFile setFile={setData2} />
       <br />
       <br />
       <Checkbox
