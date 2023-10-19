@@ -98,6 +98,7 @@ const TextfieldGroup = ({
           return (
             <Textfield
               key={i}
+              placeholder={form.placeholder}
               fullWidth
               name={form.name}
               error={(error && error.fields && error.fields[form.name]) || ""}

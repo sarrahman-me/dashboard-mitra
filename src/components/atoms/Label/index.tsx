@@ -3,7 +3,7 @@ import React from "react";
 /**
  * Komponen Label digunakan untuk membuat label yang terkait dengan elemen HTML lainnya.
  *
- * @param {string} htmlFor - ID elemen yang akan terkait dengan label.
+ * @param {ReactNode} htmlFor - ID elemen yang akan terkait dengan label.
  * @param {string} children - Konten teks label.
  * @param {string} otherClass - Kelas tambahan yang dapat diberikan pada label (opsional).
  *
@@ -11,7 +11,7 @@ import React from "react";
 
 interface LabelProps {
   htmlFor?: string;
-  children: string;
+  children: React.ReactNode;
   otherClass?: string;
 }
 

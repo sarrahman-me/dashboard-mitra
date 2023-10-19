@@ -1,7 +1,9 @@
+import React from "react";
+
 /**
  * Komponen Checkbox digunakan untuk membuat pilihan yang dapat dicentang atau tidak.
  *
- * @param {string} label - Label yang mendeskripsikan checkbox.
+ * @param {ReactNode} label - Label yang mendeskripsikan checkbox.
  * @param {string} name - Nama checkbox.
  * @param {boolean} value - Nilai checkbox (tercentang atau tidak).
  * @param {function} onChange - Fungsi yang dipanggil saat status checkbox berubah.
@@ -11,7 +13,7 @@
 import Label from "../Label";
 
 interface CheckboxProps {
-  label: string;
+  label: React.ReactNode;
   name: string;
   value: boolean;
   onChange: (item: boolean) => void;

@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { Combobox } from "@headlessui/react";
 import Label from "../Label";

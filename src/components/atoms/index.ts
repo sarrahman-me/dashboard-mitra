@@ -2,10 +2,12 @@ import Autocomplete from "./Autocomplete";
 import AutocompleteApi from "./AutocompleteApi";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
+import Container from "./Container";
 import FileInput from "./FileInput";
 import IconButton from "./IconButton";
 import Label from "./Label";
 import Logo from "./Logo";
+import LottiePlayer from "./LottiePlayer";
 import Navlink from "./Navlink";
 import Radio from "./Radio";
 import Select from "./Select";
@@ -28,4 +30,6 @@ export {
   Autocomplete,
   FileInput,
   AutocompleteApi,
+  Container,
+  LottiePlayer,
 };

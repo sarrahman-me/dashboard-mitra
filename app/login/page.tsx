@@ -2,12 +2,18 @@
 import { useRouter } from "next/navigation";
 import { setCookie } from "cookies-next";
 import { useState } from "react";
-import { Button } from "@/components/atoms";
 import { Loading, Notify } from "notiflix";
 import { PostDataApi } from "@/utils";
-import { TextfieldGroup } from "@/components/organisms";
-import { Footer, NavBar } from "@/src/components/organisms";
+import {
+  Button,
+  Container,
+  Footer,
+  NavBar,
+  TextfieldGroup,
+  Typography,
+} from "@/src/components";
 import { authPages } from "@/src/data/pages";
+import { formLogin } from "@/src/data/forms";
 
 export default function Login() {
   const router = useRouter();
@@ -46,40 +52,25 @@ export default function Login() {
     }
   };
 
-  const form = [
-    {
-      type: "text",
-      label: "Akun",
-      name: "akun",
-      placeholder: "Email atau Whatsapp",
-    },
-    {
-      type: "password",
-      label: "Password",
-      name: "password",
-      placeholder: "******",
-    },
-  ];
-
   return (
-    <section className="bg-gray-50 dark:bg-gray-900">
+    <section>
       <NavBar pages={authPages} />
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+      <div className="flex flex-col items-center justify-center">
+        <Container otherClass="my-5 min-w-full md:min-w-[30%]">
           <form
             className="p-6 space-y-4 md:space-y-6 sm:p-8"
             onSubmit={handleSubmit}
           >
             <TextfieldGroup
               error={error}
-              form={form}
+              forms={formLogin}
               setData={setData}
               data={data}
             />
-            <Button isLoading={loading} isFullWidth={true} isSubmit={true}>
+            <Button loading={loading} size="full" type="submit">
               Masuk
             </Button>
-            <p className="text-center">
+            <Typography color="secondary" align="center">
               Belum punya akun{" "}
               <span
                 onClick={() => router.push("/register")}
@@ -87,9 +78,9 @@ export default function Login() {
               >
                 Daftar
               </span>
-            </p>
+            </Typography>
           </form>
-        </div>
+        </Container>
       </div>
       <Footer />
     </section>

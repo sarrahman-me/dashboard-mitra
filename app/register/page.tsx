@@ -3,12 +3,19 @@ import Link from "next/link";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button } from "@/components/atoms";
 import { Loading, Notify } from "notiflix";
 import { PostDataApi } from "@/utils";
-import { TextfieldGroup } from "@/components/organisms";
-import { Footer, NavBar } from "@/src/components/organisms";
+import {
+  Button,
+  Checkbox,
+  Container,
+  Typography,
+  TextfieldGroup,
+  Footer,
+  NavBar,
+} from "@/src/components";
 import { authPages } from "@/src/data/pages";
+import { formRegister } from "@/src/data/forms";
 
 export default function Register() {
   const router = useRouter();
@@ -38,85 +45,53 @@ export default function Register() {
     }
   };
 
-  const form = [
-    {
-      type: "text",
-      label: "Nama",
-      name: "nama",
-      placeholder: "eg. Jhon Doe",
-    },
-    {
-      type: "email",
-      label: "Email",
-      name: "email",
-      placeholder: "yourMail@example.com",
-    },
-    {
-      type: "number",
-      label: "Whatsapp",
-      name: "whatsapp",
-      placeholder: "08123456789",
-    },
-    {
-      type: "password",
-      label: "Password",
-      name: "password",
-      placeholder: "******",
-    },
-  ];
-
   return (
     <section>
       <NavBar pages={authPages} />
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
-        <div className="w-full bg-white dark:bg-slate-800 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
+      <div className="flex flex-col items-center justify-center">
+        <Container otherClass="my-5 min-w-full md:min-w-[30%]">
           <form
             className="p-6 space-y-4 md:space-y-6 sm:p-8"
             onSubmit={handleSubmit}
           >
             <TextfieldGroup
+              forms={formRegister}
               error={error}
-              form={form}
               setData={setData}
               data={data}
             />
-            <div className="flex items-center">
-              <input
-                onChange={(e) => setAcceptedPolicy(e.target.checked)}
-                id="checked-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600"
-              />
-              <label
-                htmlFor="checked-checkbox"
-                className="ml-2 text-sm font-medium"
-              >
-                Saya menyetujui{" "}
-                <Link className="underline" href={"/syarat-dan-ketentuan"}>
-                  Syarat dan Ketentuan
-                </Link>
-              </label>
-            </div>
+            <Checkbox
+              onChange={setAcceptedPolicy}
+              label={
+                <span>
+                  Saya menyetujui{" "}
+                  <Link className="underline" href={"/syarat-dan-ketentuan"}>
+                    Syarat dan Ketentuan
+                  </Link>
+                </span>
+              }
+              name="policy"
+              value={acceptPolicy}
+            />
             <Button
               disabled={!acceptPolicy}
-              isLoading={loading}
-              isFullWidth={true}
-              isSubmit={true}
+              loading={loading}
+              type="submit"
+              size="full"
             >
               Daftar
             </Button>
-            <p className="text-center">
+            <Typography color="secondary" align="center">
               Sudah punya akun{" "}
               <span
                 onClick={() => router.push("/login")}
-                className="underline text-indigo-500 cursor-pointer"
+                className="text-indigo-500 cursor-pointer"
               >
                 Masuk
               </span>
-            </p>
+            </Typography>
           </form>
-        </div>
+        </Container>
       </div>
       <Footer />
     </section>

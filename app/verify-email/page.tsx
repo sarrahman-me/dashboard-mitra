@@ -2,11 +2,18 @@
 import { useRouter } from "next/navigation";
 import { getCookie, setCookie } from "cookies-next";
 import { useState } from "react";
-import { Button } from "@/components/atoms";
 import { Loading, Notify } from "notiflix";
 import { PostDataApi } from "@/utils";
-import { TextfieldGroup } from "@/components/organisms";
-import { Footer, NavigationBar } from "@/layouts";
+import {
+  Button,
+  Container,
+  Footer,
+  NavBar,
+  TextfieldGroup,
+  Typography,
+} from "@/src/components";
+import { formVerifyEmail } from "@/src/data/forms";
+import { mainPages } from "@/src/data/pages";
 
 export default function VerifyEmail() {
   const router = useRouter();
@@ -72,44 +79,42 @@ export default function VerifyEmail() {
     }
   };
 
-  const form = [
-    {
-      type: "number",
-      label: "Kode verifikasi",
-      name: "code",
-    },
-  ];
-
   return (
-    <section className="bg-gray-50 dark:bg-gray-900">
-      <NavigationBar />
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+    <section>
+      <NavBar pages={mainPages} />
+      <div className="flex flex-col items-center justify-center">
+        <Container otherClass="my-5 min-w-full md:min-w-[30%]">
           <form
             className="p-6 space-y-4 md:space-y-6 sm:p-8"
             onSubmit={handleSubmit}
           >
-            <p className="text-center text-sm">
-              {email && ` Masukkan 5 digit angka yang dikirimkan ke ${email}`}
-            </p>
+            {
+              <Typography align="center">
+                Masukkan 5 digit angka yang dikirimkan ke{" "}
+                {email && <Typography align="center">{email}</Typography>}
+              </Typography>
+            }
 
             <TextfieldGroup
               error={error}
-              form={form}
+              forms={formVerifyEmail}
               setData={setData}
               data={data}
             />
-            <Button isLoading={loading} isFullWidth={true} isSubmit={true}>
+            <Button loading={loading} size="full" type="submit">
               Submit
             </Button>
-            <p
+            <Typography
+              otherClass="cursor-pointer"
+              align="center"
               onClick={sendCodeAgain}
-              className="text-xs text-indigo-500 text-center cursor-pointer"
+              variant="helper"
+              color="secondary"
             >
               Kirim ulang
-            </p>
+            </Typography>
           </form>
-        </div>
+        </Container>
       </div>
       <Footer />
     </section>
