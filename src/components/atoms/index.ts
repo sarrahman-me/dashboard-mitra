@@ -1,4 +1,5 @@
 import Autocomplete from "./Autocomplete";
+import AutocompleteApi from "./AutocompleteApi";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 import FileInput from "./FileInput";
@@ -26,4 +27,5 @@ export {
   Select,
   Autocomplete,
   FileInput,
+  AutocompleteApi,
 };

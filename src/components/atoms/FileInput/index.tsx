@@ -13,14 +13,14 @@ import Typography from "../Typography";
  * @param {boolean} previewFile - Jika benar, akan menampilkan pratinjau file gambar.
  */
 
-interface FileInput {
+interface FileInputProps {
   label?: string;
   error?: string;
   setFile: (files: string[]) => void;
   previewFile?: boolean;
 }
 
-const FileInput = ({ label, error, setFile, previewFile }: FileInput) => {
+const FileInput = ({ label, error, setFile, previewFile }: FileInputProps) => {
   // menyimpan kumpulan file untuk preview
   const [currentFile, setCurrentFile] = useState(
     [] as {

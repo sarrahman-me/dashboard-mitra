@@ -66,7 +66,7 @@ function Autocomplete({
   return (
     <div>
       {label && <Label otherClass="mb-1">{label}</Label>}
-      <Combobox value={value} onChange={(e) => setValue(e)}>
+      <Combobox value={value} onChange={setValue}>
         <Combobox.Input
           autoComplete="off"
           placeholder={placeholder}

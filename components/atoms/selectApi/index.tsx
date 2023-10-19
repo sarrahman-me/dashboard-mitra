@@ -9,13 +9,14 @@ export default function SelectApi(props: {
   onChange: (value: string) => void;
   value: string;
   error?: string;
+  useNameForValue?: boolean;
 }) {
   const [options, setOptions] = useState<any[]>([]);
 
   useEffect(() => {
     async function fetchOptions() {
       try {
-        const response = await GetDataApi(props.apiUrl);
+        const response = await GetDataApi(`${props.apiUrl}?limit=100`);
         const data = response.data;
         setOptions(data);
       } catch (error) {
@@ -35,19 +36,16 @@ export default function SelectApi(props: {
       </label>
       <select
         id="select-option"
-        className={`bg-gray-50 border ${
+        className={`bg-white border ${
           props.error ? "border-red-500" : "border-gray-300"
         } text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500`}
         value={props.value}
         onChange={(e) => props.onChange(e.target.value)}
       >
-        <option disabled value="">
-          Choose an option
-        </option>
         {options.map((option) => (
           <option
             key={option[props.keyValue[0]]}
-            value={option[props.keyValue[1]]}
+            value={option[props.keyValue[props.useNameForValue ? 1 : 0]]}
           >
             {option[props.keyValue[1]]}
           </option>

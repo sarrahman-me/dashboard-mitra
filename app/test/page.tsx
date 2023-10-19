@@ -1,5 +1,5 @@
 "use client";
-import { ToggleDarkMode } from "@/components/atoms";
+import { SelectApi, ToggleDarkMode } from "@/components/atoms";
 import {
   Autocomplete,
   Button,
@@ -72,13 +72,8 @@ export default function Test() {
   const [data, setData] = useState(null);
   const [image, setImage] = useState([] as string[]);
   const [form, setForm] = useState({} as any);
-
-  const setData2 = (e: any) => {
-    setImage(e);
-    console.log(e);
-  };
-
-  console.log(form);
+  const [product, setProduct] = useState(null);
+  const [test, setTest] = useState("");
 
   const forms = [
     {
@@ -155,16 +150,33 @@ export default function Test() {
       <br />
       <Autocomplete
         label="Nama Orang"
-        // error="salah input"
         placeholder="Cari Nama"
-        value={data}
-        setValue={setData2}
-        lists={people}
+        value={product}
+        setValue={(a: any) => setProduct(a.slug)}
+        lists={[
+          {
+            slug: "rahman",
+            name: "muhammad nur rahman",
+          },
+          {
+            slug: "sarah",
+            name: "sarah nur khalifah",
+          },
+        ]}
         keyValue={{
-          key: "id",
+          key: "slug",
           value: "name",
         }}
       />
+      <p>{product}</p>
+      {/* <SelectApi
+        onChange={setTest}
+        value={test}
+        keyValue={["slug", "nama_barang"]}
+        apiUrl={`https://api.tokokeramik.com/products/barang`}
+        label={"test"}
+      />
+      <p>{test}</p> */}
       <br />
       <Textfield
         label="Nama Orang"
@@ -226,7 +238,7 @@ export default function Test() {
       <Typography>Hello World</Typography>
       <br />
       <br />
-      <FileInput previewFile setFile={setData2} />
+      {/* <FileInput previewFile setFile={setData2} /> */}
       <br />
       <br />
       <Checkbox
@@ -315,6 +327,8 @@ export default function Test() {
           fields: { nama: "Nama tidak lengkap", cari_nama: "nama kosong" },
         }}
       />
+      <br />
+      <br />
       <br />
       <br />
       <Footer />
