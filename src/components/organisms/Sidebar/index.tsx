@@ -33,7 +33,7 @@ const Sidebar = ({ expand, setExpand }: SidebarProps) => {
         <IconButton onClick={() => setExpand(!expand)} icon={icon} />
       </div>
 
-      <div className="my-10 mx-3 border-b-2">
+      <div className="my-10 mx-3 border-b border-gray-200 dark:border-gray-600">
         {menuItems.map((item, i) => (
           <div key={i}>
             <ItemSidebar

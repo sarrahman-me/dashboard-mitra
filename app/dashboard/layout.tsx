@@ -18,9 +18,6 @@ export default function DashboardLayout({
         <AppBar />
         <div className="p-2 md:p-4">{children}</div>
         <FooterText />
-        <div className="mt-16 sm:hidden">
-          <BottomBar />
-        </div>
       </div>
     </div>
   );

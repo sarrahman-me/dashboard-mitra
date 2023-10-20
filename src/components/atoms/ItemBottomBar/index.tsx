@@ -25,7 +25,7 @@ const ItemBottomBar = ({ icon, href, label }: ItemBottomBarProps) => {
       : pathName === href;
 
   const colorClass = active
-    ? "border-t-4 border-indigo-600 dark:border-gray-700"
+    ? "border-b-4 border-indigo-600 dark:border-gray-700"
     : "";
 
   const colorIcon = active
