@@ -109,7 +109,7 @@ export const menuItemsMobile = [
   {
     label: "Menu",
     icon: <AiOutlineMenu />,
-    href: "/dashboard/abc",
+    href: "/dashboard/menu",
   },
 ];
 
