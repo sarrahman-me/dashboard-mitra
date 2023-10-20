@@ -25,7 +25,7 @@ const Sidebar = ({ expand, setExpand }: SidebarProps) => {
   return (
     <aside className={classNameSidebar}>
       <div
-        className={`flex ${
+        className={`flex mt-5 ${
           expand ? "justify-between" : "justify-center"
         } items-center m-2`}
       >

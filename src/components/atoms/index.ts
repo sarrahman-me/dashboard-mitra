@@ -5,7 +5,7 @@ import Checkbox from "./Checkbox";
 import Container from "./Container";
 import FileInput from "./FileInput";
 import IconButton from "./IconButton";
-import ItemBottomBar from "./ItemBottomBar";
+import ItemTopBar from "./ItemTopBar";
 import ItemSidebar from "./ItemSidebar";
 import Label from "./Label";
 import Logo from "./Logo";
@@ -39,5 +39,5 @@ export {
   LottiePlayer,
   ResizeLayarButton,
   ToggleDarkMode,
-  ItemBottomBar,
+  ItemTopBar,
 };

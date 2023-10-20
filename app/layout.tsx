@@ -14,7 +14,7 @@ export default function RootLayout({
     <html lang="id">
       <body id="root">
         <GoogleAnalytics />
-        <div className="bg-slate-50 dark:bg-slate-900 dark:text-white text-black min-h-screen">
+        <div className="bg-gray-100 dark:bg-gray-900 dark:text-white text-black min-h-screen">
           <Provider store={store}>{children}</Provider>
           <Analytics />
         </div>

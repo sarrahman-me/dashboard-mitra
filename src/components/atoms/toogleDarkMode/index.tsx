@@ -1,6 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import { FiSun, FiMoon } from "react-icons/fi";
+import { MdOutlineNightsStay, MdSunny } from "react-icons/md";
+
+/**
+ * Komponen ToggleDarkMode digunakan untuk mengaktifkan atau menonaktifkan mode gelap pada aplikasi. Ini juga menyimpan preferensi mode gelap di local storage dan mengganti tema aplikasi saat diperlukan.
+ */
 
 export default function ToggleDarkMode() {
   const [isDarkModeEnabled, setIsDarkModeEnabled] = useState(false);
@@ -20,7 +24,7 @@ export default function ToggleDarkMode() {
 
   const toggleDarkMode = () => {
     const rootElement = document.getElementById("root");
-    if (!rootElement) return; // Tidak ada elemen dengan ID "root"
+    if (!rootElement) return; // Jika tidak ada elemen dengan ID "root"
 
     const isCurrentlyDarkModeEnabled = rootElement.classList.contains("dark");
     const newDarkModeEnabled = !isCurrentlyDarkModeEnabled;
@@ -39,15 +43,16 @@ export default function ToggleDarkMode() {
   return (
     <div>
       <button
+        title={isDarkModeEnabled ? "Terang" : "Gelap"}
         onClick={toggleDarkMode}
-        className="flex items-center gap-2 p-2 rounded-lg transition-colors duration-300 focus:outline-none focus:ring-1 text-indigo-500 focus:ring-indigo-600"
+        className="flex items-center gap-2 p-2 rounded-md transition-colors duration-300 focus:outline-none text-indigo-500 "
       >
         <span
           className={`transform transition-transform duration-300 ${
             isDarkModeEnabled ? "scale-125" : "scale-100"
           }`}
         >
-          {isDarkModeEnabled ? <FiSun /> : <FiMoon />}
+          {isDarkModeEnabled ? <MdSunny /> : <MdOutlineNightsStay />}
         </span>
       </button>
     </div>

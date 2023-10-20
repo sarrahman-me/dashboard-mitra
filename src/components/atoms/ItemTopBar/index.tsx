@@ -2,20 +2,20 @@
 import { usePathname, useRouter } from "next/navigation";
 
 /**
- * Komponen ItemBottomBar digunakan untuk membuat item pada bilah bawah yang berisi ikon dan label yang dapat mengarahkan pengguna ke halaman yang berbeda.
+ * Komponen ItemTopBar digunakan untuk membuat item pada bilah bawah yang berisi ikon dan label yang dapat mengarahkan pengguna ke halaman yang berbeda.
  *
  * @param {ReactNode} icon - Ikon yang akan ditampilkan dalam item.
  * @param {string} href - Tujuan halaman saat mengklik item.
  * @param {string} label - Label yang menunjukkan keterangan item (misal: Beranda, Profil, dll).
  */
 
-interface ItemBottomBarProps {
+interface ItemTopBarProps {
   icon: React.ReactNode;
   href: string;
   label: string;
 }
 
-const ItemBottomBar = ({ icon, href, label }: ItemBottomBarProps) => {
+const ItemTopBar = ({ icon, href, label }: ItemTopBarProps) => {
   const pathName = usePathname();
   const router = useRouter();
 
@@ -46,4 +46,4 @@ const ItemBottomBar = ({ icon, href, label }: ItemBottomBarProps) => {
   );
 };
 
-export default ItemBottomBar;
+export default ItemTopBar;
