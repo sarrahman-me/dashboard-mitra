@@ -81,7 +81,7 @@ export default function Register() {
             >
               Daftar
             </Button>
-            <Typography color="secondary" align="center">
+            <Typography variant="helper" color="secondary" align="center">
               Sudah punya akun{" "}
               <span
                 onClick={() => router.push("/login")}

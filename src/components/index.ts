@@ -15,6 +15,7 @@ import {
   AutocompleteApi,
   Container,
   LottiePlayer,
+  ItemSidebar,
 } from "./atoms/index";
 import {
   NavGroup,
@@ -22,7 +23,7 @@ import {
   SocialIcon,
   TextfieldGroup,
 } from "./molecules/index";
-import { Footer, NavBar } from "./organisms/index";
+import { Footer, NavBar, Sidebar } from "./organisms/index";
 
 export {
   // atoms
@@ -42,6 +43,7 @@ export {
   AutocompleteApi,
   Container,
   LottiePlayer,
+  ItemSidebar,
 
   //   molecules
   NavGroup,
@@ -52,4 +54,5 @@ export {
   //   organims
   Footer,
   NavBar,
+  Sidebar,
 };

@@ -5,6 +5,7 @@ import Checkbox from "./Checkbox";
 import Container from "./Container";
 import FileInput from "./FileInput";
 import IconButton from "./IconButton";
+import ItemSidebar from "./ItemSidebar";
 import Label from "./Label";
 import Logo from "./Logo";
 import LottiePlayer from "./LottiePlayer";
@@ -31,5 +32,6 @@ export {
   FileInput,
   AutocompleteApi,
   Container,
+  ItemSidebar,
   LottiePlayer,
 };

@@ -70,7 +70,7 @@ export default function Login() {
             <Button loading={loading} size="full" type="submit">
               Masuk
             </Button>
-            <Typography color="secondary" align="center">
+            <Typography variant="helper" color="secondary" align="center">
               Belum punya akun{" "}
               <span
                 onClick={() => router.push("/register")}

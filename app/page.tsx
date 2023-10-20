@@ -5,7 +5,7 @@ import { SectionTitle } from "@/components/molecules";
 import { BsGlobeEuropeAfrica } from "react-icons/bs";
 import { MdOutlineInsights } from "react-icons/md";
 import { LuPackageSearch } from "react-icons/lu";
-import { Footer, NavBar } from "@/src/components/organisms";
+import { Footer, NavBar } from "@/src/components";
 import { mainPages } from "@/src/data/pages";
 
 const benefitOne = {
