@@ -2,9 +2,19 @@
 import React from "react";
 import { usePathname, useRouter } from "next/navigation";
 
+/**
+ * Komponen ItemSidebar digunakan untuk membuat list dengan icon untuk navigasi halaman dari sidebar
+ *
+ * @param {ReactNode} icon - Ikon yang akan ditampilkan dalam component.
+ * @param {string} label - Label dari component ini
+ * @param {boolean} expand - Expand adalah boolean yang menampilkan apakah sidebar sedang dibuka lebar atau tidak
+ * @param {string} href - Halaman yang akan dituju saat mengklik component
+ *
+ */
+
 interface ItemSidebarProps {
   label: string;
-  icon: any;
+  icon: React.ReactNode;
   expand: boolean;
   href: string;
 }

@@ -3,6 +3,13 @@ import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import { IconButton, ItemSidebar, Logo } from "@/src/components";
 import { menuItems, personalMenu } from "@/src/data/menu";
 
+/**
+ * Komponen Sidebar digunakan untuk membuat sidebar yang dapat diperluas atau ditutup.
+ *
+ * @param {boolean} expand - Menentukan apakah sidebar sedang diperluas atau ditutup.
+ * @param {function} setExpand - Fungsi yang digunakan untuk mengatur status perluasan sidebar.
+ */
+
 interface SidebarProps {
   expand: boolean;
   setExpand: (v: boolean) => void;

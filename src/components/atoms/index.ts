@@ -15,6 +15,8 @@ import Select from "./Select";
 import SwitchToggle from "./Switch";
 import Textfield from "./Textfield";
 import Typography from "./Typography";
+import ResizeLayarButton from "./resizeLayarButton";
+import ToggleDarkMode from "./toogleDarkMode";
 
 export {
   Button,
@@ -34,4 +36,6 @@ export {
   Container,
   ItemSidebar,
   LottiePlayer,
+  ResizeLayarButton,
+  ToggleDarkMode,
 };

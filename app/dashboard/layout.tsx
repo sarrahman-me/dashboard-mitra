@@ -1,7 +1,7 @@
 "use client";
 import { TextFooter } from "@/components/molecules";
-import { BottomBar, AppBar } from "@/layouts";
-import { Sidebar } from "@/src/components";
+import { BottomBar } from "@/layouts";
+import { AppBar, Sidebar } from "@/src/components";
 import { useState } from "react";
 
 export default function DashboardLayout({

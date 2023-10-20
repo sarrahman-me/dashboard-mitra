@@ -23,7 +23,7 @@ import {
   SocialIcon,
   TextfieldGroup,
 } from "./molecules/index";
-import { Footer, NavBar, Sidebar } from "./organisms/index";
+import { Footer, NavBar, Sidebar, AppBar } from "./organisms/index";
 
 export {
   // atoms
@@ -55,4 +55,5 @@ export {
   Footer,
   NavBar,
   Sidebar,
+  AppBar,
 };
