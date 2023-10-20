@@ -1,5 +1,9 @@
 "use client";
-import { AiOutlineExperiment, AiOutlineHome } from "react-icons/ai";
+import {
+  AiOutlineExperiment,
+  AiOutlineHome,
+  AiOutlineMenu,
+} from "react-icons/ai";
 import { MdOutlineCardMembership, MdOutlineFeedback } from "react-icons/md";
 import { BiCube, BiStore } from "react-icons/bi";
 import { TbTools } from "react-icons/tb";
@@ -35,6 +39,34 @@ export const menuItems = [
     label: "Experiment",
     icon: <AiOutlineExperiment />,
     href: "/dashboard/experiment",
+  },
+];
+
+export const menuItemsMobile = [
+  {
+    label: "Dashboard",
+    icon: <AiOutlineHome />,
+    href: "/dashboard",
+  },
+  {
+    label: "Membership",
+    icon: <MdOutlineCardMembership />,
+    href: "/dashboard/membership",
+  },
+  {
+    label: "Barang",
+    icon: <BiCube />,
+    href: "/dashboard/barang",
+  },
+  {
+    label: "Webstore",
+    icon: <BiStore />,
+    href: "/dashboard/webstore",
+  },
+  {
+    label: "Menu",
+    icon: <AiOutlineMenu />,
+    href: "/dashboard/abc",
   },
 ];
 

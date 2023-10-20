@@ -1,7 +1,5 @@
 "use client";
-import { TextFooter } from "@/components/molecules";
-import { BottomBar } from "@/layouts";
-import { AppBar, Sidebar } from "@/src/components";
+import { AppBar, BottomBar, FooterText, Sidebar } from "@/src/components";
 import { useState } from "react";
 
 export default function DashboardLayout({
@@ -19,8 +17,10 @@ export default function DashboardLayout({
       <div className={widthContentClass}>
         <AppBar />
         <div className="p-2 md:p-4">{children}</div>
-        <TextFooter />
-        <BottomBar />
+        <FooterText />
+        <div className="mt-16 sm:hidden">
+          <BottomBar />
+        </div>
       </div>
     </div>
   );

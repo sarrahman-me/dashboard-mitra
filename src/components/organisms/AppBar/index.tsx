@@ -1,6 +1,12 @@
 "use client";
 import { ResizeLayarButton, ToggleDarkMode, Typography } from "../../atoms";
 
+/**
+ * Komponen AppBar digunakan untuk membuat bilah aplikasi yang dapat menampilkan judul dan opsi lainnya.
+ *
+ * @param {string} title - Judul yang akan ditampilkan di AppBar (opsional).
+ */
+
 interface AppBarProps {
   title?: string;
 }

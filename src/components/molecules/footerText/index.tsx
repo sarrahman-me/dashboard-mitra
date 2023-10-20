@@ -10,8 +10,8 @@ const FooterText = () => {
   const thisYear = new Date().getFullYear();
 
   return (
-    <div className="text-center py-5">
-      <Typography variant="helper" color="secondary">
+    <div className="py-6">
+      <Typography align="center" variant="helper" color="secondary">
         Hak Cipta © {thisYear.toString()}. Dibuat dengan ♥ oleh Sarrahman
       </Typography>
     </div>
