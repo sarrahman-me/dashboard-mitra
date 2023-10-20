@@ -1,5 +1,5 @@
 "use client";
-import { AppBar, BottomBar, FooterText, Sidebar } from "@/src/components";
+import { AppBar, FooterText, Sidebar } from "@/src/components";
 import { useState } from "react";
 
 export default function DashboardLayout({
