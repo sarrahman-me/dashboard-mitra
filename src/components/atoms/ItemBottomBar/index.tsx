@@ -25,7 +25,7 @@ const ItemBottomBar = ({ icon, href, label }: ItemBottomBarProps) => {
       : pathName === href;
 
   const colorClass = active
-    ? "border-b-4 border-indigo-600 dark:border-gray-700"
+    ? "border-b-2 border-indigo-600 dark:border-gray-700"
     : "";
 
   const colorIcon = active
@@ -40,7 +40,7 @@ const ItemBottomBar = ({ icon, href, label }: ItemBottomBarProps) => {
       onClick={() => router.push(href)}
       className={`flex flex-col justify-center items-center cursor-pointer ${colorClass}`}
     >
-      <div className={`text-xl ${colorIcon}`}>{icon}</div>
+      <div className={`text-2xl ${colorIcon}`}>{icon}</div>
       {active && <p className={`text-xs ${colotText}`}>{label}</p>}
     </div>
   );
