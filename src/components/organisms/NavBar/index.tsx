@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { IconButton, Logo } from "../../atoms";
 import { NavGroup } from "../../molecules";

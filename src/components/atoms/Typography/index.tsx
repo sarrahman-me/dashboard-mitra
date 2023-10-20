@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Komponen Typography digunakan untuk menampilkan teks dengan variasi gaya, ukuran, dan warna yang dapat disesuaikan.
  *

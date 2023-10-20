@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 /**
@@ -15,6 +16,11 @@ import React from "react";
 
 interface ButtonProps {
   variant?: "contained" | "outlined" | "text";
+  color?:
+    | "primaryContained"
+    | "primaryOutlined"
+    | "dangerContained"
+    | "dangerOutlined";
   size?: "medium" | "small" | "large" | "full";
   type?: "button" | "reset" | "submit";
   disabled?: true | false;
@@ -33,17 +39,23 @@ const Button = ({
   loading,
   icon,
   onClick,
+  color,
 }: ButtonProps) => {
   /* mendefinisikan className tailwind CSS yang berbeda untuk setiap varian tombol. */
 
   const classVariant = {
-    contained:
-      "border border-indigo-600 bg-indigo-600 text-white hover:bg-indigo-800 disabled:bg-gray-500 disabled:border-none",
+    contained: "border text-white disabled:bg-gray-500 disabled:border-none",
 
-    outlined:
-      "border-2 border-indigo-600 hover:shadow-md hover:border-indigo-500 disabled:border-gray-500",
+    outlined: "border-2 hover:shadow-md disabled:border-gray-500",
 
     text: "hover:bg-slate-200 dark:hover:bg-slate-800",
+  };
+
+  const colorVariant = {
+    primaryContained: "border-indigo-600 bg-indigo-600 hover:bg-indigo-800",
+    primaryOutlined: "border-indigo-600 hover:border-indigo-500",
+    dangerContained: "border-red-600 bg-red-600 hover:bg-red-800",
+    dangerOutlined: "border-red-600 hover:border-red-500",
   };
 
   const classSize = {
@@ -55,9 +67,13 @@ const Button = ({
 
   const defaultClass = `flex items-center font-medium rounded-md disabled:cursor-not-allowed transition`;
 
+  const defaultColor =
+    variant == "contained" ? "primaryContained" : "primaryOutlined";
+
   const className = `
   ${defaultClass}
   ${classVariant[variant || "contained"]} 
+  ${colorVariant[color || defaultColor]}
   ${classSize[size || "medium"]}
   `;
 

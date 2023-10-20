@@ -1,3 +1,4 @@
+"use client";
 import { Listbox } from "@headlessui/react";
 import { HiSelector } from "react-icons/hi";
 import Label from "../Label";
