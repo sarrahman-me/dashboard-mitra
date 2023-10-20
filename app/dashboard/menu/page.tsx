@@ -48,18 +48,13 @@ const Menu = () => {
       <Typography variant="subtitle">Menu</Typography>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 my-4">
         {menuItemsPageMobile.map((menu, i) => (
-          <Container key={i} otherClass="p-2">
-            <div className="text-indigo-600 text-lg">{menu.icon}</div>
+          <Container key={i} otherClass="p-2 divide-y-4 divide-transparent">
+            <div className="text-indigo-600 text-xl">{menu.icon}</div>
             <Typography>{menu.label}</Typography>
           </Container>
         ))}
       </div>
-      <Button
-        onClick={handleLogout}
-        color="dangerOutlined"
-        variant="outlined"
-        size="full"
-      >
+      <Button onClick={handleLogout} variant="outlined" size="full">
         Keluar
       </Button>
     </div>
