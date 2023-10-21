@@ -1,20 +1,60 @@
 "use client";
 import { EditDataIcon, Heading, ListData } from "@/components/atoms";
-import { GetDataApi } from "@/utils";
+import { Button } from "@/src/components";
+import { DeleteDataApi, GetDataApi } from "@/src/utils";
+import { deleteCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
+import { Confirm, Loading } from "notiflix";
 import { useEffect, useState } from "react";
 
 export default function Profile() {
+  const router = useRouter();
   const [profile, setProfile] = useState({} as any);
 
   useEffect(() => {
     async function fetchData() {
       const responseProfile = await GetDataApi(
-        `/api/auth/profile`
+        `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`,
+        1
       );
       setProfile(responseProfile.data);
     }
     fetchData();
   }, []);
+
+  const handleLogout = async () => {
+    Loading.circle();
+    Confirm.show(
+      "Konfirmasi",
+      "Yakin Untuk Keluar ?",
+      "Keluar",
+      "Batal",
+      async () => {
+        try {
+          const responseLogout = await DeleteDataApi(
+            `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/logout`
+          );
+          if (responseLogout.success) {
+            deleteCookie("tx");
+            deleteCookie("rtx");
+            router.push("/login");
+            window.location.reload();
+            Loading.remove();
+          }
+        } catch (error) {
+          console.error(error);
+          Loading.remove();
+        }
+      },
+      () => {
+        Loading.remove();
+      },
+      {
+        okButtonBackground: "#FF0000",
+        titleColor: "#FF0000",
+      }
+    );
+  };
 
   return (
     <div>
@@ -29,6 +69,11 @@ export default function Profile() {
       <div className="bg-white dark:bg-slate-800 p-2 rounded">
         <ListData label="Kota" value={profile.kota} />
         <ListData label="Alamat" value={profile.alamat} />
+      </div>
+      <div className="mt-2 hidden sm:flex">
+        <Button onClick={handleLogout} variant="text" size="full">
+          Keluar
+        </Button>
       </div>
     </div>
   );
