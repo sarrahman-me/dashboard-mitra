@@ -1,37 +1,17 @@
+"use client";
 import moment from "moment";
 import { ButtonStopMembership, Heading, ListData } from "@/components/atoms";
 import { MembershipPlanList, PaymentChecking } from "@/layouts";
 import { formatCurrency } from "@/utils";
-import { SSRGetDataApi } from "@/utils/fetchingSSR";
 import { SectionLayout } from "@/components/organisms";
+import { useSelector } from "react-redux";
 
 const Membership = async () => {
-  const responseProfile = await SSRGetDataApi(
-    `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
+  const { profile, transaksi, membership } = useSelector(
+    (state: any) => state.profile
   );
 
-  const profile = responseProfile.data;
-
-  let membership = null;
-  let transaksi = null;
-
-  if (profile?.id_membership) {
-    const responseMembership = await SSRGetDataApi(
-      `${process.env.NEXT_PUBLIC_HOST}/membership/member/${profile?.id_membership}`
-    );
-
-    membership = responseMembership.data.membership;
-
-    if (membership?.id_transaksi) {
-      const responseTransaksi = await SSRGetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/finance/transaksi/${membership.id_transaksi}`
-      );
-
-      transaksi = responseTransaksi.data;
-    }
-  }
-
-  if (!profile?.id_membership) {
+  if (!profile.id_membership) {
     return (
       <div>
         <MembershipPlanList />
@@ -39,7 +19,7 @@ const Membership = async () => {
     );
   }
 
-  if (!transaksi?.verifikasi) {
+  if (!transaksi.verifikasi) {
     return (
       <div>
         <PaymentChecking />

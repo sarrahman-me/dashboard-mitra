@@ -1,58 +1,49 @@
+"use client";
+import React, { useEffect, useState } from "react";
 import { Heading, ListData } from "@/components/atoms";
 import { SectionLayout } from "@/components/organisms";
-import { CreatingWebsite, FormWebstore, NotMembership, PaymentChecking } from "@/layouts";
-import { SSRGetDataApi } from "@/utils/fetchingSSR";
+import {
+  CreatingWebsite,
+  FormWebstore,
+  NotMembership,
+  PaymentChecking,
+} from "@/layouts";
+import { GetDataApi } from "@/src/utils";
 import moment from "moment";
+import { useSelector } from "react-redux";
 
-export default async function Webstore() {
-  const responseProfile = await SSRGetDataApi(
-    `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
-  );
+export default function Webstore() {
+  const { profile, transaksi } = useSelector((state: any) => state.profile);
+  const [webstore, setWebstore] = useState({} as any);
 
-  const profile = responseProfile.data;
+  useEffect(() => {
+    const fetchData = async () => {
+      if (profile?.id_webstore) {
+        const responseWebstore = await GetDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/webstore/${profile.id_webstore}`
+        );
+        if (responseWebstore?.data) {
+          setWebstore(responseWebstore?.data);
+        }
+      }
+    };
+    fetchData();
+  }, [profile.id_webstore, setWebstore]);
 
-  let membership = null;
-  let webstore = null;
-  let transaksi = null;
-
-  if (profile?.id_membership) {
-    const responseMembership = await SSRGetDataApi(
-      `${process.env.NEXT_PUBLIC_HOST}/membership/member/${profile?.id_membership}`
-    );
-
-    membership = responseMembership.data.membership;
-
-    if (membership?.id_transaksi) {
-      const responseTransaksi = await SSRGetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/finance/transaksi/${membership.id_transaksi}`
-      );
-
-      transaksi = responseTransaksi.data;
-    }
-  }
-
-  if (profile?.id_webstore) {
-    const responseWebstore = await SSRGetDataApi(
-      `${process.env.NEXT_PUBLIC_HOST}/webstore/${profile.id_webstore}`
-    );
-
-    webstore = responseWebstore.data;
-  }
-
-  if (!profile?.id_membership) {
+  if (!profile.id_membership) {
     return <NotMembership />;
   }
 
-  if (!transaksi?.verifikasi) {
+  if (!transaksi.verifikasi) {
     return <PaymentChecking />;
   }
 
-  if (!profile?.id_webstore) {
+  if (!profile.id_webstore) {
     return <FormWebstore />;
   }
 
-  if (!webstore?.isLive) {
-    return <CreatingWebsite />
+  if (!webstore.isLive) {
+    return <CreatingWebsite />;
   }
 
   return (

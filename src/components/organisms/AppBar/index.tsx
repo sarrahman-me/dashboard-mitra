@@ -27,7 +27,7 @@ export default function AppBar() {
     async function fetchData() {
       const responseProfile = await GetDataApi(
         `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`,
-        3600
+        300
       );
 
       if (responseProfile.status !== 200) {
@@ -51,7 +51,7 @@ export default function AppBar() {
       if (profile?.id_membership) {
         const responseMembership = await GetDataApi(
           `${process.env.NEXT_PUBLIC_HOST}/membership/member/${profile?.id_membership}`,
-          3600
+          300
         );
         membership = responseMembership?.data.membership;
       }
@@ -59,7 +59,7 @@ export default function AppBar() {
       if (membership?.id_transaksi) {
         const responseTransaksi = await GetDataApi(
           `${process.env.NEXT_PUBLIC_HOST}/finance/transaksi/${membership.id_transaksi}`,
-          3600
+          300
         );
 
         transaksi = responseTransaksi?.data;
