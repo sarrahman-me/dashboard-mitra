@@ -5,16 +5,11 @@ import { MembershipPlanList, PaymentChecking } from "@/layouts";
 import { formatCurrency } from "@/utils";
 import { SectionLayout } from "@/components/organisms";
 import { useSelector } from "react-redux";
-import { LoadingAnimation } from "@/src/components";
 
 const Membership = async () => {
   const { profile, transaksi, membership } = useSelector(
     (state: any) => state.profile
   );
-
-  if (!profile) {
-    <LoadingAnimation />;
-  }
 
   if (!profile.id_membership) {
     return (

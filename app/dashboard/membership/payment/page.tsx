@@ -1,27 +1,25 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import moment from "moment";
+import React, { useEffect, useState } from "react";
 import { Button, ListData } from "@/components/atoms";
 import { GetDataApi, PostDataApi, formatCurrency } from "@/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { HeaderAndBackIcon } from "@/components/molecules";
 import { Confirm, Loading } from "notiflix";
+import { useSelector } from "react-redux";
 
 export default function Payment() {
   const router = useRouter();
   const params = useSearchParams();
   const [membershipPlan, setPlan] = useState({} as any);
+  const { profile } = useSelector((state: any) => state.profile);
 
   // Mengambil params dari halaman sebelumnya
   const klasifikasiMembership = params.get("klasifikasi-membership");
 
   useEffect(() => {
     async function fetchData() {
-      const responseProfile = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
-      );
-
-      if (!responseProfile?.data?.id_membership) {
+      if (!profile.id_membership) {
         const data = await GetDataApi(
           `${process.env.NEXT_PUBLIC_HOST}/membership/klasifikasi/${klasifikasiMembership}`
         );
@@ -31,7 +29,7 @@ export default function Payment() {
       }
     }
     fetchData();
-  }, [klasifikasiMembership, router]);
+  }, [klasifikasiMembership, profile.id_membership, router]);
 
   const daftarMembership = async () => {
     Confirm.show(

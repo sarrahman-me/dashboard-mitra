@@ -1,40 +1,28 @@
+"use client";
 import { SearchBar } from "@/components/molecules";
 import { CatalogProducts, SwiperProduct } from "@/components/organisms";
 import { PaymentChecking, NotMembership, MotifList } from "@/layouts";
-import { SSRGetDataApi } from "@/utils/fetchingSSR";
+import { GetDataApi } from "@/src/utils";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-const Barang = async () => {
-  const responseProfile = await SSRGetDataApi(
-    `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
+const Barang = () => {
+  const { profile, transaksi, persentaseHarga } = useSelector(
+    (state: any) => state.profile
   );
+  const [barangPromo, setPromo] = useState([] as any);
 
-  const profile = responseProfile.data;
-  let membership = null;
-  let persentaseHarga = null;
-  let transaksi = null;
-
-  if (profile?.id_membership) {
-    const responseMembership = await SSRGetDataApi(
-      `${process.env.NEXT_PUBLIC_HOST}/membership/member/${profile?.id_membership}`
-    );
-
-    membership = responseMembership.data.membership;
-    persentaseHarga = responseMembership?.data?.harga?.persentase;
-
-    if (membership?.id_transaksi) {
-      const responseTransaksi = await SSRGetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/finance/transaksi/${membership.id_transaksi}`
+  useEffect(() => {
+    const fetchData = async () => {
+      const responseBarangPromo = await GetDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang?promo=true`,
+        3600
       );
 
-      transaksi = responseTransaksi.data;
-    }
-  }
-
-  const responseBarangPromo = await SSRGetDataApi(
-    `${process.env.NEXT_PUBLIC_HOST}/products/barang?promo=true`
-  );
-
-  const barangPromo = responseBarangPromo.data;
+      setPromo(responseBarangPromo.data);
+    };
+    fetchData();
+  }, []);
 
   if (!profile?.id_membership) {
     return <NotMembership />;

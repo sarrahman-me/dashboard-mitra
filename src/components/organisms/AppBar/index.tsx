@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setMembership,
+  setPersentaseHarga,
   setProfile,
   setTransaksi,
 } from "@/src/redux/slice/profile";
@@ -47,6 +48,7 @@ export default function AppBar() {
       const profile = responseProfile?.data;
       let membership = null;
       let transaksi = null;
+      let persentaseHarga = null;
 
       if (profile?.id_membership) {
         const responseMembership = await GetDataApi(
@@ -54,6 +56,7 @@ export default function AppBar() {
           300
         );
         membership = responseMembership?.data.membership;
+        persentaseHarga = responseMembership?.data?.harga?.persentase;
       }
 
       if (membership?.id_transaksi) {
@@ -65,6 +68,7 @@ export default function AppBar() {
         transaksi = responseTransaksi?.data;
       }
       dispatch(setTransaksi(transaksi));
+      dispatch(setPersentaseHarga(persentaseHarga));
       dispatch(setMembership(membership));
       dispatch(setProfile(profile));
     }
