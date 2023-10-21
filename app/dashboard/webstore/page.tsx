@@ -11,6 +11,7 @@ import {
 import { GetDataApi } from "@/src/utils";
 import moment from "moment";
 import { useSelector } from "react-redux";
+import { LoadingAnimation } from "@/src/components";
 
 export default function Webstore() {
   const { profile, transaksi } = useSelector((state: any) => state.profile);
@@ -29,6 +30,10 @@ export default function Webstore() {
     };
     fetchData();
   }, [profile.id_webstore, setWebstore]);
+
+  if (!profile) {
+    <LoadingAnimation />;
+  }
 
   if (!profile.id_membership) {
     return <NotMembership />;

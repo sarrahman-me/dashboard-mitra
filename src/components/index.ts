@@ -25,6 +25,7 @@ import {
   TopBar,
 } from "./molecules/index";
 import { Footer, NavBar, Sidebar, AppBar } from "./organisms/index";
+import { LoadingAnimation } from "./template";
 
 export {
   // atoms
@@ -58,4 +59,7 @@ export {
   NavBar,
   Sidebar,
   AppBar,
+
+  // template
+  LoadingAnimation,
 };
