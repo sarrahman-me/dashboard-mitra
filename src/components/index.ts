@@ -22,8 +22,9 @@ import {
   FooterText,
   SocialIcon,
   TextfieldGroup,
+  TopBar,
 } from "./molecules/index";
-import { Footer, NavBar, Sidebar, AppBar, TopBar } from "./organisms/index";
+import { Footer, NavBar, Sidebar, AppBar } from "./organisms/index";
 
 export {
   // atoms
@@ -50,11 +51,11 @@ export {
   FooterText,
   SocialIcon,
   TextfieldGroup,
+  TopBar,
 
   //   organims
   Footer,
   NavBar,
   Sidebar,
   AppBar,
-  TopBar,
 };

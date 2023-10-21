@@ -18,7 +18,7 @@ interface SidebarProps {
 const Sidebar = ({ expand, setExpand }: SidebarProps) => {
   const icon = expand ? <IoIosArrowDropleft /> : <IoIosArrowDropright />;
 
-  const classWidth = expand ? "w-64" : "max-w-fit";
+  const classWidth = expand ? "w-64" : "w-16";
 
   const classNameSidebar = `bg-white dark:bg-gray-900 fixed top-0 left-0 z-40 h-screen ease-linear select-none overflow-y-scroll transition-transform -translate-x-full sm:translate-x-0 ${classWidth}`;
 
@@ -30,7 +30,7 @@ const Sidebar = ({ expand, setExpand }: SidebarProps) => {
         } items-center m-2`}
       >
         {expand && <Logo />}
-        <IconButton onClick={() => setExpand(!expand)} icon={icon} />
+        <IconButton size="small" onClick={() => setExpand(!expand)} icon={icon} />
       </div>
 
       <div className="my-10 mx-3 border-b border-gray-200 dark:border-gray-600">
