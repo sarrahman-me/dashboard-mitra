@@ -1,7 +1,7 @@
 "use client";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import store from "@/redux/store";
+import store from "@/src/redux/store";
 import { Provider } from "react-redux";
 import { GoogleAnalytics } from "@/functions";
 
