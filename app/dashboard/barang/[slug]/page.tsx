@@ -8,14 +8,10 @@ import {
   SectionLayout,
   SwiperProduct,
 } from "@/components/organisms";
-import {
-  DetailProductsComp,
-  PaymentChecking,
-  SimulasiKeramik,
-} from "@/layouts";
+import { DetailProductsComp, SimulasiKeramik } from "@/layouts";
 import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
 import QrSampleProducts from "@/layouts/qrSampleProducts";
-import { NotMembership } from "@/src/components/template";
+import { NotMembership, PaymentChecking } from "@/src/components";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 
 const DetailBarang = async ({ params }: { params: { slug: string } }) => {

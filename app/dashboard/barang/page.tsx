@@ -1,8 +1,8 @@
 "use client";
 import { SearchBar } from "@/components/molecules";
 import { CatalogProducts, SwiperProduct } from "@/components/organisms";
-import { PaymentChecking, MotifList } from "@/layouts";
-import { NotMembership } from "@/src/components/template";
+import { MotifList } from "@/layouts";
+import { NotMembership, PaymentChecking } from "@/src/components";
 import { GetDataApi } from "@/src/utils";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";

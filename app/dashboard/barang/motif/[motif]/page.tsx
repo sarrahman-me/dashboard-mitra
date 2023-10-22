@@ -1,9 +1,8 @@
 "use client";
 import { CatalogProducts } from "@/components/organisms";
 import { HeaderAndBackIcon, SearchBar } from "@/components/molecules";
-import { PaymentChecking } from "@/layouts";
 import { useSelector } from "react-redux";
-import { NotMembership } from "@/src/components/template";
+import { NotMembership, PaymentChecking } from "@/src/components";
 
 export default async function Motif({ params }: { params: { motif: string } }) {
   const motif = params.motif;

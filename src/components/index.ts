@@ -25,7 +25,12 @@ import {
   TopBar,
 } from "./molecules/index";
 import { Footer, NavBar, Sidebar, AppBar } from "./organisms/index";
-import { LoadingAnimation } from "./template";
+import {
+  LoadingAnimation,
+  PaymentChecking,
+  NotMembership,
+  MembershipPlanList,
+} from "./template";
 
 export {
   // atoms
@@ -62,4 +67,7 @@ export {
 
   // template
   LoadingAnimation,
+  PaymentChecking,
+  NotMembership,
+  MembershipPlanList,
 };

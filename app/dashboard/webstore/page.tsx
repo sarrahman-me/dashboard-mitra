@@ -2,15 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { Heading, ListData } from "@/components/atoms";
 import { SectionLayout } from "@/components/organisms";
-import {
-  CreatingWebsite,
-  FormWebstore,
-  PaymentChecking,
-} from "@/layouts";
+import { CreatingWebsite, FormWebstore } from "@/layouts";
 import { GetDataApi } from "@/src/utils";
 import moment from "moment";
 import { useSelector } from "react-redux";
-import { NotMembership } from "@/src/components/template";
+import { NotMembership, PaymentChecking } from "@/src/components";
 
 export default function Webstore() {
   const { profile, transaksi } = useSelector((state: any) => state.profile);

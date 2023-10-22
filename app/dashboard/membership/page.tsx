@@ -1,11 +1,10 @@
 "use client";
 import moment from "moment";
 import { ButtonStopMembership, Heading, ListData } from "@/components/atoms";
-import { PaymentChecking } from "@/layouts";
 import { formatCurrency } from "@/utils";
 import { SectionLayout } from "@/components/organisms";
 import { useSelector } from "react-redux";
-import { MembershipPlanList } from "@/src/components/template";
+import { MembershipPlanList, PaymentChecking } from "@/src/components";
 
 const Membership = async () => {
   const { profile, transaksi, membership } = useSelector(

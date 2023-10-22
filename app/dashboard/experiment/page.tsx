@@ -2,9 +2,8 @@
 import { Button, Heading } from "@/components/atoms";
 import { ImageInputWithPreview } from "@/components/molecules";
 import { CatalogProducts, SectionLayout } from "@/components/organisms";
-import { PaymentChecking } from "@/layouts";
 import SearchByImage from "@/public/searchByImage.png";
-import { NotMembership } from "@/src/components/template";
+import { NotMembership, PaymentChecking } from "@/src/components";
 import { PostDataApi } from "@/utils";
 import Image from "next/image";
 import { Loading, Notify } from "notiflix";

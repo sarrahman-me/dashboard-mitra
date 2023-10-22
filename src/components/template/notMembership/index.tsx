@@ -9,7 +9,7 @@ export default function NotMembership() {
   return (
     <div className="flex flex-col justify-center items-center">
       <Container otherClass="p-8">
-        <Typography align="center" variant="h3">
+        <Typography align="center" variant="h4">
           Halaman terkunci
         </Typography>
         <div className="flex justify-center">
