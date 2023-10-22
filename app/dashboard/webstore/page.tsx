@@ -1,12 +1,20 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Heading, ListData } from "@/components/atoms";
-import { SectionLayout } from "@/components/organisms";
-import { CreatingWebsite, FormWebstore } from "@/layouts";
-import { GetDataApi } from "@/src/utils";
 import moment from "moment";
+import React, { useEffect, useState } from "react";
+import { ListData } from "@/components/atoms";
+import { GetDataApi } from "@/src/utils";
 import { useSelector } from "react-redux";
-import { NotMembership, PaymentChecking } from "@/src/components";
+import {
+  Button,
+  Container,
+  CreatingWebsite,
+  FormWebstore,
+  NotMembership,
+  PaymentChecking,
+  Typography,
+} from "@/src/components";
+import { AiOutlineSetting } from "react-icons/ai";
+import { Report } from "notiflix";
 
 export default function Webstore() {
   const { profile, transaksi } = useSelector((state: any) => state.profile);
@@ -42,10 +50,18 @@ export default function Webstore() {
     return <CreatingWebsite />;
   }
 
+  const handleSetting = () => {
+    Report.info(
+      "Info",
+      "Fitur ini sedang dalam pengembangan. <br/><br/> Mohon maaf ketidaknyamanan ini",
+      "Okay"
+    );
+  };
+
   return (
-    <div className="py-6">
-      <Heading>Webstore</Heading>
-      <SectionLayout>
+    <div className="mt-2">
+      <Typography variant="subtitle">Webstore</Typography>
+      <Container otherClass="p-3">
         <div>
           <ListData label="Id Webstore" value={webstore?.id_webstore} />
           <ListData label="Nama Webstore" value={webstore?.nama_webstore} />
@@ -55,7 +71,16 @@ export default function Webstore() {
             value={moment(webstore?.createdAt).format("LL")}
           />
         </div>
-      </SectionLayout>
+      </Container>
+      <div className="mt-2">
+        <Button
+          onClick={handleSetting}
+          icon={<AiOutlineSetting />}
+          variant="text"
+        >
+          Setting
+        </Button>
+      </div>
     </div>
   );
 }

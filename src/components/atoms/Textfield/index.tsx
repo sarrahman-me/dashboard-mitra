@@ -33,6 +33,7 @@ interface TextfieldProps {
   fullWidth?: true | false;
   icon?: React.ReactNode;
   onClickIcon?: () => void;
+  otherClass?: string;
 }
 
 const Textfield = ({
@@ -49,6 +50,7 @@ const Textfield = ({
   icon,
   error,
   name,
+  otherClass,
 }: TextfieldProps) => {
   /* Objek `classColorBorder` mendefinisikan kelas CSS yang berbeda untuk setiap border pada varian Textfield ketika error. */
   const classColorBorder = {
@@ -79,6 +81,7 @@ const Textfield = ({
       ${classVariant[variant || "outlined"]} 
       ${fullWidth ? "w-full" : ""}
       ${!error ? classColorBorder.default : classColorBorder.error}
+      ${otherClass}
       `;
 
   return (

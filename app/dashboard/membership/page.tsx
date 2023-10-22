@@ -1,10 +1,16 @@
 "use client";
 import moment from "moment";
-import { ButtonStopMembership, Heading, ListData } from "@/components/atoms";
 import { formatCurrency } from "@/utils";
-import { SectionLayout } from "@/components/organisms";
 import { useSelector } from "react-redux";
-import { MembershipPlanList, PaymentChecking } from "@/src/components";
+import {
+  Button,
+  Container,
+  ListData,
+  MembershipPlanList,
+  PaymentChecking,
+  Typography,
+} from "@/src/components";
+import { Report } from "notiflix";
 
 const Membership = async () => {
   const { profile, transaksi, membership } = useSelector(
@@ -12,27 +18,30 @@ const Membership = async () => {
   );
 
   if (!profile.id_membership) {
-    return (
-      <div>
-        <MembershipPlanList />
-      </div>
-    );
+    return <MembershipPlanList />;
   }
 
   if (!transaksi.verifikasi) {
-    return (
-      <div>
-        <PaymentChecking />
-      </div>
-    );
+    return <PaymentChecking />;
   }
 
+  const canUpgrade = membership.klasifikasi !== "premium";
+
+  const handleUpgrade = () => {
+    Report.info(
+      "Info",
+      "Fitur ini sedang dalam pengembangan. <br/><br/> Mohon maaf ketidaknyamanan ini",
+      "Okay"
+    );
+  };
+
   return (
-    <div className="py-8">
-      <Heading>Membership</Heading>
-      <SectionLayout>
+    <div className="mt-2">
+      <Typography variant="subtitle">Membership</Typography>
+      <Container otherClass="p-3">
         <div>
           <ListData label="Id membership" value={membership.id_membership} />
+          <ListData label="Paket" value={membership.klasifikasi} />
           <ListData
             label="Biaya bulanan"
             value={formatCurrency(Number(transaksi.nominal))}
@@ -46,8 +55,12 @@ const Membership = async () => {
             value={moment(Number(membership.endDate)).format("LL")}
           />
         </div>
-      </SectionLayout>
-      <ButtonStopMembership id_membership={profile?.id_membership} />
+      </Container>
+      {canUpgrade && (
+        <div onClick={handleUpgrade} className="mt-3">
+          <Button variant="text">Upgrade ke Premium</Button>
+        </div>
+      )}
     </div>
   );
 };

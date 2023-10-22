@@ -19,6 +19,7 @@ import Typography from "./Typography";
 import ResizeLayarButton from "./resizeLayarButton";
 import ToggleDarkMode from "./toogleDarkMode";
 import ListIcon from "./ListIcon";
+import ListData from "./listData";
 
 export {
   Button,
@@ -42,4 +43,5 @@ export {
   ToggleDarkMode,
   ItemTopBar,
   ListIcon,
+  ListData,
 };

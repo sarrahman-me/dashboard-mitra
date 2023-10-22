@@ -42,10 +42,10 @@ const Typography = ({
 
   const classColor = {
     primary: "text-slate-950 dark:text-slate-50",
-    secondary: "text-gray-600 dark:text-gray-500",
-    danger: "text-red-600 dark:text-red-500",
-    success: "text-green-950 dark:text-green-50",
-    warning: "text-orange-950 dark:text-orange-50",
+    secondary: "text-gray-500 dark:text-gray-500",
+    danger: "text-red-500 dark:text-red-500",
+    success: "text-green-500 dark:text-green-50",
+    warning: "text-orange-500 dark:text-orange-50",
   };
 
   const classAlign = {

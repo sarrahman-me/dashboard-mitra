@@ -84,7 +84,7 @@ export default function AppBar() {
         <div className="flex items-center">
           <ResizeLayarButton />
           <ToggleDarkMode />
-          <p className="text-sm hidden sm:flex rounded-full border border-indigo-500 p-1 shadow-sm">
+          <p className="text-sm hidden sm:flex rounded-full bg-white dark:bg-slate-800 p-1.5 shadow-sm">
             {profile?.email}
           </p>
         </div>
