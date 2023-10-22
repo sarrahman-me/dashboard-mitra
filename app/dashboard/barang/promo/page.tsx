@@ -1,7 +1,8 @@
 "use client";
 import { HeaderAndBackIcon, SearchBar } from "@/components/molecules";
 import { CatalogProducts } from "@/components/organisms";
-import { PaymentChecking, NotMembership } from "@/layouts";
+import { PaymentChecking } from "@/layouts";
+import { NotMembership } from "@/src/components/template";
 import { useSelector } from "react-redux";
 
 const BarangPromo = async () => {

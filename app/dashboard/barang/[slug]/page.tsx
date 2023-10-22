@@ -10,12 +10,12 @@ import {
 } from "@/components/organisms";
 import {
   DetailProductsComp,
-  NotMembership,
   PaymentChecking,
   SimulasiKeramik,
 } from "@/layouts";
 import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
 import QrSampleProducts from "@/layouts/qrSampleProducts";
+import { NotMembership } from "@/src/components/template";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 
 const DetailBarang = async ({ params }: { params: { slug: string } }) => {

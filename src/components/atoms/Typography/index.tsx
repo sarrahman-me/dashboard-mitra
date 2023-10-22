@@ -31,13 +31,13 @@ const Typography = ({
 }: TypographyProps) => {
   // Daftar kelas CSS untuk setiap variasi teks
   const classVariant = {
-    h1: "text-5xl font-semibold",
-    h2: "text-4xl font-semibold",
-    h3: "text-3xl font-semibold",
-    h4: "text-2xl font-semibold",
+    h1: "text-4xl md:text-5xl font-semibold",
+    h2: "text-3xl md:text-4xl font-semibold",
+    h3: "text-2xl md:text-3xl font-semibold",
+    h4: "text-xl md:text-2xl font-semibold",
     subtitle: "text-lg md:text-xl font-medium",
     body: "text-sm md:text-base",
-    helper: "sm:text-sm text-xs",
+    helper: "text-xs md:text-sm",
   };
 
   const classColor = {

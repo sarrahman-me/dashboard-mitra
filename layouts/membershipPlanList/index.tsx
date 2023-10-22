@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { Button, Heading } from "@/components/atoms";
 import { GetDataApi, formatCurrency } from "@/utils";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

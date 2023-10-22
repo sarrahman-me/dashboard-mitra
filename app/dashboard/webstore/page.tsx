@@ -5,12 +5,12 @@ import { SectionLayout } from "@/components/organisms";
 import {
   CreatingWebsite,
   FormWebstore,
-  NotMembership,
   PaymentChecking,
 } from "@/layouts";
 import { GetDataApi } from "@/src/utils";
 import moment from "moment";
 import { useSelector } from "react-redux";
+import { NotMembership } from "@/src/components/template";
 
 export default function Webstore() {
   const { profile, transaksi } = useSelector((state: any) => state.profile);
