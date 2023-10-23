@@ -1,11 +1,11 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
-import { GetDataApi } from "@/utils";
 import { useEffect, useState } from "react";
 import { CardProduct } from "../../molecules";
 import { IconButton } from "../../atoms";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { LoadingAnimation } from "../../template";
+import { GetDataApi } from "@/src/utils";
 
 interface CatalogProductsProps {
   atribut?: string;
@@ -31,7 +31,8 @@ export default function CatalogProducts({
       const response = await GetDataApi(
         `${process.env.NEXT_PUBLIC_HOST}/${pathUrl}?${
           atribut || ""
-        }&limit=42&page=${currentPage}`
+        }&limit=42&page=${currentPage}`,
+        3600
       );
       setBarang(response.data);
       setMetadata(response.metadata);

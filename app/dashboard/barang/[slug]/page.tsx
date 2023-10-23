@@ -30,17 +30,20 @@ const DetailBarang = () => {
   useEffect(() => {
     const fetchData = async () => {
       const responseBarang = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}`
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}`,
+        3600
       );
 
       const barang = responseBarang.data;
 
       const responseBarangSerupa = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/products/barang?kategori=${barang.kategori}&ukuran=${barang.ukuran}&motif=${barang.motif}&tekstur=${barang.tekstur}`
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang?kategori=${barang.kategori}&ukuran=${barang.ukuran}&motif=${barang.motif}&tekstur=${barang.tekstur}`,
+        3600
       );
 
       const responseBarangSejenis = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/products/barang?nama=${barang.nama_barang}&brand=${barang.brand}`
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang?nama=${barang.nama_barang}&brand=${barang.brand}`,
+        3600
       );
       setBarang(barang);
       setBarangSerupa(responseBarangSerupa.data);
