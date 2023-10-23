@@ -10,13 +10,18 @@ import React from "react";
 interface ContainerProps {
   children: React.ReactNode;
   otherClass?: string;
+  onClick?: () => void;
 }
 
-const Container = ({ children, otherClass }: ContainerProps) => {
+const Container = ({ children, otherClass, onClick }: ContainerProps) => {
   // Menggabungkan kelas CSS standar dengan kelas tambahan (jika ada).
   const className = `border border-md dark:border-none rounded-md bg-white dark:bg-slate-800   ${otherClass}`;
 
-  return <div className={className}>{children}</div>;
+  return (
+    <div onClick={onClick} className={className}>
+      {children}
+    </div>
+  );
 };
 
 export default Container;

@@ -1,8 +1,12 @@
 "use client";
 import { SearchBar } from "@/components/molecules";
-import { CatalogProducts, SwiperProduct } from "@/components/organisms";
+import { SwiperProduct } from "@/components/organisms";
 import { MotifList } from "@/layouts";
-import { NotMembership, PaymentChecking } from "@/src/components";
+import {
+  CatalogProducts,
+  NotMembership,
+  PaymentChecking,
+} from "@/src/components";
 import { GetDataApi } from "@/src/utils";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -38,7 +42,7 @@ const Barang = () => {
       <SearchBar />
       <MotifList />
       <p className="underline font-semibold m-2">{"Semua Barang"}</p>
-      <CatalogProducts persentaseHarga={persentaseHarga} />
+      <CatalogProducts />
       <SwiperProduct
         persentaseHarga={persentaseHarga}
         url="/dashboard/barang/promo"

@@ -24,8 +24,15 @@ import {
   SocialIcon,
   TextfieldGroup,
   TopBar,
+  CardProduct,
 } from "./molecules/index";
-import { Footer, NavBar, Sidebar, AppBar } from "./organisms/index";
+import {
+  Footer,
+  NavBar,
+  Sidebar,
+  AppBar,
+  CatalogProducts,
+} from "./organisms/index";
 import {
   LoadingAnimation,
   PaymentChecking,
@@ -62,12 +69,14 @@ export {
   SocialIcon,
   TextfieldGroup,
   TopBar,
+  CardProduct,
 
   //   organims
   Footer,
   NavBar,
   Sidebar,
   AppBar,
+  CatalogProducts,
 
   // template
   LoadingAnimation,

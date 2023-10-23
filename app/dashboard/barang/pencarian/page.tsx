@@ -1,14 +1,15 @@
 "use client";
-import { CatalogProducts } from "@/components/organisms";
 import { HeaderAndBackIcon } from "@/components/molecules";
 import { useSelector } from "react-redux";
-import { NotMembership, PaymentChecking } from "@/src/components";
+import {
+  CatalogProducts,
+  NotMembership,
+  PaymentChecking,
+} from "@/src/components";
 
 export default async function Pencarian(req: any) {
   const { query } = req.searchParams;
-  const { profile, transaksi, persentaseHarga } = useSelector(
-    (state: any) => state.profile
-  );
+  const { profile, transaksi } = useSelector((state: any) => state.profile);
 
   if (!profile?.id_membership) {
     return <NotMembership />;
@@ -21,11 +22,7 @@ export default async function Pencarian(req: any) {
   return (
     <div>
       <HeaderAndBackIcon title={`Hasil Pencarian`} />
-      <CatalogProducts
-        persentaseHarga={persentaseHarga}
-        atribut={`query=${query}`}
-        path="products/search"
-      />
+      <CatalogProducts atribut={`query=${query}`} path="products/search" />
     </div>
   );
 }

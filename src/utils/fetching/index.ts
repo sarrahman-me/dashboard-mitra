@@ -18,8 +18,7 @@ export async function GetDataApi(
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
-    return null;
+    throw new Error("Failed to fetch data");
   }
 }
 
@@ -37,8 +36,7 @@ export async function PostDataApi(url: string, payload: any): Promise<any> {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
-    return null;
+    throw new Error("Failed to fetch data");
   }
 }
 
@@ -56,8 +54,7 @@ export async function PatchDataApi(url: string, payload: any): Promise<any> {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
-    return null;
+    throw new Error("Failed to fetch data");
   }
 }
 
@@ -74,7 +71,6 @@ export async function DeleteDataApi(url: string): Promise<any> {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
-    return null;
+    throw new Error("Failed to fetch data");
   }
 }

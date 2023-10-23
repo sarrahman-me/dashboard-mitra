@@ -1,13 +1,16 @@
 "use client";
-import { CatalogProducts } from "@/components/organisms";
 import { HeaderAndBackIcon, SearchBar } from "@/components/molecules";
 import { useSelector } from "react-redux";
-import { NotMembership, PaymentChecking } from "@/src/components";
+import {
+  CatalogProducts,
+  NotMembership,
+  PaymentChecking,
+} from "@/src/components";
 
 export default async function Motif({ params }: { params: { motif: string } }) {
   const motif = params.motif;
 
-  const { profile, transaksi, persentaseHarga } = useSelector(
+  const { profile, transaksi } = useSelector(
     (state: any) => state.profile
   );
 
@@ -23,10 +26,7 @@ export default async function Motif({ params }: { params: { motif: string } }) {
     <div>
       <SearchBar />
       <HeaderAndBackIcon title={`Motif ${motif}`} />
-      <CatalogProducts
-        persentaseHarga={persentaseHarga}
-        atribut={`motif=${motif}`}
-      />
+      <CatalogProducts atribut={`motif=${motif}`} />
     </div>
   );
 }

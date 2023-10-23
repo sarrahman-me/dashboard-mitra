@@ -1,18 +1,21 @@
 "use client";
-import { CardProduct } from "@/src/components";
-import { GetDataApi } from "@/utils";
 import { useRouter, useSearchParams } from "next/navigation";
+import { GetDataApi } from "@/utils";
 import { useEffect, useState } from "react";
-import {
-  BsFillArrowLeftCircleFill,
-  BsFillArrowRightCircleFill,
-} from "react-icons/bs";
+import { CardProduct } from "../../molecules";
+import { IconButton } from "../../atoms";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { LoadingAnimation } from "../../template";
 
-export default function CatalogProducts(props: {
+interface CatalogProductsProps {
   atribut?: string;
   path?: string;
-  persentaseHarga: number;
-}) {
+}
+
+export default function CatalogProducts({
+  atribut,
+  path,
+}: CatalogProductsProps) {
   const router = useRouter();
   const params = useSearchParams();
   const page = params.get("page");
@@ -21,13 +24,13 @@ export default function CatalogProducts(props: {
   const [metadata, setMetadata] = useState({} as any);
   const [loading, setLoading] = useState(true);
 
-  const path = props.path || "products/barang";
+  const pathUrl = path || "products/barang";
 
   useEffect(() => {
     async function fetchData() {
       const response = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/${path}?${
-          props.atribut || ""
+        `${process.env.NEXT_PUBLIC_HOST}/${pathUrl}?${
+          atribut || ""
         }&limit=42&page=${currentPage}`
       );
       setBarang(response.data);
@@ -35,7 +38,7 @@ export default function CatalogProducts(props: {
       setLoading(false);
     }
     fetchData();
-  }, [currentPage, props.atribut, path]);
+  }, [currentPage, atribut, pathUrl]);
 
   const handleNextPage = () => {
     if (currentPage < metadata?.totalPages) {
@@ -54,15 +57,13 @@ export default function CatalogProducts(props: {
   return (
     <div>
       <div className="p-2">
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-y-4 gap-x-2">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-8 gap-y-4 gap-x-2">
           {loading ? (
-            <div className="text-center">Loading...</div>
+            <LoadingAnimation />
           ) : barang.length > 0 ? (
             barang.map((item: any, i: any) => (
               <div key={i}>
-                <CardProduct
-                  product={item}
-                />
+                <CardProduct product={item} />
               </div>
             ))
           ) : (
@@ -70,8 +71,11 @@ export default function CatalogProducts(props: {
           )}
         </div>
       </div>
+
       {!loading && barang.length > 0 ? (
         <div className="flex justify-between items-center p-2">
+          {/* detail pagination */}
+
           <div>
             <p className="text-xs md:text-sm text-gray-500">
               {metadata.totalData > 0
@@ -85,21 +89,22 @@ export default function CatalogProducts(props: {
                 : "Tidak ada barang yang tersedia"}
             </p>
           </div>
-          <div className="flex justify-around items-center">
-            <button
-              onClick={handlePrevPage}
+
+          {/* button pagination */}
+
+          <div className="flex justify-around items-center space-x-5 md:space-x-10">
+            <IconButton
+              size="small"
+              icon={<AiOutlineArrowLeft />}
               disabled={currentPage === 1}
-              className="text-2xl text-indigo-500 disabled:text-gray-400 disabled:cursor-not-allowed mr-7 hover:bg-indigo-500 disabled:bg-white hover:text-white rounded-full"
-            >
-              <BsFillArrowLeftCircleFill />
-            </button>
-            <button
-              onClick={handleNextPage}
+              onClick={handlePrevPage}
+            />
+            <IconButton
+              size="small"
+              icon={<AiOutlineArrowRight />}
               disabled={currentPage === metadata?.totalPages}
-              className="text-2xl text-indigo-500 disabled:text-gray-400 disabled:cursor-not-allowed hover:bg-indigo-500 disabled:bg-white hover:text-white rounded-full"
-            >
-              <BsFillArrowRightCircleFill />
-            </button>
+              onClick={handleNextPage}
+            />
           </div>
         </div>
       ) : null}

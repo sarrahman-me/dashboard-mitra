@@ -1,11 +1,14 @@
 "use client";
 import { HeaderAndBackIcon, SearchBar } from "@/components/molecules";
-import { CatalogProducts } from "@/components/organisms";
-import { NotMembership, PaymentChecking } from "@/src/components";
+import {
+  CatalogProducts,
+  NotMembership,
+  PaymentChecking,
+} from "@/src/components";
 import { useSelector } from "react-redux";
 
 const BarangPromo = async () => {
-  const { profile, transaksi, persentaseHarga } = useSelector(
+  const { profile, transaksi } = useSelector(
     (state: any) => state.profile
   );
 
@@ -21,10 +24,7 @@ const BarangPromo = async () => {
     <div>
       <SearchBar />
       <HeaderAndBackIcon title="Promo" />
-      <CatalogProducts
-        persentaseHarga={persentaseHarga}
-        atribut={`promo=true`}
-      />
+      <CatalogProducts atribut={`promo=true`} />
     </div>
   );
 };
