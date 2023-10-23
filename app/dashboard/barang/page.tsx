@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const Barang = () => {
-  const { profile, transaksi, persentaseHarga } = useSelector(
+  const { profile, transaksi } = useSelector(
     (state: any) => state.profile
   );
   const [barangPromo, setPromo] = useState([] as any);

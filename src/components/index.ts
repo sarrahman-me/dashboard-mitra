@@ -41,6 +41,8 @@ import {
   MembershipPlanList,
   FormWebstore,
   CreatingWebsite,
+  DeskripsiProduk,
+  CardProductDetail,
 } from "./template";
 
 export {
@@ -87,4 +89,6 @@ export {
   MembershipPlanList,
   FormWebstore,
   CreatingWebsite,
+  DeskripsiProduk,
+  CardProductDetail,
 };

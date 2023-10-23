@@ -1,4 +1,6 @@
+import CardProductDetail from "./cardProductDetail";
 import CreatingWebsite from "./creatingWebsite";
+import DeskripsiProduk from "./deskripsiProduct";
 import FormWebstore from "./formWebstore";
 import LoadingAnimation from "./loadingAnimation";
 import MembershipPlanList from "./membershipPlanList";
@@ -12,4 +14,6 @@ export {
   PaymentChecking,
   FormWebstore,
   CreatingWebsite,
+  DeskripsiProduk,
+  CardProductDetail,
 };

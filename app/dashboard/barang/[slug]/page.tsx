@@ -1,57 +1,59 @@
+"use client";
 import {
   HeaderAndBackIcon,
-  IconSelect,
   SearchBar,
 } from "@/components/molecules";
-import { SectionLayout } from "@/components/organisms";
-import { DetailProductsComp, SimulasiKeramik } from "@/layouts";
-import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
-import QrSampleProducts from "@/layouts/qrSampleProducts";
 import {
+  CardProductDetail,
   CatalogProducts,
+  DeskripsiProduk,
   NotMembership,
   PaymentChecking,
   SwiperProduct,
 } from "@/src/components";
-import { SSRGetDataApi } from "@/utils/fetchingSSR";
+import { SectionLayout } from "@/components/organisms";
+import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
+import QrSampleProducts from "@/layouts/qrSampleProducts";
+import { GetDataApi, upPriceWithPercen } from "@/src/utils";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-const DetailBarang = async ({ params }: { params: { slug: string } }) => {
+const DetailBarang = () => {
+  const params = useParams();
   const slug = params.slug;
-
-  const responseProfile = await SSRGetDataApi(
-    `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`
+  const [barangSejenis, setBarangSejenis] = useState([] as any);
+  const [barangSerupa, setBarangSerupa] = useState([] as any);
+  const [barang, setBarang] = useState({} as any);
+  const { profile, transaksi, persentaseHarga, webstore } = useSelector(
+    (state: any) => state.profile
   );
 
-  const profile = responseProfile.data;
-  let membership = null;
-  let transaksi = null;
-  let persentaseHarga = null;
-  let webstore = null;
-
-  if (profile?.id_membership) {
-    const responseMembership = await SSRGetDataApi(
-      `${process.env.NEXT_PUBLIC_HOST}/membership/member/${profile?.id_membership}`
-    );
-
-    membership = responseMembership.data.membership;
-    persentaseHarga = responseMembership?.data?.harga?.persentase;
-
-    if (membership?.id_transaksi) {
-      const responseTransaksi = await SSRGetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/finance/transaksi/${membership.id_transaksi}`
+  useEffect(() => {
+    const fetchData = async () => {
+      const responseBarang = await GetDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}`
       );
 
-      transaksi = responseTransaksi.data;
-    }
-  }
+      const barang = responseBarang.data;
 
-  if (profile?.id_webstore) {
-    const responseWebstore = await SSRGetDataApi(
-      `${process.env.NEXT_PUBLIC_HOST}/webstore/${profile?.id_webstore}`
-    );
+      const responseBarangSerupa = await GetDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang?kategori=${barang.kategori}&ukuran=${barang.ukuran}&motif=${barang.motif}&tekstur=${barang.tekstur}`
+      );
 
-    webstore = responseWebstore.data;
-  }
+      const responseBarangSejenis = await GetDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang?nama=${barang.nama_barang}&brand=${barang.brand}`
+      );
+      setBarang(barang);
+      setBarangSerupa(responseBarangSerupa.data);
+      setBarangSejenis(responseBarangSejenis.data);
+    };
+    fetchData();
+  }, [slug]);
+
+  // menghitung harga
+  const harga = upPriceWithPercen(barang?.harga, persentaseHarga);
+  const hargaPromo = upPriceWithPercen(barang?.harga_promo, persentaseHarga);
 
   if (!profile?.id_membership) {
     return <NotMembership />;
@@ -61,75 +63,34 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
     return <PaymentChecking />;
   }
 
-  const responseBarang = await SSRGetDataApi(
-    `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}`
-  );
-
-  const barang = responseBarang.data;
-
-  const responseBarangSerupa = await SSRGetDataApi(
-    `${process.env.NEXT_PUBLIC_HOST}/products/barang?kategori=${barang.kategori}&ukuran=${barang.ukuran}&motif=${barang.motif}&tekstur=${barang.tekstur}`
-  );
-
-  const responseBarangSejenis = await SSRGetDataApi(
-    `${process.env.NEXT_PUBLIC_HOST}/products/barang?nama=${barang.nama_barang}&brand=${barang.brand}`
-  );
-
-  const harga =
-    Number(barang?.harga) + Number((barang?.harga * persentaseHarga) / 100);
-  const hargaPromo =
-    Number(barang?.harga_promo) +
-    Number((barang?.harga_promo * persentaseHarga) / 100);
-
-  const barangSejenis = responseBarangSejenis.data;
-  const barangSerupa = responseBarangSerupa.data;
-
   return (
     <div>
       <SearchBar />
+
       <HeaderAndBackIcon title={`Detail ${barang.kategori}`} />
-      <DetailProductsComp
+
+      <CardProductDetail
         barang={barang}
         harga={harga}
         hargaPromo={hargaPromo}
       />
+
+      {/* detail produk */}
+
       <p className="underline font-semibold m-2">Detail Produk</p>
-      <SectionLayout>
-        <div className="flex flex-col md:flex-row ml-2">
-          <div className="text-sm md:text-base divide-y-8 divide-transparent my-2 w-1/2">
-            <span className="flex items-center">
-              <p className="font-medium mr-2">Ukuran:</p> {barang.ukuran}
-            </span>
-            <span className="flex items-center">
-              <p className="font-medium mr-2">Kualitas:</p> {barang.kualitas}
-            </span>
-            <span className="flex items-center">
-              <p className="font-medium mr-2">Motif:</p> {barang.motif}
-            </span>
-            <span className="flex items-center">
-              <p className="font-medium mr-2">Tekstur:</p> {barang.tekstur}
-            </span>
-          </div>
-          <div className="w-1/2">
-            <div className="my-2">
-              <div className="my-2">
-                <IconSelect options={barang.penggunaan_umum} />
-              </div>
-            </div>
-            <div className="my-2">
-              <div className="my-2">
-                <IconSelect options={barang.area_penggunaan} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </SectionLayout>
-      <div>
+      <DeskripsiProduk barang={barang} />
+
+      {/* simulasi keramik */}
+
+      {/* <div>
         <p className="underline font-semibold m-2">{`Design Patern`}</p>
         <SectionLayout>
           <SimulasiKeramik ukuran={barang.ukuran} imageUrl={barang.images[0]} />
         </SectionLayout>
-      </div>
+      </div> */}
+
+      {/* kalkulator keramik */}
+
       <div>
         <p className="underline font-semibold m-2">{`Kalkulator`}</p>
         <SectionLayout>
@@ -141,16 +102,25 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
           />
         </SectionLayout>
       </div>
+
+      {/* qrcode sample product */}
+
       {profile?.id_webstore && (
         <div>
           <QrSampleProducts webstore={webstore} barang={barang} />
         </div>
       )}
+
+      {/* barang sejenis */}
+
       {barangSejenis.length > 1 ? (
         <div>
           <SwiperProduct products={barangSejenis} title={"Motif Lainnya"} />
         </div>
       ) : null}
+
+      {/* barang serupa */}
+
       {barangSerupa.length > 1 ? (
         <div>
           <p className="underline font-semibold m-2">{`Rekomendasi`}</p>

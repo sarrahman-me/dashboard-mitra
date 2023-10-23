@@ -12,6 +12,7 @@ import {
   setPersentaseHarga,
   setProfile,
   setTransaksi,
+  setWebstore,
 } from "@/src/redux/slice/profile";
 
 /**
@@ -49,6 +50,7 @@ export default function AppBar() {
       let membership = null;
       let transaksi = null;
       let persentaseHarga = null;
+      let webstore = null;
 
       if (profile?.id_membership) {
         const responseMembership = await GetDataApi(
@@ -59,6 +61,13 @@ export default function AppBar() {
         persentaseHarga = responseMembership?.data?.harga?.persentase;
       }
 
+      if (profile?.id_webstore) {
+        const responseWebstore = await GetDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/webstore/${profile.id_webstore}`
+        );
+        webstore = responseWebstore?.data;
+      }
+
       if (membership?.id_transaksi) {
         const responseTransaksi = await GetDataApi(
           `${process.env.NEXT_PUBLIC_HOST}/finance/transaksi/${membership.id_transaksi}`,
@@ -67,6 +76,7 @@ export default function AppBar() {
 
         transaksi = responseTransaksi?.data;
       }
+      dispatch(setWebstore(webstore));
       dispatch(setTransaksi(transaksi));
       dispatch(setPersentaseHarga(persentaseHarga));
       dispatch(setMembership(membership));

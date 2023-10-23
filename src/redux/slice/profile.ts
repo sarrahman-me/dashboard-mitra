@@ -7,6 +7,7 @@ const profileSlice = createSlice({
     membership: {},
     persentaseHarga: 0,
     transaksi: {},
+    webstore: {},
   },
   reducers: {
     setProfile: (state, action) => {
@@ -21,10 +22,18 @@ const profileSlice = createSlice({
     setTransaksi: (state, action) => {
       state.transaksi = action.payload;
     },
+    setWebstore: (state, action) => {
+      state.webstore = action.payload;
+    },
   },
 });
 
-export const { setProfile, setMembership, setTransaksi, setPersentaseHarga } =
-  profileSlice.actions;
+export const {
+  setProfile,
+  setMembership,
+  setTransaksi,
+  setPersentaseHarga,
+  setWebstore,
+} = profileSlice.actions;
 
 export default profileSlice.reducer;
