@@ -4,6 +4,7 @@ import {
   CardProductDetail,
   CatalogProducts,
   DeskripsiProduk,
+  LoadingAnimation,
   NotMembership,
   PaymentChecking,
   SwiperProduct,
@@ -58,6 +59,10 @@ const DetailBarang = () => {
 
   if (!transaksi?.verifikasi) {
     return <PaymentChecking />;
+  }
+
+  if (!barang.nama_barang) {
+    return <LoadingAnimation />;
   }
 
   return (
