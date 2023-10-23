@@ -1,9 +1,9 @@
 "use client";
 import { Heading } from "@/components/atoms";
-import { CatalogProducts, SectionLayout } from "@/components/organisms";
 import SearchByImage from "@/public/searchByImage.png";
 import {
   Button,
+  CatalogProducts,
   Container,
   FileInput,
   NotMembership,
@@ -103,25 +103,27 @@ export default function Experiment() {
             <p className="font-semibold">Pencarian keramik dengan gambar</p>
           </span>
 
-          <div className="flex justify-center items-center my-1">
-            <Image
-              src={SearchByImage}
-              alt="pencarian dari gambar"
-              className="max-w-xs"
-            />
-          </div>
+          <div className="flex flex-col md:flex-row">
+            <div className="flex justify-center items-center my-1">
+              <Image
+                src={SearchByImage}
+                alt="pencarian dari gambar"
+                className="max-w-xs"
+              />
+            </div>
 
-          <div className="my-4 space-y-8">
-            <Typography>
-              Apakah kamu pernah pergi ke rumah kerabat mu dan melihat keramik
-              yang menarik pandangan matamu tetapi sayangnya kamu tidak tahu
-              dimana kamu menemukan keramik yang sama serupa.
-            </Typography>
-            <Typography>
-              Dari permasalahan itu kami mencoba mengembangkan fitur ini,
-              berikan saran dan masukan terbaik mu dari fitur ini untuk
-              pengembangan yang lebih baik.
-            </Typography>
+            <div className="my-4 space-y-8 md:ml-2">
+              <Typography>
+                Apakah kamu pernah pergi ke rumah kerabat mu dan melihat keramik
+                yang menarik pandangan matamu tetapi sayangnya kamu tidak tahu
+                dimana kamu menemukan keramik yang sama serupa.
+              </Typography>
+              <Typography>
+                Dari permasalahan itu kami mencoba mengembangkan fitur ini,
+                berikan saran dan masukan terbaik mu dari fitur ini untuk
+                pengembangan yang lebih baik.
+              </Typography>
+            </div>
           </div>
         </div>
       </Container>
@@ -138,19 +140,6 @@ export default function Experiment() {
           </Button>
         </div>
       </Container>
-
-      {responsePredict.message === "berhasil" && (
-        <SectionLayout>
-          <div>
-            <p className="font-semibold underline">Hasil pencarian barang</p>
-            <CatalogProducts
-              persentaseHarga={0}
-              atribut={`query=${responsePredict.predicted_class}`}
-              path="products/search"
-            />
-          </div>
-        </SectionLayout>
-      )}
 
       {responsePredict.message === "berhasil" && (
         <Container otherClass="p-2 my-1">
@@ -176,6 +165,18 @@ export default function Experiment() {
                   </Typography>
                 ))}
             </div>
+          </div>
+        </Container>
+      )}
+
+      {responsePredict.message === "berhasil" && (
+        <Container otherClass="p-2 my-1">
+          <div>
+            <p className="font-semibold underline">Hasil pencarian barang</p>
+            <CatalogProducts
+              atribut={`query=${responsePredict.predicted_class}`}
+              path="products/search"
+            />
           </div>
         </Container>
       )}
