@@ -40,11 +40,13 @@ export default function CardProductDetail({
         onContextMenu={handleKlikKanan}
         className="md:w-1/3 flex justify-center items-center w-full m-2 md:m-0"
       >
-        <img
-          src={barang.images[0]}
-          alt={barang.slug}
-          className="object-contain max-h-44 border"
-        />
+        {barang.images && (
+          <img
+            src={barang?.images[0]}
+            alt={barang.slug}
+            className="object-contain max-h-44 border"
+          />
+        )}
       </div>
 
       {/* detail */}
