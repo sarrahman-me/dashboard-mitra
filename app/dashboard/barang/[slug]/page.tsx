@@ -74,7 +74,7 @@ const DetailBarang = () => {
 
       {/* detail produk */}
 
-      <p className="underline font-semibold m-2">Detail Produk</p>
+      <p className="underline font-semibold my-2">Detail Produk</p>
       <DeskripsiProduk barang={barang} />
 
       {/* simulasi keramik */}
@@ -89,7 +89,7 @@ const DetailBarang = () => {
       {/* kalkulator keramik */}
 
       <div>
-        <p className="underline font-semibold m-2">{`Kalkulator`}</p>
+        <p className="underline font-semibold my-2">{`Kalkulator`}</p>
         <KalkulatorKeramik
           penggunaan_umum={barang.penggunaan_umum}
           ukuran={barang.ukuran}

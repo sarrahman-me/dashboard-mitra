@@ -57,9 +57,11 @@ export default function CardProductDetail({
             {barang.kategori}
           </p>
 
-          <Typography>
-            {(barang?.nama_barang as string).toUpperCase()} - {barang.warna}
-          </Typography>
+          {barang.nama_barang && (
+            <Typography>
+              {(barang?.nama_barang as string).toUpperCase()} - {barang.warna}
+            </Typography>
+          )}
 
           <Typography>{barang.brand}</Typography>
           <Typography>Stok {barang.stok} dus</Typography>
