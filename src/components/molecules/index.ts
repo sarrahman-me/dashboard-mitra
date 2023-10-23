@@ -1,4 +1,5 @@
 import NavGroup from "./NavGroup";
+import Tabs from "./Tabs";
 import TextfieldGroup from "./TextfieldGroup";
 import TopBar from "./TopBar";
 import CardMembershipPlan from "./cardMembershipPlan";
@@ -14,4 +15,5 @@ export {
   TopBar,
   CardMembershipPlan,
   CardProduct,
+  Tabs,
 };

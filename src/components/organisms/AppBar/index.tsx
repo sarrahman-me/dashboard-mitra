@@ -91,7 +91,7 @@ export default function AppBar() {
         <div className="sm:hidden">
           <Logo />
         </div>
-        <div className="flex items-center">
+        <div className="flex space-x-2 md:space-x-4 items-center">
           <ResizeLayarButton />
           <ToggleDarkMode />
           <p className="text-sm hidden sm:flex rounded-full bg-white dark:bg-slate-800 p-1.5 shadow-sm">

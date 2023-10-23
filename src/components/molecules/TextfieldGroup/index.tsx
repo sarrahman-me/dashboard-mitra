@@ -45,7 +45,7 @@ const TextfieldGroup = ({
   error,
 }: TextfieldGroupProps) => {
   return (
-    <div className="divide-y-8 divide-transparent">
+    <div className="space-y-3">
       {forms.map((form, i) => {
         /**
          * mendefinisikan select component

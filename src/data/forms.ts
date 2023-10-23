@@ -49,4 +49,53 @@ const formLogin = [
   },
 ];
 
-export { formRegister, formVerifyEmail, formLogin };
+const ukuranLantai = [
+  "20x20",
+  "25x25",
+  "30x30",
+  "40x40",
+  "50x50",
+  "60x60",
+  "80x80",
+];
+
+const ukuranDinding = ["25x20", "25x40", "25x50", "30x60", "60x120"];
+
+const kalkulatorForm = [
+  {
+    name: "tipe",
+    label: "Tipe",
+    type: "select",
+    list: ["Lantai", "Dinding"],
+    placeholder: "pilih tipe",
+  },
+  {
+    name: "ukuran",
+    label: "Ukuran",
+    type: "select",
+    list: ukuranLantai.concat(ukuranDinding),
+    placeholder: "pilih ukuran",
+  },
+  {
+    name: "isi",
+    label: "Isi per dus",
+    type: "number",
+  },
+  {
+    name: "panjang",
+    label: "Panjang",
+    type: "number",
+  },
+  {
+    name: "lebar",
+    label: "Lebar",
+    type: "number",
+  },
+  {
+    name: "tinggi",
+    label: "Tinggi",
+    type: "number",
+  },
+];
+
+export { formRegister, formVerifyEmail, formLogin, kalkulatorForm };

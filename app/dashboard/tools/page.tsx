@@ -1,19 +1,68 @@
 "use client";
-import { Button, Input, Select } from "@/components/atoms";
-import { SectionLayout } from "@/components/organisms";
-import { HitungKeramik } from "@/functions";
-import { GetDataApi, formatCurrency } from "@/utils";
-import { useEffect, useState } from "react";
+import {
+  Button,
+  Container,
+  Tabs,
+  Textfield,
+  TextfieldGroup,
+  Typography,
+} from "@/src/components";
+import kalkulator from "@/public/kalkulator.png";
+import map from "@/public/map-and-location.png";
+import { kalkulatorForm } from "@/src/data/forms";
+import Image from "next/image";
+import { useState } from "react";
+import { formatCurrency } from "@/src/utils";
 
-export default function Tools() {
-  const [page, setPage] = useState("kalkulator");
-  const [panjang, setPanjang] = useState(0);
-  const [lebar, setLebar] = useState(0);
-  const [daftarUkuran, setDaftarUkuran] = useState([] as any);
-  const [ukuran, setUkuran] = useState("");
+// halaman kalkulator
+
+const Kalkulator = () => {
+  const [data, setData] = useState({
+    isi: "",
+    lebar: "",
+    panjang: "",
+    tinggi: "",
+    tipe: "",
+    ukuran: "",
+  });
   const [hasil, setHasil] = useState({} as any);
 
-  // state ongkir
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log(data);
+  };
+
+  return (
+    <div>
+      <Typography variant="subtitle">Kalkulator</Typography>
+      <div className="flex flex-col md:flex-row my-2">
+        <div className="space-y-4 flex-1">
+          <form onSubmit={handleSubmit} className="my-2 space-y-4">
+            <TextfieldGroup
+              forms={kalkulatorForm}
+              data={data}
+              setData={setData}
+            />
+            <Button size="full" type="submit">
+              Hitung
+            </Button>
+          </form>
+          <Container otherClass="space-y-2 p-2">
+            <Typography>Kebutuhan: {0}</Typography>
+            <Typography>Diameter ruangan: {0}</Typography>
+            <Typography>Diameter per dus: {0}</Typography>
+          </Container>
+        </div>
+
+        <div className="hidden flex-1 md:flex justify-center items-center">
+          <Image src={kalkulator} alt={"kalkulator"} className="max-w-xs m-2" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Ongkir = () => {
   const [ongkirState, setOngkirState] = useState({
     ongkir: 0,
     origin: "",
@@ -27,12 +76,6 @@ export default function Tools() {
     status: "",
     harga: 0,
   });
-
-  const handleHitung = (e: any) => {
-    e.preventDefault();
-    const hasilHitung = HitungKeramik(ukuran, panjang, lebar);
-    setHasil(hasilHitung);
-  };
 
   const handleCekOngkir = async (e: any) => {
     e.preventDefault();
@@ -55,153 +98,84 @@ export default function Tools() {
     });
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const ukuranResponse = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/products/ukuran`
-      );
-      const listUkuran = ukuranResponse.data.map((a: any) => a.nama_ukuran);
-      setDaftarUkuran(listUkuran);
-    };
-    fetchData();
-  }, []);
-
   return (
-    <div>
-      <ul className="my-5 flex overflow-scroll justify-center text-sm font-medium text-center text-slate-500 dark:text-slate-400">
-        <Tab
-          label="Kalkulator"
-          isActive={page === "kalkulator"}
-          onClick={() => setPage("kalkulator")}
-        />
-        <Tab
-          label="Cek Ongkir"
-          isActive={page === "cek-ongkir"}
-          onClick={() => setPage("cek-ongkir")}
-        />
-      </ul>
-      {page === "kalkulator" ? (
-        <div className="md:w-1/2">
-          <form
-            onSubmit={handleHitung}
-            className="divide-transparent divide-y-8"
-          >
-            <Select
-              value={ukuran}
-              setValue={setUkuran}
-              options={daftarUkuran}
-            />
-            <Input
-              type="number"
-              label={"Panjang Ruangan"}
-              name={"panjang"}
-              onChange={(event) => setPanjang(event.target.value)}
-            />
-            <Input
-              type="number"
-              label={"Lebar Ruangan"}
-              name={"lebar"}
-              onChange={(event) => setLebar(event.target.value)}
-            />
-            <Button isFullWidth={true} isSubmit={true}>
-              Hitung
-            </Button>
-          </form>
-          {hasil.kebutuhan && (
-            <SectionLayout>
-              <div className="divide-y-8 divide-transparent">
-                <p>Kebutuhan : {hasil?.kebutuhan} Dus</p>
-                <p>
-                  Diameter ruangan : {hasil?.diameter_ruang} m<sup>2</sup>
-                </p>
-                <p>
-                  Diameter per dus :{" "}
-                  {(hasil?.diameter_perdus as number).toFixed(2)} m<sup>2</sup>
-                </p>
-              </div>
-            </SectionLayout>
-          )}
+    <div className="flex flex-col md:flex-row">
+      <div className=" flex-1 ">
+        <form onSubmit={handleCekOngkir} className="space-y-3 ">
+          <Textfield
+            fullWidth
+            type="number"
+            label={"Perkiraan ongkos per km"}
+            placeholder="10000"
+            name={"ongkir"}
+            onChange={(value) =>
+              setOngkirState({
+                ...ongkirState,
+                ongkir: value,
+              })
+            }
+          />
+          <Textfield
+            fullWidth
+            label={"Alamat asal"}
+            name={"origin"}
+            onChange={(value) =>
+              setOngkirState({
+                ...ongkirState,
+                origin: value,
+              })
+            }
+          />
+          <Textfield
+            fullWidth
+            label={"Alamat tujuan"}
+            name={"destination"}
+            onChange={(value) =>
+              setOngkirState({
+                ...ongkirState,
+                destination: value,
+              })
+            }
+          />
+          <Button type={"submit"} size="full">
+            Cek ongkir
+          </Button>
+        </form>
+        {resultOngkir.status === "OK" && (
+          <Container>
+            <div className="divide-y-8 divide-transparent">
+              <p>Asal : {resultOngkir.asal}</p>
+              <p>Tujuan : {resultOngkir.tujuan}</p>
+              <p>Jarak : {resultOngkir.jarak}</p>
+              <p>Estimasi waktu : {resultOngkir.waktu}</p>
+              <p>Harga : {formatCurrency(resultOngkir.harga)}</p>
+            </div>
+          </Container>
+        )}
+        <div className="bg-warning rounded-md bg-white dark:bg-slate-800 mt-5 p-4 text-center text-sm">
+          <h2 className="text-xl font-semibold text-orange-500">Peringatan</h2>
+          <p className="mt-2">
+            fitur ini masih dalam tahap pengembangan lebih lanjut, oleh karena
+            itu, mungkin terdapat kesalahan dan ketidakpastian dalam informasi
+            yang diberikan.
+          </p>
         </div>
-      ) : (
-        <div className="md:w-1/2">
-          <form
-            onSubmit={handleCekOngkir}
-            className="divide-transparent divide-y-8"
-          >
-            <Input
-              type="number"
-              label={"Perkiraan ongkos per km"}
-              placeholder="10000"
-              name={"ongkir"}
-              onChange={(event) =>
-                setOngkirState({
-                  ...ongkirState,
-                  ongkir: event.target.value,
-                })
-              }
-            />
-            <Input
-              label={"Alamat asal"}
-              name={"origin"}
-              onChange={(event) =>
-                setOngkirState({
-                  ...ongkirState,
-                  origin: event.target.value,
-                })
-              }
-            />
-            <Input
-              label={"Alamat tujuan"}
-              name={"destination"}
-              onChange={(event) =>
-                setOngkirState({
-                  ...ongkirState,
-                  destination: event.target.value,
-                })
-              }
-            />
-            <Button isFullWidth={true} isSubmit={true}>
-              Cek ongkir
-            </Button>
-          </form>
-          {resultOngkir.status === "OK" && (
-            <SectionLayout>
-              <div className="divide-y-8 divide-transparent">
-                <p>Asal : {resultOngkir.asal}</p>
-                <p>Tujuan : {resultOngkir.tujuan}</p>
-                <p>Jarak : {resultOngkir.jarak}</p>
-                <p>Estimasi waktu : {resultOngkir.waktu}</p>
-                <p>Harga : {formatCurrency(resultOngkir.harga)}</p>
-              </div>
-            </SectionLayout>
-          )}
-          <div className="bg-warning rounded-md bg-white dark:bg-slate-800 mt-5 p-4 text-center text-sm">
-            <h2 className="text-xl font-semibold text-orange-500">
-              Peringatan
-            </h2>
-            <p className="mt-2">
-              fitur ini masih dalam tahap pengembangan lebih lanjut, oleh karena
-              itu, mungkin terdapat kesalahan dan ketidakpastian dalam informasi
-              yang diberikan.
-            </p>
-          </div>
-        </div>
-      )}
+      </div>
+
+      <div className="hidden flex-1 md:flex justify-center items-center">
+        <Image src={map} alt={"map"} className="max-w-xs m-2" />
+      </div>
     </div>
   );
-}
+};
 
-function Tab(props: { label: string; isActive: boolean; onClick: () => void }) {
+export default function Tools() {
   return (
-    <li
-      onClick={props.onClick}
-      className={`mr-2 cursor-pointer whitespace-nowrap inline-block p-4 rounded ${
-        props.isActive
-          ? "bg-indigo-600 text-white"
-          : "bg-slate-100 text-indigo-600 dark:bg-slate-800 dark:text-indigo-500"
-      }`}
-    >
-      {props.label}
-    </li>
+    <div>
+      <Tabs
+        lists={["Kalkulator", "Ongkir"]}
+        panels={[<Kalkulator key="kalkulator" />, <Ongkir key="ongkir" />]}
+      />
+    </div>
   );
 }

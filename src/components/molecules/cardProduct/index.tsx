@@ -37,7 +37,7 @@ const CardProduct = ({ product }: CardProductProps) => {
 
   return (
     <Container
-      otherClass="relative hover:shadow cursor-pointer dark:hover:shadow-gray-50"
+      otherClass="relative hover:shadow cursor-pointer dark:hover:shadow-gray-500"
       onClick={() => {
         router.push(`/dashboard/barang/${product.slug}`);
       }}

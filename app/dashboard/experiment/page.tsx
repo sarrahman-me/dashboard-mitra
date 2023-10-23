@@ -132,7 +132,7 @@ export default function Experiment() {
         <div className="space-y-3">
           <FileInput setFile={setGambar} previewFile />
           <Button
-            disabled={loading}
+            loading={loading}
             icon={<FaWandMagicSparkles />}
             onClick={handleCari}
           >

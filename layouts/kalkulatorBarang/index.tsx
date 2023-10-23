@@ -98,9 +98,6 @@ const KalkulatorKeramik = ({
               <span className="text-base divide-y-4 divide-transparent">
                 Estimasi Biaya:
                 {formatCurrency(Number(harga) * hasil?.kebutuhan)}
-                <p className="text-xs">
-                  (*berdasarkan hasil kebutuhan dan harga barang)
-                </p>
               </span>
             )}
           </div>

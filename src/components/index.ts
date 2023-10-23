@@ -25,6 +25,7 @@ import {
   TextfieldGroup,
   TopBar,
   CardProduct,
+  Tabs,
 } from "./molecules/index";
 import {
   Footer,
@@ -73,6 +74,7 @@ export {
   TextfieldGroup,
   TopBar,
   CardProduct,
+  Tabs,
 
   //   organims
   Footer,
