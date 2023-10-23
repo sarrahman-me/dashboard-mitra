@@ -1,18 +1,26 @@
 "use client";
-import { Button, Heading } from "@/components/atoms";
-import { ImageInputWithPreview } from "@/components/molecules";
+import { Heading } from "@/components/atoms";
 import { CatalogProducts, SectionLayout } from "@/components/organisms";
 import SearchByImage from "@/public/searchByImage.png";
-import { NotMembership, PaymentChecking } from "@/src/components";
+import {
+  Button,
+  Container,
+  FileInput,
+  NotMembership,
+  PaymentChecking,
+  Typography,
+} from "@/src/components";
 import { PostDataApi } from "@/utils";
 import Image from "next/image";
 import { Loading, Notify } from "notiflix";
 import { useState } from "react";
+import { FaWandMagicSparkles } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 
 export default function Experiment() {
   const { profile, transaksi } = useSelector((state: any) => state.profile);
   const [gambar, setGambar] = useState([] as any);
+  const [loading, setLoading] = useState(false);
   const [responsePredict, setResponsePredict] = useState({
     message: "",
     predicted_class: "",
@@ -21,9 +29,12 @@ export default function Experiment() {
   });
 
   const handleCari = async () => {
+    setLoading(true);
+
     if (!gambar) {
       Loading.remove();
       Notify.warning("Masukkan gambar");
+      setLoading(false);
       return;
     }
 
@@ -42,6 +53,7 @@ export default function Experiment() {
           predicted_probabilities: response?.predicted_probabilities,
           message: response?.message,
         });
+        setLoading(false);
       } else {
         Notify.failure("Gagal melakukan pencarian berdasarkan gambar");
       }
@@ -49,7 +61,7 @@ export default function Experiment() {
       console.error("Error:", error);
       Notify.failure("Gagal melakukan pencarian berdasarkan gambar");
     }
-
+    setLoading(false);
     Loading.remove();
   };
 
@@ -64,85 +76,69 @@ export default function Experiment() {
   return (
     <div>
       <Heading>Experiment</Heading>
-      <SectionLayout>
-        <div>
-          <h2 className="font-bold">customer-centric product development</h2>
-          <p>
+
+      {/* pengantar */}
+      <Container otherClass="p-2 my-1">
+        <div className="space-y-2">
+          <Typography variant="subtitle">
+            customer-centric product development
+          </Typography>
+          <Typography>
             Saya memegang prinsip bahwa produk terbaik adalah produk yang
             dibangun bersama pelanggan. Konsep ini juga dikenal sebagai
             pengembangan produk berbasis pelanggan atau customer-centric product
             development.
-          </p>
-          <p>
+          </Typography>
+          <Typography>
             Kamu adalah orang yang dipilih untuk menguji coba fitur ini dan
             memberikan umpan balik terhadap fitur yang sedang kami kembangkan
-          </p>
+          </Typography>
         </div>
-      </SectionLayout>
-      <SectionLayout>
+      </Container>
+
+      <Container otherClass="p-2 my-1">
         <div>
           <span>
             Experiment 1:{" "}
             <p className="font-semibold">Pencarian keramik dengan gambar</p>
           </span>
-          <div className="flex justify-center items-center">
+
+          <div className="flex justify-center items-center my-1">
             <Image
               src={SearchByImage}
               alt="pencarian dari gambar"
               className="max-w-xs"
             />
           </div>
-          <div className="my-4 divide-y-8 divide-transparent">
-            <p>
+
+          <div className="my-4 space-y-8">
+            <Typography>
               Apakah kamu pernah pergi ke rumah kerabat mu dan melihat keramik
               yang menarik pandangan matamu tetapi sayangnya kamu tidak tahu
               dimana kamu menemukan keramik yang sama serupa.
-            </p>
-            <p>
+            </Typography>
+            <Typography>
               Dari permasalahan itu kami mencoba mengembangkan fitur ini,
               berikan saran dan masukan terbaik mu dari fitur ini untuk
               pengembangan yang lebih baik.
-            </p>
+            </Typography>
           </div>
         </div>
-      </SectionLayout>
-      <SectionLayout>
-        <div>
-          <ImageInputWithPreview gambar={gambar} setGambar={setGambar} />
-          <Button onClick={handleCari}>Cari</Button>
+      </Container>
+
+      <Container otherClass="p-2 my-1">
+        <div className="space-y-3">
+          <FileInput setFile={setGambar} previewFile />
+          <Button
+            disabled={loading}
+            icon={<FaWandMagicSparkles />}
+            onClick={handleCari}
+          >
+            Pencarian dengan gambar
+          </Button>
         </div>
-      </SectionLayout>
-      {responsePredict.message === "berhasil" && (
-        <SectionLayout>
-          <div>
-            <p className="font-semibold underline">
-              Ringkasan hasil prediksi model
-            </p>
-            <div className="divide-y-8 divide-transparent">
-              {responsePredict.predicted_probabilities
-                .filter((item: any) => item.value > 0)
-                .map((item: any, i: any) => (
-                  <span
-                    key={i}
-                    className={`flex ${
-                      item.value > 0.5
-                        ? "text-green-500"
-                        : item.value < 0.1
-                        ? "text-red-500"
-                        : ""
-                    }`}
-                  >
-                    <p className="font-medium mr-1">{item.label}</p> dengan
-                    keyakinan{" "}
-                    <p className="font-medium ml-1">
-                      {(item.value * 100).toFixed(0)}%
-                    </p>
-                  </span>
-                ))}
-            </div>
-          </div>
-        </SectionLayout>
-      )}
+      </Container>
+
       {responsePredict.message === "berhasil" && (
         <SectionLayout>
           <div>
@@ -154,6 +150,34 @@ export default function Experiment() {
             />
           </div>
         </SectionLayout>
+      )}
+
+      {responsePredict.message === "berhasil" && (
+        <Container otherClass="p-2 my-1">
+          <div>
+            <Typography>Ringkasan hasil prediksi model</Typography>
+            <div className="divide-y-8 divide-transparent">
+              {responsePredict.predicted_probabilities
+                .filter((item: any) => item.value > 0)
+                .map((item: any, i: any) => (
+                  <Typography
+                    variant="helper"
+                    color={
+                      item.value > 0.5
+                        ? "success"
+                        : item.value < 0.1
+                        ? "danger"
+                        : "primary"
+                    }
+                    key={i}
+                  >
+                    {item.label} dengan keyakinan{" "}
+                    {(item.value * 100).toFixed(0)}%
+                  </Typography>
+                ))}
+            </div>
+          </div>
+        </Container>
       )}
     </div>
   );
