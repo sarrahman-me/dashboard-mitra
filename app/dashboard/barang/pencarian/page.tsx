@@ -1,5 +1,5 @@
 "use client";
-import { HeaderAndBackIcon } from "@/components/molecules";
+import { HeaderAndBackIcon, SearchBar } from "@/components/molecules";
 import { useSelector } from "react-redux";
 import {
   CatalogProducts,
@@ -21,6 +21,7 @@ export default async function Pencarian(req: any) {
 
   return (
     <div>
+      <SearchBar />
       <HeaderAndBackIcon title={`Hasil Pencarian`} />
       <CatalogProducts atribut={`query=${query}`} path="products/search" />
     </div>

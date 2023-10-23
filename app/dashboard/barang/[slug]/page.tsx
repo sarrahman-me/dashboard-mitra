@@ -3,15 +3,16 @@ import {
   IconSelect,
   SearchBar,
 } from "@/components/molecules";
-import {
-  CatalogProducts,
-  SectionLayout,
-  SwiperProduct,
-} from "@/components/organisms";
+import { SectionLayout } from "@/components/organisms";
 import { DetailProductsComp, SimulasiKeramik } from "@/layouts";
 import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
 import QrSampleProducts from "@/layouts/qrSampleProducts";
-import { NotMembership, PaymentChecking } from "@/src/components";
+import {
+  CatalogProducts,
+  NotMembership,
+  PaymentChecking,
+  SwiperProduct,
+} from "@/src/components";
 import { SSRGetDataApi } from "@/utils/fetchingSSR";
 
 const DetailBarang = async ({ params }: { params: { slug: string } }) => {
@@ -147,19 +148,13 @@ const DetailBarang = async ({ params }: { params: { slug: string } }) => {
       )}
       {barangSejenis.length > 1 ? (
         <div>
-          <SwiperProduct
-            persentaseHarga={persentaseHarga}
-            products={barangSejenis}
-            title={"Motif Lainnya"}
-            url={""}
-          />
+          <SwiperProduct products={barangSejenis} title={"Motif Lainnya"} />
         </div>
       ) : null}
       {barangSerupa.length > 1 ? (
         <div>
           <p className="underline font-semibold m-2">{`Rekomendasi`}</p>
           <CatalogProducts
-            persentaseHarga={persentaseHarga}
             atribut={`kategori=${barang.kategori}&ukuran=${barang.ukuran}&motif=${barang.motif}&tekstur=${barang.tekstur}`}
           />
         </div>

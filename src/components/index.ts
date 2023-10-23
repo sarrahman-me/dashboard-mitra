@@ -32,6 +32,7 @@ import {
   Sidebar,
   AppBar,
   CatalogProducts,
+  SwiperProduct,
 } from "./organisms/index";
 import {
   LoadingAnimation,
@@ -77,6 +78,7 @@ export {
   Sidebar,
   AppBar,
   CatalogProducts,
+  SwiperProduct,
 
   // template
   LoadingAnimation,

@@ -1,11 +1,11 @@
 "use client";
 import { SearchBar } from "@/components/molecules";
-import { SwiperProduct } from "@/components/organisms";
 import { MotifList } from "@/layouts";
 import {
   CatalogProducts,
   NotMembership,
   PaymentChecking,
+  SwiperProduct,
 } from "@/src/components";
 import { GetDataApi } from "@/src/utils";
 import { useEffect, useState } from "react";
@@ -44,7 +44,6 @@ const Barang = () => {
       <p className="underline font-semibold m-2">{"Semua Barang"}</p>
       <CatalogProducts />
       <SwiperProduct
-        persentaseHarga={persentaseHarga}
         url="/dashboard/barang/promo"
         title="Promo"
         products={barangPromo}
