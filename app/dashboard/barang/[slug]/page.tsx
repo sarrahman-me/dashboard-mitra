@@ -1,8 +1,5 @@
 "use client";
-import {
-  HeaderAndBackIcon,
-  SearchBar,
-} from "@/components/molecules";
+import { HeaderAndBackIcon, SearchBar } from "@/components/molecules";
 import {
   CardProductDetail,
   CatalogProducts,
@@ -93,14 +90,13 @@ const DetailBarang = () => {
 
       <div>
         <p className="underline font-semibold m-2">{`Kalkulator`}</p>
-        <SectionLayout>
-          <KalkulatorKeramik
-            ukuranBarang={barang.ukuran}
-            hargaBarang={harga}
-            isPromo={barang.promo}
-            hargaPromo={hargaPromo}
-          />
-        </SectionLayout>
+        <KalkulatorKeramik
+          penggunaan_umum={barang.penggunaan_umum}
+          ukuran={barang.ukuran}
+          harga={harga}
+          isPromo={barang.promo}
+          hargaPromo={hargaPromo}
+        />
       </div>
 
       {/* qrcode sample product */}

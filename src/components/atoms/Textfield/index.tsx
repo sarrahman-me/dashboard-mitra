@@ -26,7 +26,7 @@ interface TextfieldProps {
   label?: string;
   value?: string;
   error?: string;
-  onChange: (value: string) => void;
+  onChange: (value: any) => void;
   variant?: "outlined" | "standard";
   disabled?: true | false;
   autoFocus?: true | false;

@@ -1,5 +1,5 @@
 import { IconSelect } from "@/components/molecules";
-import { Container } from "../../atoms";
+import { Container, Typography } from "../../atoms";
 
 interface DeskripsiProdukProps {
   barang: {
@@ -15,21 +15,14 @@ interface DeskripsiProdukProps {
 const DeskripsiProduk = ({ barang }: DeskripsiProdukProps) => {
   return (
     <Container>
-      <div className="flex flex-col md:flex-row ml-2">
-        <div className="text-sm md:text-base divide-y-8 divide-transparent my-2 w-1/2">
-          <span className="flex items-center">
-            <p className="font-medium mr-2">Ukuran:</p> {barang.ukuran}
-          </span>
-          <span className="flex items-center">
-            <p className="font-medium mr-2">Kualitas:</p> {barang.kualitas}
-          </span>
-          <span className="flex items-center">
-            <p className="font-medium mr-2">Motif:</p> {barang.motif}
-          </span>
-          <span className="flex items-center">
-            <p className="font-medium mr-2">Tekstur:</p> {barang.tekstur}
-          </span>
+      <div className="flex flex-col md:flex-row m-2">
+        <div className="text-sm md:text-base space-y-2 md:space-y-3 w-1/2">
+          <Typography>Ukuran: {barang.ukuran}</Typography>
+          <Typography>Kualitas: {barang.kualitas}</Typography>
+          <Typography>Motif: {barang.motif}</Typography>
+          <Typography>Tekstur: {barang.tekstur}</Typography>
         </div>
+
         <div className="w-1/2">
           <div className="my-2">
             <div className="my-2">
