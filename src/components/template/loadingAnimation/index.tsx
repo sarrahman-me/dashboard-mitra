@@ -7,13 +7,10 @@ import { LottiePlayer, Typography } from "@/src/components/atoms";
 
 const LoadingAnimation = () => {
   return (
-    <div
-      className="flex justify-center items-center"
-      role="status"
-    >
+    <div className="flex justify-center items-center" role="status">
       <LottiePlayer
         url={
-          "https://lottie.host/a07b9995-147c-4ee5-9f19-3a830d9a13ec/EVdtHO33Fa.json"
+          "https://lottie.host/b75eed4a-23a4-4f95-a0cd-b40dfa2ef70c/H3bKzDBXwg.json"
         }
         height={"300px"}
         width={"300px"}
