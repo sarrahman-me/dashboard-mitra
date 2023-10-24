@@ -9,6 +9,7 @@ import formatCurrency from "./formatCurrency";
 import isNewProduct from "./isNewProduct";
 import stringToUrl from "./stringToUrl";
 import upPriceWithPercen from "./upPriceWithPercen";
+import RumusPenghitungKeramik from "./RumusPenghitungKeramik";
 
 export {
   DeleteDataApi,
@@ -20,4 +21,5 @@ export {
   isNewProduct,
   stringToUrl,
   upPriceWithPercen,
+  RumusPenghitungKeramik,
 };

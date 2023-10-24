@@ -44,8 +44,8 @@ const Typography = ({
     primary: "text-slate-950 dark:text-slate-50",
     secondary: "text-gray-500 dark:text-gray-500",
     danger: "text-red-500 dark:text-red-500",
-    success: "text-green-500 dark:text-green-50",
-    warning: "text-orange-500 dark:text-orange-50",
+    success: "text-green-500 dark:text-green-500",
+    warning: "text-orange-500 dark:text-orange-500",
   };
 
   const classAlign = {

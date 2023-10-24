@@ -1,3 +1,5 @@
+import KalkulatorKeramik from "./KalkulatorKeramik";
+import OngkirCalculator from "./OngkirCalculator";
 import CardProductDetail from "./cardProductDetail";
 import CreatingWebsite from "./creatingWebsite";
 import DeskripsiProduk from "./deskripsiProduct";
@@ -16,4 +18,6 @@ export {
   CreatingWebsite,
   DeskripsiProduk,
   CardProductDetail,
+  KalkulatorKeramik,
+  OngkirCalculator,
 };

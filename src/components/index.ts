@@ -44,6 +44,8 @@ import {
   CreatingWebsite,
   DeskripsiProduk,
   CardProductDetail,
+  OngkirCalculator,
+  KalkulatorKeramik,
 } from "./template";
 
 export {
@@ -93,4 +95,6 @@ export {
   CreatingWebsite,
   DeskripsiProduk,
   CardProductDetail,
+  OngkirCalculator,
+  KalkulatorKeramik,
 };

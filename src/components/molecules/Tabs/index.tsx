@@ -1,3 +1,4 @@
+"use client";
 import { Tab } from "@headlessui/react";
 
 interface TabsProps {
