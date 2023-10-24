@@ -1,18 +1,12 @@
-import { Footer, NavigationBar } from "@/layouts";
-import Head from "next/head";
 import Image from "next/image";
 import signature from "@/public/signature.png";
+import { Footer, NavBar } from "@/src/components";
+import { mainPages } from "@/src/data/pages";
 
 export default function KebijakanPrivasi() {
   return (
     <>
-      <Head>
-        <title>Kebijakan Privasi - TokoKeramik.com</title>
-        <meta name="description" content="Privasi pengguna TokoKeramik.com" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <NavigationBar />
+      <NavBar pages={mainPages} />
       <div className="container mx-auto max-w-screen-md p-8">
         <div className="divide-y-8 divide-transparent">
           <h1 className="text-2xl font-semibold">Kebijakan Privasi</h1>
@@ -130,9 +124,8 @@ export default function KebijakanPrivasi() {
             menghubungi kami melalui alamat email sarrahman.me@gmail.com.
           </p>
           <p className="text-gray-800 dark:text-slate-50">
-            Terima kasih atas kepercayaan Anda kepada tokokeramik.com
-            Kami berharap Anda menikmati pengalaman Anda menggunakan layanan
-            kami!
+            Terima kasih atas kepercayaan Anda kepada tokokeramik.com Kami
+            berharap Anda menikmati pengalaman Anda menggunakan layanan kami!
           </p>
           <div className="flex justify-end mt-5">
             <div className="divide-y-8 divide-transparent">

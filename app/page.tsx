@@ -1,12 +1,20 @@
-"use client";
-import Head from "next/head";
-import { Benefits, Cta, Jumbotron } from "@/layouts";
-import { SectionTitle } from "@/components/molecules";
 import { BsGlobeEuropeAfrica } from "react-icons/bs";
-import { MdOutlineInsights } from "react-icons/md";
 import { LuPackageSearch } from "react-icons/lu";
-import { Footer, NavBar } from "@/src/components";
+import { MdOutlineInsights } from "react-icons/md";
+import {
+  Benefits,
+  Cta,
+  Footer,
+  Jumbotron,
+  NavBar,
+  SectionTitle,
+} from "@/src/components";
 import { mainPages } from "@/src/data/pages";
+
+export const metadata = {
+  title: "Toko Keramik - Jual Keramik tak pernah semudah ini",
+  description: "Jual keramik dari mana saja",
+};
 
 const benefitOne = {
   title: "Sorotan manfaat",
@@ -35,12 +43,6 @@ const benefitOne = {
 export default function RootPage() {
   return (
     <>
-      <Head>
-        <title>Toko Keramik - Jual Keramik tak pernah semudah ini</title>
-        <meta name="description" content="Jual keramik dari mana saja" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <NavBar pages={mainPages} />
       <Jumbotron />
       <SectionTitle

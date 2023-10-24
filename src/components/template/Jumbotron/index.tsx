@@ -1,8 +1,10 @@
 "use client";
-import { Player, Controls } from "@lottiefiles/react-lottie-player";
-import { Button } from "@/components/atoms";
+import { Button, LottiePlayer } from "@/src/components";
+import { useRouter } from "next/navigation";
 
 export default function Jumbotron() {
+  const router = useRouter();
+
   return (
     <>
       <div className="container p-8 mx-auto xl:px-0 flex flex-wrap ">
@@ -19,21 +21,16 @@ export default function Jumbotron() {
             </p>
 
             <div className="flex flex-col items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row">
-              <Button href="/register">Daftar</Button>
+              <Button onClick={() => router.push("/login")}>Mulai</Button>
             </div>
           </div>
         </div>
         <div className="flex items-center justify-center w-full lg:w-1/2">
-          <div className="">
-            <Player
-              autoplay
-              loop
-              src="https://lottie.host/1b94bb9c-c6a3-44e5-843f-47cccf7abc6f/x8RTjXGVi1.json"
-              style={{ height: "400", width: "400" }}
-            >
-              <Controls buttons={["play", "repeat", "frame", "debug"]} />
-            </Player>
-          </div>
+          <LottiePlayer
+            height="400px"
+            width="400px"
+            url="https://lottie.host/1b94bb9c-c6a3-44e5-843f-47cccf7abc6f/x8RTjXGVi1.json"
+          />
         </div>
       </div>
     </>

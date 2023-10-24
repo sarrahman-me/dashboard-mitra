@@ -1,21 +1,12 @@
-import { Footer, NavigationBar } from "@/layouts";
-import Head from "next/head";
 import Image from "next/image";
 import signature from "@/public/signature.png";
+import { Footer, NavBar } from "@/src/components";
+import { mainPages } from "@/src/data/pages";
 
 export default function SyaratKetentuan() {
   return (
     <>
-      <Head>
-        <title>Syarat dan Ketentuan - TokoKeramik.com</title>
-        <meta
-          name="description"
-          content="Syarat dan Ketentuan penggunaan TokoKeramik.com"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <NavigationBar />
+      <NavBar pages={mainPages} />
       <div className="container mx-auto max-w-screen-md p-8">
         <div className="divide-y-8 divide-transparent">
           <h1 className="text-2xl font-semibold">Syarat dan Ketentuan</h1>

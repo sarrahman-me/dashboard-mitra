@@ -1,3 +1,6 @@
+import Benefits from "./Benefits";
+import Cta from "./Cta";
+import Jumbotron from "./Jumbotron";
 import KalkulatorKeramik from "./KalkulatorKeramik";
 import OngkirCalculator from "./OngkirCalculator";
 import CardProductDetail from "./cardProductDetail";
@@ -20,4 +23,7 @@ export {
   CardProductDetail,
   KalkulatorKeramik,
   OngkirCalculator,
+  Jumbotron,
+  Cta,
+  Benefits,
 };

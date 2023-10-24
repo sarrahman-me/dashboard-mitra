@@ -17,6 +17,7 @@ import {
   LottiePlayer,
   ItemSidebar,
   ListData,
+  SectionTitle,
 } from "./atoms/index";
 import {
   NavGroup,
@@ -30,10 +31,10 @@ import {
 import {
   Footer,
   NavBar,
-  Sidebar,
   AppBar,
   CatalogProducts,
   SwiperProduct,
+  Sidebar,
 } from "./organisms/index";
 import {
   LoadingAnimation,
@@ -46,6 +47,9 @@ import {
   CardProductDetail,
   OngkirCalculator,
   KalkulatorKeramik,
+  Jumbotron,
+  Benefits,
+  Cta,
 } from "./template";
 
 export {
@@ -68,6 +72,7 @@ export {
   LottiePlayer,
   ItemSidebar,
   ListData,
+  SectionTitle,
 
   //   molecules
   NavGroup,
@@ -81,10 +86,10 @@ export {
   //   organims
   Footer,
   NavBar,
-  Sidebar,
   AppBar,
   CatalogProducts,
   SwiperProduct,
+  Sidebar,
 
   // template
   LoadingAnimation,
@@ -97,4 +102,7 @@ export {
   CardProductDetail,
   OngkirCalculator,
   KalkulatorKeramik,
+  Jumbotron,
+  Cta,
+  Benefits,
 };

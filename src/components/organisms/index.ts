@@ -5,4 +5,4 @@ import Sidebar from "./Sidebar";
 import CatalogProducts from "./catalogProducts";
 import SwiperProduct from "./swiperProduct";
 
-export { Footer, NavBar, Sidebar, AppBar, CatalogProducts, SwiperProduct };
+export { Footer, NavBar, AppBar, CatalogProducts, SwiperProduct, Sidebar };

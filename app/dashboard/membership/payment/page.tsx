@@ -1,12 +1,12 @@
 "use client";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { Button, ListData } from "@/components/atoms";
 import { GetDataApi, PostDataApi, formatCurrency } from "@/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { HeaderAndBackIcon } from "@/components/molecules";
 import { Confirm, Loading } from "notiflix";
 import { useSelector } from "react-redux";
+import { Button, ListData } from "@/src/components";
 
 export default function Payment() {
   const router = useRouter();
@@ -81,11 +81,11 @@ export default function Payment() {
               <p className="font-semibold">Bank: Bank BCA</p>
               <p className="font-semibold">Nomor Rekening: 793 557 7110</p>
             </div>
-            <p className="text-sm mt-4">
+            <p className="text-sm my-4">
               Pastikan kamu melakukan pembayaran dengan benar ke rekening di
               atas.
             </p>
-            <Button className="mt-6 w-full" onClick={daftarMembership}>
+            <Button size="full" onClick={daftarMembership}>
               Saya sudah transfer
             </Button>
           </div>

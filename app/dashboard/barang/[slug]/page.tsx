@@ -9,7 +9,6 @@ import {
   PaymentChecking,
   SwiperProduct,
 } from "@/src/components";
-import { SectionLayout } from "@/components/organisms";
 import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
 import QrSampleProducts from "@/layouts/qrSampleProducts";
 import { GetDataApi, upPriceWithPercen } from "@/src/utils";
@@ -89,9 +88,7 @@ const DetailBarang = () => {
 
       {/* <div>
         <p className="underline font-semibold m-2">{`Design Patern`}</p>
-        <SectionLayout>
           <SimulasiKeramik ukuran={barang.ukuran} imageUrl={barang.images[0]} />
-        </SectionLayout>
       </div> */}
 
       {/* kalkulator keramik */}

@@ -10,6 +10,7 @@ import isNewProduct from "./isNewProduct";
 import stringToUrl from "./stringToUrl";
 import upPriceWithPercen from "./upPriceWithPercen";
 import RumusPenghitungKeramik from "./RumusPenghitungKeramik";
+import GoogleAnalytics from "./googleAnalystic";
 
 export {
   DeleteDataApi,
@@ -22,4 +23,5 @@ export {
   stringToUrl,
   upPriceWithPercen,
   RumusPenghitungKeramik,
+  GoogleAnalytics,
 };

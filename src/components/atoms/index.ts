@@ -20,6 +20,7 @@ import ResizeLayarButton from "./resizeLayarButton";
 import ToggleDarkMode from "./toogleDarkMode";
 import ListIcon from "./ListIcon";
 import ListData from "./listData";
+import SectionTitle from "./sectionTitle";
 
 export {
   Button,
@@ -44,4 +45,5 @@ export {
   ItemTopBar,
   ListIcon,
   ListData,
+  SectionTitle,
 };
