@@ -1,6 +1,6 @@
 "use client";
-import { EditDataIcon, Heading, ListData } from "@/components/atoms";
-import { Button } from "@/src/components";
+import { EditDataIcon, Heading } from "@/components/atoms";
+import { Button, ListData } from "@/src/components";
 import { DeleteDataApi, GetDataApi } from "@/src/utils";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
