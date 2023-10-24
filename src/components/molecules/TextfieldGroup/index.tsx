@@ -101,6 +101,7 @@ const TextfieldGroup = ({
               key={i}
               placeholder={form.placeholder}
               fullWidth
+              value={data[form.name] || ""}
               variant={form.variant || "outlined"}
               name={form.name}
               error={(error && error.fields && error.fields[form.name]) || ""}
