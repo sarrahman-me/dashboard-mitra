@@ -47,8 +47,7 @@ const KalkulatorKeramik = () => {
 
   return (
     <div>
-      <Typography variant="subtitle">Kalkulator</Typography>
-      <div className="flex flex-col md:flex-row my-2">
+      <div className="flex flex-col md:flex-row">
         <div className="space-y-4 flex-1">
           <form onSubmit={handleSubmit} className="my-2 space-y-4">
             <TextfieldGroup

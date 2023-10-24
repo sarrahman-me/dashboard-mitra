@@ -31,6 +31,7 @@ const formVerifyEmail = [
     label: "Kode verifikasi",
     name: "code",
     placeholder: "* * * * *",
+    variant: "standard"
   },
 ];
 
@@ -80,6 +81,7 @@ const kalkulatorForm = [
     name: "isi",
     label: "Isi per dus",
     type: "number",
+    placeholder: "opsional",
   },
   {
     name: "panjang",

@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
   }
 
   try {
-    if (pathname === "/login" || pathname === "/register") {
+    if (pathname === "/login" || pathname === "/register" || pathname === "/verify-email") {
       if (token) {
         return NextResponse.redirect(`${origin}/dashboard`);
       }

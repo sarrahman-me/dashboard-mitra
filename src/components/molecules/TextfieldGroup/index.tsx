@@ -26,6 +26,7 @@ interface TextfieldGroupProps {
     list?: any[];
     placeholder?: string;
     disabled?: boolean;
+    variant?: "outlined" | "standard" | string;
     keyValue?: {
       key: string;
       value: string;
@@ -100,6 +101,7 @@ const TextfieldGroup = ({
               key={i}
               placeholder={form.placeholder}
               fullWidth
+              variant={form.variant || "outlined"}
               name={form.name}
               error={(error && error.fields && error.fields[form.name]) || ""}
               type={form.type || "text"}

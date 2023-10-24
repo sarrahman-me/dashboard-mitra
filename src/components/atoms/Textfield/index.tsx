@@ -27,7 +27,7 @@ interface TextfieldProps {
   value?: string;
   error?: string;
   onChange: (value: any) => void;
-  variant?: "outlined" | "standard";
+  variant?: "outlined" | "standard" | string;
   disabled?: true | false;
   autoFocus?: true | false;
   fullWidth?: true | false;
@@ -55,14 +55,14 @@ const Textfield = ({
   /* Objek `classColorBorder` mendefinisikan kelas CSS yang berbeda untuk setiap border pada varian Textfield ketika error. */
   const classColorBorder = {
     default:
-      "border-indigo-600 hover:border-indigo-600 focus:border-indigo-600 dark:focus:border-indigo-600",
+      "border-gray-600 hover:border-gray-600 focus:border-indigo-600 dark:focus:border-indigo-600",
     error:
       "border-red-600 hover:border-red-600 focus:border-red-600 dark:focus:border-red-600",
   };
 
   /* Objek `classVariant` mendefinisikan kelas CSS yang berbeda untuk setiap varian Textfield. */
 
-  const classVariant = {
+  const classVariant: Record<string, string> = {
     outlined:
       "bg-white dark:bg-slate-800 border focus:border-2 focus:ring-indigo-600 dark:focus:ring-indigo-600 rounded-md  invalid:border-red-500",
 

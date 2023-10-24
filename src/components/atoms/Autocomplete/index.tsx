@@ -45,7 +45,7 @@ function Autocomplete({
   /* Objek `classColorBorder` mendefinisikan kelas CSS yang berbeda untuk setiap border pada varian Textfield ketika error. */
   const classColorBorder = {
     default:
-      "border-indigo-600 hover:border-indigo-600 focus:border-indigo-600 dark:focus:border-indigo-600",
+      "border-gray-600 hover:border-gray-600 focus:border-indigo-600 dark:focus:border-indigo-600",
     error:
       "border-red-600 hover:border-red-600 focus:border-red-600 dark:focus:border-red-600",
   };
