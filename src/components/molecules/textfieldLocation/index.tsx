@@ -32,7 +32,7 @@ const TextfieldLocation = ({
     setLoading(true);
     try {
       const response = await GetDataApi(
-        `http://localhost:5012/maps/geocoding/search/${query}`
+        `${process.env.NEXT_PUBLIC_HOST}/maps/geocoding/search/${query}`
       );
 
       if (response.success) {

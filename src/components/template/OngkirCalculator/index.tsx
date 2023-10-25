@@ -24,7 +24,7 @@ const OngkirCalculator = () => {
     setLoading(true);
     try {
       const response = await GetDataApi(
-        `http://localhost:5012/maps/distance-matrix?origins=${lokasi.asal.latlang}&destinations=${lokasi.tujuan.latlang}`
+        `${process.env.NEXT_PUBLIC_HOST}/maps/distance-matrix?origins=${lokasi.asal.latlang}&destinations=${lokasi.tujuan.latlang}`
       );
 
       if (response.success) {
