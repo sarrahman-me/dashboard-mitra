@@ -1,8 +1,8 @@
 "use client";
 import { SearchBar } from "@/components/molecules";
-import { MotifList } from "@/layouts";
 import {
   CatalogProducts,
+  MotifList,
   NotMembership,
   PaymentChecking,
   SwiperProduct,

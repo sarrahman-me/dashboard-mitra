@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { Button } from "@/components/atoms";
+import { Button } from "@/src/components";
 import { useEffect, useState } from "react";
 
 const generateQrCodeUrl = (webstore: any, barang: any) => {

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { Input } from "@/components/atoms";
+import { Textfield } from "@/src/components";
 import { useState } from "react";
 
 export default function SimulasiKeramik(props: {
@@ -67,12 +67,12 @@ export default function SimulasiKeramik(props: {
         </div>
       </div>
       <div className="md:w-1/2 w-full m-1">
-        <Input
+        <Textfield
           label={"Warna Nat"}
           name={"natColor"}
           type="color"
           value={backgroundColor}
-          onChange={(e) => setBackgroundColor(e.target.value)}
+          onChange={(value) => setBackgroundColor(value)}
         />
       </div>
     </div>

@@ -7,10 +7,10 @@ import {
   LoadingAnimation,
   NotMembership,
   PaymentChecking,
+  QrSampleProducts,
   SwiperProduct,
 } from "@/src/components";
 import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
-import QrSampleProducts from "@/layouts/qrSampleProducts";
 import { GetDataApi, upPriceWithPercen } from "@/src/utils";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";

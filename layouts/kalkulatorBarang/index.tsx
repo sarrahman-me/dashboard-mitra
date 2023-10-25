@@ -1,8 +1,7 @@
 "use client";
 import { useState } from "react";
-import { formatCurrency } from "@/utils";
 import { HitungKeramik } from "@/functions";
-import { calculateDiscountPercentage } from "@/src/utils";
+import { calculateDiscountPercentage, formatCurrency } from "@/src/utils";
 import { Button, Container, Textfield, Typography } from "@/src/components";
 
 interface KalkulatorKeramikProps {

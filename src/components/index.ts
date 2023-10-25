@@ -50,6 +50,9 @@ import {
   Jumbotron,
   Benefits,
   Cta,
+  MotifList,
+  QrSampleProducts,
+  SimulasiKeramik,
 } from "./template";
 
 export {
@@ -105,4 +108,7 @@ export {
   Jumbotron,
   Cta,
   Benefits,
+  MotifList,
+  QrSampleProducts,
+  SimulasiKeramik,
 };
