@@ -2,7 +2,7 @@
 import { Button, Container, ListData, Textfield } from "../../atoms";
 import { useState } from "react";
 import { TextfieldLocation } from "../../molecules";
-import { GetDataApi } from "@/src/utils";
+import { GetDataApi, formatCurrency } from "@/src/utils";
 import { Notify } from "notiflix";
 
 const OngkirCalculator = () => {
@@ -103,7 +103,10 @@ const OngkirCalculator = () => {
             <ListData label={"Tujuan"} value={lokasi.tujuan.nama} />
           </div>
           <div className="border-b space-y-2 px-4 py-2">
-            <ListData label={"Ongkos Kirim"} value={distanceMatrix?.biaya} />
+            <ListData
+              label={"Ongkos Kirim"}
+              value={formatCurrency(distanceMatrix?.biaya)}
+            />
             <ListData
               label={"Perkiraan Jarak"}
               value={distanceMatrix?.distance?.text}

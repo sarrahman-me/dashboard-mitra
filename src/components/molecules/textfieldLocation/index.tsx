@@ -1,3 +1,4 @@
+"use client";
 import { GetDataApi } from "@/src/utils";
 import { useState } from "react";
 import { Container, Textfield, Typography } from "../../atoms";
