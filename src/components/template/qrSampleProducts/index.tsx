@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { Button } from "@/src/components";
+import { Button, Container, Typography } from "@/src/components";
 import { useEffect, useState } from "react";
 
 const generateQrCodeUrl = (webstore: any, barang: any) => {
@@ -49,14 +49,18 @@ export default function QrSampleProducts(props: {
   }, [props.webstore, props.barang]);
 
   return (
-    <div className="flex bg-white flex-col md:flex-row items-center justify-around dark:bg-slate-800 shadow rounded my-3 p-2">
-      <div className="w-2/3 max-w-xl mx-auto my-2 md:my-0 p-2 rounded">
-        <p className="font-bold">Yuk, Tempel pada sample fisik di tokomu!</p>
-        <p className="text-sm">
+    <Container otherClass="flex flex-col md:flex-row items-center p-2">
+      <div className="w-full md:w-2/3 max-w-xl mx-auto my-2 space-y-1">
+        <Typography variant="subtitle">
+          Yuk, Tempel pada sample fisik di tokomu!
+        </Typography>
+        <Typography>
+          {" "}
           Qr code ini akan mengarahkan pelangganmu langsung ke barang ini pada
           situs webstore milikmu
-        </p>
+        </Typography>
       </div>
+
       <div className="w-1/3 flex justify-center items-center md:flex-col">
         {imageUrl && (
           <>
@@ -70,6 +74,6 @@ export default function QrSampleProducts(props: {
           </>
         )}
       </div>
-    </div>
+    </Container>
   );
 }

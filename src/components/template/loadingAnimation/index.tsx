@@ -12,8 +12,8 @@ const LoadingAnimation = () => {
         url={
           "https://lottie.host/b75eed4a-23a4-4f95-a0cd-b40dfa2ef70c/H3bKzDBXwg.json"
         }
-        height={"300px"}
-        width={"300px"}
+        height={"200px"}
+        width={"200px"}
       />
       <Typography otherClass="sr-only">Loading</Typography>
     </div>
