@@ -50,7 +50,7 @@ export default function QrSampleProducts(props: {
 
   return (
     <Container otherClass="flex flex-col md:flex-row items-center p-2">
-      <div className="w-full md:w-2/3 max-w-xl mx-auto my-2 space-y-1">
+      <div className="w-full px-4 md:px-0 md:w-2/3 max-w-xl md:mx-auto my-2 space-y-1">
         <Typography variant="subtitle">
           Yuk, Tempel pada sample fisik di tokomu!
         </Typography>
