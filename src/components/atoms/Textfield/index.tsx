@@ -77,6 +77,7 @@ const Textfield = ({
   /* `Const className` membuat string yang berisi kelas CSS untuk komponen Textfield. */
 
   const className = `
+      ${icon && "pr-8"}
       ${defaultClass}
       ${classVariant[variant || "outlined"]} 
       ${fullWidth ? "w-full" : ""}

@@ -6,6 +6,7 @@ import CardMembershipPlan from "./cardMembershipPlan";
 import CardProduct from "./cardProduct";
 import FooterText from "./footerText";
 import SocialIcon from "./socialIcon";
+import TextfieldLocation from "./textfieldLocation";
 
 export {
   NavGroup,
@@ -16,4 +17,5 @@ export {
   CardMembershipPlan,
   CardProduct,
   Tabs,
+  TextfieldLocation,
 };

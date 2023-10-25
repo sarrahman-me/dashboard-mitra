@@ -1,112 +1,119 @@
 "use client";
+import { Button, Container, ListData, Textfield } from "../../atoms";
 import { useState } from "react";
-import { Button, Container, Textfield } from "../../atoms";
-import Image from "next/image";
-import map from "@/public/map-and-location.png";
-import { formatCurrency } from "@/src/utils";
+import { TextfieldLocation } from "../../molecules";
+import { GetDataApi } from "@/src/utils";
+import { Notify } from "notiflix";
 
 const OngkirCalculator = () => {
-  const [ongkirState, setOngkirState] = useState({
-    ongkir: 0,
-    origin: "",
-    destination: "",
+  const [distanceMatrix, setDistanceMatrix] = useState({} as any);
+  const [ongkos, setOngkos] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [lokasi, setLokasi] = useState({
+    asal: {
+      latlang: "",
+      nama: "",
+    },
+    tujuan: {
+      latlang: "",
+      nama: "",
+    },
   });
-  const [resultOngkir, setResultOnkir] = useState({
-    asal: "",
-    tujuan: "",
-    jarak: "",
-    waktu: "",
-    status: "",
-    harga: 0,
-  });
 
-  const handleCekOngkir = async (e: any) => {
-    e.preventDefault();
-    const responseOrigin = await fetch(
-      `https://api.distancematrix.ai/maps/api/distancematrix/json?origins=${ongkirState.origin}&destinations=${ongkirState.destination}&key=${process.env.NEXT_PUBLIC_DISTANCE_API_KEY}`
-    );
-    const data = await responseOrigin.json();
+  const calculateDistance = async () => {
+    setLoading(true);
+    try {
+      const response = await GetDataApi(
+        `http://localhost:5012/maps/distance-matrix?origins=${lokasi.asal.latlang}&destinations=${lokasi.tujuan.latlang}`
+      );
 
-    const jarakKm = data?.rows[0]?.elements[0]?.distance?.value / 1000;
+      if (response.success) {
+        const jarak = response.data.distance.value / 1000;
 
-    const harga = jarakKm * ongkirState.ongkir;
+        const biaya = jarak * ongkos;
 
-    setResultOnkir({
-      asal: data?.origin_addresses[0],
-      tujuan: data?.destination_addresses[0],
-      jarak: data?.rows[0]?.elements[0]?.distance?.text,
-      waktu: data?.rows[0]?.elements[0]?.duration?.text,
-      status: data.status,
-      harga,
-    });
+        setDistanceMatrix({
+          ...response.data,
+          biaya,
+        });
+        setLoading(false);
+      } else {
+        Notify.failure("alamat tidak ditemukan");
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error("Error while fetching data:", error);
+      setLoading(false);
+    }
   };
 
   return (
     <div className="flex flex-col md:flex-row">
-      <div className=" flex-1 ">
-        <form onSubmit={handleCekOngkir} className="space-y-3 ">
-          <Textfield
-            fullWidth
-            type="number"
-            label={"Perkiraan ongkos per km"}
-            placeholder="10000"
-            name={"ongkir"}
-            onChange={(value) =>
-              setOngkirState({
-                ...ongkirState,
-                ongkir: value,
-              })
-            }
-          />
-          <Textfield
-            fullWidth
-            label={"Alamat asal"}
-            name={"origin"}
-            onChange={(value) =>
-              setOngkirState({
-                ...ongkirState,
-                origin: value,
-              })
-            }
-          />
-          <Textfield
-            fullWidth
-            label={"Alamat tujuan"}
-            name={"destination"}
-            onChange={(value) =>
-              setOngkirState({
-                ...ongkirState,
-                destination: value,
-              })
-            }
-          />
-          <Button type={"submit"} size="full">
-            Cek ongkir
-          </Button>
-        </form>
-        {resultOngkir.status === "OK" && (
-          <Container>
-            <div className="divide-y-8 divide-transparent">
-              <p>Asal : {resultOngkir.asal}</p>
-              <p>Tujuan : {resultOngkir.tujuan}</p>
-              <p>Jarak : {resultOngkir.jarak}</p>
-              <p>Estimasi waktu : {resultOngkir.waktu}</p>
-              <p>Harga : {formatCurrency(resultOngkir.harga)}</p>
-            </div>
-          </Container>
-        )}
-        <div className="bg-warning rounded-md bg-white dark:bg-slate-800 mt-5 p-4 text-center text-sm">
-          <h2 className="text-xl font-semibold text-orange-500">Peringatan</h2>
-          <p className="mt-2">
-            fitur ini masih dalam tahap pengembangan lebih lanjut, oleh karena
-            itu, mungkin terdapat kesalahan dan ketidakpastian dalam informasi
-            yang diberikan.
-          </p>
-        </div>
+      <div className="flex-1 space-y-4">
+        <Textfield
+          type="number"
+          fullWidth
+          label="ongkos (Rp)"
+          placeholder="ongkos per km"
+          name="ongkos"
+          onChange={setOngkos}
+        />
+
+        <TextfieldLocation
+          setValue={({ latlang, nama }) =>
+            setLokasi({
+              ...lokasi,
+              asal: {
+                latlang,
+                nama,
+              },
+            })
+          }
+          name={"origin"}
+          label={"Alamat asal"}
+        />
+
+        <TextfieldLocation
+          setValue={({ latlang, nama }) =>
+            setLokasi({
+              ...lokasi,
+              tujuan: {
+                latlang,
+                nama,
+              },
+            })
+          }
+          name={"destination"}
+          label={"Alamat tujuan"}
+        />
+
+        <Button
+          loading={loading}
+          onClick={calculateDistance}
+          disabled={!lokasi.asal.latlang || !lokasi.tujuan.latlang || !ongkos}
+        >
+          Hitung jarak
+        </Button>
       </div>
 
-      <div className="hidden flex-1 md:flex justify-center items-center">
-        <Image src={map} alt={"map"} className="max-w-xs m-2" />
+      <div className="flex-1 flex m-2">
+        <Container otherClass="w-full space-y-2">
+          <div className="border-b space-y-2 px-4 py-2">
+            <ListData label={"Asal"} value={lokasi.asal.nama} />
+            <ListData label={"Tujuan"} value={lokasi.tujuan.nama} />
+          </div>
+          <div className="border-b space-y-2 px-4 py-2">
+            <ListData label={"Ongkos Kirim"} value={distanceMatrix?.biaya} />
+            <ListData
+              label={"Perkiraan Jarak"}
+              value={distanceMatrix?.distance?.text}
+            />
+            <ListData
+              label={"Estimasi waktu"}
+              value={distanceMatrix?.duration?.text}
+            />
+          </div>
+        </Container>
       </div>
     </div>
   );
