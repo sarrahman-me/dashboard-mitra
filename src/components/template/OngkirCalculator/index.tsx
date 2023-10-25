@@ -105,7 +105,7 @@ const OngkirCalculator = () => {
           <div className="border-b space-y-2 px-4 py-2">
             <ListData
               label={"Ongkos Kirim"}
-              value={formatCurrency(distanceMatrix?.biaya)}
+              value={formatCurrency(distanceMatrix?.biaya || 0)}
             />
             <ListData
               label={"Perkiraan Jarak"}
