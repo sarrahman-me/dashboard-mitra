@@ -1,10 +1,11 @@
 "use client";
-import { HeaderAndBackIcon, SearchBar } from "@/components/molecules";
+import { HeaderAndBackIcon } from "@/components/molecules";
 import { useSelector } from "react-redux";
 import {
   CatalogProducts,
   NotMembership,
   PaymentChecking,
+  SearchBar,
 } from "@/src/components";
 
 export default async function Pencarian(req: any) {

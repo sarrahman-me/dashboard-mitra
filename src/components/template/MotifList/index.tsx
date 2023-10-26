@@ -30,7 +30,7 @@ const motifList = [
     image: FancyMotif,
   },
   {
-    title: "Natural",
+    title: "Basic",
     image: BasicMotif,
   },
   {

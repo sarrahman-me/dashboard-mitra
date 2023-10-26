@@ -1,5 +1,5 @@
 "use client";
-import { HeaderAndBackIcon, SearchBar } from "@/components/molecules";
+import { HeaderAndBackIcon } from "@/components/molecules";
 import {
   CardProductDetail,
   CatalogProducts,
@@ -9,6 +9,7 @@ import {
   PaymentChecking,
   QrSampleProducts,
   SwiperProduct,
+  SearchBar,
 } from "@/src/components";
 import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
 import { GetDataApi, upPriceWithPercen } from "@/src/utils";

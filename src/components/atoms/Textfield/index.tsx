@@ -106,7 +106,9 @@ const Textfield = ({
         />
         {icon && (
           <div onClick={onClickIcon} className="relative flex items-center">
-            <span className="absolute right-3 text-indigo-600">{icon}</span>
+            <button type="submit" className="absolute right-3 text-indigo-600">
+              {icon}
+            </button>
           </div>
         )}
       </div>

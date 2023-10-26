@@ -1,16 +1,15 @@
 "use client";
-import { HeaderAndBackIcon, SearchBar } from "@/components/molecules";
+import { HeaderAndBackIcon } from "@/components/molecules";
 import {
   CatalogProducts,
   NotMembership,
   PaymentChecking,
+  SearchBar,
 } from "@/src/components";
 import { useSelector } from "react-redux";
 
 const BarangPromo = async () => {
-  const { profile, transaksi } = useSelector(
-    (state: any) => state.profile
-  );
+  const { profile, transaksi } = useSelector((state: any) => state.profile);
 
   if (!profile?.id_membership) {
     return <NotMembership />;

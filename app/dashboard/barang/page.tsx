@@ -1,10 +1,10 @@
 "use client";
-import { SearchBar } from "@/components/molecules";
 import {
   CatalogProducts,
   MotifList,
   NotMembership,
   PaymentChecking,
+  SearchBar,
   SwiperProduct,
 } from "@/src/components";
 import { GetDataApi } from "@/src/utils";

@@ -1,18 +1,17 @@
 "use client";
-import { HeaderAndBackIcon, SearchBar } from "@/components/molecules";
+import { HeaderAndBackIcon } from "@/components/molecules";
 import { useSelector } from "react-redux";
 import {
   CatalogProducts,
   NotMembership,
   PaymentChecking,
+  SearchBar,
 } from "@/src/components";
 
-export default async function Motif({ params }: { params: { motif: string } }) {
+export default function Motif({ params }: { params: { motif: string } }) {
   const motif = params.motif;
 
-  const { profile, transaksi } = useSelector(
-    (state: any) => state.profile
-  );
+  const { profile, transaksi } = useSelector((state: any) => state.profile);
 
   if (!profile?.id_membership) {
     return <NotMembership />;
