@@ -56,7 +56,7 @@ export default function Login() {
     <section>
       <NavBar pages={authPages} />
       <div className="flex flex-col items-center justify-center">
-        <Container otherClass="my-5 min-w-full md:min-w-[30%]">
+        <Container otherClass="my-5 min-w-[95%] sm:min-w-[50%] lg:min-w-[30%]">
           <form
             className="p-6 space-y-4 md:space-y-6 sm:p-8"
             onSubmit={handleSubmit}
