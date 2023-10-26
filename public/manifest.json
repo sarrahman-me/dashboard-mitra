@@ -1,0 +1,23 @@
+{
+    "name": "Tokokeramik.com - platform untuk penjual material bangunan",
+    "short_name": "Tokokeramik.com",
+    "theme_color": "#4f46e5",
+    "background_color": "#ffffff",
+    "orientation": "portrait",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "description": "platform untuk penjual material bangunan",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

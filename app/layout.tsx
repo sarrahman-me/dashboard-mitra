@@ -12,6 +12,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id">
+      <head>
+        <title>
+          Tokokeramik.com - platform untuk penjual material bangunan
+        </title>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body id="root">
         <GoogleAnalytics />
         <div className="bg-gray-100 dark:bg-gray-900 dark:text-white text-black min-h-screen">
