@@ -31,7 +31,7 @@ export default function CatalogProducts({
       const response = await GetDataApi(
         `${process.env.NEXT_PUBLIC_HOST}/${pathUrl}?${
           atribut || ""
-        }&limit=42&page=${currentPage}`,
+        }&limit=48&page=${currentPage}`,
         3600
       );
       setBarang(response.data);
