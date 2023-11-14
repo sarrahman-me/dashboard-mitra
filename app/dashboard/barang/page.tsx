@@ -12,9 +12,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const Barang = () => {
-  const { profile, transaksi } = useSelector(
-    (state: any) => state.profile
-  );
+  const { profile, transaksi } = useSelector((state: any) => state.profile);
   const [barangPromo, setPromo] = useState([] as any);
 
   useEffect(() => {
@@ -40,14 +38,14 @@ const Barang = () => {
   return (
     <div>
       <SearchBar />
-      <MotifList />
-      <p className="underline font-semibold m-2">{"Semua Barang"}</p>
-      <CatalogProducts />
       <SwiperProduct
         url="/dashboard/barang/promo"
         title="Promo"
         products={barangPromo}
       />
+      <MotifList />
+      <p className="underline font-semibold m-2">{"Semua Barang"}</p>
+      <CatalogProducts />
     </div>
   );
 };

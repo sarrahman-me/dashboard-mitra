@@ -19,6 +19,13 @@ export default function PaymentChecking() {
           Pembayaranmu sedang dalam proses verifikasi. Mohon tunggu beberapa
           saat hingga verifikasi selesai.
         </Typography>
+        <Typography align="center" otherClass="my-2">
+          Pastikan kamu membayar ke rekening yang sesuai
+        </Typography>
+        <div>
+          <p className="font-semibold">Bank: Bank BCA</p>
+          <p className="font-semibold">Nomor Rekening: 793 557 7110</p>
+        </div>
       </Container>
     </div>
   );

@@ -54,7 +54,7 @@ const CardProduct = ({ product }: CardProductProps) => {
 
       <div onContextMenu={handleKlikKanan} className="flex justify-center">
         <img
-          className="object-contain max-h-28 md:max-h-32 lg:max-h-40 border"
+          className="object-contain max-h-28 md:max-h-32 border"
           src={product?.images[0]}
           alt={product?.nama_barang}
         />
