@@ -1,6 +1,7 @@
 "use client";
 import {
   CatalogProducts,
+  ExpiredPlan,
   MotifList,
   NotMembership,
   PaymentChecking,
@@ -8,11 +9,14 @@ import {
   SwiperProduct,
 } from "@/src/components";
 import { GetDataApi } from "@/src/utils";
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const Barang = () => {
-  const { profile, transaksi } = useSelector((state: any) => state.profile);
+  const { profile, transaksi, membership } = useSelector(
+    (state: any) => state.profile
+  );
   const [barangPromo, setPromo] = useState([] as any);
 
   useEffect(() => {
@@ -29,6 +33,13 @@ const Barang = () => {
 
   if (!profile?.id_membership) {
     return <NotMembership />;
+  }
+
+  const endDate = moment(Number(membership?.endDate));
+  const isMembershipExpired = endDate.isSameOrBefore(moment(), "day");
+
+  if (isMembershipExpired) {
+    return <ExpiredPlan />;
   }
 
   if (!transaksi?.verifikasi) {

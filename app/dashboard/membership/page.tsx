@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import {
   Button,
   Container,
+  ExpiredPlan,
   ListData,
   MembershipPlanList,
   PaymentChecking,
@@ -17,8 +18,15 @@ const Membership = async () => {
     (state: any) => state.profile
   );
 
+  const endDate = moment(Number(membership?.endDate));
+  const isMembershipExpired = endDate.isSameOrBefore(moment(), "day");
+
   if (!profile.id_membership) {
     return <MembershipPlanList />;
+  }
+
+  if (isMembershipExpired) {
+    return <ExpiredPlan />;
   }
 
   if (!transaksi.verifikasi) {

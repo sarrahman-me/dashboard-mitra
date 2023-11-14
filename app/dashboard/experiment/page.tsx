@@ -5,12 +5,14 @@ import {
   Button,
   CatalogProducts,
   Container,
+  ExpiredPlan,
   FileInput,
   NotMembership,
   PaymentChecking,
   Typography,
 } from "@/src/components";
 import { PostDataApi } from "@/utils";
+import moment from "moment";
 import Image from "next/image";
 import { Loading, Notify } from "notiflix";
 import { useState } from "react";
@@ -18,7 +20,9 @@ import { FaWandMagicSparkles } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 
 export default function Experiment() {
-  const { profile, transaksi } = useSelector((state: any) => state.profile);
+  const { profile, transaksi, membership } = useSelector(
+    (state: any) => state.profile
+  );
   const [gambar, setGambar] = useState([] as any);
   const [loading, setLoading] = useState(false);
   const [responsePredict, setResponsePredict] = useState({
@@ -67,6 +71,13 @@ export default function Experiment() {
 
   if (!profile?.id_membership) {
     return <NotMembership />;
+  }
+
+  const endDate = moment(Number(membership?.endDate));
+  const isMembershipExpired = endDate.isSameOrBefore(moment(), "day");
+
+  if (isMembershipExpired) {
+    return <ExpiredPlan />;
   }
 
   if (!transaksi?.verifikasi) {

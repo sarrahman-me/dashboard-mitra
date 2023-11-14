@@ -17,6 +17,7 @@ interface ButtonProps {
   variant?: "contained" | "outlined" | "text";
   size?: "medium" | "small" | "large" | "full";
   type?: "button" | "reset" | "submit";
+  color?: "indigo" | "lime" | "red" | "orange" | "green";
   disabled?: true | false;
   loading?: true | false;
   onClick?: () => void;
@@ -25,25 +26,38 @@ interface ButtonProps {
 }
 
 const Button = ({
-  variant,
+  variant = "contained",
   children,
-  size,
+  size = "medium",
   type,
   disabled,
   loading,
   icon,
+  color = "indigo",
   onClick,
 }: ButtonProps) => {
-  /* mendefinisikan className tailwind CSS yang berbeda untuk setiap varian tombol. */
+  const bgColor = {
+    indigo: "bg-indigo-600 hover:bg-indigo-800 text-white",
+    lime: "bg-lime-600 hover:bg-lime-800 text-white",
+    red: "bg-red-600 hover:bg-red-800 text-white",
+    orange: "bg-orange-600 hover:bg-orange-800 text-white",
+    green: "bg-green-600 hover:bg-green-800 text-white",
+  };
+
+  const borderColor = {
+    indigo: "border-indigo-600 text-black dark:text-white",
+    lime: "border-lime-600 text-black dark:text-white",
+    red: "border-red-600 text-black dark:text-white",
+    orange: "border-orange-600 text-black dark:text-white",
+    green: "border-green-600 text-black dark:text-white",
+  };
 
   const classVariant = {
-    contained:
-      "border border-indigo-600 bg-indigo-600 text-white hover:bg-indigo-800 disabled:bg-gray-500 disabled:border-none",
+    contained: `border ${bgColor[color]} ${borderColor[color]} disabled:bg-gray-500 disabled:border-none`,
 
-    outlined:
-      "border-2 border-indigo-600 hover:shadow-md hover:border-indigo-500 disabled:border-gray-500",
+    outlined: `border-2 ${borderColor[color]} hover:shadow-md disabled:border-gray-500`,
 
-    text: "hover:bg-slate-200 dark:hover:bg-slate-800",
+    text: "hover:bg-slate-200 dark:hover:bg-slate-800 dark:text-white",
   };
 
   const classSize = {
@@ -57,8 +71,8 @@ const Button = ({
 
   const className = `
   ${defaultClass}
-  ${classVariant[variant || "contained"]} 
-  ${classSize[size || "medium"]}
+  ${classVariant[variant]} 
+  ${classSize[size]}
   `;
 
   const classIcon = `ml-2 ${loading ? "animate-spin" : ""}`;

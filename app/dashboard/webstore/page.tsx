@@ -7,6 +7,7 @@ import {
   Button,
   Container,
   CreatingWebsite,
+  ExpiredPlan,
   FormWebstore,
   ListData,
   NotMembership,
@@ -17,7 +18,9 @@ import { AiOutlineSetting } from "react-icons/ai";
 import { Report } from "notiflix";
 
 export default function Webstore() {
-  const { profile, transaksi } = useSelector((state: any) => state.profile);
+  const { profile, transaksi, membership } = useSelector(
+    (state: any) => state.profile
+  );
   const [webstore, setWebstore] = useState({} as any);
 
   useEffect(() => {
@@ -36,6 +39,13 @@ export default function Webstore() {
 
   if (!profile.id_membership) {
     return <NotMembership />;
+  }
+
+  const endDate = moment(Number(membership?.endDate));
+  const isMembershipExpired = endDate.isSameOrBefore(moment(), "day");
+
+  if (isMembershipExpired) {
+    return <ExpiredPlan />;
   }
 
   if (!transaksi.verifikasi) {

@@ -10,12 +10,14 @@ import {
   QrSampleProducts,
   SwiperProduct,
   SearchBar,
+  ExpiredPlan,
 } from "@/src/components";
 import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
 import { GetDataApi, upPriceWithPercen } from "@/src/utils";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import moment from "moment";
 
 const DetailBarang = () => {
   const params = useParams();
@@ -23,9 +25,8 @@ const DetailBarang = () => {
   const [barangSejenis, setBarangSejenis] = useState([] as any);
   const [barangSerupa, setBarangSerupa] = useState([] as any);
   const [barang, setBarang] = useState({} as any);
-  const { profile, transaksi, persentaseHarga, webstore } = useSelector(
-    (state: any) => state.profile
-  );
+  const { profile, transaksi, persentaseHarga, webstore, membership } =
+    useSelector((state: any) => state.profile);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,12 +38,12 @@ const DetailBarang = () => {
       const barang = responseBarang.data;
 
       const responseBarangSerupa = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/products/barang?kategori=${barang.kategori}&ukuran=${barang.ukuran}&motif=${barang.motif}&tekstur=${barang.tekstur}`,
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang?kategori=${barang?.kategori}&ukuran=${barang?.ukuran}&motif=${barang?.motif}&tekstur=${barang?.tekstur}`,
         3600
       );
 
       const responseBarangSejenis = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/products/barang?nama=${barang.nama_barang}&brand=${barang.brand}`,
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang?nama=${barang?.nama_barang}&brand=${barang?.brand}`,
         3600
       );
       setBarang(barang);
@@ -58,6 +59,13 @@ const DetailBarang = () => {
 
   if (!profile?.id_membership) {
     return <NotMembership />;
+  }
+
+  const endDate = moment(Number(membership?.endDate));
+  const isMembershipExpired = endDate.isSameOrBefore(moment(), "day");
+
+  if (isMembershipExpired) {
+    return <ExpiredPlan />;
   }
 
   if (!transaksi?.verifikasi) {

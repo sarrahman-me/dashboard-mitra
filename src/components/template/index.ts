@@ -1,5 +1,6 @@
 import Benefits from "./Benefits";
 import Cta from "./Cta";
+import ExpiredPlan from "./ExpiredPlan";
 import Jumbotron from "./Jumbotron";
 import KalkulatorKeramik from "./KalkulatorKeramik";
 import MotifList from "./MotifList";
@@ -32,4 +33,5 @@ export {
   SimulasiKeramik,
   QrSampleProducts,
   MotifList,
+  ExpiredPlan,
 };

@@ -54,6 +54,7 @@ import {
   MotifList,
   QrSampleProducts,
   SimulasiKeramik,
+  ExpiredPlan,
 } from "./template";
 
 export {
@@ -113,4 +114,5 @@ export {
   MotifList,
   QrSampleProducts,
   SimulasiKeramik,
+  ExpiredPlan,
 };
