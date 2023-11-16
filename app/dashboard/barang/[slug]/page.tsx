@@ -31,7 +31,7 @@ const DetailBarang = () => {
   useEffect(() => {
     const fetchData = async () => {
       const responseBarang = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}`,
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}?track=true&source=tokokeramik.com`,
         3600
       );
 
