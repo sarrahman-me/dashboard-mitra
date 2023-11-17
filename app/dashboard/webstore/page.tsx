@@ -16,8 +16,10 @@ import {
 } from "@/src/components";
 import { AiOutlineSetting } from "react-icons/ai";
 import { Report } from "notiflix";
+import { useRouter } from "next/navigation";
 
 export default function Webstore() {
+  const router = useRouter();
   const { profile, transaksi, membership } = useSelector(
     (state: any) => state.profile
   );
@@ -60,14 +62,6 @@ export default function Webstore() {
     return <CreatingWebsite />;
   }
 
-  const handleSetting = () => {
-    Report.info(
-      "Info",
-      "Fitur ini sedang dalam pengembangan. <br/><br/> Mohon maaf ketidaknyamanan ini",
-      "Okay"
-    );
-  };
-
   return (
     <div className="mt-2">
       <Typography variant="subtitle">Webstore</Typography>
@@ -84,7 +78,7 @@ export default function Webstore() {
       </Container>
       <div className="mt-2">
         <Button
-          onClick={handleSetting}
+          onClick={() => router.push("/dashboard/webstore/setting")}
           icon={<AiOutlineSetting />}
           variant="text"
         >
