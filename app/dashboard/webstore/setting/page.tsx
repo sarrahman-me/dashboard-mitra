@@ -4,14 +4,12 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   Button,
-  CreatingWebsite,
   ExpiredPlan,
   FormWebstore,
   NotMembership,
   PaymentChecking,
   SwitchToggle,
   Textfield,
-  Typography,
 } from "@/src/components";
 import { GetDataApi, PatchDataApi } from "@/src/utils";
 import { Notify } from "notiflix";
@@ -25,6 +23,7 @@ export default function Setting() {
   );
   const [profitPersentase, setPersentase] = useState("" as any);
   const [showPrice, setShowPrice] = useState(false);
+  const [showStock, setShowStock] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -33,6 +32,7 @@ export default function Setting() {
           `${process.env.NEXT_PUBLIC_HOST}/webstore/${profile.id_webstore}`
         );
         setPersentase(responseWebstore?.data?.profit_percentage);
+        setShowStock(responseWebstore?.data?.show_stock);
         setShowPrice(responseWebstore?.data?.show_price);
       }
     }
@@ -64,6 +64,7 @@ export default function Setting() {
       `${process.env.NEXT_PUBLIC_HOST}/webstore/${profile.id_webstore}`,
       {
         show_price: showPrice,
+        show_stock: showStock,
         profit_percentage: profitPersentase,
       }
     );
@@ -90,6 +91,11 @@ export default function Setting() {
           label={showPrice ? "tampilkan harga" : "tidak tampilkan harga"}
           setValue={setShowPrice}
           value={showPrice}
+        />
+        <SwitchToggle
+          label={showStock ? "tampilkan stok" : "tidak tampilkan stok"}
+          setValue={setShowStock}
+          value={showStock}
         />
         <Button type="submit">Submit</Button>
       </form>
