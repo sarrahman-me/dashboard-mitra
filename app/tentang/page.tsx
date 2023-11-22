@@ -15,62 +15,74 @@ export default function Tentang() {
           <p className="text-gray-800 dark:text-slate-50">
             Selamat datang di tokokeramik.com! Kami adalah platform yang
             didedikasikan untuk mengubah cara Anda menjalankan bisnis keramik
-            secara online. Di sini, kami ingin memberikan Anda gambaran tentang
-            siapa kami dan apa yang kami perjuangkan.
+            secara online. Kami ingin memberikan Anda gambaran tentang siapa
+            kami dan apa yang kami perjuangkan.
           </p>
-          <h2 className="text-xl font-medium mt-4">Latar Belakang Kami</h2>
+
+          <h2 className="text-xl font-medium mt-8">Latar Belakang Kami</h2>
           <p className="text-gray-800 dark:text-slate-50">
-            Kami, para pendiri tokokeramik.com, mengawali perjalanan kami dalam
-            dunia keramik dari berbagai latar belakang yang berbeda, membawa
-            pengalaman dan pengetahuan yang berharga dalam industri ini.
-          </p>
-          <p className="text-gray-800 dark:text-slate-50">
-            Saya, Rahman, saya adalah pendiri tokokeramik.com. Sebelumnya, saya
-            memiliki pengalaman yang kuat di bidang penjualan, pemasaran produk
-            keramik dan supervisor operasional selama beberapa tahun di beberapa
-            perusahaan.
-          </p>
-          <h2 className="text-xl font-medium mt-4">Visi Kami</h2>
-          <p className="text-gray-800 dark:text-slate-50">
-            Kami percaya bahwa bisnis keramik memiliki potensi besar, dan inilah
-            mengapa kami menciptakan tokokeramik.com. Visi kami adalah untuk
-            menjadikan tokokeramik.com sebagai solusi lengkap bagi mereka yang
-            ingin menjalankan bisnis keramik secara efisien dan sukses.
-          </p>
-          <h2 className="text-xl font-medium mt-4">Layanan Kami</h2>
-          <p className="text-gray-800 dark:text-slate-50">
-            Hingga saat ini, aplikasi tokokeramik.com hanya tersedia untuk
-            wilayah Kota Samarinda - Kalimantan Timur, dan sekitarnya. Namun,
-            kami berkomitmen untuk terus berkembang dan menjelajahi berbagai
-            wilayah di Indonesia. Kami ingin memastikan bahwa semua orang, di
-            mana pun mereka berada, memiliki akses ke alat dan informasi yang
-            mereka butuhkan untuk meraih keberhasilan dalam bisnis keramik.
-          </p>
-          <h2 className="text-xl font-medium mt-4">Misi Kami</h2>
-          <p className="text-gray-800 dark:text-slate-50">
-            Misi kami adalah menyediakan platform yang memudahkan Anda dalam
-            memulai dan mengembangkan bisnis keramik Anda. Kami ingin membantu
-            Anda membangun toko online yang dirancang khusus, menjelajahi produk
-            keramik dari berbagai pilihan suplier terdekat, dan memberikan
-            wawasan berharga tentang aktivitas pelanggan Anda.
+            Kami, para pendiri tokokeramik.com, memulai perjalanan kami dalam
+            dunia keramik dari latar belakang yang berbeda, menghadirkan
+            pengalaman dan pengetahuan berharga dalam industri ini.
           </p>
           <p className="text-gray-800 dark:text-slate-50">
-            Kami berkomitmen untuk memberikan dukungan dan solusi yang Anda
-            butuhkan untuk meraih kesuksesan dalam bisnis keramik Anda.
-            Bersama-sama, kita akan menciptakan masa depan yang lebih cerah bagi
-            industri keramik di Indonesia.
+            Nama saya Rahman, saya adalah pembuat aplikasi tokokeramik.com.
+            Pengalaman di bidang penjualan, pemasaran produk keramik, dan
+            supervisor operasional di perusahaan bahan bangunan. pengalaman itu
+            menuntun saya melangkah dalam memberikan solusi yang baik untuk
+            semua mitra dan saya juga memiliki kemampuan yang sangat kuat dalam
+            merancang keseluruhan aplikasi seorang diri membuat saya memahami
+            apa yang saya perjuangkan.
           </p>
+
+          <h2 className="text-xl font-medium mt-8">Visi & Misi Kami</h2>
+          <p className="text-gray-800 dark:text-slate-50">
+            Kami percaya bisnis keramik memiliki potensi besar, dan kami
+            menciptakan tokokeramik.com untuk menjadi solusi lengkap bagi bisnis
+            keramik dengan efisiensi dan kesuksesan. Misi kami adalah
+            menyediakan platform yang memudahkan memulai dan mengembangkan
+            bisnis keramik, menjelajahi produk dari berbagai pilihan supplier
+            terdekat, dan memberikan wawasan berharga tentang aktivitas
+            pelanggan.
+          </p>
+
+          <h2 className="text-xl font-medium mt-8">Layanan Kami</h2>
+          <p className="text-gray-800 dark:text-slate-50">
+            Aplikasi tokokeramik.com saat ini hanya tersedia untuk wilayah
+            Kalimantan Timur, namun kami bertekad untuk berkembang dan
+            menjangkau seluruh Indonesia. Tujuan kami adalah memastikan setiap
+            orang, di manapun berada, memiliki akses ke alat dan informasi untuk
+            meraih kesuksesan dalam bisnis keramik.
+          </p>
+
+          <h2 className="text-xl font-medium mt-8">
+            Keunggulan & Dampak Positif
+          </h2>
+          <p className="text-gray-800 dark:text-slate-50">
+            Tokokeramik.com menjadi inovator pertama di Kalimantan Timur, dengan
+            fokus pengembangan produk dan layanan yang memberikan solusi terbaik
+            kepada pelanggan. Penggunaan aplikasi memberikan kemudahan akses
+            informasi dan dukungan penuh dalam mengembangkan toko keramik.
+          </p>
+
+          <p className="text-gray-800 dark:text-slate-50">
+            Kami berkomitmen memberikan dukungan dan solusi bagi kesuksesan
+            bisnis keramik Anda, dan bersama-sama menciptakan masa depan lebih
+            cerah bagi industri keramik di Indonesia.
+          </p>
+
           <p className="text-gray-800 dark:text-slate-50">
             Terima kasih telah memilih tokokeramik.com sebagai mitra bisnis
-            Anda. Kami berharap dapat terus melayani Anda dan membantu Anda
-            mencapai impian bisnis keramik Anda. Jika Anda memiliki pertanyaan
-            atau membutuhkan bantuan lebih lanjut, jangan ragu untuk menghubungi
-            kami. Kami selalu siap membantu Anda.
+            Anda. Kami berharap dapat terus melayani dan membantu Anda mencapai
+            impian bisnis keramik. Jika ada pertanyaan atau butuh bantuan lebih
+            lanjut, jangan ragu untuk menghubungi kami. Kami siap membantu Anda.
           </p>
+
           <p className="text-gray-800 dark:text-slate-50">
             Terima kasih atas dukungan Anda!
           </p>
-          <div className="flex justify-end mt-5">
+
+          <div className="flex justify-end mt-8">
             <div className="divide-y-8 divide-transparent">
               <p className="text-gray-800 dark:text-slate-50">Salam hangat,</p>
               <Image src={signature} alt="Signature" width={100} height={75} />
