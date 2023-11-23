@@ -11,6 +11,7 @@ import stringToUrl from "./stringToUrl";
 import upPriceWithPercen from "./upPriceWithPercen";
 import RumusPenghitungKeramik from "./RumusPenghitungKeramik";
 import GoogleAnalytics from "./googleAnalystic";
+import RoomvoVisualize from "./roomvo";
 
 export {
   DeleteDataApi,
@@ -24,4 +25,5 @@ export {
   upPriceWithPercen,
   RumusPenghitungKeramik,
   GoogleAnalytics,
+  RoomvoVisualize,
 };
