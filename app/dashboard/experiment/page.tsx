@@ -1,6 +1,7 @@
 "use client";
 import { Heading } from "@/components/atoms";
 import SearchByImage from "@/public/searchByImage.png";
+import virtual from "@/public/virtual.png";
 import {
   Button,
   CatalogProducts,
@@ -138,9 +139,7 @@ export default function Experiment() {
             </div>
           </div>
         </div>
-      </Container>
 
-      <Container otherClass="p-2 my-1">
         <div className="space-y-3">
           <FileInput setFile={setGambar} previewFile />
           <Button
@@ -192,6 +191,37 @@ export default function Experiment() {
           </div>
         </Container>
       )}
+
+      <Container otherClass="p-2 my-1">
+        <div>
+          <span>
+            Experiment 2: <p className="font-semibold">Ruang visualisasi</p>
+          </span>
+
+          <div className="flex flex-col md:flex-row">
+            <div className="flex justify-center items-center my-1">
+              <Image
+                src={virtual}
+                alt="pencarian dari gambar"
+                className="max-w-xs"
+              />
+            </div>
+
+            <div className="my-4 space-y-8 md:ml-2">
+              <Typography>
+                Sebelum kamu benar benar memutuskan untuk membeli sebuah produk,
+                mungkin kamu berencana untuk mencocokan ruangan mu dengan
+                keramik yang akan kamu beli.
+              </Typography>
+              <Typography>
+                Dari kasus tersebut kami mencoba sebuah experiment untuk itu,
+                silahkan klik di pojok kanan bawah halaman ini untuk mencoba
+                ruang visualisasi
+              </Typography>
+            </div>
+          </div>
+        </div>
+      </Container>
       <RoomvoVisualize />
     </div>
   );
