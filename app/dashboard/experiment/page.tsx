@@ -11,6 +11,7 @@ import {
   PaymentChecking,
   Typography,
 } from "@/src/components";
+import { RoomvoVisualize } from "@/src/utils";
 import { PostDataApi } from "@/utils";
 import moment from "moment";
 import Image from "next/image";
@@ -191,6 +192,7 @@ export default function Experiment() {
           </div>
         </Container>
       )}
+      <RoomvoVisualize />
     </div>
   );
 }
