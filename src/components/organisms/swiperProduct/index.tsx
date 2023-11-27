@@ -5,8 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import { CardProduct } from "../../molecules";
 import { useRouter } from "next/navigation";
-import { IconButton } from "../../atoms";
-import { AiOutlineArrowRight } from "react-icons/ai";
 
 interface SwiperProductProps {
   products: any[];
@@ -24,18 +22,17 @@ export default function SwiperProduct({
   return (
     <div>
       <div className="flex justify-between items-center mr-5">
-
         <p className="underline font-semibold m-2">{title}</p>
-
         {url && (
-          <IconButton
-            size="small"
-            icon={<AiOutlineArrowRight />}
+          <p
+            className="text-xs sm:text-sm cursor-pointer text-indigo-500 select-none"
             onClick={() => router.push(url)}
-          />
+          >
+            Lihat Semua
+          </p>
         )}
       </div>
-      
+
       <div className="cursor-grab select-none">
         <Swiper
           slidesPerView={3}

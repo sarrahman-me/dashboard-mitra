@@ -69,7 +69,7 @@ const CardProduct = ({ product }: CardProductProps) => {
       )}
 
       {isNew && !product.promo && (
-        <div className="bg-blue-500 text-white text-xs md:text-sm px-2 py-1 rounded-br absolute top-0 left-0">
+        <div className="bg-indigo-500 text-white text-xs md:text-sm px-2 py-1 rounded-br absolute top-0 left-0">
           Baru
         </div>
       )}
