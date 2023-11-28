@@ -125,7 +125,7 @@ const DetailBarang = () => {
 
       {barangSejenis.length > 1 ? (
         <div>
-          <SwiperProduct products={barangSejenis} title={"Motif Lainnya"} />
+          <SwiperProduct products={barangSejenis} title={"Warna Lainnya"} />
         </div>
       ) : null}
 

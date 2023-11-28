@@ -9,7 +9,7 @@ import {
 } from "@/src/utils";
 import { useSelector } from "react-redux";
 import { Container } from "../../atoms";
-import { IoMdBonfire } from "react-icons/io";
+import { AiFillFire } from "react-icons/ai";
 import { FaThumbsUp } from "react-icons/fa6";
 
 interface CardProductProps {
@@ -47,29 +47,29 @@ const CardProduct = ({ product }: CardProductProps) => {
       {/* label jika barang baru */}
 
       {isNew && (
-        <div className="bg-indigo-500 text-white text-xs md:text-sm px-2 py-1 rounded-br absolute top-0 left-0">
+        <div className="bg-indigo-500 text-white text-xs px-2 py-1 rounded-br absolute top-0 left-0">
           Baru
         </div>
       )}
 
       {product.promo && product.stok > 500 && (
-        <div className="bg-green-500 text-white text-xs md:text-sm px-2 py-1 rounded-br absolute top-0 left-0 flex items-center">
+        <div className="bg-green-500 text-white text-xs px-2 py-1 rounded-br absolute top-0 left-0 flex items-center">
           <FaThumbsUp className="text-white mr-1" />
           Terbaik
         </div>
       )}
 
       {product.promo && product.stok < 500 && (
-        <div className="bg-red-500 text-white text-xs md:text-sm px-2 py-1 rounded-br absolute top-0 left-0 flex items-center">
+        <div className="bg-red-500 text-white text-xs px-2 py-1 rounded-br absolute top-0 left-0 flex items-center">
           {Number(persentaseDiskon) >= 15 ? (
-            <IoMdBonfire className="text-white mr-1" />
+            <AiFillFire className="text-white mr-1" />
           ) : null}
           {Number(persentaseDiskon) >= 15 ? "Hot" : "Promo"}
         </div>
       )}
 
       {isNew && !product.promo && (
-        <div className="bg-indigo-500 text-white text-xs md:text-sm px-2 py-1 rounded-br absolute top-0 left-0">
+        <div className="bg-indigo-500 text-white text-xs px-2 py-1 rounded-br absolute top-0 left-0">
           Baru
         </div>
       )}
@@ -83,6 +83,15 @@ const CardProduct = ({ product }: CardProductProps) => {
           alt={product?.nama_barang}
         />
       </div>
+      {product.stok > 500 ? (
+        <div className="bg-gradient-to-br from-green-300 to-green-500 dark:from-green-700 dark:to-green-900 text-white max-w-fit px-2 text-xs p-0.5 rounded-br">
+          Tersedia
+        </div>
+      ) : product.stok < 50 ? (
+        <div className="bg-gradient-to-br from-orange-300 to-orange-500 dark:from-orange-700 dark:to-orange-900 text-white max-w-fit px-2 text-xs p-0.5 rounded-br">
+          Terbatas
+        </div>
+      ) : null}
 
       <div className="p-1 divide-y-2 md:divide-y-4 divide-transparent">
         <p className="text-xs text-indigo-500">
@@ -115,19 +124,6 @@ const CardProduct = ({ product }: CardProductProps) => {
 
         <div>
           <p className="text-xs md:text-sm">Stok: {product.stok}</p>
-          {product.stok > 500 ? (
-            <p
-              className={`my-1 p-0.5 text-xs rounded-full bg-green-300 dark:bg-green-700 inline px-2`}
-            >
-              Banyak
-            </p>
-          ) : product.stok < 50 ? (
-            <p
-              className={`my-1 p-0.5 text-xs rounded-full bg-orange-300 dark:bg-orange-700 inline px-2`}
-            >
-              Terbatas
-            </p>
-          ) : null}
         </div>
 
         {/* detail tambahan */}
