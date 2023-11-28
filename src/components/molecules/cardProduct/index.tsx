@@ -53,13 +53,12 @@ const CardProduct = ({ product }: CardProductProps) => {
       )}
 
       {product.promo && product.stok > 500 && (
-        <div className="bg-green-500 text-white text-xs px-2 py-1 rounded-br absolute top-0 left-0 flex items-center">
-          <FaThumbsUp className="text-white mr-1" />
-          Terbaik
+        <div className="bg-green-500 text-white text-xs p-1 rounded-full absolute top-0 right-0 flex items-center">
+          <FaThumbsUp className="text-white" />
         </div>
       )}
 
-      {product.promo && product.stok < 500 && (
+      {product.promo && (
         <div className="bg-red-500 text-white text-xs px-2 py-1 rounded-br absolute top-0 left-0 flex items-center">
           {Number(persentaseDiskon) >= 15 ? (
             <AiFillFire className="text-white mr-1" />
