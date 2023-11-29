@@ -86,9 +86,13 @@ const CardProduct = ({ product }: CardProductProps) => {
         <div className="bg-gradient-to-br from-green-300 to-green-500 dark:from-green-700 dark:to-green-900 text-white max-w-fit px-2 text-xs p-0.5 rounded-br">
           Tersedia
         </div>
-      ) : product.stok < 50 ? (
+      ) : product.stok < 50 && product.stok > 0 ? (
         <div className="bg-gradient-to-br from-orange-300 to-orange-500 dark:from-orange-700 dark:to-orange-900 text-white max-w-fit px-2 text-xs p-0.5 rounded-br">
           Terbatas
+        </div>
+      ) : product.stok == 0 ? (
+        <div className="bg-gradient-to-br from-red-300 to-red-500 dark:from-red-700 dark:to-red-900 text-white max-w-fit px-2 text-xs p-0.5 rounded-br">
+          Habis
         </div>
       ) : null}
 
