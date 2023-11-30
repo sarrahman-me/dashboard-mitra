@@ -21,6 +21,7 @@
     "cookies-next": "^3.0.0",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
+    "html-to-image": "^1.11.11",
     "js-cookie": "^3.0.5",
     "moment": "^2.29.4",
     "next": "13.4.1",
