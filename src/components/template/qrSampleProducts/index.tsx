@@ -74,7 +74,7 @@ export default function QrSampleProducts(props: {
           <div className="flex flex-col">
             <div
               id="qrcode"
-              className="flex space-x-1 items-center rounded w-full my-2 bg-white text-black min-w-max border"
+              className="flex space-x-1 items-center rounded w-full bg-white text-black min-w-max border"
             >
               <img
                 src={imageUrl}
@@ -88,7 +88,9 @@ export default function QrSampleProducts(props: {
                 <p className="font-mono text-sm">{props.barang.brand}</p>
               </div>
             </div>
-            <Button onClick={handleDownload}>Download</Button>
+            <div className="my-2">
+              <Button onClick={handleDownload}>Download</Button>
+            </div>
           </div>
         )}
       </div>
