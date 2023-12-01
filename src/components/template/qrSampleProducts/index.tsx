@@ -57,8 +57,8 @@ export default function QrSampleProducts(props: {
   }, [props.webstore, props.barang]);
 
   return (
-    <Container otherClass="flex flex-col sm:flex-row items-center md:p-2 my-2">
-      <div className="w-full px-4 md:px-0 md:w-2/3 max-w-xl md:mx-auto my-2 space-y-1">
+    <Container otherClass="flex flex-col justify-center items-center my-2">
+      <div className="w-full px-4 md:px-0  md:w-2/3 max-w-xl md:mx-auto my-2 space-y-1">
         <Typography variant="subtitle">
           Yuk, Tempel pada sample fisik di tokomu!
         </Typography>
@@ -69,23 +69,26 @@ export default function QrSampleProducts(props: {
         </Typography>
       </div>
 
-      <div className="sm:w-1/3 w-full">
+      <div className="w-full">
         {imageUrl && (
           <div className="flex flex-col">
             <div
               id="qrcode"
-              className="flex space-x-1 items-center rounded w-full bg-white text-black min-w-max border"
+              className="flex space-x-1 items-center rounded w-full bg-white text-black min-w-max"
             >
               <img
                 src={imageUrl}
-                className="border m-2 w-32 h-w-32"
+                className="border m-2 w-36 h-w-36"
                 alt={`${props.webstore?.url}/barang/${props.barang.kode_barang}`}
                 title={`${props.webstore?.url}/barang/${props.barang.kode_barang}`}
               />
               <div className="space-y-2">
                 <p className="font-mono">{props.barang.nama_barang}</p>
-                <p className="font-mono text-xs">({props.barang.ukuran})</p>
-                <p className="font-mono text-sm">{props.barang.brand}</p>
+                <p className="font-mono text-xs">
+                  {props.barang.warna?.replace(/\([^)]*\)/g, "").trim()}
+                </p>
+                <p className="font-mono">({props.barang.ukuran})</p>
+                <p className="font-mono">{props.barang.brand}</p>
               </div>
             </div>
             <div className="my-2">
