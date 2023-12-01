@@ -57,7 +57,7 @@ export default function QrSampleProducts(props: {
   }, [props.webstore, props.barang]);
 
   return (
-    <Container otherClass="flex flex-col justify-center items-center my-2">
+    <Container otherClass="flex flex-col sm:p-2 sm:flex-row justify-center items-center my-2">
       <div className="w-full px-4 md:px-0  md:w-2/3 max-w-xl md:mx-auto my-2 space-y-1">
         <Typography variant="subtitle">
           Yuk, Tempel pada sample fisik di tokomu!
@@ -69,12 +69,12 @@ export default function QrSampleProducts(props: {
         </Typography>
       </div>
 
-      <div className="w-full">
+      <div className="w-full md:w-1/3">
         {imageUrl && (
           <div className="flex flex-col">
             <div
               id="qrcode"
-              className="flex space-x-1 items-center rounded w-full bg-white text-black min-w-max"
+              className="flex space-x-1 items-center rounded bg-white text-black w-full"
             >
               <img
                 src={imageUrl}
@@ -84,7 +84,7 @@ export default function QrSampleProducts(props: {
               />
               <div className="space-y-2">
                 <p className="font-mono">{props.barang.nama_barang}</p>
-                <p className="font-mono text-xs">
+                <p className="font-mono text-sm">
                   {props.barang.warna?.replace(/\([^)]*\)/g, "").trim()}
                 </p>
                 <p className="font-mono">({props.barang.ukuran})</p>
