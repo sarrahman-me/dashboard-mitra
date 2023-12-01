@@ -1,8 +1,41 @@
 "use client";
 import { FcExpired } from "react-icons/fc";
 import { Button, Container, Typography } from "../../atoms";
+import { Confirm, Loading, Notify } from "notiflix";
+import { PostDataApi } from "@/src/utils";
 
-export default function ExpiredPlan() {
+export default function ExpiredPlan(props: { id_membership: string }) {
+  const handleBerhentiMembership = () => {
+    Confirm.show(
+      "Konfirmasi",
+      "Apakah kamu yakin?",
+      "Yakin",
+      "Batal",
+      async () => {
+        Loading.circle();
+        const response = await PostDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/membership/berhenti`,
+          {
+            id_membership: props.id_membership,
+          }
+        );
+
+        if (response.success) {
+          Loading.remove();
+          window.location.reload();
+        } else {
+          Loading.remove();
+          Notify.failure(response.message);
+        }
+      },
+      () => {},
+      {
+        okButtonBackground: "red",
+        titleColor: "red",
+      }
+    );
+  };
+
   return (
     <div className="flex flex-col justify-center items-center">
       <Container otherClass="p-8">
@@ -16,7 +49,7 @@ export default function ExpiredPlan() {
           <Button
             variant="outlined"
             color="red"
-            onClick={() => console.log("berhenti")}
+            onClick={handleBerhentiMembership}
           >
             Berhenti
           </Button>

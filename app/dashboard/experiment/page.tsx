@@ -79,7 +79,7 @@ export default function Experiment() {
   const isMembershipExpired = endDate.isSameOrBefore(moment(), "day");
 
   if (isMembershipExpired) {
-    return <ExpiredPlan />;
+    return <ExpiredPlan id_membership={profile.id_membership} />;
   }
 
   if (!transaksi?.verifikasi) {

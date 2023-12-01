@@ -26,7 +26,7 @@ const Membership = async () => {
   }
 
   if (isMembershipExpired) {
-    return <ExpiredPlan />;
+    return <ExpiredPlan id_membership={profile.id_membership} />;
   }
 
   if (!transaksi.verifikasi) {
