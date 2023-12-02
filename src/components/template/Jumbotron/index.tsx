@@ -21,7 +21,7 @@ export default function Jumbotron() {
             </p>
 
             <div className="flex flex-col items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row">
-              <Button onClick={() => router.push("/login")}>Mulai</Button>
+              <Button onClick={() => router.push("/login")}>Mulai Sekarang</Button>
             </div>
           </div>
         </div>
