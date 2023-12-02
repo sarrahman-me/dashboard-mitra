@@ -3,8 +3,10 @@ import { FcExpired } from "react-icons/fc";
 import { Button, Container, Typography } from "../../atoms";
 import { Confirm, Loading, Notify } from "notiflix";
 import { PostDataApi } from "@/src/utils";
+import { useRouter } from "next/navigation";
 
 export default function ExpiredPlan(props: { id_membership: string }) {
+  const router = useRouter();
   const handleBerhentiMembership = () => {
     Confirm.show(
       "Konfirmasi",
@@ -53,7 +55,9 @@ export default function ExpiredPlan(props: { id_membership: string }) {
           >
             Berhenti
           </Button>
-          <Button onClick={() => console.log("perpanjang")}>Perpanjang</Button>
+          <Button onClick={() => router.push("/dashboard/membership/renew")}>
+            Perpanjang
+          </Button>
         </div>
       </Container>
     </div>
