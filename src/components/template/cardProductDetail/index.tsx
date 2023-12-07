@@ -42,7 +42,10 @@ export default function CardProductDetail({
       >
         {barang.images && (
           <img
-            src={barang?.images[0]}
+            src={
+              barang?.images[0] ||
+              "https://ik.imagekit.io/sarrahmanme/No-Image-Placeholder.svg.png?updatedAt=1701908821050"
+            }
             alt={barang.slug}
             className="object-contain max-h-44 border"
           />

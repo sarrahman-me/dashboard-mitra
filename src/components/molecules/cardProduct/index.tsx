@@ -78,7 +78,10 @@ const CardProduct = ({ product }: CardProductProps) => {
       <div onContextMenu={handleKlikKanan} className="flex justify-center">
         <img
           className="object-contain max-h-28 md:max-h-32 border"
-          src={product?.images[0]}
+          src={
+            product?.images[0] ||
+            "https://ik.imagekit.io/sarrahmanme/No-Image-Placeholder.svg.png?updatedAt=1701908821050"
+          }
           alt={product?.nama_barang}
         />
       </div>
