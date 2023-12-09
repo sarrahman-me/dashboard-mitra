@@ -4,10 +4,12 @@ import SearchByImage from "@/public/searchByImage.png";
 import virtual from "@/public/virtual.png";
 import {
   Button,
+  CardProduct,
   CatalogProducts,
   Container,
   ExpiredPlan,
   FileInput,
+  LoadingAnimation,
   NotMembership,
   PaymentChecking,
   Typography,
@@ -19,6 +21,7 @@ import Image from "next/image";
 import { Loading, Notify } from "notiflix";
 import { useState } from "react";
 import { FaWandMagicSparkles } from "react-icons/fa6";
+import { Tb3DCubeSphereOff } from "react-icons/tb";
 import { useSelector } from "react-redux";
 
 export default function Experiment() {
@@ -27,12 +30,7 @@ export default function Experiment() {
   );
   const [gambar, setGambar] = useState([] as any);
   const [loading, setLoading] = useState(false);
-  const [responsePredict, setResponsePredict] = useState({
-    message: "",
-    predicted_class: "",
-    predicted_probability: 0,
-    predicted_probabilities: [],
-  });
+  const [responsePredict, setResponsePredict] = useState([] as any);
 
   const handleCari = async () => {
     setLoading(true);
@@ -52,15 +50,19 @@ export default function Experiment() {
         }
       );
 
-      if (response?.predicted_class) {
-        setResponsePredict({
-          predicted_class: response?.predicted_class,
-          predicted_probability: response?.predicted_probability,
-          predicted_probabilities: response?.predicted_probabilities,
-          message: response?.message,
-        });
-        setLoading(false);
+      if (response?.predicted_id_product.length > 0) {
+        PostDataApi(`${process.env.NEXT_PUBLIC_HOST}/products/barang/slugs`, {
+          slugs: response?.predicted_id_product,
+        })
+          .then((productsResponse) => {
+            setResponsePredict(productsResponse.data);
+          })
+          .catch((error) => {
+            console.error("Error fetching wishlist products:", error);
+            setResponsePredict([]);
+          });
       } else {
+        setResponsePredict([]);
         Notify.failure("Gagal melakukan pencarian berdasarkan gambar");
       }
     } catch (error) {
@@ -152,45 +154,33 @@ export default function Experiment() {
         </div>
       </Container>
 
-      {responsePredict.message === "berhasil" && (
-        <Container otherClass="p-2 my-1">
-          <div>
-            <Typography>Ringkasan hasil prediksi model</Typography>
-            <div className="divide-y-8 divide-transparent">
-              {responsePredict.predicted_probabilities
-                .filter((item: any) => item.value > 0)
-                .map((item: any, i: any) => (
-                  <Typography
-                    variant="helper"
-                    color={
-                      item.value > 0.5
-                        ? "success"
-                        : item.value < 0.1
-                        ? "danger"
-                        : "primary"
-                    }
-                    key={i}
-                  >
-                    {item.label} dengan keyakinan{" "}
-                    {(item.value * 100).toFixed(0)}%
-                  </Typography>
-                ))}
+      <div className="p-2">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-8 gap-y-4 gap-x-2">
+          {loading ? (
+            <LoadingAnimation />
+          ) : responsePredict.length > 0 ? (
+            responsePredict.map((item: any, i: any) => (
+              <div key={i}>
+                <CardProduct product={item} />
+              </div>
+            ))
+          ) : (
+            <div className="my-2">
+              <div className="flex justify-center m-1">
+                <Tb3DCubeSphereOff className="text-indigo-500 text-4xl md:text-5xl shadow shadow-indigo-300 p-1 border rounded-full" />
+              </div>
+              <Typography
+                otherClass="my-2"
+                color="secondary"
+                variant="helper"
+                align="center"
+              >
+                Tidak ada barang
+              </Typography>
             </div>
-          </div>
-        </Container>
-      )}
-
-      {responsePredict.message === "berhasil" && (
-        <Container otherClass="p-2 my-1">
-          <div>
-            <p className="font-semibold underline">Hasil pencarian barang</p>
-            <CatalogProducts
-              atribut={`query=${responsePredict.predicted_class}`}
-              path="products/search"
-            />
-          </div>
-        </Container>
-      )}
+          )}
+        </div>
+      </div>
 
       <Container otherClass="p-2 my-1">
         <div>
