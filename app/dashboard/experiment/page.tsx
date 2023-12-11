@@ -5,7 +5,6 @@ import virtual from "@/public/virtual.png";
 import {
   Button,
   CardProduct,
-  CatalogProducts,
   Container,
   ExpiredPlan,
   FileInput,
@@ -18,7 +17,7 @@ import { RoomvoVisualize } from "@/src/utils";
 import { PostDataApi } from "@/utils";
 import moment from "moment";
 import Image from "next/image";
-import { Loading, Notify } from "notiflix";
+import { Notify } from "notiflix";
 import { useState } from "react";
 import { FaWandMagicSparkles } from "react-icons/fa6";
 import { Tb3DCubeSphereOff } from "react-icons/tb";
@@ -36,7 +35,6 @@ export default function Experiment() {
     setLoading(true);
 
     if (!gambar) {
-      Loading.remove();
       Notify.warning("Masukkan gambar");
       setLoading(false);
       return;
@@ -70,7 +68,6 @@ export default function Experiment() {
       Notify.failure("Gagal melakukan pencarian berdasarkan gambar");
     }
     setLoading(false);
-    Loading.remove();
   };
 
   if (!profile?.id_membership) {
