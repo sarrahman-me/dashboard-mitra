@@ -14,7 +14,7 @@ interface DeskripsiProdukProps {
 
 const DeskripsiProduk = ({ barang }: DeskripsiProdukProps) => {
   return (
-    <Container>
+    <Container otherClass={'py-2'}>
       <div className="flex flex-col md:flex-row m-2">
         <div className="text-sm md:text-base space-y-2 md:space-y-3 w-1/2">
           <Typography>Ukuran: {barang.ukuran}</Typography>

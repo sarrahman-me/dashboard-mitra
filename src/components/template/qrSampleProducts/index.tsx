@@ -78,13 +78,13 @@ export default function QrSampleProducts(props: {
             >
               <img
                 src={imageUrl}
-                className="border m-2 w-36 h-w-36"
+                className="border m-2 w-28 h-w-28"
                 alt={`${props.webstore?.url}/barang/${props.barang.kode_barang}`}
                 title={`${props.webstore?.url}/barang/${props.barang.kode_barang}`}
               />
-              <div className="space-y-2">
-                <p className="font-mono">{props.barang.nama_barang}</p>
-                <p className="font-mono text-sm">
+              <div className="space-y-1">
+                <p className="font-mono font-bold whitespace-nowrap">{props.barang.nama_barang}</p>
+                <p className="font-mono">
                   {props.barang.warna?.replace(/\([^)]*\)/g, "").trim()}
                 </p>
                 <p className="font-mono">({props.barang.ukuran})</p>
