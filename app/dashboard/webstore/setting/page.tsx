@@ -24,6 +24,8 @@ export default function Setting() {
   const [profitPersentase, setPersentase] = useState("" as any);
   const [showPrice, setShowPrice] = useState(false);
   const [showStock, setShowStock] = useState(false);
+  const [usePassword, setUsePassword] = useState(false);
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -34,6 +36,8 @@ export default function Setting() {
         setPersentase(responseWebstore?.data?.profit_percentage);
         setShowStock(responseWebstore?.data?.show_stock);
         setShowPrice(responseWebstore?.data?.show_price);
+        setUsePassword(responseWebstore?.data?.use_password);
+        setPassword(responseWebstore?.data?.password);
       }
     }
     fetchData();
@@ -60,12 +64,23 @@ export default function Setting() {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+
+    if (usePassword && !password) {
+      Notify.warning("password harus di isi");
+    }
+
+    if (showPrice && !profitPersentase) {
+      Notify.warning("isi persentase keuntungan");
+    }
+
     const response = await PatchDataApi(
       `${process.env.NEXT_PUBLIC_HOST}/webstore/${profile.id_webstore}`,
       {
         show_price: showPrice,
         show_stock: showStock,
         profit_percentage: profitPersentase,
+        use_password: usePassword,
+        password: password,
       }
     );
     if (response.success) {
@@ -96,6 +111,18 @@ export default function Setting() {
           label={showStock ? "tampilkan stok" : "tidak tampilkan stok"}
           setValue={setShowStock}
           value={showStock}
+        />
+        <SwitchToggle
+          label={showStock ? "gunakan password" : "tidak gunakan password"}
+          setValue={setUsePassword}
+          value={usePassword}
+        />
+        <Textfield
+          name={"password"}
+          value={password}
+          type="text"
+          label="Password aplikasi"
+          onChange={(value) => setPassword(value)}
         />
         <Button type="submit">Submit</Button>
       </form>
