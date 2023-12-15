@@ -21,6 +21,13 @@ const Membership = async () => {
   const endDate = moment(Number(membership?.endDate));
   const isMembershipExpired = endDate.isSameOrBefore(moment(), "day");
 
+  const threeDaysBeforeExpiration = moment().add(3, "days").startOf("day"); // Tanggal saat ini ditambah 3 hari dan diatur ke awal hari
+
+  const isThreeDaysBeforeExpiration = endDate.isSameOrBefore(
+    threeDaysBeforeExpiration,
+    "day"
+  );
+
   if (!profile.id_membership) {
     return <MembershipPlanList />;
   }
@@ -46,6 +53,15 @@ const Membership = async () => {
   return (
     <div className="mt-2">
       <Typography variant="subtitle">Membership</Typography>
+      {isThreeDaysBeforeExpiration && !isMembershipExpired && (
+        <div className="text-center bg-indigo-600 dark:bg-indigo-800 rounded text-white my-2">
+          <p>Pemberitahuan !</p>
+          <p>
+            Membership Anda akan berakhir. Perpanjangan dan pemberhentian dapat
+            dilakukan saat membership telah berakhir.
+          </p>
+        </div>
+      )}
       <Container otherClass="p-3">
         <div>
           <ListData label="Id membership" value={membership.id_membership} />
