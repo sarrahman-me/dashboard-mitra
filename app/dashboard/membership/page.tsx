@@ -56,10 +56,10 @@ const Membership = async () => {
       {isThreeDaysBeforeExpiration && !isMembershipExpired && (
         <div className="text-center bg-indigo-600 dark:bg-indigo-800 rounded text-white my-2">
           <p>Pemberitahuan !</p>
-          <Typography>
+          <p className="text-white text-xs sm:text-sm">
             Membership Anda akan berakhir. Perpanjangan dan pemberhentian dapat
             dilakukan saat membership telah berakhir.
-          </Typography>
+          </p>
         </div>
       )}
       <Container otherClass="p-3">
