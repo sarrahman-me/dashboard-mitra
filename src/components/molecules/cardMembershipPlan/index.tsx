@@ -36,8 +36,9 @@ const CardMembershipPlan = ({ item }: CardMembershipPlanProps) => {
       text: "Dukungan dan suport setiap saat",
     },
     {
-      icon: <TiTick />,
-      iconColor: "success",
+      icon: item?.slug !== "premium" ? <RxCross2 /> : <TiTick />,
+      iconColor: item?.slug !== "premium" ? "danger" : "success",
+      textDecor: item?.slug !== "premium" ? "coret" : "default",
       text: "Gunakan berbagai alat yang dapat membantu berjualan",
     },
     {
