@@ -8,6 +8,7 @@ import { MdOutlineCardMembership, MdOutlineFeedback } from "react-icons/md";
 import { BiCube, BiStore } from "react-icons/bi";
 import { TbTools } from "react-icons/tb";
 import { RiAccountCircleLine } from "react-icons/ri";
+import { TbAugmentedReality2 } from "react-icons/tb";
 
 export const menuItems = [
   {
@@ -24,6 +25,11 @@ export const menuItems = [
     label: "Barang",
     icon: <BiCube />,
     href: "/dashboard/barang",
+  },
+  {
+    label: "Visualisasi",
+    icon: <TbAugmentedReality2 />,
+    href: "/dashboard/visualisasi",
   },
   {
     label: "Webstore",
@@ -57,6 +63,11 @@ export const menuItemsPageMobile = [
     label: "Barang",
     icon: <BiCube />,
     href: "/dashboard/barang",
+  },
+  {
+    label: "Visualisasi",
+    icon: <TbAugmentedReality2 />,
+    href: "/dashboard/visualisasi",
   },
   {
     label: "Webstore",
