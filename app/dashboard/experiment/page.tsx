@@ -202,14 +202,24 @@ export default function Experiment() {
               </Typography>
               <Typography>
                 Dari kasus tersebut kami mencoba sebuah experiment untuk itu,
-                silahkan klik di pojok kanan bawah halaman ini untuk mencoba
-                ruang visualisasi
+                silahkan klik tombol dibawah ini untuk mencoba ruang visualisasi
               </Typography>
+              <Button
+                icon={<FaWandMagicSparkles />}
+                onClick={() => {
+                  window.open(
+                    "https://studio-prod.actumwork.pl/preview/d9a049b1bba5a1b00d81525a4e919304396beb70dbe523bdb0d178d17f98eabd3806f7031eea99908e70d22c622018150da4",
+                    "_blank"
+                  );
+                }}
+              >
+                Visulaisasi
+              </Button>
             </div>
           </div>
         </div>
       </Container>
-      <RoomvoVisualize />
+      {/* <RoomvoVisualize /> */}
     </div>
   );
 }
