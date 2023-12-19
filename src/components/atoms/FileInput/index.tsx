@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { useState } from "react";
 import Label from "../Label";
 import Typography from "../Typography";
 
@@ -16,19 +15,36 @@ import Typography from "../Typography";
 interface FileInputProps {
   label?: string;
   error?: string;
-  setFile: (files: string[]) => void;
-  previewFile?: boolean;
-}
-
-const FileInput = ({ label, error, setFile, previewFile }: FileInputProps) => {
-  // menyimpan kumpulan file untuk preview
-  const [currentFile, setCurrentFile] = useState(
-    [] as {
+  setCurrentFile: (
+    files: {
       file: string;
       name: string;
       type: string;
     }[]
-  );
+  ) => void;
+  currentFile: {
+    file: string;
+    name: string;
+    type: string;
+  }[];
+  previewFile?: boolean;
+}
+
+const FileInput = ({
+  label,
+  error,
+  setCurrentFile,
+  currentFile,
+  previewFile,
+}: FileInputProps) => {
+  // // menyimpan kumpulan file untuk preview
+  // const [currentFile, setCurrentFile] = useState(
+  //   [] as {
+  //     file: string;
+  //     name: string;
+  //     type: string;
+  //   }[]
+  // );
 
   //   merender preview dari file currentFile berdasarkan tipe file
   const renderFilePreview = () => {
@@ -88,7 +104,6 @@ const FileInput = ({ label, error, setFile, previewFile }: FileInputProps) => {
 
         filteredImage.push(newFile.file);
 
-        setFile(filteredImage);
         setCurrentFile([...currentFile, newFile]);
       };
       reader.readAsDataURL(file);

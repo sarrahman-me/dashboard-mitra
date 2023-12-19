@@ -15,6 +15,7 @@ import { GetDataApi, PatchDataApi } from "@/src/utils";
 import { Notify } from "notiflix";
 import { useRouter } from "next/navigation";
 import { HeaderAndBackIcon } from "@/components/molecules";
+import ImageInputWithPreview from "@/src/components/molecules/imageInputWithPreview";
 
 export default function Setting() {
   const router = useRouter();
@@ -26,6 +27,7 @@ export default function Setting() {
   const [showStock, setShowStock] = useState(false);
   const [usePassword, setUsePassword] = useState(false);
   const [password, setPassword] = useState("");
+  const [logo, setLogo] = useState([] as string[]);
 
   useEffect(() => {
     async function fetchData() {
@@ -33,11 +35,22 @@ export default function Setting() {
         const responseWebstore = await GetDataApi(
           `${process.env.NEXT_PUBLIC_HOST}/webstore/${profile.id_webstore}`
         );
-        setPersentase(responseWebstore?.data?.profit_percentage);
-        setShowStock(responseWebstore?.data?.show_stock);
-        setShowPrice(responseWebstore?.data?.show_price);
-        setUsePassword(responseWebstore?.data?.use_password);
-        setPassword(responseWebstore?.data?.password);
+        const {
+          profit_percentage,
+          show_stock,
+          show_price,
+          use_password,
+          password,
+          logo,
+        } = responseWebstore?.data;
+        setPersentase(profit_percentage);
+        setShowStock(show_stock);
+        setShowPrice(show_price);
+        setUsePassword(use_password);
+        setPassword(password);
+        if (logo) {
+          setLogo([logo]);
+        }
       }
     }
     fetchData();
@@ -81,6 +94,7 @@ export default function Setting() {
         profit_percentage: profitPersentase,
         use_password: usePassword,
         password: password,
+        logo: logo[0],
       }
     );
     if (response.success) {
@@ -124,7 +138,10 @@ export default function Setting() {
           label="Password aplikasi"
           onChange={(value) => setPassword(value)}
         />
-        <Button type="submit">Submit</Button>
+        <ImageInputWithPreview title="logo" gambar={logo} setGambar={setLogo} />
+        <div className="flex justify-end">
+          <Button type="submit">Submit</Button>
+        </div>
       </form>
     </div>
   );

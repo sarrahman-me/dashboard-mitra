@@ -7,12 +7,12 @@ import {
   CardProduct,
   Container,
   ExpiredPlan,
-  FileInput,
   LoadingAnimation,
   NotMembership,
   PaymentChecking,
   Typography,
 } from "@/src/components";
+import ImageInputWithPreview from "@/src/components/molecules/imageInputWithPreview";
 import { RoomvoVisualize } from "@/src/utils";
 import { PostDataApi } from "@/utils";
 import moment from "moment";
@@ -140,7 +140,7 @@ export default function Experiment() {
         </div>
 
         <div className="space-y-3">
-          <FileInput setFile={setGambar} previewFile />
+          <ImageInputWithPreview gambar={gambar} setGambar={setGambar} />
           <Button
             loading={loading}
             icon={<FaWandMagicSparkles />}
