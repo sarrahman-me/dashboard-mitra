@@ -28,6 +28,7 @@ export default function Setting() {
   const [usePassword, setUsePassword] = useState(false);
   const [password, setPassword] = useState("");
   const [logo, setLogo] = useState([] as string[]);
+  const [banner, setBanner] = useState([] as string[]);
 
   useEffect(() => {
     async function fetchData() {
@@ -42,6 +43,7 @@ export default function Setting() {
           use_password,
           password,
           logo,
+          banner_image,
         } = responseWebstore?.data;
         setPersentase(profit_percentage);
         setShowStock(show_stock);
@@ -50,6 +52,9 @@ export default function Setting() {
         setPassword(password);
         if (logo) {
           setLogo([logo]);
+        }
+        if (banner_image) {
+          setBanner([banner_image]);
         }
       }
     }
@@ -95,6 +100,7 @@ export default function Setting() {
         use_password: usePassword,
         password: password,
         logo: logo[0],
+        banner_image: banner[0],
       }
     );
     if (response.success) {
@@ -139,6 +145,11 @@ export default function Setting() {
           onChange={(value) => setPassword(value)}
         />
         <ImageInputWithPreview title="logo" gambar={logo} setGambar={setLogo} />
+        <ImageInputWithPreview
+          title="banner (700x360 px) "
+          gambar={banner}
+          setGambar={setBanner}
+        />
         <div className="flex justify-end">
           <Button type="submit">Submit</Button>
         </div>
