@@ -15,7 +15,7 @@ const formRegister = [
     type: "number",
     label: "Whatsapp",
     name: "whatsapp",
-    placeholder: "08123456789",
+    placeholder: "+628123456789",
   },
   {
     type: "password",
