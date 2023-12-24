@@ -104,8 +104,8 @@ const CardProduct = ({ product }: CardProductProps) => {
           {product?.kategori} {product.tekstur}
         </p>
         <p className="text-xs md:text-sm">
-          {product?.nama_barang}{" "}
-          {product.warna?.replace(/\([^)]*\)/g, "").trim()}
+          {product?.nama_barang}
+          {/* {product.warna?.replace(/\([^)]*\)/g, "").trim()} */}
         </p>
 
         {/* harga */}
