@@ -135,7 +135,7 @@ const CardProduct = ({ product }: CardProductProps) => {
         {/* detail tambahan */}
 
         <div className="text-xs flex justify-between items-center">
-          <p>{product?.tekstur}</p>
+          <p>{product?.kualitas}</p>
           <p>{product?.ukuran}</p>
         </div>
       </div>
