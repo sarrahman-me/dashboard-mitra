@@ -103,7 +103,10 @@ const CardProduct = ({ product }: CardProductProps) => {
         <p className="text-xs text-indigo-500">
           {product?.kategori} {product.tekstur}
         </p>
-        <p className="text-xs md:text-sm">{product?.nama_barang}</p>
+        <p className="text-xs md:text-sm">
+          {product?.nama_barang}{" "}
+          {product.warna?.replace(/\([^)]*\)/g, "").trim()}
+        </p>
 
         {/* harga */}
 
