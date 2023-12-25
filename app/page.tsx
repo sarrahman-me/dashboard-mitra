@@ -20,7 +20,7 @@ const benefitOne = {
   title: "Sorotan manfaat",
   desc: "Kamu juga akan mendapatkan analisa dari tren produk dan perilaku customer yang mengunjungi toko online mu",
   image:
-    "https://ik.imagekit.io/sarrahmanme/default-image.jpg?updatedAt=1690537071869",
+    "https://ik.imagekit.io/sarrahmanme/Screenshot%202023-12-25%20at%2013.02.30.png?updatedAt=1703480628075",
   bullets: [
     {
       title: "Buat toko online mu sendiri",
