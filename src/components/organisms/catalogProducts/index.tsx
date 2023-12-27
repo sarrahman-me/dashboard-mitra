@@ -39,7 +39,7 @@ export default function CatalogProducts({
       const response = await GetDataApi(
         `${process.env.NEXT_PUBLIC_HOST}/${pathUrl}?${atribut || ""}&limit=${
           limit || "48"
-        }&page=${currentPage}`,
+        }&page=${currentPage}&source=tokokeramik.com`,
         3600
       );
       setBarang(response.data);
