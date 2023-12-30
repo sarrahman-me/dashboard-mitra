@@ -173,12 +173,14 @@ export default function Dashboard() {
           <div className="grid grid-cols-2 gap-2 md:gap-6">
             <InsightCard
               data={productInsight.total_product_view}
-              percentase={Number(
-                calculatePercentage(
-                  Number(productInsight.total_product_view),
-                  Number(oldProductInsight.total_product_view)
-                )
-              )}
+              percentase={
+                Number(
+                  calculatePercentage(
+                    Number(productInsight.total_product_view),
+                    Number(oldProductInsight.total_product_view)
+                  )
+                ) || 0
+              }
               color={"violet"}
               title={"Dilihat"}
               icon={<FaEye />}
@@ -188,12 +190,14 @@ export default function Dashboard() {
               data={searchInsight.total_searches}
               title={"Pencarian"}
               color={"amber"}
-              percentase={Number(
-                calculatePercentage(
-                  Number(searchInsight.total_searches),
-                  Number(oldsSarchInsight.total_searches)
-                )
-              )}
+              percentase={
+                Number(
+                  calculatePercentage(
+                    Number(searchInsight.total_searches),
+                    Number(oldsSarchInsight.total_searches)
+                  )
+                ) || 0
+              }
               icon={<FaSearch />}
             />
           </div>
