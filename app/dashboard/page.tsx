@@ -5,6 +5,7 @@ import {
   NotMembership,
   PaymentChecking,
   SwiperProduct,
+  Table,
   Typography,
 } from "@/src/components";
 import { CiWarning } from "react-icons/ci";
@@ -13,13 +14,31 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import { FaArrowDown, FaArrowUp, FaEye } from "react-icons/fa6";
+import { FaSearch } from "react-icons/fa";
 
 export default function Dashboard() {
-  const { profile, transaksi, membership } = useSelector(
+  const { profile, transaksi, membership, webstore } = useSelector(
     (state: any) => state.profile
   );
   const [barangTerbaru, setBarangBaru] = useState([] as any);
+  const [productInsight, setProductInsight] = useState({
+    total_product_view: "",
+    top_product_view: [],
+  } as {
+    total_product_view: string;
+    top_product_view: any[];
+  });
+  const [searchInsight, setSearchInsight] = useState({
+    total_searches: "",
+    top_search_query: [],
+  } as {
+    total_searches: string;
+    top_search_query: any[];
+  });
   const router = useRouter();
+
+  const domain = webstore?.domain;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,10 +46,41 @@ export default function Dashboard() {
         `${process.env.NEXT_PUBLIC_HOST}/products/barang?terbaru=true&limit=15`,
         3600
       );
+
+      if (webstore?.domain) {
+        const responseWebstoreProductInsight = await GetDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/analytic/webstore-product-insight/${webstore.domain}`,
+          3600
+        );
+
+        const responseWebstoreSearchInsight = await GetDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/analytic/webstore-search-insight/${webstore.domain}`,
+          3600
+        );
+
+        console.log(responseWebstoreSearchInsight);
+
+        const { total_searches, top_search_query } =
+          responseWebstoreSearchInsight.data[0];
+
+        const { total_product_view, top_product_view } =
+          responseWebstoreProductInsight.data[0];
+
+        setSearchInsight({
+          total_searches,
+          top_search_query,
+        });
+
+        setProductInsight({
+          top_product_view,
+          total_product_view,
+        });
+      }
+
       setBarangBaru(responseBarangPromo.data);
     };
     fetchData();
-  }, []);
+  }, [webstore]);
 
   if (!profile?.id_membership) {
     return <NotMembership />;
@@ -49,24 +99,150 @@ export default function Dashboard() {
 
   return (
     <div>
-      <Typography variant="subtitle">Selamat datang {profile.nama}</Typography>
-      {/* products terbaru */}
-
       {!profile.kota && (
         <div className="my-3 p-2 flex items-center bg-orange-100 dark:bg-orange-900 border dark:border-none rounded shadow shadow-orange-300 dark:shadow-orange-700">
           <CiWarning className="" />
           <div className="ml-2 flex items-center space-x-1">
             <Typography>Lengkapi profile</Typography>
-            <Button onClick={() => router.push('/dashboard/account')} size="small" variant="text">
+            <Button
+              onClick={() => router.push("/dashboard/account")}
+              size="small"
+              variant="text"
+            >
               Disini
             </Button>
           </div>
         </div>
       )}
 
+      {productInsight.total_product_view && (
+        <div>
+          <p className="underline font-semibold m-2">Wawasan {domain}</p>
+          <div className="grid grid-cols-2 gap-2 md:gap-6">
+            <InsightCard
+              data={searchInsight.total_searches}
+              title={"Pencarian"}
+              color={"emerald"}
+              // percentase={Number(
+              //   calculatePercentage(
+              //     dailySearch.total_searches,
+              //     lastDailySearch.total_searches
+              //   )
+              // )}
+              icon={<FaSearch />}
+            />
+
+            <InsightCard
+              data={productInsight.total_product_view}
+              // percentase={Number(
+              //   calculatePercentage(
+              //     dailyProductView.total_product_views,
+              //     lastDailyProductView.total_product_views
+              //   )
+              // )}
+              color={"sky"}
+              title={"Dilihat"}
+              icon={<FaEye />}
+            />
+          </div>
+
+          <div className="my-3">
+            <Typography>Produk Populer</Typography>
+            <Table
+              columns={[
+                {
+                  label: "Nama Barang",
+                  renderCell: (item: any) => item.productName,
+                },
+                {
+                  label: "Brand",
+                  renderCell: (item: any) => item.productBrand,
+                },
+                {
+                  label: "Jumlah dilihat",
+                  renderCell: (item: any) => item.views,
+                },
+              ]}
+              datas={productInsight.top_product_view}
+            />
+          </div>
+
+          <div className="my-3">
+            <Typography>Pencarian Populer</Typography>
+            <Table
+              columns={[
+                {
+                  label: "Kata kunci",
+                  renderCell: (item: any) => item.query,
+                },
+                {
+                  label: "Jumlah dicari",
+                  renderCell: (item: any) => item.totalSearch,
+                },
+              ]}
+              datas={searchInsight.top_search_query}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* products terbaru */}
       <div className="my-2">
         <SwiperProduct title="Barang Terbaru" products={barangTerbaru} />
       </div>
     </div>
   );
 }
+
+const InsightCard = (props: {
+  data: string;
+  percentase?: number;
+  title: string;
+  color: "amber" | "emerald" | "sky" | "violet";
+  icon: React.ReactNode;
+}) => {
+  const colorBg = {
+    amber:
+      "bg-gradient-to-br from-amber-300 to-amber-500 dark:from-amber-700 dark:to-amber-900",
+    emerald:
+      "bg-gradient-to-br from-emerald-300 to-emerald-500 dark:from-emerald-700 dark:to-emerald-900",
+    sky: "bg-gradient-to-br from-sky-300 to-sky-500 dark:from-sky-700 dark:to-sky-900",
+    violet:
+      "bg-gradient-to-br from-violet-300 to-violet-500 dark:from-violet-700 dark:to-violet-900",
+  };
+
+  return (
+    <div className={`p-3 rounded ${colorBg[props.color]}`}>
+      <div className="flex justify-between">
+        {props.icon}
+        <Typography variant="subtitle">{props.data}</Typography>
+      </div>
+      <div className="flex justify-between">
+        <Typography variant="helper">{props.title}</Typography>
+        {props.percentase && (
+          <div className="flex items-center space-x-1">
+            {props.percentase <= 0 ? (
+              <FaArrowDown
+                className={`text-xs ${
+                  props.percentase <= 0 ? "text-red-500" : "text-green-500"
+                }`}
+              />
+            ) : (
+              <FaArrowUp
+                className={`text-xs ${
+                  props.percentase <= 0 ? "text-red-500" : "text-green-500"
+                }`}
+              />
+            )}
+            <Typography
+              color={props.percentase <= 0 ? "danger" : "success"}
+              variant="helper"
+            >
+              {props.percentase}%
+            </Typography>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};

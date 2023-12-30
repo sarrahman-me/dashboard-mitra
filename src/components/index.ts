@@ -28,6 +28,7 @@ import {
   CardProduct,
   Tabs,
   SearchBar,
+  Table,
 } from "./molecules/index";
 import {
   Footer,
@@ -88,6 +89,7 @@ export {
   CardProduct,
   Tabs,
   SearchBar,
+  Table,
 
   //   organims
   Footer,
