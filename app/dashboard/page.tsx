@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { FaArrowDown, FaArrowUp, FaEye } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
+import { PiArrowSquareUpRightLight } from "react-icons/pi";
 
 export default function Dashboard() {
   const { profile, transaksi, membership, webstore } = useSelector(
@@ -36,9 +37,21 @@ export default function Dashboard() {
     total_searches: string;
     top_search_query: any[];
   });
+  const [oldProductInsight, setOldProductInsight] = useState({
+    total_product_view: "",
+    top_product_view: [],
+  } as {
+    total_product_view: string;
+    top_product_view: any[];
+  });
+  const [oldsSarchInsight, setOldSearchInsight] = useState({
+    total_searches: "",
+    top_search_query: [],
+  } as {
+    total_searches: string;
+    top_search_query: any[];
+  });
   const router = useRouter();
-
-  const domain = webstore?.domain;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,9 +67,9 @@ export default function Dashboard() {
         );
 
         if (
-          responseWebstoreProductInsight?.data[0]?.total_searches ===
+          responseWebstoreProductInsight?.data[0]?.total_searches !==
             undefined ||
-          responseWebstoreProductInsight?.data[0]?.total_searches === null
+          responseWebstoreProductInsight?.data[0]?.total_searches !== null
         ) {
           const { total_searches, top_search_query } =
             responseWebstoreSearchInsight.data[0];
@@ -70,6 +83,28 @@ export default function Dashboard() {
           });
 
           setProductInsight({
+            top_product_view,
+            total_product_view,
+          });
+        }
+
+        if (
+          responseWebstoreProductInsight?.data[1]?.total_searches !==
+            undefined ||
+          responseWebstoreProductInsight?.data[1]?.total_searches !== null
+        ) {
+          const { total_searches, top_search_query } =
+            responseWebstoreSearchInsight.data[1];
+
+          const { total_product_view, top_product_view } =
+            responseWebstoreProductInsight.data[1];
+
+          setOldSearchInsight({
+            total_searches,
+            top_search_query,
+          });
+
+          setOldProductInsight({
             top_product_view,
             total_product_view,
           });
@@ -90,6 +125,12 @@ export default function Dashboard() {
     };
     fetchData();
   }, []);
+
+  const calculatePercentage = (current: number, last: number) => {
+    const selisihNilai = current - last;
+    const persentasePotongan = (selisihNilai / current) * 100;
+    return persentasePotongan.toFixed(0);
+  };
 
   if (!profile?.id_membership) {
     return <NotMembership />;
@@ -126,32 +167,34 @@ export default function Dashboard() {
 
       {productInsight.total_product_view !== undefined && (
         <div>
-          <p className="underline font-semibold m-2">Wawasan {domain}</p>
+          <p className="underline font-semibold m-2">
+            Wawasan {webstore?.domain} hari kemarin{" "}
+          </p>
           <div className="grid grid-cols-2 gap-2 md:gap-6">
             <InsightCard
-              data={searchInsight.total_searches}
-              title={"Pencarian"}
-              color={"emerald"}
-              // percentase={Number(
-              //   calculatePercentage(
-              //     dailySearch.total_searches,
-              //     lastDailySearch.total_searches
-              //   )
-              // )}
-              icon={<FaSearch />}
+              data={productInsight.total_product_view}
+              percentase={Number(
+                calculatePercentage(
+                  Number(productInsight.total_product_view),
+                  Number(oldProductInsight.total_product_view)
+                )
+              )}
+              color={"violet"}
+              title={"Dilihat"}
+              icon={<FaEye />}
             />
 
             <InsightCard
-              data={productInsight.total_product_view}
-              // percentase={Number(
-              //   calculatePercentage(
-              //     dailyProductView.total_product_views,
-              //     lastDailyProductView.total_product_views
-              //   )
-              // )}
-              color={"sky"}
-              title={"Dilihat"}
-              icon={<FaEye />}
+              data={searchInsight.total_searches}
+              title={"Pencarian"}
+              color={"amber"}
+              percentase={Number(
+                calculatePercentage(
+                  Number(searchInsight.total_searches),
+                  Number(oldsSarchInsight.total_searches)
+                )
+              )}
+              icon={<FaSearch />}
             />
           </div>
 
@@ -161,8 +204,21 @@ export default function Dashboard() {
               columns={[
                 {
                   label: "Nama Barang",
-                  renderCell: (item: any) => item.productName,
+                  renderCell: async (item: any) => (
+                    <p
+                      className="underline cursor-pointer text-blue-500 flex items-center"
+                      onClick={() =>
+                        router.push(
+                          `https://www.tokokeramik.com/dashboard/barang/${item.id}`
+                        )
+                      }
+                    >
+                      {item.productName}
+                      <PiArrowSquareUpRightLight className="ml-1" />
+                    </p>
+                  ),
                 },
+
                 {
                   label: "Brand",
                   renderCell: (item: any) => item.productBrand,
