@@ -42,11 +42,6 @@ export default function Dashboard() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const responseBarangPromo = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/products/barang?terbaru=true&limit=15`,
-        3600
-      );
-
       if (webstore?.domain) {
         const responseWebstoreProductInsight = await GetDataApi(
           `${process.env.NEXT_PUBLIC_HOST}/analytic/webstore-product-insight/${webstore.domain}`,
@@ -58,29 +53,43 @@ export default function Dashboard() {
           3600
         );
 
-        console.log(responseWebstoreSearchInsight);
+        if (
+          responseWebstoreProductInsight?.data[0]?.total_searches ===
+            undefined ||
+          responseWebstoreProductInsight?.data[0]?.total_searches === null
+        ) {
+          const { total_searches, top_search_query } =
+            responseWebstoreSearchInsight.data[0];
 
-        const { total_searches, top_search_query } =
-          responseWebstoreSearchInsight.data[0];
+          const { total_product_view, top_product_view } =
+            responseWebstoreProductInsight.data[0];
 
-        const { total_product_view, top_product_view } =
-          responseWebstoreProductInsight.data[0];
+          setSearchInsight({
+            total_searches,
+            top_search_query,
+          });
 
-        setSearchInsight({
-          total_searches,
-          top_search_query,
-        });
-
-        setProductInsight({
-          top_product_view,
-          total_product_view,
-        });
+          setProductInsight({
+            top_product_view,
+            total_product_view,
+          });
+        }
       }
+    };
+    fetchData();
+  }, [webstore]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const responseBarangPromo = await GetDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang?terbaru=true&limit=15`,
+        3600
+      );
 
       setBarangBaru(responseBarangPromo.data);
     };
     fetchData();
-  }, [webstore]);
+  }, []);
 
   if (!profile?.id_membership) {
     return <NotMembership />;
@@ -115,7 +124,7 @@ export default function Dashboard() {
         </div>
       )}
 
-      {productInsight.total_product_view && (
+      {productInsight.total_product_view !== undefined && (
         <div>
           <p className="underline font-semibold m-2">Wawasan {domain}</p>
           <div className="grid grid-cols-2 gap-2 md:gap-6">
