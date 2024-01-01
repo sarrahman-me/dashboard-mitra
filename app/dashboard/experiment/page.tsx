@@ -1,7 +1,6 @@
 "use client";
 import { Heading } from "@/components/atoms";
 import SearchByImage from "@/public/searchByImage.png";
-import virtual from "@/public/virtual.png";
 import {
   Button,
   CardProduct,
@@ -13,7 +12,6 @@ import {
   Typography,
 } from "@/src/components";
 import ImageInputWithPreview from "@/src/components/molecules/imageInputWithPreview";
-import { RoomvoVisualize } from "@/src/utils";
 import { PostDataApi } from "@/utils";
 import moment from "moment";
 import Image from "next/image";
@@ -135,6 +133,14 @@ export default function Experiment() {
                 berikan saran dan masukan terbaik mu dari fitur ini untuk
                 pengembangan yang lebih baik.
               </Typography>
+              <Typography color="secondary" variant="helper">
+                Catatan :Saat ini pencarian dengan gambar baru diuji dengan data
+                ukuran 60x60, tapi kami akan terus menguji dengan semua data
+                yang kami miliki
+              </Typography>
+              <Typography color="secondary" variant="helper">
+                Terahkhir diperbarui : 1 januari 2024
+              </Typography>
             </div>
           </div>
         </div>
@@ -178,48 +184,6 @@ export default function Experiment() {
           )}
         </div>
       </div>
-
-      <Container otherClass="p-2 my-1">
-        <div>
-          <span>
-            Experiment 2: <p className="font-semibold">Ruang visualisasi</p>
-          </span>
-
-          <div className="flex flex-col md:flex-row">
-            <div className="flex justify-center items-center my-1">
-              <Image
-                src={virtual}
-                alt="pencarian dari gambar"
-                className="max-w-xs"
-              />
-            </div>
-
-            <div className="my-4 space-y-8 md:ml-2">
-              <Typography>
-                Sebelum kamu benar benar memutuskan untuk membeli sebuah produk,
-                mungkin kamu berencana untuk mencocokan ruangan mu dengan
-                keramik yang akan kamu beli.
-              </Typography>
-              <Typography>
-                Dari kasus tersebut kami mencoba sebuah experiment untuk itu,
-                silahkan klik tombol dibawah ini untuk mencoba ruang visualisasi
-              </Typography>
-              <Button
-                icon={<FaWandMagicSparkles />}
-                onClick={() => {
-                  window.open(
-                    "https://studio-prod.actumwork.pl/preview/d9a049b1bba5a1b00d81525a4e919304396beb70dbe523bdb0d178d17f98eabd3806f7031eea99908e70d22c622018150da4",
-                    "_blank"
-                  );
-                }}
-              >
-                Visulaisasi
-              </Button>
-            </div>
-          </div>
-        </div>
-      </Container>
-      {/* <RoomvoVisualize /> */}
     </div>
   );
 }

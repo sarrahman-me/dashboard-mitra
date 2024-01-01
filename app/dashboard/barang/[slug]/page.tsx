@@ -11,6 +11,7 @@ import {
   SwiperProduct,
   SearchBar,
   ExpiredPlan,
+  Table,
 } from "@/src/components";
 import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
 import { GetDataApi, upPriceWithPercen } from "@/src/utils";
@@ -24,7 +25,9 @@ const DetailBarang = () => {
   const slug = params.slug;
   const [barangSejenis, setBarangSejenis] = useState([] as any);
   const [barangSerupa, setBarangSerupa] = useState([] as any);
+  const [history, setHistory] = useState([] as any);
   const [barang, setBarang] = useState({} as any);
+
   const { profile, transaksi, persentaseHarga, webstore, membership } =
     useSelector((state: any) => state.profile);
 
@@ -46,9 +49,15 @@ const DetailBarang = () => {
         `${process.env.NEXT_PUBLIC_HOST}/products/barang?nama=${barang?.nama_barang}&brand=${barang?.brand}`,
         3600
       );
+
+      const responseHistoryBarang = await GetDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang/history/${slug}`
+      );
+
       setBarang(barang);
       setBarangSerupa(responseBarangSerupa.data);
       setBarangSejenis(responseBarangSejenis.data);
+      setHistory(responseHistoryBarang.data);
     };
     fetchData();
   }, [slug]);
@@ -120,6 +129,33 @@ const DetailBarang = () => {
           <QrSampleProducts webstore={webstore} barang={barang} />
         </div>
       )}
+
+      {/* history stok */}
+
+      {history && history.length > 0 ? (
+        <div className="mt-5">
+          <p className="underline font-semibold">Riwayat Stok</p>
+          <Table
+            columns={[
+              {
+                label: "Tanggal",
+                renderCell: async (item: any) => (
+                  <p>{moment(item.timestamp).format("lll")}</p>
+                ),
+              },
+              {
+                label: "Stok Lama",
+                renderCell: (item: any) => item.stok_lama,
+              },
+              {
+                label: "Stok Baru",
+                renderCell: (item: any) => item.stok_baru,
+              },
+            ]}
+            datas={history}
+          />
+        </div>
+      ) : null}
 
       {/* barang sejenis */}
 
