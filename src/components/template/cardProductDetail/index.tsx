@@ -1,5 +1,5 @@
 "use client";
-import { TombolPesan } from "@/components/atoms";
+// import { TombolPesan } from "@/components/atoms";
 import { calculateDiscountPercentage } from "@/src/utils";
 import { formatCurrency } from "@/utils";
 import { Container, Typography } from "../../atoms";
@@ -90,7 +90,7 @@ export default function CardProductDetail({
             )}
           </div>
         </div>
-        <TombolPesan />
+        {/* <TombolPesan /> */}
       </Container>
     </div>
   );
