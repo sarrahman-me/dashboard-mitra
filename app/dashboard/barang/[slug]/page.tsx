@@ -46,7 +46,7 @@ const DetailBarang = () => {
       );
 
       const responseBarangSejenis = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/products/barang?nama=${barang?.nama_barang}&brand=${barang?.brand}`,
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang?nama=${barang?.nama_barang}&brand=${barang?.brand}&ukuran=${barang?.ukuran}`,
         3600
       );
 
