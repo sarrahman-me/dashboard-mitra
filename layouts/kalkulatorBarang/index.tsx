@@ -39,14 +39,12 @@ const KalkulatorKeramik = ({
       <form onSubmit={handleHitung} className="space-y-2 my-2">
         <Textfield
           fullWidth
-          type="number"
           label={"Panjang Ruangan"}
           name={"panjang"}
           onChange={(value) => setPanjang(value)}
         />
         <Textfield
           fullWidth
-          type="number"
           label={"Lebar Ruangan"}
           name={"lebar"}
           onChange={(value) => setLebar(value)}
@@ -54,7 +52,6 @@ const KalkulatorKeramik = ({
         {bisaDinding && (
           <Textfield
             fullWidth
-            type="number"
             label={"Tinggi Ruangan"}
             name={"tinggi"}
             onChange={(value) => setTinggi(value)}

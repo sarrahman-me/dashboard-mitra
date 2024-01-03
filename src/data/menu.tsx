@@ -12,12 +12,12 @@ import { TbAugmentedReality2 } from "react-icons/tb";
 
 export const menuItems = [
   {
-    label: "Dashboard",
+    label: "Beranda",
     icon: <AiOutlineHome />,
     href: "/dashboard",
   },
   {
-    label: "Membership",
+    label: "Langganan",
     icon: <MdOutlineCardMembership />,
     href: "/dashboard/membership",
   },
@@ -32,17 +32,17 @@ export const menuItems = [
     href: "/dashboard/visualisasi",
   },
   {
-    label: "Webstore",
+    label: "Toko Online",
     icon: <BiStore />,
     href: "/dashboard/webstore",
   },
   {
-    label: "Tools",
+    label: "Alat",
     icon: <TbTools />,
     href: "/dashboard/tools",
   },
   {
-    label: "Experiment",
+    label: "Eksperimen",
     icon: <AiOutlineExperiment />,
     href: "/dashboard/experiment",
   },
@@ -50,12 +50,12 @@ export const menuItems = [
 
 export const menuItemsPageMobile = [
   {
-    label: "Dashboard",
+    label: "Beranda",
     icon: <AiOutlineHome />,
     href: "/dashboard",
   },
   {
-    label: "Membership",
+    label: "Langganan",
     icon: <MdOutlineCardMembership />,
     href: "/dashboard/membership",
   },
@@ -70,17 +70,17 @@ export const menuItemsPageMobile = [
     href: "/dashboard/visualisasi",
   },
   {
-    label: "Webstore",
+    label: "Toko Online",
     icon: <BiStore />,
     href: "/dashboard/webstore",
   },
   {
-    label: "Tools",
+    label: "Alat",
     icon: <TbTools />,
     href: "/dashboard/tools",
   },
   {
-    label: "Experiment",
+    label: "Eksperimen",
     icon: <AiOutlineExperiment />,
     href: "/dashboard/experiment",
   },
@@ -90,7 +90,7 @@ export const menuItemsPageMobile = [
     href: "/dashboard/feedback",
   },
   {
-    label: "Account",
+    label: "Akun",
     icon: <RiAccountCircleLine />,
     href: "/dashboard/account",
   },
@@ -98,12 +98,12 @@ export const menuItemsPageMobile = [
 
 export const menuItemsMobile = [
   {
-    label: "Dashboard",
+    label: "Beranda",
     icon: <AiOutlineHome />,
     href: "/dashboard",
   },
   {
-    label: "Membership",
+    label: "Langganan",
     icon: <MdOutlineCardMembership />,
     href: "/dashboard/membership",
   },
@@ -113,7 +113,7 @@ export const menuItemsMobile = [
     href: "/dashboard/barang",
   },
   {
-    label: "Webstore",
+    label: "Toko Online",
     icon: <BiStore />,
     href: "/dashboard/webstore",
   },
@@ -131,7 +131,7 @@ export const personalMenu = [
     href: "/dashboard/feedback",
   },
   {
-    label: "Account",
+    label: "Akun",
     icon: <RiAccountCircleLine />,
     href: "/dashboard/account",
   },
