@@ -6,6 +6,7 @@ import TopBar from "./TopBar";
 import CardMembershipPlan from "./cardMembershipPlan";
 import CardProduct from "./cardProduct";
 import FooterText from "./footerText";
+import Map from "./map";
 import SearchBar from "./searchBar";
 import SocialIcon from "./socialIcon";
 import TextfieldLocation from "./textfieldLocation";
@@ -21,5 +22,6 @@ export {
   Tabs,
   TextfieldLocation,
   SearchBar,
-  Table
+  Table,
+  Map,
 };

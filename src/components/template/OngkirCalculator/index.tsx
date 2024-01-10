@@ -1,7 +1,7 @@
 "use client";
 import { Button, Container, ListData, Textfield } from "../../atoms";
 import { useState } from "react";
-import { TextfieldLocation } from "../../molecules";
+import { Map, TextfieldLocation } from "../../molecules";
 import { GetDataApi, formatCurrency } from "@/src/utils";
 import { Notify } from "notiflix";
 
@@ -9,6 +9,7 @@ const OngkirCalculator = () => {
   const [distanceMatrix, setDistanceMatrix] = useState({} as any);
   const [ongkos, setOngkos] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [showMap, setShowMap] = useState(false);
   const [lokasi, setLokasi] = useState({
     asal: {
       latlang: "",
@@ -37,6 +38,7 @@ const OngkirCalculator = () => {
           biaya,
         });
         setLoading(false);
+        setShowMap(true);
       } else {
         Notify.failure("alamat tidak ditemukan");
         setLoading(false);
@@ -116,6 +118,12 @@ const OngkirCalculator = () => {
               value={distanceMatrix?.duration?.text}
             />
           </div>
+
+          {showMap && (
+            <div>
+              <Map lokasi={lokasi} />
+            </div>
+          )}
         </Container>
       </div>
     </div>
