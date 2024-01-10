@@ -135,11 +135,11 @@ export default function Experiment() {
               </Typography>
               <Typography color="secondary" variant="helper">
                 Catatan :Saat ini pencarian dengan gambar baru diuji dengan data
-                ukuran 60x60, tapi kami akan terus menguji dengan semua data
+                ukuran 60x60 sekitar 243 data barang, tapi kami akan terus menguji dengan semua data
                 yang kami miliki
               </Typography>
               <Typography color="secondary" variant="helper">
-                Terahkhir diperbarui : 1 januari 2024
+                Terahkhir diperbarui : 10 januari 2024
               </Typography>
             </div>
           </div>
