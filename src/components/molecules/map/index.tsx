@@ -9,18 +9,20 @@ import {
   Polyline,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
 
-let DefaultIcon = L.icon({
-  iconUrl:
-    "https://ik.imagekit.io/sarrahmanme/location.png?updatedAt=1704853645093",
-  shadowUrl:
-    "https://ik.imagekit.io/sarrahmanme/location.png?updatedAt=1704853645093",
-  iconSize: [25, 41],
-  shadowSize: [25, 41],
-});
+if (typeof window !== "undefined" || process.env.BROWSER) {
+  const L = require("leaflet");
+  let DefaultIcon = L.icon({
+    iconUrl:
+      "https://ik.imagekit.io/sarrahmanme/location.png?updatedAt=1704853645093",
+    shadowUrl:
+      "https://ik.imagekit.io/sarrahmanme/location.png?updatedAt=1704853645093",
+    iconSize: [25, 41],
+    shadowSize: [25, 41],
+  });
 
-L.Marker.prototype.options.icon = DefaultIcon;
+  L.Marker.prototype.options.icon = DefaultIcon;
+}
 
 const Map = ({ lokasi }: any) => {
   const bounds =
