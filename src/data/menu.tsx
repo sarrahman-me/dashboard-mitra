@@ -4,7 +4,7 @@ import {
   AiOutlineHome,
   AiOutlineMenu,
 } from "react-icons/ai";
-import { MdOutlineCardMembership, MdOutlineFeedback } from "react-icons/md";
+import { MdOutlineCardMembership, MdOutlineFeedback, MdOutlineImageSearch } from "react-icons/md";
 import { BiCube, BiStore } from "react-icons/bi";
 import { TbTools } from "react-icons/tb";
 import { RiAccountCircleLine } from "react-icons/ri";
@@ -25,6 +25,11 @@ export const menuItems = [
     label: "Barang",
     icon: <BiCube />,
     href: "/dashboard/barang",
+  },
+  {
+    label: "Pencarian Gambar",
+    icon: <MdOutlineImageSearch />,
+    href: "/dashboard/search-image",
   },
   {
     label: "Visualisasi",
@@ -63,6 +68,11 @@ export const menuItemsPageMobile = [
     label: "Barang",
     icon: <BiCube />,
     href: "/dashboard/barang",
+  },
+  {
+    label: "Pencarian Gambar",
+    icon: <MdOutlineImageSearch />,
+    href: "/dashboard/search-image",
   },
   {
     label: "Visualisasi",
