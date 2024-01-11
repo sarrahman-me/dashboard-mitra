@@ -8,7 +8,6 @@ import {
   LoadingAnimation,
   NotMembership,
   PaymentChecking,
-  Typography,
 } from "@/src/components";
 import ImageInputWithPreview from "@/src/components/molecules/imageInputWithPreview";
 import { PostDataApi } from "@/utils";
@@ -16,7 +15,6 @@ import moment from "moment";
 import { Notify } from "notiflix";
 import { useState } from "react";
 import { FaWandMagicSparkles } from "react-icons/fa6";
-import { Tb3DCubeSphereOff } from "react-icons/tb";
 import { useSelector } from "react-redux";
 
 export default function Experiment() {
@@ -89,36 +87,45 @@ export default function Experiment() {
     <div>
       <Heading>Pencarian Gambar</Heading>
 
-      <Container otherClass="p-2 my-1">
-        <div className="space-y-3">
+      <Container otherClass="flex flex-col md:flex-row p-2">
+        <div className="flex-1">
           <ImageInputWithPreview gambar={gambar} setGambar={setGambar} />
-          <div>
-            <p className="my-2">Ukuran</p>
-            {sizeOption.map((s) => (
-              <div
-                key={s}
-                onClick={() => setSize(s)}
-                className={`inline cursor-pointer bg-gradient-to-br ${
-                  s === size
-                    ? "from-indigo-300 to-indigo-500 dark:from-indigo-700 dark:to-indigo-900 text-white hover:bg-indigo-100 dark:hover:bg-indigo-900"
-                    : "from-gray-300 to-gray-500 dark:from-gray-700 dark:to-gray-900 text-white hover:bg-gray-100 dark:hover:bg-gray-900"
-                } text-center p-2 rounded border font-semibold`}
-              >
-                {s}
-              </div>
-            ))}
-          </div>
-          <div className="my-2">
-            <Button
-              loading={loading}
-              icon={<FaWandMagicSparkles />}
-              onClick={handleCari}
+        </div>
+        <div className="flex-1">
+          <p className="my-2">Ukuran</p>
+          {sizeOption.map((s) => (
+            <div
+              key={s}
+              onClick={() => setSize(s)}
+              className={`inline cursor-pointer m-1 border-2 ${
+                s === size ? "border-indigo-500" : "border-gray-500"
+              } text-center p-2 rounded border font-semibold`}
             >
-              Pencarian dengan gambar
-            </Button>
+              {s}
+            </div>
+          ))}
+          <div className="space-y-1 mt-5 md:text-sm text-xs">
+            <p className="text-gray-500">
+              Catatan : Saat ini pencarian gambar baru di uji untuk sebagian
+              dari data kami sehingga mungkin belum menampilkan gambar yang
+              sesuai, Kami akan terus berkomitmen untuk memperbaruinya setiap
+              saat.
+            </p>
           </div>
         </div>
       </Container>
+      <p className="text-gray-500 text-center text-xs my-3">
+        11 januari 2024 dengan 291 sampel data
+      </p>
+      <Button
+        size="full"
+        loading={loading}
+        icon={<FaWandMagicSparkles />}
+        disabled={!gambar[0] || !size}
+        onClick={handleCari}
+      >
+        Pencarian dengan gambar
+      </Button>
 
       <div className="p-2">
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-8 gap-y-4 gap-x-2">
@@ -130,21 +137,7 @@ export default function Experiment() {
                 <CardProduct product={item} />
               </div>
             ))
-          ) : (
-            <div className="my-2">
-              <div className="flex justify-center m-1">
-                <Tb3DCubeSphereOff className="text-indigo-500 text-4xl md:text-5xl shadow shadow-indigo-300 p-1 border rounded-full" />
-              </div>
-              <Typography
-                otherClass="my-2"
-                color="secondary"
-                variant="helper"
-                align="center"
-              >
-                Tidak ada barang
-              </Typography>
-            </div>
-          )}
+          ) : null}
         </div>
       </div>
     </div>
