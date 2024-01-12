@@ -115,7 +115,7 @@ export default function Experiment() {
         </div>
       </Container>
       <p className="text-gray-500 text-center text-xs my-3">
-        12 januari 2024 dengan 551 sampel data
+        12 januari 2024 dengan 751 sampel data
       </p>
       <Button
         size="full"
