@@ -29,6 +29,7 @@ import {
   Tabs,
   SearchBar,
   Table,
+  PieChart,
 } from "./molecules/index";
 import {
   Footer,
@@ -90,6 +91,7 @@ export {
   Tabs,
   SearchBar,
   Table,
+  PieChart,
 
   //   organims
   Footer,

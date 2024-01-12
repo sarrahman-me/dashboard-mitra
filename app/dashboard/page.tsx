@@ -4,6 +4,7 @@ import {
   ExpiredPlan,
   NotMembership,
   PaymentChecking,
+  PieChart,
   SwiperProduct,
   Table,
   Typography,
@@ -51,6 +52,13 @@ export default function Dashboard() {
     total_searches: string;
     top_search_query: any[];
   });
+  const [topBrand, setTopBrand] = useState({
+    brands: [],
+    views: [],
+  } as {
+    brands: string[];
+    views: number[];
+  });
   const router = useRouter();
 
   useEffect(() => {
@@ -66,6 +74,11 @@ export default function Dashboard() {
           3600
         );
 
+        const responseBrandInsight = await GetDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/analytic/webstore-brand-insight/${webstore.domain}`,
+          3600
+        );
+
         if (
           responseWebstoreProductInsight?.data[0]?.total_searches !==
             undefined ||
@@ -76,6 +89,16 @@ export default function Dashboard() {
 
           const { total_product_view, top_product_view } =
             responseWebstoreProductInsight.data[0];
+
+          const responseBrand = responseBrandInsight.data[0].top_brand_view;
+
+          const brands = responseBrand.map((a: any) => a.brandName);
+          const views = responseBrand.map((a: any) => a.views);
+
+          setTopBrand({
+            brands,
+            views,
+          });
 
           setSearchInsight({
             total_searches,
@@ -204,36 +227,46 @@ export default function Dashboard() {
 
           <div className="my-3">
             <Typography>Produk Populer</Typography>
-            <Table
-              columns={[
-                {
-                  label: "Nama Barang",
-                  renderCell: async (item: any) => (
-                    <p
-                      className="underline cursor-pointer text-blue-500 flex items-center"
-                      onClick={() =>
-                        router.push(
-                          `https://www.tokokeramik.com/dashboard/barang/${item.id}`
-                        )
-                      }
-                    >
-                      {item.productName}
-                      <PiArrowSquareUpRightLight className="ml-1" />
-                    </p>
-                  ),
-                },
-
-                {
-                  label: "Brand",
-                  renderCell: (item: any) => item.productBrand,
-                },
-                {
-                  label: "Jumlah dilihat",
-                  renderCell: (item: any) => item.views,
-                },
-              ]}
-              datas={productInsight.top_product_view}
-            />
+            <div className="flex flex-col-reverse md:flex-row gap-2 md:gap-4">
+              <div className="md:w-2/3 w-full">
+                <Table
+                  columns={[
+                    {
+                      label: "Nama Barang",
+                      renderCell: async (item: any) => (
+                        <p
+                          className="underline cursor-pointer text-blue-500 flex items-center"
+                          onClick={() =>
+                            router.push(
+                              `https://www.tokokeramik.com/dashboard/barang/${item.id}`
+                            )
+                          }
+                        >
+                          {item.productName}
+                          <PiArrowSquareUpRightLight className="ml-1" />
+                        </p>
+                      ),
+                    },
+                    {
+                      label: "Brand",
+                      renderCell: (item: any) => item.productBrand,
+                    },
+                    {
+                      label: "Jumlah dilihat",
+                      renderCell: (item: any) => item.views,
+                    },
+                  ]}
+                  datas={productInsight.top_product_view}
+                />
+              </div>
+              <div className="md:w-1/3 w-full">
+                <PieChart
+                  title={"Top Brands"}
+                  labels={topBrand.brands}
+                  data={topBrand.views}
+                />
+              </div>
+            </div>
           </div>
 
           <div className="my-3">
