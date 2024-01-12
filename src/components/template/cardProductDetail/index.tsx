@@ -62,7 +62,8 @@ export default function CardProductDetail({
 
           {barang.nama_barang && (
             <Typography>
-              {(barang?.nama_barang as string).toUpperCase()} - {barang.warna}
+              {barang.nama_barang}{' '}
+              {barang.warna?.replace(/\([^)]*\)/g, "").trim()}
             </Typography>
           )}
 
