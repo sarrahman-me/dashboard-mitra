@@ -54,7 +54,7 @@ export default function Experiment() {
       </Container>
 
       <p className="text-lg font-bold text-center">
-        Kami belum melakukan experiment apapun
+        Kami belum melakukan experiment saat ini.
       </p>
     </div>
   );

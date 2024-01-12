@@ -26,7 +26,7 @@ export default function Experiment() {
   const [size, setSize] = useState("60x60");
   const [responsePredict, setResponsePredict] = useState([] as any);
 
-  const sizeOption = ["60x60", "50x50"];
+  const sizeOption = ["60x60", "50x50", "40x40"];
 
   const handleCari = async () => {
     setLoading(true);
@@ -115,7 +115,7 @@ export default function Experiment() {
         </div>
       </Container>
       <p className="text-gray-500 text-center text-xs my-3">
-        12 januari 2024 dengan 451 sampel data
+        12 januari 2024 dengan 551 sampel data
       </p>
       <Button
         size="full"
