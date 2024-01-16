@@ -188,103 +188,107 @@ export default function Dashboard() {
         </div>
       )}
 
-      {productInsight.total_product_view !== undefined && (
+      {profile?.id_webstore && (
         <div>
-          <p className="underline font-semibold m-2">
-            Wawasan {webstore?.domain} hari kemarin{" "}
-          </p>
-          <div className="grid grid-cols-2 gap-2 md:gap-6">
-            <InsightCard
-              data={productInsight.total_product_view}
-              percentase={
-                Number(
-                  calculatePercentage(
-                    Number(productInsight.total_product_view),
-                    Number(oldProductInsight.total_product_view)
-                  )
-                ) || 0
-              }
-              color={"violet"}
-              title={"Dilihat"}
-              icon={<FaEye />}
-            />
+          {productInsight.total_product_view !== undefined && (
+            <div>
+              <p className="underline font-semibold m-2">
+                Wawasan {webstore?.domain} hari kemarin{" "}
+              </p>
+              <div className="grid grid-cols-2 gap-2 md:gap-6">
+                <InsightCard
+                  data={productInsight.total_product_view}
+                  percentase={
+                    Number(
+                      calculatePercentage(
+                        Number(productInsight.total_product_view),
+                        Number(oldProductInsight.total_product_view)
+                      )
+                    ) || 0
+                  }
+                  color={"violet"}
+                  title={"Dilihat"}
+                  icon={<FaEye />}
+                />
 
-            <InsightCard
-              data={searchInsight.total_searches}
-              title={"Pencarian"}
-              color={"amber"}
-              percentase={
-                Number(
-                  calculatePercentage(
-                    Number(searchInsight.total_searches),
-                    Number(oldsSarchInsight.total_searches)
-                  )
-                ) || 0
-              }
-              icon={<FaSearch />}
-            />
-          </div>
+                <InsightCard
+                  data={searchInsight.total_searches}
+                  title={"Pencarian"}
+                  color={"amber"}
+                  percentase={
+                    Number(
+                      calculatePercentage(
+                        Number(searchInsight.total_searches),
+                        Number(oldsSarchInsight.total_searches)
+                      )
+                    ) || 0
+                  }
+                  icon={<FaSearch />}
+                />
+              </div>
 
-          <div className="my-3">
-            <Typography>Produk Populer</Typography>
-            <div className="flex flex-col-reverse md:flex-row gap-2 md:gap-4">
-              <div className="md:w-2/3 w-full">
+              <div className="my-3">
+                <Typography>Produk Populer</Typography>
+                <div className="flex flex-col-reverse md:flex-row gap-2 md:gap-4">
+                  <div className="md:w-2/3 w-full">
+                    <Table
+                      columns={[
+                        {
+                          label: "Nama Barang",
+                          renderCell: async (item: any) => (
+                            <p
+                              className="underline cursor-pointer text-blue-500 flex items-center"
+                              onClick={() =>
+                                router.push(
+                                  `https://www.tokokeramik.com/dashboard/barang/${item.id}`
+                                )
+                              }
+                            >
+                              {item.productName}
+                              <PiArrowSquareUpRightLight className="ml-1" />
+                            </p>
+                          ),
+                        },
+                        {
+                          label: "Brand",
+                          renderCell: (item: any) => item.productBrand,
+                        },
+                        {
+                          label: "Jumlah dilihat",
+                          renderCell: (item: any) => item.views,
+                        },
+                      ]}
+                      datas={productInsight.top_product_view}
+                    />
+                  </div>
+                  <div className="md:w-1/3 w-full">
+                    <PieChart
+                      title={"Top Brands"}
+                      labels={topBrand.brands}
+                      data={topBrand.views}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="my-3">
+                <Typography>Pencarian Populer</Typography>
                 <Table
                   columns={[
                     {
-                      label: "Nama Barang",
-                      renderCell: async (item: any) => (
-                        <p
-                          className="underline cursor-pointer text-blue-500 flex items-center"
-                          onClick={() =>
-                            router.push(
-                              `https://www.tokokeramik.com/dashboard/barang/${item.id}`
-                            )
-                          }
-                        >
-                          {item.productName}
-                          <PiArrowSquareUpRightLight className="ml-1" />
-                        </p>
-                      ),
+                      label: "Kata kunci",
+                      renderCell: (item: any) => item.query,
                     },
                     {
-                      label: "Brand",
-                      renderCell: (item: any) => item.productBrand,
-                    },
-                    {
-                      label: "Jumlah dilihat",
-                      renderCell: (item: any) => item.views,
+                      label: "Jumlah dicari",
+                      renderCell: (item: any) => item.totalSearch,
                     },
                   ]}
-                  datas={productInsight.top_product_view}
-                />
-              </div>
-              <div className="md:w-1/3 w-full">
-                <PieChart
-                  title={"Top Brands"}
-                  labels={topBrand.brands}
-                  data={topBrand.views}
+                  datas={searchInsight.top_search_query}
                 />
               </div>
             </div>
-          </div>
-
-          <div className="my-3">
-            <Typography>Pencarian Populer</Typography>
-            <Table
-              columns={[
-                {
-                  label: "Kata kunci",
-                  renderCell: (item: any) => item.query,
-                },
-                {
-                  label: "Jumlah dicari",
-                  renderCell: (item: any) => item.totalSearch,
-                },
-              ]}
-              datas={searchInsight.top_search_query}
-            />
-          </div>
+          )}
         </div>
       )}
 
