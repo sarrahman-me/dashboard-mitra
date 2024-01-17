@@ -34,7 +34,7 @@ const DetailBarang = () => {
   useEffect(() => {
     const fetchData = async () => {
       const responseBarang = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}?track=true&source=tokokeramik.com`,
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}?track=true&source=tokokeramik.com&identity=${profile.username}`,
         3600
       );
 
@@ -60,7 +60,7 @@ const DetailBarang = () => {
       setHistory(responseHistoryBarang.data);
     };
     fetchData();
-  }, [slug]);
+  }, [profile.username, slug]);
 
   // menghitung harga
   const harga = upPriceWithPercen(barang?.harga, persentaseHarga);
