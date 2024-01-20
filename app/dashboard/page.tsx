@@ -26,14 +26,18 @@ export default function Dashboard() {
   const [barangTerbaru, setBarangBaru] = useState([] as any);
   const [dataInsight, setDataInsight] = useState({
     total_product_view: "",
+    total_product_view_last_period: "",
     top_product_view: [],
     total_searches: "",
+    total_searches_last_period: "",
     top_search_query: [],
     top_brands: [],
   } as {
     total_product_view: string;
+    total_product_view_last_period: string;
     top_product_view: any[];
     total_searches: string;
+    total_searches_last_period: string;
     top_search_query: any[];
     top_brands: any[];
   });
@@ -49,8 +53,10 @@ export default function Dashboard() {
 
         const {
           total_product_view,
+          total_product_view_last_period,
           top_product_view,
           total_searches,
+          total_searches_last_period,
           top_search_query,
           top_brands,
         } = responseWebstoreInsight.data;
@@ -58,8 +64,10 @@ export default function Dashboard() {
         setDataInsight({
           top_brands,
           top_product_view,
+          total_product_view_last_period,
           top_search_query,
           total_product_view,
+          total_searches_last_period,
           total_searches,
         });
       }
@@ -128,6 +136,14 @@ export default function Dashboard() {
               <div className="grid grid-cols-2 gap-2 md:gap-6">
                 <InsightCard
                   data={dataInsight.total_product_view}
+                  percentase={
+                    Number(
+                      calculatePercentage(
+                        Number(dataInsight.total_product_view),
+                        Number(dataInsight.total_product_view_last_period)
+                      )
+                    ) || 0
+                  }
                   color={"violet"}
                   title={"Dilihat"}
                   icon={<FaEye />}
@@ -135,6 +151,14 @@ export default function Dashboard() {
 
                 <InsightCard
                   data={dataInsight.total_searches}
+                  percentase={
+                    Number(
+                      calculatePercentage(
+                        Number(dataInsight.total_searches),
+                        Number(dataInsight.total_searches_last_period)
+                      )
+                    ) || 0
+                  }
                   title={"Pencarian"}
                   color={"amber"}
                   icon={<FaSearch />}
