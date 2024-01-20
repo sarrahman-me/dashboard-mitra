@@ -4,7 +4,6 @@ import { useState } from "react";
 import { TextfieldLocation } from "../../molecules";
 import { GetDataApi, formatCurrency } from "@/src/utils";
 import { Notify } from "notiflix";
-import Map from "../../molecules/map";
 
 const OngkirCalculator = () => {
   const [distanceMatrix, setDistanceMatrix] = useState({} as any);
@@ -87,12 +86,6 @@ const OngkirCalculator = () => {
           name={"destination"}
           label={"Alamat tujuan"}
         />
-
-        <div>
-          {typeof window !== "undefined" &&
-            lokasi.asal.latlang &&
-            lokasi.tujuan.latlang && <Map lokasi={lokasi} />}
-        </div>
 
         <Button
           loading={loading}
