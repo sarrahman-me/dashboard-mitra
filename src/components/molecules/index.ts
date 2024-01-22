@@ -6,6 +6,7 @@ import TopBar from "./TopBar";
 import CardMembershipPlan from "./cardMembershipPlan";
 import CardProduct from "./cardProduct";
 import FooterText from "./footerText";
+import LineChart from "./linechart";
 import PieChart from "./pieChart";
 import SearchBar from "./searchBar";
 import SocialIcon from "./socialIcon";
@@ -24,4 +25,5 @@ export {
   SearchBar,
   Table,
   PieChart,
+  LineChart,
 };
