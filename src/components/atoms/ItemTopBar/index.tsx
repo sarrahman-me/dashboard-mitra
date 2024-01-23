@@ -41,7 +41,7 @@ const ItemTopBar = ({ icon, href, label }: ItemTopBarProps) => {
       className={`flex flex-col justify-center items-center cursor-pointer ${colorClass}`}
     >
       <div className={`text-2xl ${colorIcon}`}>{icon}</div>
-      {active && <p className={`text-xs ${colotText}`}>{label}</p>}
+      {active && <p className={`text-xs text-center ${colotText}`}>{label}</p>}
     </div>
   );
 };

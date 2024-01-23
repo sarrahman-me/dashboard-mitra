@@ -49,8 +49,8 @@ const Menu = () => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 my-4">
         {menuItemsPageMobile.map((menu, i) => (
           <div key={i} onClick={() => router.push(menu.href)}>
-            <Container otherClass="p-2 divide-y-4 divide-transparent cursor-pointer hover:shadow-sm dark:hover:shadow-indigo-300">
-              <div className="text-indigo-600 text-2xl">{menu.icon}</div>
+            <Container otherClass="bg-gradient-to-br from-indigo-300 to-indigo-500 dark:from-slate-700 dark:to-slate-900 text-white p-2 divide-y-4 divide-transparent cursor-pointer hover:shadow-sm dark:hover:shadow-indigo-300">
+              <div className="text-slate-600 dark:text-indigo-600 text-2xl">{menu.icon}</div>
               <p>{menu.label}</p>
             </Container>
           </div>
