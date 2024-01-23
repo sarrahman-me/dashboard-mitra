@@ -29,8 +29,8 @@ const ItemSidebar = ({ label, icon, href, expand }: ItemSidebarProps) => {
       : pathName === href;
 
   const colorClass = active
-    ? "bg-indigo-600 dark:bg-gray-700 text-white"
-    : "hover:bg-indigo-50 dark:hover:bg-gray-700";
+    ? "bg-gradient-to-tl from-indigo-500 to-indigo-600 dark:from-gray-700 dark:to-gray-800 text-white"
+    : "hover:bg-indigo-50 dark:hover:bg-gray-800";
 
   const colorIcon = active ? "text-white" : "text-gray-600 dark:text-gray-200";
 
