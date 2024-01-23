@@ -70,6 +70,9 @@ export default function LineChart(props: {
   return (
     <div className="w-full h-full border rounded bg-white dark:bg-slate-700">
       <Line options={options} data={chartData} />
+      <p className="text-xs text-gray-500 text-center">
+        Dihitung setiap jam 11:55 PM di tanggal tersebut
+      </p>
     </div>
   );
 }
