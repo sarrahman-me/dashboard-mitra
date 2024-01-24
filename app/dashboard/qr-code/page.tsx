@@ -1,17 +1,30 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { Heading } from "@/components/atoms";
-import { Button, Textfield } from "@/src/components";
+import {
+  Button,
+  Container,
+  ExpiredPlan,
+  NotMembership,
+  PaymentChecking,
+  Textfield,
+  Typography,
+} from "@/src/components";
 import { GetDataApi } from "@/src/utils";
 import { toPng } from "html-to-image";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { IoCloudDownloadOutline } from "react-icons/io5";
+import moment from "moment";
+import { useRouter } from "next/navigation";
 
 export default function Feedback() {
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [barang, setBarang] = useState([] as any);
-  const { webstore } = useSelector((state: any) => state.profile);
+  const { webstore, profile, transaksi, membership } = useSelector(
+    (state: any) => state.profile
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,6 +61,39 @@ export default function Feedback() {
       console.error("Error downloading QR code:", error);
     }
   };
+
+  if (!profile?.id_membership) {
+    return <NotMembership />;
+  }
+
+  const endDate = moment(Number(membership?.endDate));
+  const isMembershipExpired = endDate.isSameOrBefore(moment(), "day");
+
+  if (isMembershipExpired) {
+    return <ExpiredPlan id_membership={profile.id_membership} />;
+  }
+
+  if (!transaksi?.verifikasi) {
+    return <PaymentChecking />;
+  }
+
+  if (!webstore?.isLive) {
+    return (
+      <div className="flex flex-col justify-center items-center">
+        <Container otherClass="p-8">
+          <Typography align="center">
+            Untuk mengakses halaman ini, Kamu perlu membuat toko online terlebih
+            dahulu.
+          </Typography>
+          <div className="flex justify-center mt-5">
+            <Button onClick={() => router.push("/dashboard/webstore")}>
+              Buat Webstore
+            </Button>
+          </div>
+        </Container>
+      </div>
+    );
+  }
 
   return (
     <div>
