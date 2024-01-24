@@ -15,7 +15,6 @@ import {
   Typography,
 } from "@/src/components";
 import { AiOutlineSetting } from "react-icons/ai";
-import { Report } from "notiflix";
 import { useRouter } from "next/navigation";
 
 export default function Webstore() {

@@ -8,6 +8,7 @@ import {
   MdOutlineCardMembership,
   MdOutlineFeedback,
   MdOutlineImageSearch,
+  MdOutlineQrCode2,
 } from "react-icons/md";
 import { BiCube, BiStore } from "react-icons/bi";
 import { TbTools } from "react-icons/tb";
@@ -39,6 +40,11 @@ export const menuItems = [
     label: "Toko Online",
     icon: <BiStore />,
     href: "/dashboard/webstore",
+  },
+  {
+    label: "QR Code",
+    icon: <MdOutlineQrCode2 />,
+    href: "/dashboard/qr-code",
   },
   {
     label: "Langganan",
@@ -82,6 +88,11 @@ export const menuItemsPageMobile = [
     label: "Toko Online",
     icon: <BiStore />,
     href: "/dashboard/webstore",
+  },
+  {
+    label: "QR Code",
+    icon: <MdOutlineQrCode2 />,
+    href: "/dashboard/qr-code",
   },
   {
     label: "Langganan",
