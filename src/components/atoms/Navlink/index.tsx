@@ -33,6 +33,14 @@ const Navlink = ({ children, href }: NavlinkProps) => {
   }
   `;
 
+  if (href.includes("https")) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    );
+  }
+
   return (
     <Link className={className} href={href}>
       {children}
