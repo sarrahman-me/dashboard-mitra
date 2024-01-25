@@ -7,14 +7,14 @@ const mainPages = [
     label: "Tentang kami",
     href: "/tentang",
   },
-  {
-    label: "Blog",
-    href: "https://blog.tokokeramik.com",
-  },
-  {
-    label: "Harga",
-    href: "/harga",
-  },
+  // {
+  //   label: "Blog",
+  //   href: "https://blog.tokokeramik.com",
+  // },
+  // {
+  //   label: "Harga",
+  //   href: "/harga",
+  // },
 ];
 
 const legalPages = [
