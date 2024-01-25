@@ -8,8 +8,8 @@ const mainPages = [
     href: "/tentang",
   },
   {
-    label: "Layanan",
-    href: "/layanan",
+    label: "Blog",
+    href: "https://blog.tokokeramik.com",
   },
   {
     label: "Harga",
