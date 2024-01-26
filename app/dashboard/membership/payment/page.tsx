@@ -6,12 +6,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { HeaderAndBackIcon } from "@/components/molecules";
 import { Confirm, Loading } from "notiflix";
 import { useSelector } from "react-redux";
-import { Button, ListData } from "@/src/components";
+import { Button, ListData, Textfield } from "@/src/components";
 
 export default function Payment() {
   const router = useRouter();
   const params = useSearchParams();
   const [membershipPlan, setPlan] = useState({} as any);
+  const [vocher, setVocher] = useState("");
+  const [resultRedemVocher, setResultRedemVocher] = useState("");
   const { profile } = useSelector((state: any) => state.profile);
 
   // Mengambil params dari halaman sebelumnya
@@ -51,6 +53,16 @@ export default function Payment() {
     );
   };
 
+  const handleRedemVocher = () => {
+    const voucherRegex = /^[A-Za-z0-9]{3}-[A-Za-z0-9]{3}-[A-Za-z0-9]{3}$/;
+
+    if (voucherRegex.test(vocher)) {
+      setResultRedemVocher("Voucher valid");
+    } else {
+      setResultRedemVocher("Format voucer tidak valid");
+    }
+  };
+
   return (
     <div>
       <HeaderAndBackIcon title={"Halaman pembayaran"} />
@@ -70,6 +82,25 @@ export default function Payment() {
               label={"Tanggal berakhir"}
               value={`${moment().add(1, "month").format("LL")} (1 bulan)`}
             />
+            <p className=" my-2">Vocher (jika ada)</p>
+            <div className="flex items-center">
+              <Textfield
+                placeholder="###-###-###"
+                name={"vocher"}
+                onChange={(value) => setVocher(value)}
+              />
+              <Button
+                disabled={!vocher}
+                onClick={handleRedemVocher}
+                size="large"
+                variant="text"
+              >
+                Gunakan
+              </Button>
+            </div>
+            <p className="text-xs text-indigo-500 md:text-sm">
+              {resultRedemVocher}
+            </p>
           </div>
           <div className="bg-white dark:bg-slate-800 rounded shadow p-6">
             <p className="text-lg mb-4">Instruksi Pembayaran</p>
