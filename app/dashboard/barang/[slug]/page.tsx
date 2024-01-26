@@ -14,7 +14,11 @@ import {
   Table,
 } from "@/src/components";
 import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
-import { GetDataApi, upPriceWithPercen } from "@/src/utils";
+import {
+  GetDataApi,
+  formatKeteranganWaktu,
+  upPriceWithPercen,
+} from "@/src/utils";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -140,7 +144,7 @@ const DetailBarang = () => {
               {
                 label: "Tanggal",
                 renderCell: async (item: any) => (
-                  <p>{moment(item.timestamp).format("lll")}</p>
+                  <p>{formatKeteranganWaktu(item.timestamp)}</p>
                 ),
               },
               {

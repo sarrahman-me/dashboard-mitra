@@ -5,14 +5,16 @@ import Label from "../Label";
 import Typography from "../Typography";
 
 /**
- * Komponen Select digunakan untuk membuat kotak pilihan sederhana hanya string[] dengan daftar pilihan.
+ * Komponen Select digunakan untuk membuat kotak pilihan sederhana yang hanya menerima input string dari daftar pilihan.
  *
  * @param {string} value - Nilai yang saat ini dipilih.
  * @param {function} setValue - Fungsi yang dipanggil saat nilai dipilih.
  * @param {string} placeholder - Teks placeholder yang ditampilkan saat tidak ada pilihan yang dipilih.
  * @param {string[]} lists - Daftar pilihan yang tersedia.
- * @param {string} label - Label Textfield dalam string.
- * @param {string} error - Pesan kesalahan yang ditampilkan di bawah Textfield (opsional).
+ * @param {string} label - Label untuk kotak pilihan (opsional).
+ * @param {string} error - Pesan kesalahan yang ditampilkan di bawah kotak pilihan (opsional).
+ * @param {string} size - Ukuran komponen (opsional, tersedia: "small", "medium", "large") default medium.
+ * @param {boolean} noIcon - Menghilangkan ikon seleksi (opsional).
  */
 
 interface SelectProps {
@@ -22,6 +24,8 @@ interface SelectProps {
   placeholder?: string;
   label?: string;
   error?: string;
+  size?: "small" | "medium" | "large";
+  noIcon?: boolean;
 }
 
 const Select = ({
@@ -30,8 +34,16 @@ const Select = ({
   placeholder,
   lists,
   label,
+  noIcon,
+  size,
   error,
 }: SelectProps) => {
+  const classSize = {
+    small: "p-1 text-xs",
+    medium: "p-2 text-base",
+    large: "p-3 text-lg",
+  };
+
   /* Objek `classColorBorder` mendefinisikan kelas CSS yang berbeda untuk setiap border pada varian Textfield ketika error. */
   const classColorBorder = {
     default:
@@ -40,11 +52,13 @@ const Select = ({
       "border-red-600 hover:border-red-600 focus:border-red-600 dark:focus:border-red-600",
   };
 
-  const classNameButton = `border text-left bg-white dark:bg-slate-800 focus:border-2 p-2 focus:outline-none disabled:border-gray-500 disabled:cursor-not-allowed w-full rounded-md ${
-    !error ? classColorBorder.default : classColorBorder.error
-  }`;
+  const classNameButton = `border text-left bg-white dark:bg-slate-800 focus:border-2 focus:outline-none disabled:border-gray-500 disabled:cursor-not-allowed w-full rounded-md
+  ${classSize[size || "medium"]}
+  ${!error ? classColorBorder.default : classColorBorder.error}`;
 
-  const classNameOptions = `mt-2 p-2 focus:outline-none border border-indigo-600 bg-white dark:bg-slate-800 rounded-md shadow-md max-h-48 overflow-scroll`;
+  const classNameOptions = `mt-2 focus:outline-none border border-indigo-600 bg-white dark:bg-slate-800 rounded-md shadow-md max-h-48 overflow-scroll
+  ${classSize[size || "medium"]}
+  `;
 
   return (
     <div>
@@ -57,7 +71,9 @@ const Select = ({
             {value || placeholder}
           </Listbox.Button>
 
-          <div className="relative flex items-center">
+          <div
+            className={`${noIcon ? "hidden" : "relative"} flex items-center`}
+          >
             <span className="absolute right-3 text-indigo-600">
               <HiSelector />
             </span>

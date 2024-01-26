@@ -12,6 +12,7 @@ import {
   Typography,
 } from "@/src/components";
 import { Report } from "notiflix";
+import { formatKeteranganWaktu } from "@/src/utils";
 
 const Membership = async () => {
   const { profile, transaksi, membership } = useSelector(
@@ -71,12 +72,8 @@ const Membership = async () => {
             value={formatCurrency(Number(transaksi.nominal))}
           />
           <ListData
-            label="Tanggal mulai"
-            value={moment(Number(membership.startDate)).format("LL")}
-          />
-          <ListData
             label="Tanggal berakhir"
-            value={moment(Number(membership.endDate)).format("LL")}
+            value={formatKeteranganWaktu(Number(membership.endDate))}
           />
         </div>
       </Container>

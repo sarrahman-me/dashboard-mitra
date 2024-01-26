@@ -6,6 +6,7 @@ import {
   NotMembership,
   PaymentChecking,
   PieChart,
+  Select,
   SwiperProduct,
   Table,
   Typography,
@@ -24,6 +25,7 @@ export default function Dashboard() {
   const { profile, transaksi, membership, webstore } = useSelector(
     (state: any) => state.profile
   );
+  const [period, setPeriod] = useState("harian");
   const [barangTerbaru, setBarangBaru] = useState([] as any);
   const [dataInsight, setDataInsight] = useState({
     total_product_view: "",
@@ -52,7 +54,7 @@ export default function Dashboard() {
     const fetchData = async () => {
       if (webstore?.domain) {
         const responseWebstoreInsight = await GetDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/analytic/dashboard-mitra-insight/${webstore?.domain}`,
+          `${process.env.NEXT_PUBLIC_HOST}/analytic/dashboard-mitra-insight/${webstore?.domain}?period=${period}`,
           3600
         );
 
@@ -85,7 +87,7 @@ export default function Dashboard() {
       }
     };
     fetchData();
-  }, [webstore]);
+  }, [period, webstore]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -142,9 +144,25 @@ export default function Dashboard() {
         <div>
           {dataInsight.total_product_view !== undefined && (
             <div>
-              <p className="underline font-semibold m-2">
-                Wawasan {webstore?.domain} 7 hari terakhir
-              </p>
+              <div className="flex my-3 space-x-2">
+                <p className="font-bold md:text-lg">
+                  Insight Produk {webstore.domain}{" "}
+                  {period === "harian"
+                    ? "hari ini"
+                    : period === "mingguan"
+                    ? "7 hari terakhir"
+                    : "30 hari terakhir"}
+                </p>
+                <Select
+                  noIcon
+                  size="small"
+                  value={period}
+                  setValue={(value) => {
+                    setPeriod(value);
+                  }}
+                  lists={["bulanan", "mingguan", "harian"]}
+                />
+              </div>
               <div className="grid grid-cols-2 gap-2 md:gap-6">
                 <InsightCard
                   data={dataInsight.total_product_view}
