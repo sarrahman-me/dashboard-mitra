@@ -88,7 +88,7 @@ export default function Renew() {
               value={
                 finalPrice !== 0
                   ? formatCurrency(finalPrice)
-                  : formatCurrency(klasifikasi_membership.harga)
+                  : formatCurrency(Number(klasifikasi_membership.harga))
               }
             />
             {discountAmount > 0 && (
@@ -127,7 +127,7 @@ export default function Renew() {
             <p className="font-semibold mt-2">
               {finalPrice !== 0
                 ? formatCurrency(finalPrice)
-                : formatCurrency(klasifikasi_membership.harga)}
+                : formatCurrency(Number(klasifikasi_membership.harga))}
             </p>
             <div className="mt-4">
               <p className="font-semibold">Bank: Bank BCA</p>
