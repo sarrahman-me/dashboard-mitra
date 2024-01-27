@@ -13,6 +13,7 @@ import RumusPenghitungKeramik from "./RumusPenghitungKeramik";
 import GoogleAnalytics from "./googleAnalystic";
 import RoomvoVisualize from "./roomvo";
 import formatKeteranganWaktu from "./formatKeteranganWaktu";
+import GoogleTagManager from "./googleTagManager";
 
 export {
   DeleteDataApi,
@@ -28,4 +29,5 @@ export {
   GoogleAnalytics,
   RoomvoVisualize,
   formatKeteranganWaktu,
+  GoogleTagManager,
 };
