@@ -46,7 +46,7 @@ export default function Payment() {
         Loading.circle();
         const response = await PostDataApi(
           `${process.env.NEXT_PUBLIC_HOST}/membership/daftar`,
-          { klasifikasi: membershipPlan.slug }
+          { klasifikasi: membershipPlan.slug, discountAmount }
         );
         if (response.success) {
           window.location.reload();
