@@ -9,15 +9,30 @@ import {
   ListData,
   MembershipPlanList,
   PaymentChecking,
+  Table,
   Typography,
 } from "@/src/components";
 import { Report } from "notiflix";
-import { formatKeteranganWaktu } from "@/src/utils";
+import { GetDataApi, formatKeteranganWaktu } from "@/src/utils";
+import { useEffect, useState } from "react";
 
-const Membership = async () => {
-  const { profile, transaksi, membership } = useSelector(
-    (state: any) => state.profile
-  );
+const Membership = () => {
+  const { profile, transaksi, membership, klasifikasi_membership } =
+    useSelector((state: any) => state.profile);
+  const [historyTransaksi, setHistoryTransaksi] = useState([] as any);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (profile.id_membership) {
+        const transaksiResponse = await GetDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/finance/transaksi/membership/${profile.id_membership}`
+        );
+
+        setHistoryTransaksi(transaksiResponse.data);
+      }
+    };
+    fetchData();
+  }, [profile.id_membership]);
 
   const endDate = moment(Number(membership?.endDate));
   const isMembershipExpired = endDate.isSameOrBefore(moment(), "day");
@@ -69,7 +84,7 @@ const Membership = async () => {
           <ListData label="Paket" value={membership.klasifikasi} />
           <ListData
             label="Biaya bulanan"
-            value={formatCurrency(Number(transaksi.nominal))}
+            value={formatCurrency(Number(klasifikasi_membership.harga))}
           />
           <ListData
             label="Tanggal berakhir"
@@ -82,6 +97,26 @@ const Membership = async () => {
           <Button variant="text">Upgrade ke Premium</Button>
         </div>
       )}
+      <div className="my-2">
+        <Typography variant="subtitle">History Transaksi</Typography>
+        <Table
+          columns={[
+            {
+              label: "Tanggal",
+              renderCell: async (item: any) => (
+                <p>{formatKeteranganWaktu(item.createdAt)}</p>
+              ),
+            },
+            {
+              label: "Nominal",
+              renderCell: async (item: any) => (
+                <p>{formatCurrency(Number(item.nominal))}</p>
+              ),
+            },
+          ]}
+          datas={historyTransaksi}
+        />
+      </div>
     </div>
   );
 };

@@ -8,6 +8,7 @@ import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  setKlasifikasiMembership,
   setMembership,
   setPersentaseHarga,
   setProfile,
@@ -49,6 +50,7 @@ export default function AppBar() {
       const profile = responseProfile?.data;
       let membership = null;
       let transaksi = null;
+      let klasifikasi_membership = null;
       let persentaseHarga = null;
       let webstore = null;
 
@@ -57,6 +59,7 @@ export default function AppBar() {
           `${process.env.NEXT_PUBLIC_HOST}/membership/member/${profile?.id_membership}`,
           300
         );
+        klasifikasi_membership = responseMembership?.data.klasifikasi;
         membership = responseMembership?.data.membership;
         persentaseHarga = responseMembership?.data?.harga?.persentase;
       }
@@ -81,6 +84,7 @@ export default function AppBar() {
       dispatch(setPersentaseHarga(persentaseHarga));
       dispatch(setMembership(membership));
       dispatch(setProfile(profile));
+      dispatch(setKlasifikasiMembership(klasifikasi_membership));
     }
     fetchData();
   }, [dispatch, router]);
