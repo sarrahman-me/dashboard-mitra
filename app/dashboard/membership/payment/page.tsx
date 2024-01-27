@@ -14,6 +14,8 @@ export default function Payment() {
   const [membershipPlan, setPlan] = useState({} as any);
   const [vocher, setVocher] = useState("");
   const [resultRedemVocher, setResultRedemVocher] = useState("");
+  const [discountAmount, setDiscountAmount] = useState(0);
+  const [finalPrice, setFinalPrice] = useState(0);
   const { profile } = useSelector((state: any) => state.profile);
 
   // Mengambil params dari halaman sebelumnya
@@ -25,6 +27,7 @@ export default function Payment() {
         const data = await GetDataApi(
           `${process.env.NEXT_PUBLIC_HOST}/membership/klasifikasi/${klasifikasiMembership}`
         );
+        setFinalPrice(data?.data.harga);
         setPlan(data?.data || []);
       } else {
         router.push("/dashboard/membership");
@@ -53,13 +56,28 @@ export default function Payment() {
     );
   };
 
-  const handleRedemVocher = () => {
+  const handleRedemVocher = async () => {
+    Loading.circle();
     const voucherRegex = /^[A-Za-z0-9]{3}-[A-Za-z0-9]{3}-[A-Za-z0-9]{3}$/;
 
     if (voucherRegex.test(vocher)) {
-      setResultRedemVocher("Voucher valid");
+      const response = await PostDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}/finance/voucher/check`,
+        { code: vocher, category: "membership" }
+      );
+      if (response.success) {
+        const diskon =
+          (membershipPlan.harga * response.data.discount_percentage) / 100;
+        setDiscountAmount(diskon);
+        setFinalPrice(membershipPlan.harga - diskon);
+        setResultRedemVocher(response.message);
+      } else {
+        setResultRedemVocher(response.message);
+      }
+      Loading.remove();
     } else {
       setResultRedemVocher("Format voucer tidak valid");
+      Loading.remove();
     }
   };
 
@@ -74,10 +92,13 @@ export default function Payment() {
               label={"Nama Klasifikasi"}
               value={membershipPlan.nama_klasifikasi}
             />
-            <ListData
-              label={"Harga"}
-              value={formatCurrency(membershipPlan.harga || 0)}
-            />
+            <ListData label={"Harga"} value={formatCurrency(finalPrice)} />
+            {discountAmount > 0 && (
+              <ListData
+                label={"kamu menghemat"}
+                value={formatCurrency(discountAmount)}
+              />
+            )}
             <ListData
               label={"Tanggal berakhir"}
               value={`${moment().add(1, "month").format("LL")} (1 bulan)`}
@@ -106,7 +127,7 @@ export default function Payment() {
             <p className="text-lg mb-4">Instruksi Pembayaran</p>
             <p>Silakan lakukan pembayaran ke rekening berikut:</p>
             <p className="font-semibold mt-2">
-              {formatCurrency(membershipPlan.harga || 0)}
+              {formatCurrency(finalPrice || 0)}
             </p>
             <div className="mt-4">
               <p className="font-semibold">Bank: Bank BCA</p>
