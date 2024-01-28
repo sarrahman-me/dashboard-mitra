@@ -1,8 +1,8 @@
 "use client";
 import "./globals.css";
 import store from "@/src/redux/store";
+import { GoogleAnalytics, GoogleTagManager } from "@/src/script";
 import { Provider } from "react-redux";
-import { GoogleAnalytics, GoogleTagManager } from "@/src/utils";
 
 export default function RootLayout({
   children,
