@@ -4,9 +4,10 @@ import React, { useEffect, useState } from "react";
 import { GetDataApi, PostDataApi, formatCurrency } from "@/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { HeaderAndBackIcon } from "@/components/molecules";
-import { Confirm, Loading } from "notiflix";
+import { Confirm, Loading, Notify } from "notiflix";
 import { useSelector } from "react-redux";
 import { Button, ListData, Textfield } from "@/src/components";
+import mixpanel from "@/config/mixpanel";
 
 export default function Payment() {
   const router = useRouter();
@@ -48,9 +49,17 @@ export default function Payment() {
           `${process.env.NEXT_PUBLIC_HOST}/membership/daftar`,
           { klasifikasi: membershipPlan.slug, discountAmount }
         );
+
+        mixpanel.track("Register Membership", {
+          klasifikasi: membershipPlan.slug,
+          discountAmount,
+        });
+
         if (response.success) {
           window.location.reload();
           Loading.remove();
+        } else {
+          Notify.failure(response.message);
         }
       }
     );
@@ -65,6 +74,14 @@ export default function Payment() {
         `${process.env.NEXT_PUBLIC_HOST}/finance/voucher/check`,
         { code: vocher, category: "membership" }
       );
+
+      mixpanel.track("Redeem Voucher", {
+        code: vocher,
+        category: "Register Membership",
+        status: response.success,
+        message: response.message,
+      });
+
       if (response.success) {
         const diskon =
           (membershipPlan.harga * response.data.discount_percentage) / 100;

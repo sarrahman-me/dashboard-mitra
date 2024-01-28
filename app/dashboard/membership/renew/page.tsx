@@ -7,6 +7,7 @@ import { HeaderAndBackIcon } from "@/components/molecules";
 import { Confirm, Loading, Notify } from "notiflix";
 import { useSelector } from "react-redux";
 import { Button, ListData, Textfield } from "@/src/components";
+import mixpanel from "@/config/mixpanel";
 
 export default function Renew() {
   const router = useRouter();
@@ -34,6 +35,12 @@ export default function Renew() {
           }
         );
 
+        mixpanel.track("Renew Membership", {
+          id_membership: profile.id_membership,
+          klasifikasi_membership: klasifikasi_membership.nama_klasifikasi,
+          discountAmount,
+        });
+
         if (response.success) {
           Loading.remove();
           router.push("/dashboard/membership");
@@ -55,6 +62,14 @@ export default function Renew() {
         `${process.env.NEXT_PUBLIC_HOST}/finance/voucher/check`,
         { code: vocher, category: "perpanjangan" }
       );
+
+      mixpanel.track("Redeem Voucher", {
+        code: vocher,
+        category: "Renew Membership",
+        status: response.success,
+        message: response.message,
+      });
+
       if (response.success) {
         const diskon =
           (klasifikasi_membership.harga * response.data.discount_percentage) /

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { HitungKeramik } from "@/functions";
 import { calculateDiscountPercentage, formatCurrency } from "@/src/utils";
 import { Button, Container, Textfield, Typography } from "@/src/components";
+import mixpanel from "@/config/mixpanel";
 
 interface KalkulatorKeramikProps {
   ukuran: string;
@@ -30,7 +31,15 @@ const KalkulatorKeramik = ({
 
   const handleHitung = (e: any) => {
     e.preventDefault();
+
     const hasilHitung = HitungKeramik(ukuran, panjang, lebar);
+    mixpanel.track("Hitung Keramik", {
+      panjang,
+      lebar,
+      tinggi,
+      ukuran,
+      hasilHitung,
+    });
     setHasil(hasilHitung);
   };
 

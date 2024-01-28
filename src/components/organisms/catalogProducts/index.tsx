@@ -7,6 +7,7 @@ import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { LoadingAnimation } from "../../template";
 import { GetDataApi } from "@/src/utils";
 import { Tb3DCubeSphereOff } from "react-icons/tb";
+import mixpanel from "@/config/mixpanel";
 
 interface CatalogProductsProps {
   atribut?: string;
@@ -50,6 +51,7 @@ export default function CatalogProducts({
   }, [currentPage, atribut, pathUrl, limit]);
 
   const handleNextPage = () => {
+    mixpanel.track("Next Product Page");
     if (currentPage < metadata?.totalPages) {
       const nextPage = currentPage + 1;
       const pathname = window.location.pathname;
@@ -61,6 +63,7 @@ export default function CatalogProducts({
   };
 
   const handlePrevPage = () => {
+    mixpanel.track("Previous Product Page");
     if (currentPage > 1) {
       const prevPage = currentPage - 1;
       const pathname = window.location.pathname;

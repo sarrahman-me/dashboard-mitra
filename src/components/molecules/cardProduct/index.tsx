@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { Container } from "../../atoms";
 import { AiFillFire } from "react-icons/ai";
 import { FaThumbsUp } from "react-icons/fa6";
+import mixpanel from "@/config/mixpanel";
 
 interface CardProductProps {
   product: any;
@@ -41,6 +42,9 @@ const CardProduct = ({ product }: CardProductProps) => {
     <Container
       otherClass="relative hover:shadow cursor-pointer dark:hover:shadow-gray-500"
       onClick={() => {
+        mixpanel.track("Product Click", {
+          ...product,
+        });
         router.push(`/dashboard/barang/${product.slug}`);
       }}
     >

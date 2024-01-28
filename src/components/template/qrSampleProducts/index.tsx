@@ -3,6 +3,7 @@
 import { Button, Container, Typography } from "@/src/components";
 import { useEffect, useState } from "react";
 import { toPng } from "html-to-image";
+import mixpanel from "@/config/mixpanel";
 
 const generateQrCodeUrl = (webstore: any, barang: any) => {
   return `https://api.qrserver.com/v1/create-qr-code/?data=${webstore?.url}/barang/${barang.kode_barang}&size=100x100`;
@@ -83,7 +84,9 @@ export default function QrSampleProducts(props: {
                 title={`${props.webstore?.url}/barang/${props.barang.kode_barang}`}
               />
               <div className="space-y-1">
-                <p className="font-mono font-bold whitespace-nowrap">{props.barang.nama_barang}</p>
+                <p className="font-mono font-bold whitespace-nowrap">
+                  {props.barang.nama_barang}
+                </p>
                 <p className="font-mono">
                   {props.barang.warna?.replace(/\([^)]*\)/g, "").trim()}
                 </p>
@@ -92,7 +95,20 @@ export default function QrSampleProducts(props: {
               </div>
             </div>
             <div className="my-2">
-              <Button onClick={handleDownload}>Download</Button>
+              <Button
+                onClick={() => {
+                  // tracker code
+                  mixpanel.track("Download Qr Code", {
+                    nama: props.barang.nama_barang,
+                    brand: props.barang.brand,
+                    ukuran: props.barang.ukuran,
+                    id_product: props.barang.kode_barang,
+                  });
+                  handleDownload();
+                }}
+              >
+                Download
+              </Button>
             </div>
           </div>
         )}

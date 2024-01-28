@@ -4,6 +4,7 @@ import { RiSearchLine } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 import { Loading, Notify } from "notiflix";
 import { Textfield } from "../../atoms";
+import mixpanel from "@/config/mixpanel";
 
 const SearchBar = () => {
   const router = useRouter();
@@ -11,6 +12,12 @@ const SearchBar = () => {
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // tracker code
+    mixpanel.track("Search Product", {
+      query: searchTerm,
+    });
+
     Loading.dots("Mencari...");
 
     if (!searchTerm) {
