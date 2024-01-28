@@ -9,7 +9,7 @@ import mixpanel from "@/config/mixpanel";
 
 export default function NotFound() {
   const router = useRouter();
-  mixpanel.track("Page viewed", {
+  mixpanel.track("Page view", {
     Page: "404 Not Found",
   });
 

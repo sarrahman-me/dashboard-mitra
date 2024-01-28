@@ -22,18 +22,24 @@ export default function Login() {
   const [data, setData] = useState({} as any);
   const [error, seterror] = useState({} as any);
 
-  mixpanel.track("Page viewed", {
-    Page: "Login",
-  });
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     setLoading(true);
     Loading.hourglass();
+
     const response = await PostDataApi(
       `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/login`,
       data
     );
+
+    mixpanel.track("Button Clicked", {
+      "Button Name": "Masuk",
+      "Button Type": "Contained",
+      status: response?.success,
+      message: response.message || "",
+      data: data,
+    });
 
     if (response?.success) {
       setCookie("tx", response.data.token, {
@@ -48,13 +54,12 @@ export default function Login() {
       });
       Notify.success(response.message);
       router.push("/dashboard");
-      Loading.remove();
     } else {
       setLoading(false);
       seterror(response.error);
-      Loading.remove();
       Notify.failure(response.message);
     }
+    Loading.remove();
   };
 
   return (
@@ -78,7 +83,15 @@ export default function Login() {
             <Typography variant="helper" color="secondary" align="center">
               Belum punya akun{" "}
               <span
-                onClick={() => router.push("/register")}
+                onClick={() => {
+                  router.push("/register");
+
+                  // mixpanel tracker
+                  mixpanel.track("Button Clicked", {
+                    "Button Name": "Daftar",
+                    "Button Type": "Text",
+                  });
+                }}
                 className="underline text-indigo-500 cursor-pointer"
               >
                 Daftar

@@ -25,29 +25,37 @@ export default function Register() {
   const [error, seterror] = useState({} as any);
   const [acceptPolicy, setAcceptedPolicy] = useState(false);
 
-  mixpanel.track("Page viewed", {
-    Page: "Register",
-  });
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     Loading.circle();
+
     const response = await PostDataApi(
       `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/register`,
       data
     );
+
+    // mixpanel tracker
+    mixpanel.track("Button Clicked", {
+      "Button Name": "Register",
+      "Button Type": "Contained",
+      status: response?.success,
+      message: response.message || "",
+      data: data,
+    });
+
     if (response?.success) {
+      // set cookie
       setCookie("email", data.email);
-      Loading.remove();
+
       Notify.success(response.message);
       router.push("/verify-email");
     } else {
       setLoading(false);
       seterror(response.error);
-      Loading.remove();
       Notify.failure(response.message);
     }
+    Loading.remove();
   };
 
   return (
@@ -70,9 +78,21 @@ export default function Register() {
               label={
                 <span>
                   Saya menyetujui{" "}
-                  <Link className="underline" href={"/syarat-dan-ketentuan"}>
+                  <a
+                    onClick={() => {
+                      // mixpanel tracker
+                      mixpanel.track("Button Clicked", {
+                        "Button Name": "Syarat dan Ketentuan",
+                        "Button Type": "Text",
+                      });
+                    }}
+                    className="underline text-indigo-600"
+                    href="https://www.tokokeramik.com/syarat-dan-ketentuan"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Syarat dan Ketentuan
-                  </Link>
+                  </a>
                 </span>
               }
               name="policy"
@@ -89,7 +109,14 @@ export default function Register() {
             <Typography variant="helper" color="secondary" align="center">
               Sudah punya akun{" "}
               <span
-                onClick={() => router.push("/login")}
+                onClick={() => {
+                  router.push("/login");
+
+                  mixpanel.track("Button Clicked", {
+                    "Button Name": "Masuk",
+                    "Button Type": "Text",
+                  });
+                }}
                 className="text-indigo-500 cursor-pointer"
               >
                 Masuk

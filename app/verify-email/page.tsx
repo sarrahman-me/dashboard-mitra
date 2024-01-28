@@ -23,10 +23,6 @@ export default function VerifyEmail() {
   const [data, setData] = useState({} as any);
   const [error, seterror] = useState({} as any);
 
-  mixpanel.track("Page viewed", {
-    Page: "Verify Email",
-  });
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const payload = {
@@ -39,6 +35,15 @@ export default function VerifyEmail() {
       `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/verify-email`,
       payload
     );
+
+    mixpanel.track("Button Clicked", {
+      "Button Name": "Submit Verified Email",
+      "Button Type": "Text",
+      status: response?.success,
+      message: response.message || "",
+      email,
+      payload,
+    });
 
     if (response?.success) {
       setCookie("tx", response.data.token, {
@@ -71,6 +76,14 @@ export default function VerifyEmail() {
         email,
       }
     );
+
+    mixpanel.track("Button Clicked", {
+      "Button Name": "Kirim ulang Email",
+      "Button Type": "Text",
+      status: response?.success,
+      message: response.message || "",
+      email,
+    });
 
     if (response?.success) {
       Notify.success(response.message);
