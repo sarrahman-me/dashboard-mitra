@@ -6,6 +6,7 @@ import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { Confirm, Loading } from "notiflix";
 import { useEffect, useState } from "react";
+import mixpanel from "@/config/mixpanel";
 
 export default function Profile() {
   const router = useRouter();
@@ -34,6 +35,14 @@ export default function Profile() {
           const responseLogout = await DeleteDataApi(
             `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/logout`
           );
+
+          mixpanel.track("Button Clicked", {
+            "Button Name": "Keluar Aplikasi",
+            "Button Type": "Text",
+            status: responseLogout?.success,
+            message: responseLogout.message || "",
+          });
+
           if (responseLogout.success) {
             deleteCookie("tx");
             deleteCookie("rtx");

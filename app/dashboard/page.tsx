@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import { FaArrowDown, FaArrowUp, FaEye } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { PiArrowSquareUpRightLight } from "react-icons/pi";
+import mixpanel from "@/config/mixpanel";
 
 export default function Dashboard() {
   const { profile, transaksi, membership, webstore } = useSelector(
@@ -158,7 +159,12 @@ export default function Dashboard() {
                   size="small"
                   value={period}
                   setValue={(value) => {
-                    setPeriod(value);
+                    {
+                      mixpanel.track("Select Period Analystic", {
+                        "Selected Period": value,
+                      });
+                      setPeriod(value);
+                    }
                   }}
                   lists={["bulanan", "mingguan", "harian"]}
                 />
@@ -240,11 +246,18 @@ export default function Dashboard() {
                       renderCell: async (item: any) => (
                         <p
                           className="underline cursor-pointer text-blue-500 flex items-center"
-                          onClick={() =>
+                          onClick={() => {
+                            mixpanel.track("Populer Product Click", {
+                              "Id Product": item.id,
+                              "Nama Product": item.productName,
+                              Brand: item.productBrand,
+                              views: item.views,
+                            });
+
                             router.push(
                               `https://www.tokokeramik.com/dashboard/barang/${item.id}`
-                            )
-                          }
+                            );
+                          }}
                         >
                           {item.productName}
                           <PiArrowSquareUpRightLight className="ml-1" />

@@ -6,6 +6,7 @@ import { Notify } from "notiflix";
 import { Button } from "@/components/atoms";
 import { HeaderAndBackIcon } from "@/components/molecules";
 import { TextfieldGroup } from "@/src/components";
+import mixpanel from "@/config/mixpanel";
 
 export default function FormEditData() {
   const router = useRouter();
@@ -57,10 +58,26 @@ export default function FormEditData() {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+
     const response = await PatchDataApi(
       `${process.env.NEXT_PUBLIC_HOST}/mitra/${profile?.slug}`,
       data
     );
+
+    mixpanel.track("Button Clicked", {
+      "Button Name": "Edit Data Account",
+      "Button Type": "Text",
+      status: response?.success,
+      message: response.message || "",
+      data,
+    });
+
+    mixpanel.people.set({
+      $name: data?.nama,
+      $whatsapp: data?.whatsapp,
+      $email: data?.email,
+    });
+
     if (response.success) {
       Notify.success(response.message);
       router.back();
@@ -74,7 +91,12 @@ export default function FormEditData() {
     <div>
       <HeaderAndBackIcon title="Edit Profile" />
       <form className="md:w-1/2 mt-5" onSubmit={handleSubmit}>
-        <TextfieldGroup error={error} forms={form} setData={setdata} data={data} />
+        <TextfieldGroup
+          error={error}
+          forms={form}
+          setData={setdata}
+          data={data}
+        />
         <div className="mt-4">
           <Button isSubmit={true}>Simpan</Button>
         </div>

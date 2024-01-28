@@ -15,6 +15,7 @@ import {
   setTransaksi,
   setWebstore,
 } from "@/src/redux/slice/profile";
+import mixpanel from "@/config/mixpanel";
 
 /**
  * Komponen AppBar digunakan untuk membuat bilah aplikasi yang dapat menampilkan judul dan opsi lainnya.
@@ -79,6 +80,17 @@ export default function AppBar() {
 
         transaksi = responseTransaksi?.data;
       }
+
+      mixpanel.identify(profile?.username);
+      mixpanel.people.set({
+        $name: profile?.nama,
+        $username: profile?.username,
+        $whatsapp: profile?.whatsapp,
+        $email: profile?.email,
+        $id_membership: membership?.klasifikasi,
+        $webstore: webstore?.domain,
+      });
+
       dispatch(setWebstore(webstore));
       dispatch(setTransaksi(transaksi));
       dispatch(setPersentaseHarga(persentaseHarga));
