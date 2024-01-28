@@ -16,6 +16,7 @@ import {
 } from "@/src/components";
 import { authPages } from "@/src/data/pages";
 import { formRegister } from "@/src/data/forms";
+import mixpanel from "@/config/mixpanel";
 
 export default function Register() {
   const router = useRouter();
@@ -23,6 +24,10 @@ export default function Register() {
   const [data, setData] = useState({} as any);
   const [error, seterror] = useState({} as any);
   const [acceptPolicy, setAcceptedPolicy] = useState(false);
+
+  mixpanel.track("Page viewed", {
+    Page: "Register",
+  });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

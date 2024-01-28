@@ -2,8 +2,13 @@ import Image from "next/image";
 import signature from "@/public/signature.png";
 import { Footer, NavBar } from "@/src/components";
 import { mainPages } from "@/src/data/pages";
+import mixpanel from "@/config/mixpanel";
 
 export default function KebijakanPrivasi() {
+  mixpanel.track("Page viewed", {
+    Page: "Kebijakan Privasi",
+  });
+
   return (
     <>
       <NavBar pages={mainPages} />

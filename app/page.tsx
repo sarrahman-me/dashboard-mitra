@@ -13,6 +13,7 @@ import {
 import { mainPages } from "@/src/data/pages";
 import { TiTick } from "react-icons/ti";
 import { TbAugmentedReality } from "react-icons/tb";
+import mixpanel from "@/config/mixpanel";
 
 export const metadata = {
   title: "Toko Keramik - Jual Keramik tak pernah semudah ini",
@@ -68,6 +69,10 @@ const benefitVisualisasi = {
 };
 
 export default function RootPage() {
+  mixpanel.track("Page viewed", {
+    Page: "Home",
+  });
+
   return (
     <>
       <NavBar pages={mainPages} />

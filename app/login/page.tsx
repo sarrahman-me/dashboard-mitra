@@ -14,12 +14,17 @@ import {
 } from "@/src/components";
 import { authPages } from "@/src/data/pages";
 import { formLogin } from "@/src/data/forms";
+import mixpanel from "@/config/mixpanel";
 
 export default function Login() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({} as any);
   const [error, seterror] = useState({} as any);
+
+  mixpanel.track("Page viewed", {
+    Page: "Login",
+  });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

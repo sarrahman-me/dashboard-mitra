@@ -1,6 +1,7 @@
 "use client";
 import { Button, LottiePlayer, Typography } from "@/src/components/atoms";
 import { useRouter } from "next/navigation";
+import mixpanel from "@/config/mixpanel";
 
 /**
  * Halaman NotFound digunakan untuk menampilkan pesan kesalahan saat halaman tidak ditemukan.
@@ -8,6 +9,9 @@ import { useRouter } from "next/navigation";
 
 export default function NotFound() {
   const router = useRouter();
+  mixpanel.track("Page viewed", {
+    Page: "404 Not Found",
+  });
 
   return (
     <div className="flex flex-col justify-center items-center w-full h-screen">

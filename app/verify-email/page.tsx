@@ -14,6 +14,7 @@ import {
 } from "@/src/components";
 import { formVerifyEmail } from "@/src/data/forms";
 import { mainPages } from "@/src/data/pages";
+import mixpanel from "@/config/mixpanel";
 
 export default function VerifyEmail() {
   const router = useRouter();
@@ -21,6 +22,10 @@ export default function VerifyEmail() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({} as any);
   const [error, seterror] = useState({} as any);
+
+  mixpanel.track("Page viewed", {
+    Page: "Verify Email",
+  });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
