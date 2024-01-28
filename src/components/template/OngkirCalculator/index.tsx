@@ -4,6 +4,7 @@ import { useState } from "react";
 import { TextfieldLocation } from "../../molecules";
 import { GetDataApi, formatCurrency } from "@/src/utils";
 import { Notify } from "notiflix";
+import mixpanel from "@/config/mixpanel";
 
 const OngkirCalculator = () => {
   const [distanceMatrix, setDistanceMatrix] = useState({} as any);
@@ -31,6 +32,14 @@ const OngkirCalculator = () => {
         const jarak = response.data.distance.value / 1000;
 
         const biaya = jarak * ongkos;
+
+        mixpanel.track("Hitung Ongkir", {
+          asal: lokasi.asal.nama,
+          tujuan: lokasi.tujuan.nama,
+          status: response.success,
+          jarak,
+          biaya,
+        });
 
         setDistanceMatrix({
           ...response.data,

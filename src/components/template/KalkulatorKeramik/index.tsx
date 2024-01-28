@@ -10,6 +10,7 @@ import { kalkulatorForm } from "@/src/data/forms";
 import Image from "next/image";
 import { useState } from "react";
 import { RumusPenghitungKeramik } from "@/src/utils";
+import mixpanel from "@/config/mixpanel";
 
 const KalkulatorKeramik = () => {
   const [data, setData] = useState({
@@ -38,6 +39,18 @@ const KalkulatorKeramik = () => {
     };
 
     const hasilPerhitungan = RumusPenghitungKeramik(payload);
+
+    mixpanel.track("Hitung Keramik", {
+      panjang: data.panjang,
+      lebar: data.lebar,
+      tinggi: data.tinggi,
+      ukuran: data.ukuran,
+      hasil: {
+        diameter_perdus: hasilPerhitungan.diameter_perdus,
+        kebutuhan: hasilPerhitungan.kebutuhan,
+        diameter_ruang: hasilPerhitungan.diameter_ruang,
+      },
+    });
     setHasil({
       diameter_perdus: hasilPerhitungan.diameter_perdus,
       kebutuhan: hasilPerhitungan.kebutuhan,

@@ -1,7 +1,6 @@
 "use client";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import { useEffect } from "react";
-import mixpanel from "@/config/mixpanel";
 
 export default function Error({
   error,
@@ -14,10 +13,6 @@ export default function Error({
     // Log the error to an error reporting service
     console.error(error);
   }, [error]);
-
-  mixpanel.track("Page Error", {
-    error,
-  });
 
   return (
     <div className="flex flex-col justify-center items-center w-full h-screen">
