@@ -36,7 +36,7 @@ export default function Register() {
     );
 
     // mixpanel tracker
-    mixpanel.track("Button Clicked", {
+    mixpanel.track("Register", {
       "Button Name": "Register",
       "Button Type": "Contained",
       status: response?.success,

@@ -9,9 +9,7 @@ import mixpanel from "@/config/mixpanel";
 
 export default function NotFound() {
   const router = useRouter();
-  mixpanel.track("Page view", {
-    Page: "404 Not Found",
-  });
+  mixpanel.track("Page Not Found");
 
   return (
     <div className="flex flex-col justify-center items-center w-full h-screen">

@@ -33,7 +33,7 @@ export default function Login() {
       data
     );
 
-    mixpanel.track("Button Clicked", {
+    mixpanel.track("Login", {
       "Button Name": "Masuk",
       "Button Type": "Contained",
       status: response?.success,

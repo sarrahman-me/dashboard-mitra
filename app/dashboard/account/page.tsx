@@ -36,7 +36,7 @@ export default function Profile() {
             `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/logout`
           );
 
-          mixpanel.track("Button Clicked", {
+          mixpanel.track("Logout", {
             "Button Name": "Keluar Aplikasi",
             "Button Type": "Text",
             status: responseLogout?.success,

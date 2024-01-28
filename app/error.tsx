@@ -15,8 +15,7 @@ export default function Error({
     console.error(error);
   }, [error]);
 
-  mixpanel.track("Page view", {
-    Page: "500 Error",
+  mixpanel.track("Page Error", {
     error,
   });
 

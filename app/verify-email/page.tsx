@@ -36,7 +36,7 @@ export default function VerifyEmail() {
       payload
     );
 
-    mixpanel.track("Button Clicked", {
+    mixpanel.track("Verify Email", {
       "Button Name": "Submit Verified Email",
       "Button Type": "Text",
       status: response?.success,
@@ -77,7 +77,7 @@ export default function VerifyEmail() {
       }
     );
 
-    mixpanel.track("Button Clicked", {
+    mixpanel.track("Ask Verify Code Email", {
       "Button Name": "Kirim ulang Email",
       "Button Type": "Text",
       status: response?.success,

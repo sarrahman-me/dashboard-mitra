@@ -64,7 +64,7 @@ export default function FormEditData() {
       data
     );
 
-    mixpanel.track("Button Clicked", {
+    mixpanel.track("Edit Profile", {
       "Button Name": "Edit Data Account",
       "Button Type": "Text",
       status: response?.success,
