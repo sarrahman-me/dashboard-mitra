@@ -4,6 +4,7 @@ import { Button, Container, Textfield } from "@/src/components";
 import { PostDataApi } from "@/utils";
 import { Notify } from "notiflix";
 import { useState } from "react";
+import mixpanel from "@/config/mixpanel";
 
 export default function Feedback() {
   const [subject, setSubject] = useState("");
@@ -15,6 +16,11 @@ export default function Feedback() {
       `${process.env.NEXT_PUBLIC_HOST}/message/send/email`,
       { text, to: "sarrahman.me@gmail.com", subject }
     );
+
+    mixpanel.track("Send Feedback", {
+      subject,
+      pesan: text,
+    });
 
     if (sendMessage.success) {
       Notify.success("Feedback terkirim");

@@ -87,7 +87,7 @@ export default function AppBar() {
         $username: profile?.username,
         $whatsapp: profile?.whatsapp,
         $email: profile?.email,
-        $id_membership: membership?.klasifikasi,
+        $membership: membership?.klasifikasi,
         $webstore: webstore?.domain,
       });
 

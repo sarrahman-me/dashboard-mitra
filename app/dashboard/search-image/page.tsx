@@ -16,6 +16,7 @@ import { Notify } from "notiflix";
 import { useState } from "react";
 import { FaWandMagicSparkles } from "react-icons/fa6";
 import { useSelector } from "react-redux";
+import mixpanel from "@/config/mixpanel";
 
 export default function Experiment() {
   const { profile, transaksi, membership } = useSelector(
@@ -47,6 +48,12 @@ export default function Experiment() {
       );
 
       if (response?.predicted_id_product.length > 0) {
+        mixpanel.track("Search With Image", {
+          tile_size: size,
+          status: "success",
+          message: response.message || "",
+        });
+
         PostDataApi(`${process.env.NEXT_PUBLIC_HOST}/products/barang/slugs`, {
           slugs: response?.predicted_id_product,
         })
@@ -58,6 +65,12 @@ export default function Experiment() {
             setResponsePredict([]);
           });
       } else {
+        mixpanel.track("Search With Image", {
+          tile_size: size,
+          status: "failed",
+          message: response.message || "",
+        });
+
         setResponsePredict([]);
         Notify.failure("Gagal melakukan pencarian berdasarkan gambar");
       }

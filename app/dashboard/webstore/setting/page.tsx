@@ -16,6 +16,7 @@ import { Notify } from "notiflix";
 import { useRouter } from "next/navigation";
 import { HeaderAndBackIcon } from "@/components/molecules";
 import ImageInputWithPreview from "@/src/components/molecules/imageInputWithPreview";
+import mixpanel from "@/config/mixpanel";
 
 export default function Setting() {
   const router = useRouter();
@@ -103,6 +104,17 @@ export default function Setting() {
         banner_image: banner[0],
       }
     );
+
+    mixpanel.track("Setting Webstore", {
+      status: response?.success,
+      message: response.message || "",
+      show_price: showPrice,
+      show_stock: showStock,
+      profit_percentage: profitPersentase,
+      use_password: usePassword,
+      password: password,
+    });
+
     if (response.success) {
       Notify.success(response.message);
       router.push("/dashboard/webstore");

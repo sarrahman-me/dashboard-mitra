@@ -16,6 +16,7 @@ import {
 } from "@/src/components";
 import { AiOutlineSetting } from "react-icons/ai";
 import { useRouter } from "next/navigation";
+import mixpanel from "@/config/mixpanel";
 
 export default function Webstore() {
   const router = useRouter();
@@ -77,7 +78,14 @@ export default function Webstore() {
       </Container>
       <div className="mt-2">
         <Button
-          onClick={() => router.push("/dashboard/webstore/setting")}
+          onClick={() => {
+            router.push("/dashboard/webstore/setting");
+            // mixpanel tracker
+            mixpanel.track("Button Clicked", {
+              "Button Name": "Setting Webstore",
+              "Button Type": "Contain",
+            });
+          }}
           icon={<AiOutlineSetting />}
           variant="text"
         >

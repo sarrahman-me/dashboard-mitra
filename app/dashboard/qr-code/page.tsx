@@ -17,6 +17,7 @@ import { useSelector } from "react-redux";
 import { IoCloudDownloadOutline } from "react-icons/io5";
 import moment from "moment";
 import { useRouter } from "next/navigation";
+import mixpanel from "@/config/mixpanel";
 
 export default function Feedback() {
   const router = useRouter();
@@ -131,7 +132,17 @@ export default function Feedback() {
               </div>
             </div>
             <Button
-              onClick={() => handleDownload(item)}
+              onClick={() => {
+                // tracker code
+                mixpanel.track("Download Qr Code", {
+                  nama: item.nama_barang,
+                  brand: item.brand,
+                  ukuran: item.ukuran,
+                  id_product: item.kode_barang,
+                  searched_item_query: search,
+                });
+                handleDownload(item);
+              }}
               size="full"
               icon={<IoCloudDownloadOutline />}
             >
