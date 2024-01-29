@@ -1,5 +1,6 @@
 "use client";
 import { AppBar, FooterText, Sidebar } from "@/src/components";
+import { Tawkto } from "@/src/script";
 import { useState } from "react";
 
 export default function DashboardLayout({
@@ -19,6 +20,7 @@ export default function DashboardLayout({
         <div className="p-2 md:p-4">{children}</div>
         <FooterText />
       </div>
+      <Tawkto />
     </div>
   );
 }
