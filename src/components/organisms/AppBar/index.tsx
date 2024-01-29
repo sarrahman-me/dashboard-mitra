@@ -83,6 +83,7 @@ export default function AppBar() {
 
       mixpanel.identify(profile?.username);
       mixpanel.people.set({
+        $user_id: profile?.slug,
         $name: profile?.nama,
         $username: profile?.username,
         $whatsapp: profile?.whatsapp,
