@@ -72,7 +72,7 @@ const DetailBarang = () => {
       );
 
       const productFloori = await responseFloori.json();
-      setVisual(productFloori[0].id ? true : false);
+      setVisual(productFloori[0]?.id ? true : false);
 
       setBarang(barang);
       setBarangSerupa(responseBarangSerupa.data);
