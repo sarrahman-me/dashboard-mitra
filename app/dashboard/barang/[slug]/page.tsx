@@ -12,6 +12,7 @@ import {
   SearchBar,
   ExpiredPlan,
   Table,
+  Button,
 } from "@/src/components";
 import KalkulatorKeramik from "@/layouts/kalkulatorBarang";
 import {
@@ -19,18 +20,20 @@ import {
   formatKeteranganWaktu,
   upPriceWithPercen,
 } from "@/src/utils";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import moment from "moment";
 
 const DetailBarang = () => {
+  const router = useRouter();
   const params = useParams();
   const slug = params.slug;
   const [barangSejenis, setBarangSejenis] = useState([] as any);
   const [barangSerupa, setBarangSerupa] = useState([] as any);
   const [history, setHistory] = useState([] as any);
   const [barang, setBarang] = useState({} as any);
+  const [visual, setVisual] = useState<boolean>(false);
 
   const { profile, transaksi, persentaseHarga, webstore, membership } =
     useSelector((state: any) => state.profile);
@@ -57,6 +60,19 @@ const DetailBarang = () => {
       const responseHistoryBarang = await GetDataApi(
         `${process.env.NEXT_PUBLIC_HOST}/products/barang/history/${slug}`
       );
+
+      const responseFloori = await fetch(
+        `https://api.server.floori.io/new-floori/v3/studio/explore?sku=${slug}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer d9a049b1bba5a1b00d81525a4e919304396beb70dbe523bdb0d178d17f98eabd3806f7031eea99908e70d22c622018150da4`,
+          },
+        }
+      );
+
+      const productFloori = await responseFloori.json();
+      setVisual(productFloori[0].id ? true : false);
 
       setBarang(barang);
       setBarangSerupa(responseBarangSerupa.data);
@@ -106,12 +122,17 @@ const DetailBarang = () => {
       <p className="underline font-semibold my-2">Detail Produk</p>
       <DeskripsiProduk barang={barang} />
 
-      {/* simulasi keramik */}
-
-      {/* <div>
-        <p className="underline font-semibold m-2">{`Design Patern`}</p>
-          <SimulasiKeramik ukuran={barang.ukuran} imageUrl={barang.images[0]} />
-      </div> */}
+      {visual && (
+        <div className="my-2">
+          <Button
+            onClick={() => router.push(`dashboard/visualisasi/${slug}`)}
+            size="full"
+            variant="outlined"
+          >
+            Visualkan barang ini
+          </Button>
+        </div>
+      )}
 
       {/* kalkulator keramik */}
 
