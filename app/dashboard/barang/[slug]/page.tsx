@@ -129,7 +129,7 @@ const DetailBarang = () => {
             size="full"
             variant="outlined"
           >
-            Visualkan barang ini
+            Visualisasi Produk Ini
           </Button>
         </div>
       )}

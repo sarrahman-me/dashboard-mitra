@@ -61,7 +61,9 @@ export default function VisualisasiByProduct() {
         style={iframeStyle}
         title="Visualisasi"
         onLoad={() => {
-          mixpanel.track("Visualisasi Keramik");
+          mixpanel.track("Visualisasi Keramik", {
+            productId: slug,
+          });
         }}
       ></iframe>
     </div>
